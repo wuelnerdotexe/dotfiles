@@ -25,6 +25,7 @@ set incsearch
 call plug#begin(expand('~/.config/nvim/plugged'))
 "-------------------------------------------------
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'lifepillar/vim-solarized8'
 Plug 'itchyny/lightline.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
@@ -38,5 +39,6 @@ Plug 'chrisbra/colorizer'
 call plug#end()
 
 "Plug interface settings:
-colorscheme dracula
 let g:rainbow_active = 1
+set background=dark
+colorscheme solarized8

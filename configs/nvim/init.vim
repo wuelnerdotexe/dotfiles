@@ -24,6 +24,7 @@ set incsearch
 call plug#begin(expand('~/.config/nvim/plugged'))
 "-------------------------------------------------
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'lifepillar/vim-solarized8'
 Plug 'itchyny/lightline.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
