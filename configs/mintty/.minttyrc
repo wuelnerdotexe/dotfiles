@@ -2,8 +2,8 @@ CursorType=block
 CursorBlinks=no
 Font=MesloLGSDZ NF
 FontHeight=12
-Columns=140
-Rows=29
+Columns=131
+Rows=34
 
 ForegroundColour=131,148,150
 BackgroundColour=0,43,54
