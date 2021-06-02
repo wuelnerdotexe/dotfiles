@@ -5,7 +5,7 @@ Set-ExecutionPolicy RemoteSigned -scope AllUsers
 iwr -useb get.scoop.sh | iex
 
 #Add "extras" and "nerd-fonts" buckets:
-scoop bucket add extras nerd-fonts
+scoop bucket add extras
 
 #Install tools:
-scoop install CascadiaCode-NF colortool oh-my-posh neovim winfetch
+scoop install colortool nodejs winfetch https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json

@@ -1,7 +1,7 @@
 "FILE CONFIG GINIT.VIM FOR NVIM-QT by. @wuelnermartinez
 
 "Nvim-qt interfaz settings:
-GuiFont CaskaydiaCove NF:h14:b
+GuiFont MesloLGMDZ NF:h14
 set number relativenumber
 set cursorline
 set laststatus=2
