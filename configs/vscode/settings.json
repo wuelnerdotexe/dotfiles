@@ -1,0 +1,26 @@
+{
+    "debug.console.fontSize": 16,
+    "editor.cursorBlinking": "solid",
+    "editor.cursorStyle": "block",
+    "editor.fontFamily": "MesloLGMDZ NF, 'Courier New', monospace",
+    "editor.fontSize": 16,
+    "editor.inlineHints.fontFamily": "MesloLGMDZ NF, 'Courier New', monospace",
+    "editor.lineNumbers": "relative",
+    "editor.linkedEditing": true,
+    "liveServer.settings.CustomBrowser": "firefox",
+    "markdown.preview.fontSize": 16,
+    "php.validate.executablePath": "C:\\xampp\\php\\php.exe",
+    "projectManager.git.baseFolders": [
+        "C:\\xampp\\htdocs\\SitioWeb_NutriologasPierdeTallas",
+        "C:\\Users\\ofdel\\Code\\AppMovilAndroid_NutriologasPierdeTallas",
+        "C:\\Users\\ofdel\\Code\\Personal.Codm.Sensitivities",
+        "C:\\Users\\ofdel\\dotfiles"
+    ],
+    "scm.inputFontSize": 16,
+    "terminal.integrated.fontFamily": "MesloLGMDZ NF",
+    "terminal.integrated.fontSize": 16,
+    "terminal.integrated.fontWeightBold": "bold",
+    "workbench.colorTheme": "Solarized Dark",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.productIconTheme": "material-product-icons"
+}
