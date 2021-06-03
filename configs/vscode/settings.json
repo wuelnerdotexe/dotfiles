@@ -20,7 +20,19 @@
     "terminal.integrated.fontFamily": "MesloLGSDZ NF",
     "terminal.integrated.fontSize": 16,
     "terminal.integrated.fontWeightBold": "bold",
-    "workbench.colorTheme": "Solarized Dark",
+    "workbench.colorTheme": "Nord",
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.productIconTheme": "material-product-icons"
+    "workbench.productIconTheme": "material-product-icons",
+    "indentRainbow.colors": [
+        "rgb(235,203,139,0.07)",
+        "rgb(163,190,140,0.07)",
+        "rgb(180,142,173,0.07)",
+        "rgb(129,161,193,0.07)"
+    ],
+    "indentRainbow.errorColor": "#BF616A",
+    "bracket-pair-colorizer-2.colors": [
+        "#EBCB8B",
+        "#B48EAD",
+        "#81A1C1"
+    ]
 }

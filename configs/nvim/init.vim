@@ -23,19 +23,19 @@ set incsearch
 "Nvim plugs installeds:
 call plug#begin(expand('~/.config/nvim/plugged'))
 "-------------------------------------------------
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'lifepillar/vim-solarized8'
 Plug 'itchyny/lightline.vim'
+"Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'arcticicestudio/nord-vim'
+"Plug 'lifepillar/vim-solarized8'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'jiangmiao/auto-pairs'
 Plug 'townk/vim-autoclose'
-Plug 'luochen1990/rainbow'
 Plug 'yggdroot/indentline'
 Plug 'chrisbra/colorizer'
 "-------------------------------------------------
 call plug#end()
 
 "Plug interface settings:
-let g:rainbow_active = 1
+let g:lightline = { 'colorscheme': 'nord' }
