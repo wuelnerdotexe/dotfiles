@@ -24,7 +24,7 @@ inoremap <silent><RightMouse> <Esc>:call GuiShowContextMenu()<CR>
 vnoremap <silent><RightMouse> :call GuiShowContextMenu()<CR>gv
 
 "Nvim-qt interfaz settings:
-set termguicolors
+set fillchars+=vert:•
 set number relativenumber
 set cursorline
 set laststatus=2

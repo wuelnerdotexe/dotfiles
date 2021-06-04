@@ -2,6 +2,7 @@
 
 "Nvim interfaz settings:
 set termguicolors
+set fillchars+=vert:•
 set number relativenumber
 set cursorline
 set laststatus=2
