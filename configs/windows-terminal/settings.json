@@ -1,13 +1,7 @@
 {
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    // Add custom actions and keybindings to this array.
-    // To unbind a key combination from your defaults.json, set the command to "unbound".
-    // To learn more about actions and keybindings, visit https://aka.ms/terminal-keybindings
     "actions": 
     [
-        // Copy and paste are bound to Ctrl+Shift+C and Ctrl+Shift+V in your defaults.json.
-        // These two lines additionally bind them to Ctrl+C and Ctrl+V.
-        // To learn more about selection, visit https://aka.ms/terminal-selection
         {
             "command": 
             {
@@ -17,18 +11,13 @@
             "keys": "ctrl+c"
         },
         {
-            "command": "paste",
-            "keys": "ctrl+v"
-        },
-        // Press Ctrl+Shift+F to open the search box
-        {
             "command": "find",
             "keys": "ctrl+shift+f"
         },
-        // Press Alt+Shift+D to open a new pane.
-        // - "split": "auto" makes this pane open in the direction that provides the most surface area.
-        // - "splitMode": "duplicate" makes the new pane use the focused pane's profile.
-        // To learn more about panes, visit https://aka.ms/terminal-panes
+        {
+            "command": "paste",
+            "keys": "ctrl+v"
+        },
         {
             "command": 
             {
@@ -42,16 +31,14 @@
     "copyFormatting": "none",
     "copyOnSelect": false,
     "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-    "launchMode": "default",
     "profiles": 
     {
         "defaults": 
         {
             "colorScheme": "Nord",
             "cursorShape": "vintage",
-            "fontFace": "MesloLGSDZ NF",
-            "fontSize": 13,
-            "fontWeight": "bold"
+            "fontFace": "JetBrainsMonoExtraBold NF",
+            "fontSize": 13
         },
         "list": 
         [
@@ -163,27 +150,27 @@
             "yellow": "#F1FA8C"
         },
         {
+            "background": "#2E3440",
+            "black": "#3B4252",
+            "blue": "#81A1C1",
+            "brightBlack": "#4C566A",
+            "brightBlue": "#81A1C1",
+            "brightCyan": "#8FBCBB",
+            "brightGreen": "#A3BE8C",
+            "brightPurple": "#B48EAD",
+            "brightRed": "#BF616A",
+            "brightWhite": "#ECEFF4",
+            "brightYellow": "#EBCB8B",
+            "cursorColor": "#ECEFF4",
+            "cyan": "#88C0D0",
+            "foreground": "#D8DEE9",
+            "green": "#A3BE8C",
             "name": "Nord",
-            "black": "#3b4252",
-            "red": "#bf616a",
-            "green": "#a3be8c",
-            "yellow": "#ebcb8b",
-            "blue": "#81a1c1",
-            "purple": "#b48ead",
-            "cyan": "#88c0d0",
-            "white": "#e5e9f0",
-            "brightBlack": "#4c566a",
-            "brightRed": "#bf616a",
-            "brightGreen": "#a3be8c",
-            "brightYellow": "#ebcb8b",
-            "brightBlue": "#81a1c1",
-            "brightPurple": "#b48ead",
-            "brightCyan": "#8fbcbb",
-            "brightWhite": "#eceff4",
-            "background": "#2e3440",
-            "foreground": "#d8dee9",
-            "cursorColor": "#eceff4",
-            "selectionBackground": "#eceff4"
+            "purple": "#B48EAD",
+            "red": "#BF616A",
+            "selectionBackground": "#ECEFF4",
+            "white": "#E5E9F0",
+            "yellow": "#EBCB8B"
         },
         {
             "background": "#282C34",

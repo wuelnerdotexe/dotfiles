@@ -1,9 +1,9 @@
 CursorType=block
 CursorBlinks=no
-Font=MesloLGSDZ NF
+Font=JetBrainsMonoExtraBold NF
 FontHeight=12
-Columns=131
-Rows=34
+Columns=132
+Rows=36
 ThemeFile=nord
-FontWeight=700
+FontWeight=800
 FontIsBold=yes
