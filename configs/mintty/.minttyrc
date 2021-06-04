@@ -5,3 +5,5 @@ FontHeight=12
 Columns=131
 Rows=34
 ThemeFile=nord
+FontWeight=700
+FontIsBold=yes

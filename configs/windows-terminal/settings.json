@@ -50,7 +50,8 @@
             "colorScheme": "Nord",
             "cursorShape": "vintage",
             "fontFace": "MesloLGSDZ NF",
-            "fontSize": 13
+            "fontSize": 13,
+            "fontWeight": "bold"
         },
         "list": 
         [
