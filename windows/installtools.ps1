@@ -8,4 +8,4 @@ iwr -useb get.scoop.sh | iex
 scoop bucket add extras
 
 #Install tools:
-scoop install colortool nodejs winfetch https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json
+scoop install colortool cowsay nodejs winfetch https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json
