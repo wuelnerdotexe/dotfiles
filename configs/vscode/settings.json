@@ -6,7 +6,6 @@
     "editor.fontLigatures":true,
     "editor.fontSize": 16,
     "editor.inlineHints.fontFamily": "JetbrainsMonoExtraBold NF",
-    "editor.lineNumbers": "relative",
     "editor.linkedEditing": true,
     "liveServer.settings.CustomBrowser": "firefox",
     "markdown.preview.fontSize": 16,

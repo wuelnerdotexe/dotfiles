@@ -23,4 +23,7 @@ set incsearch
 "Auto init commands:
 autocmd VimEnter * NERDTree
 
+"User commands
+command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
+
 "by. @wuelnermartinez
