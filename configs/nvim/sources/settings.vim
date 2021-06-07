@@ -1,12 +1,15 @@
 "FILE CONFIG SETTINGS.VIM FOR VIM GENERAL AJUSTS.
 
-"Nvim interfaz settings:
+"Nvim providers settings:
+let g:python3_host_prog = 'C:/Python39/python.exe'
+
+"Vim interfaz settings:
 set fillchars+=vert:•
 set number relativenumber
 set cursorline
 set laststatus=2
 
-"Nvim coding settings:
+"Vim coding settings:
 syntax on
 set autoindent
 set shiftround
@@ -15,7 +18,7 @@ set smarttab
 set tabstop=4
 set nowrap
 
-"Nvim search settings:
+"Vim search settings:
 set hlsearch
 set ignorecase
 set incsearch
