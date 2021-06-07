@@ -1,5 +1,4 @@
 {
-    "snippets.ultisnips.usePythonx": false,
     "html.format.enable": false,
     "json.format.enable": false,
     "coc.preferences.formatOnSaveFiletypes": [
