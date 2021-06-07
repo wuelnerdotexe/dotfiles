@@ -1,6 +1,9 @@
 "FILE CONFIG SETTINGS.VIM FOR VIM GENERAL AJUSTS.
 
 "Nvim providers settings:
+let g:loaded_python_provider = 0
+let g:loaded_ruby_provider = 0
+let g:loaded_perl_provider = 0
 let g:python3_host_prog = 'C:/Python39/python.exe'
 
 "Vim interfaz settings:
