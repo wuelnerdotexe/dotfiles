@@ -11,8 +11,8 @@ mklink "%USERPROFILE%\.minttyrc" "%USERPROFILE%\dotfiles\configs\mintty\.minttyr
 mklink "%USERPROFILE%\.bashrc" "%USERPROFILE%\dotfiles\configs\git-bash\.bashrc"
 
 :: Symbolic link for Neovim file settings.
-mklink "%USERPROFILE%\AppData\Local\nvim\init.vim" "%USERPROFILE%\dotfiles\configs\nvim\init.vim"
-mklink "%USERPROFILE%\AppData\Local\nvim\ginit.vim" "%USERPROFILE%\dotfiles\configs\nvim\ginit.vim"
-mklink "%USERPROFILE%\AppData\Local\nvim\coc-settings.json" "%USERPROFILE%\dotfiles\configs\nvim\coc-settings.json"
+mklink "%LOCALAPPDATA%\nvim\init.vim" "%USERPROFILE%\dotfiles\configs\nvim\init.vim"
+mklink "%LOCALAPPDATA%\nvim\ginit.vim" "%USERPROFILE%\dotfiles\configs\nvim\ginit.vim"
+mklink "%LOCALAPPDATA%\nvim\coc-settings.json" "%USERPROFILE%\dotfiles\configs\nvim\coc-settings.json"
 
 Rem by. @wuelnermartinez
