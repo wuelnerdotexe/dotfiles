@@ -1,7 +1,17 @@
 "FILE CONFIG THEME.VIM FOR CONFIG ALL NEOVIM COLORSCHEMES.
 
-"Set colorschemes:
-let g:lightline = { 'colorscheme': 'nord' }
+"Set colorschemes and lightline settings:
+let g:lightline = {
+      \ 'colorscheme': 'nord',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'gitbranch#name'
+      \ },
+      \ }
+
 colorscheme nord
 
 "Nord theme settings:

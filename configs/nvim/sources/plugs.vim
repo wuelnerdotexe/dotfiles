@@ -4,6 +4,7 @@
 call plug#begin(expand('~/.config/nvim/plugged'))
 "-------------------------------------------------------
 Plug 'ryanoasis/vim-devicons'
+Plug 'itchyny/vim-gitbranch'
 Plug 'itchyny/lightline.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'overcache/NeoSolarized'
