@@ -1,0 +1,117 @@
+###########################################################################
+#                             TextMate Snippets                           #
+###########################################################################
+snippet get "Get Elements"
+getElement${1/(T)|.*/(?1:s)/}By${1:T}${1/(T)|(I)|.*/(?1:agName)(?2:d)/}('$2')
+endsnippet
+
+snippet '':f "object method string"
+'${1:${2:#thing}:${3:click}}': function(element) {
+    $0
+}${10:,}
+endsnippet
+
+snippet :f "Object Method"
+${1:method_name}: function(${3:args}) {
+    $0
+}${10:,}
+endsnippet
+
+snippet :, "Object Value JS"
+${1:value_name}: ${0:value},
+endsnippet
+
+snippet : "Object key key: 'value'"
+${1:key}: ${2:"${3:value}"}${4:, }
+endsnippet
+
+snippet for "for (...) {...} (faster)"
+for (var ${2:i} = ${1:Things}.length - 1; $2 >= 0; $2--){
+    ${3:$1[$2]}$0
+}
+endsnippet
+
+snippet foreach "foreach loop"
+for (var ${key} in ${items}) {
+    $0
+}
+endsnippet
+
+snippet while "while loop"
+while (${1:true}) {
+    $0
+}
+endsnippet
+
+snippet do "do-while loop"
+do {
+    $0
+} while (${1:true});
+endsnippet
+
+snippet function "function (fun)"
+function ${1:function_name} (${2:argument}) {
+    ${0:// body...}
+}
+endsnippet
+
+snippet if "if"
+if (${1:true}) {
+    $0
+}
+endsnippet
+
+snippet else "else"
+} else {
+endsnippet
+
+snippet elseif "else if"
+} else if (${1:true}) {
+endsnippet
+
+snippet switch "Switch statement"
+switch (${1:value}) {
+    $0
+}
+endsnippet
+
+snippet case "Switch-case"
+case ${1:condition}:
+    $0
+    break;
+endsnippet
+
+snippet default "Switch-default"
+default:
+    $0
+    break;
+endsnippet
+
+snippet timeout "setTimeout function"
+setTimeout(function() {$0}${2:}, ${1:10});
+endsnippet
+
+snippet class "Create an object"
+function ${1:ClassName}($2) {
+    $3
+}
+
+${4:// Extends $5
+$1.prototype = Object.create(${5:parentClass}.prototype);}
+$1.prototype = {
+    constructor: $1,
+
+    // Methods
+    $0
+}
+endsnippet
+
+snippet prototype "Object method"
+${1:className}.prototype.${2:name}
+endsnippet
+
+snippet var "Variable declaration"
+var ${1:varName} = ${2:value};
+endsnippet
+
+# vim:ft=snippets:

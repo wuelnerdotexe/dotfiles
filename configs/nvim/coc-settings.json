@@ -1,6 +1,9 @@
 {
     "html.format.enable": false,
     "json.format.enable": false,
+    "snippets.ultisnips.directories": [
+        "~/dotfiles/ultisnips"
+    ],
     "coc.preferences.formatOnSaveFiletypes": [
         "css",
         "html",

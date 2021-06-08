@@ -7,7 +7,7 @@ let g:loaded_perl_provider = 0
 let g:python3_host_prog = 'C:/Python39/python.exe'
 
 "Vim interfaz settings:
-set fillchars+=vert:•
+set fillchars+=vert:¦
 set number relativenumber
 set cursorline
 set laststatus=2
