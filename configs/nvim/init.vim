@@ -9,6 +9,5 @@ source ~/dotfiles/configs/nvim/sources/plugs.vim
 source ~/dotfiles/configs/nvim/sources/coc.vim
 source ~/dotfiles/configs/nvim/sources/lightline.vim
 source ~/dotfiles/configs/nvim/sources/theme.vim
-source ~/dotfiles/configs/nvim/sources/closetag.vim
 
 " by. @wuelnermartinez

@@ -165,4 +165,4 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 " Install coc extensions.
-let g:coc_global_extensions = ['coc-css', 'coc-cssmodules', 'coc-html', 'coc-json', 'coc-snippets']
+let g:coc_global_extensions = ['coc-pairs', 'coc-css', 'coc-cssmodules', 'coc-html', 'coc-htmlhint', 'coc-json', 'coc-prettier', 'coc-snippets', 'coc-tsserver']

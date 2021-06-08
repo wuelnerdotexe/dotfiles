@@ -18,14 +18,8 @@ Plug 'yggdroot/indentline'
 Plug 'chrisbra/colorizer'
 Plug 'scrooloose/nerdtree'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'jiangmiao/auto-pairs'
-Plug 'alvan/vim-closetag'
 Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'npm install',
-  \ 'for': ['css', 'html', 'javascript', 'json'],
-  \ }
 
 " -------------------------------------------------------
 call plug#end()

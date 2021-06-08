@@ -31,4 +31,13 @@ set incsearch
 " Auto init commands:
 autocmd VimEnter * NERDTree
 
+" Ale integration with coc.
+let g:ale_disable_lsp = 1
+
+" Prettier command and map keys:
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
 " by. @wuelnermartinez

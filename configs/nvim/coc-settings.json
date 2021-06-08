@@ -1,8 +1,18 @@
 {
     "diagnostic.displayByAle": true,
-    "html.format.enable": false,
-    "json.format.enable": false,
     "snippets.ultisnips.directories": [
         "~/dotfiles/ultisnips"
+    ],
+    "html.format.enable": false,
+    "html.autoClosingTags": true,
+    "javascript.format.enabled": false,
+    "typescript.format.enabled": false,
+    "json.format.enable": false,
+    "prettier.tabWidth": 4,
+    "coc.preferences.formatOnSaveFiletypes": [
+        "css",
+        "html",
+        "javascript",
+        "json"
     ]
 }
