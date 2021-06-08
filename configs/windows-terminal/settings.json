@@ -35,12 +35,10 @@
     {
         "defaults": 
         {
-            "acrylicOpacity": 0.5,
             "colorScheme": "Nord",
             "cursorShape": "vintage",
             "fontFace": "JetBrainsMonoExtraBold NF",
-            "fontSize": 13,
-            "useAcrylic": true
+            "fontSize": 13
         },
         "list": 
         [
