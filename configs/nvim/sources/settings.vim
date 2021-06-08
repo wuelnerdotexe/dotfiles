@@ -11,6 +11,7 @@ set fillchars+=vert:•
 set number relativenumber
 set cursorline
 set laststatus=2
+set noshowmode
 
 "Vim coding settings:
 syntax on

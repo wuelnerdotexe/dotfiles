@@ -13,7 +13,8 @@ Plug 'chrisbra/colorizer'
 Plug 'scrooloose/nerdtree'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jiangmiao/auto-pairs'
-Plug 'townk/vim-autoclose'
+Plug 'alvan/vim-closetag'
+Plug 'mhinz/vim-signify'
 "-------------------------------------------------------
 call plug#end()
 
