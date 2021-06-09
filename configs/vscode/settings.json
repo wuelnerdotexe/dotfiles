@@ -9,7 +9,7 @@
     "editor.linkedEditing": true,
     "liveServer.settings.CustomBrowser": "firefox",
     "markdown.preview.fontSize": 16,
-    "php.validate.executablePath": "C:\\xampp\\php\\php.exe",
+    "php.validate.executablePath": "C:\\wamp\\bin\\php\\php7.3.21\\php.exe",
     "projectManager.git.baseFolders": [
         "C:\\xampp\\htdocs\\SitioWeb_NutriologasPierdeTallas",
         "C:\\Users\\ofdel\\Code\\AppMovilAndroid_NutriologasPierdeTallas",
