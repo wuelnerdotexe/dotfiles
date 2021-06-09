@@ -12,6 +12,9 @@ scoop bucket add java
 # Install tools:
 scoop install colortool cowsay nodejs openjdk winfetch https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json
 
+# Remove download cache:
+scoop cache rm *
+
 # --------------------------------------------------------------------------
 # Install vim-plug:
 iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
