@@ -8,9 +8,10 @@ iwr -useb get.scoop.sh | iex
 # Add "extras" and "java" buckets:
 scoop bucket add extras
 scoop bucket add java
+scoop bucket add spotify https://github.com/TheRandomLabs/Scoop-Spotify.git
 
 # Install tools:
-scoop install colortool cowsay nodejs openjdk winfetch https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json
+scoop install caffeine colortool cowsay dark git innounp windows-terminal neovim nodejs openjdk python sudo winfetch https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json
 
 # Remove download cache:
 scoop cache rm *
@@ -22,7 +23,7 @@ iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
 
 # --------------------------------------------------------------------------
 # Install pynvim:
-C:\Python39\python.exe -m pip install --upgrade pip
+python -m pip install --upgrade pip
 python -m pip install --user --upgrade pynvim
 
 # --------------------------------------------------------------------------
@@ -30,10 +31,7 @@ python -m pip install --user --upgrade pynvim
 npm install -g neovim
 
 # --------------------------------------------------------------------------
-# Install spicetify-cli:
-Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/khanhas/spicetify-cli/master/install.ps1" | Invoke-Expression
-
-# Init spicetify-cli:
+# Config spicetify-cli:
 spicetify
 
 # Backup spotify original status:
