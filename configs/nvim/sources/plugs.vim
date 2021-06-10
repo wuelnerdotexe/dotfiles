@@ -6,23 +6,28 @@ filetype plugin on
 " Nvim plugs installeds:
 call plug#begin(expand('~/.config/nvim/plugged'))
 " -------------------------------------------------------
-Plug 'yggdroot/indentline'
-Plug 'ryanoasis/vim-devicons'
-Plug 'dense-analysis/ale'
-Plug 'maximbaz/lightline-ale'
-Plug 'itchyny/vim-gitbranch'
-Plug 'itchyny/lightline.vim'
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'overcache/NeoSolarized'
-Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'preservim/nerdtree'
+Plug 'itchyny/lightline.vim' |
+            \ Plug 'itchyny/vim-gitbranch' |
+            \ Plug 'maximbaz/lightline-ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'airblade/vim-gitgutter'
-Plug 'preservim/nerdcommenter'
+Plug 'dense-analysis/ale'
 Plug 'chrisbra/colorizer'
 
+Plug 'airblade/vim-gitgutter'
+Plug 'yggdroot/indentline'
+Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
+
+Plug 'preservim/nerdtree' |
+            \ Plug 'Xuyuanp/nerdtree-git-plugin' |
+            \ Plug 'ryanoasis/vim-devicons' |
+            \ Plug 'scrooloose/nerdtree-project-plugin' |
+            \ Plug 'PhilRunninger/nerdtree-visual-selection'
+Plug 'preservim/nerdcommenter'
 " -------------------------------------------------------
 call plug#end()
+
+" Nvim plugs desactivated:
+" Plug 'dracula/vim', { 'as': 'dracula' }
+" Plug 'overcache/NeoSolarized'
 
 " by. @wuelnermartinez
