@@ -64,7 +64,7 @@
             },
             {
                 "commandline": "nvim.exe",
-                "guid": "{64b78f07-b170-4e14-808a-21793a36e468}",
+                "guid": "{3a15ad0b-9397-4189-a76c-3eb571a6cf8c}",
                 "hidden": false,
                 "icon": "%USERPROFILE%/scoop/apps/neovim/current/share/pixmaps/nvim.png",
                 "name": "Neovim",
@@ -72,7 +72,7 @@
             },
             {
                 "commandline": "%GIT_INSTALL_ROOT%/bin/bash.exe --login",
-                "guid": "{b6dbead8-ea71-4634-a17c-4dcff931f835}",
+                "guid": "{5eb0918d-d244-48b5-a381-d7db1098b27b}",
                 "hidden": false,
                 "icon": "%GIT_INSTALL_ROOT%/mingw64/share/git/git-for-windows.ico",
                 "name": "Git Bash",
