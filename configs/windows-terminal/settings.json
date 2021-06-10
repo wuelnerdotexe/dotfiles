@@ -66,15 +66,15 @@
                 "commandline": "nvim.exe",
                 "guid": "{64b78f07-b170-4e14-808a-21793a36e468}",
                 "hidden": false,
-                "icon": "C:/Users/ofdel/AppData/Local/neovim-logos/neovim-mark-flat.png",
+                "icon": "%USERPROFILE%/scoop/apps/neovim/current/share/pixmaps/nvim.png",
                 "name": "Neovim",
                 "startingDirectory": "%USERPROFILE%/Code"
             },
             {
-                "commandline": "C:/Program Files/Git/bin/bash.exe --login",
+                "commandline": "%GIT_INSTALL_ROOT%/bin/bash.exe --login",
                 "guid": "{b6dbead8-ea71-4634-a17c-4dcff931f835}",
                 "hidden": false,
-                "icon": "C:/Program Files/Git/mingw64/share/git/git-for-windows.ico",
+                "icon": "%GIT_INSTALL_ROOT%/mingw64/share/git/git-for-windows.ico",
                 "name": "Git Bash",
                 "startingDirectory": "%USERPROFILE%/Code"
             }
