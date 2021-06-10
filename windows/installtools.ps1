@@ -11,7 +11,7 @@ scoop bucket add java
 scoop bucket add spotify https://github.com/TheRandomLabs/Scoop-Spotify.git
 
 # Install tools:
-scoop install caffeine colortool cowsay dark git innounp windows-terminal neovim nodejs openjdk python sudo winfetch https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json
+scoop install caffeine colortool cowsay dark git innounp neovim nodejs openjdk python sudo winfetch https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json
 
 # Remove download cache:
 scoop cache rm *
