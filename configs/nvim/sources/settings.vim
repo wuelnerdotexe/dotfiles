@@ -6,7 +6,6 @@ let g:python3_host_prog = '~\scoop\apps\python\current\python.exe'
 
 " Vim interfaz settings:
 set updatetime=100
-set fillchars+=vert:¦
 set number relativenumber
 set cursorline
 set laststatus=2

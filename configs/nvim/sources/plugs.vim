@@ -14,7 +14,6 @@ Plug 'dense-analysis/ale'
 Plug 'chrisbra/colorizer'
 
 Plug 'airblade/vim-gitgutter'
-Plug 'yggdroot/indentline'
 Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
 
 Plug 'preservim/nerdtree' |
