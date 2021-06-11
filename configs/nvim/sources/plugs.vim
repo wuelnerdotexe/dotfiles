@@ -19,7 +19,6 @@ Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
 
 Plug 'preservim/nerdtree' |
             \ Plug 'Xuyuanp/nerdtree-git-plugin' |
-            \ Plug 'ryanoasis/vim-devicons' |
             \ Plug 'scrooloose/nerdtree-project-plugin' |
             \ Plug 'PhilRunninger/nerdtree-visual-selection'
 Plug 'preservim/nerdcommenter'
@@ -27,7 +26,6 @@ Plug 'preservim/nerdcommenter'
 call plug#end()
 
 " Nvim plugs desactivated:
-" Plug 'dracula/vim', { 'as': 'dracula' }
 " Plug 'overcache/NeoSolarized'
 
 " by. @wuelnermartinez

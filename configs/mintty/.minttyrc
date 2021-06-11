@@ -1,9 +1,11 @@
 CursorType=block
 CursorBlinks=no
-Font=JetBrainsMonoExtraBold NF
-FontHeight=12
-Columns=132
-Rows=36
+Font=JetBrains Mono NL
+FontHeight=13
+Columns=118
+Rows=31
 ThemeFile=nord
-FontWeight=800
-FontIsBold=yes
+FontWeight=400
+FontIsBold=no
+ScrollbackLines=9001
+BoldAsFont=yes

@@ -1,6 +1,7 @@
 " FILE CONFIG INIT.VIM FOR NEOVIM SETTINGS.
 
 " Neovim recommended settings:
+set nocompatible
 set termguicolors
 
 " Import config files:

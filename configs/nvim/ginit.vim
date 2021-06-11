@@ -1,10 +1,11 @@
 " FILE CONFIG GINIT.VIM FOR NEOVIM-QT SETTINGS.
 
 " Neovim-qt recommended settings:
+set nocompatible
 set mouse=a
 
 if exists(':GuiFont')
-    GuiFont! JetbrainsMonoExtraBold NF:h14
+    GuiFont! Jetbrains Mono NL:h13
 endif
 
 if exists(':GuiTabline')
