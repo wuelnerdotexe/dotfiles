@@ -1,8 +1,5 @@
 " FILE CONFIG PLUGS.VIM FOR INSTALL VIM PLUGS.
 
-" Nerd commeter setting:
-filetype plugin on
-
 " Nvim plugs installeds:
 call plug#begin(expand('~/.config/nvim/plugged'))
 " -------------------------------------------------------
@@ -13,14 +10,15 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
 Plug 'chrisbra/colorizer'
 
-Plug 'airblade/vim-gitgutter'
 Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
 
 Plug 'preservim/nerdtree' |
             \ Plug 'Xuyuanp/nerdtree-git-plugin' |
             \ Plug 'scrooloose/nerdtree-project-plugin' |
             \ Plug 'PhilRunninger/nerdtree-visual-selection'
-Plug 'preservim/nerdcommenter'
+
+Plug 'tpope/vim-commentary'
+Plug 'mhinz/vim-signify'
 " -------------------------------------------------------
 call plug#end()
 
