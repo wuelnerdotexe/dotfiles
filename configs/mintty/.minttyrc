@@ -1,11 +1,11 @@
 CursorType=block
 CursorBlinks=no
-Font=JetBrains Mono NL
-FontHeight=13
-Columns=118
+Font=Iosevka Fixed SS14
+FontHeight=15
+Columns=143
 Rows=31
 ThemeFile=nord
-FontWeight=400
-FontIsBold=no
+FontWeight=700
+FontIsBold=yes
 ScrollbackLines=9001
 BoldAsFont=yes
