@@ -4,28 +4,28 @@
     "editor.fontFamily": "Jetbrains Mono NL",
     "editor.fontSize": 15,
     "editor.linkedEditing": true,
-    "liveServer.settings.CustomBrowser": "firefox",
-    "php.validate.executablePath": "C:\\wamp\\bin\\php\\php7.3.21\\php.exe",
-    "projectManager.git.baseFolders": [
-        "~\\dotfiles",
-        "~\\Code\\Personal.Codm.Sensitivities"
-    ],
     "terminal.integrated.fontFamily": "Jetbrains Mono NL",
     "terminal.integrated.fontSize": 15,
     "terminal.integrated.fontWeightBold": "bold",
     "workbench.colorTheme": "Nord",
     "workbench.iconTheme": "material-icon-theme",
     "workbench.productIconTheme": "material-product-icons",
+    "bracket-pair-colorizer-2.colors": [
+        "#EBCB8B",
+        "#B48EAD",
+        "#81A1C1"
+    ],
     "indentRainbow.colors": [
         "rgb(235,203,139,0.07)",
         "rgb(163,190,140,0.07)",
         "rgb(180,142,173,0.07)",
         "rgb(129,161,193,0.07)"
     ],
-    "indentRainbow.errorColor": "#BF616A",
-    "bracket-pair-colorizer-2.colors": [
-        "#EBCB8B",
-        "#B48EAD",
-        "#81A1C1"
+    "indentRainbow.errorColor": "rgb(191,97,106, 0.07)",
+    "liveServer.settings.CustomBrowser": "firefox",
+    "php.validate.executablePath": "C:\\wamp\\bin\\php\\php7.3.21\\php.exe",
+    "projectManager.git.baseFolders": [
+        "~\\dotfiles",
+        "~\\Code\\Personal.Codm.Sensitivities"
     ]
 }
