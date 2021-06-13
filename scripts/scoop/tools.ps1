@@ -8,10 +8,8 @@ scoop install colortool cowsay nodejs ntop https://github.com/JanDeDobbeleer/oh-
 scoop bucket add extras
 
 # Install caffeine:
-scoop install caffeine
+scoop install caffeine winfetch
 
-# Install winfetch:
-scoop install winfetch
 # ---------------------------------------------------------------------------
 # Add scoop java bucket for openjdk:
 scoop bucket add java

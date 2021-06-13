@@ -16,7 +16,7 @@ spicetify
 # Backup spotify original status:
 spicetify backup apply enable-devtool
 
-# Set Nord Theme to Spotify:
+# Set Nord Theme to spotify:
 spicetify config color_scheme nord-dark
 
 # Apply the changes:

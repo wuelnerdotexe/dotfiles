@@ -1,7 +1,10 @@
 # FILE PS1 FOR INSTALL TOOLS FOR NEOVIM IN WINDOWS WITH POWERSHELL.
 
-# Install neovim with scoop:
-scoop install neovim
+# Add scoop versions bucket for neovim pre-release:
+scoop add bucket versions
+
+# Install neovim pre-release with scoop:
+scoop install neovim-nightly
 
 # --------------------------------------------------------------------------
 # Install pynvim with python:
