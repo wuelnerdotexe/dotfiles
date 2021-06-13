@@ -1,4 +1,4 @@
-Rem BASH SCRIPT FOR MAKE CONFIG FILES SYMBOLIC LINKS. 
+Rem BASH SCRIPT FOR MAKE CONFIG FILES SYMBOLIC LINKS IN WINDOWS WITH CMD. 
 
 :: Symbolic link for Powershell $PROFILE file.
 mklink "%USERPROFILE%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1" "%USERPROFILE%\dotfiles\configs\powershell\Microsoft.PowerShell_profile.ps1"
