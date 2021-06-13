@@ -4,12 +4,15 @@
 let g:loaded_ruby_provider = 0
 let g:python3_host_prog = '~\scoop\apps\python\current\python.exe'
 
+" Vim interaction settings:
+set hidden
+set nobackup
+set nowritebackup
+
 " Vim interfaz settings:
-set updatetime=100
 set number relativenumber
 set cursorline
 set laststatus=2
-set noshowmode
 
 " Vim coding settings:
 syntax on

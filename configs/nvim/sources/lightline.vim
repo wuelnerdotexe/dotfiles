@@ -1,5 +1,8 @@
 " FILE CONFIG LIGHTLINE.VIM FOR LIGHTLINE PLUGIN DESIGN.
 
+" Status bar settings:
+set noshowmode
+
 " Set theme:
 let g:lightline = {
       \  'colorscheme': 'nord'
@@ -7,7 +10,7 @@ let g:lightline = {
 
 " Add git branch name:
 let g:lightline.component_function = {
-      \  'gitbranch': 'gitbranch#name'
+      \  'cocstatus': 'coc#status'
       \ }
 
 " Register the components:
@@ -31,10 +34,10 @@ let g:lightline.component_type = {
 " Add the components to the lightline:
 let g:lightline.active = {
             \ 'left':  [ [ 'mode', 'paste' ],
-            \            [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+            \            [ 'cocstatus', 'readonly', 'filename', 'modified' ] ],
             \ 'right': [ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ],
             \            [ 'lineinfo' ],
-	        \            [ 'percent' ],
-	        \            [ 'fileformat', 'fileencoding', 'filetype'] ] }
+	      \            [ 'percent' ],
+	      \            [ 'fileformat', 'fileencoding', 'filetype'] ] }                                                                                                         \ }
 
 " by. @wuelnermartinez
