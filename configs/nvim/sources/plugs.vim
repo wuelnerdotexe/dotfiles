@@ -15,7 +15,6 @@ Plug 'chrisbra/colorizer'
 Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
 
 Plug 'preservim/nerdtree' |
-            \ Plug 'Xuyuanp/nerdtree-git-plugin' |
             \ Plug 'scrooloose/nerdtree-project-plugin' |
             \ Plug 'PhilRunninger/nerdtree-visual-selection'
 
