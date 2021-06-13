@@ -8,11 +8,6 @@ let g:lightline = {
       \  'colorscheme': 'nord'
       \ }
 
-" Add git branch name:
-let g:lightline.component_function = {
-      \  'cocstatus': 'coc#status'
-      \ }
-
 " Register the components:
 let g:lightline.component_expand = {
       \  'linter_checking': 'lightline#ale#checking',
@@ -34,10 +29,11 @@ let g:lightline.component_type = {
 " Add the components to the lightline:
 let g:lightline.active = {
             \ 'left':  [ [ 'mode', 'paste' ],
-            \            [ 'cocstatus', 'readonly', 'filename', 'modified' ] ],
+            \            [ 'readonly', 'filename', 'modified' ] ],
             \ 'right': [ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ],
             \            [ 'lineinfo' ],
 	      \            [ 'percent' ],
-	      \            [ 'fileformat', 'fileencoding', 'filetype'] ] }                                                                                                         \ }
+	      \            [ 'filetype'] ]
+            \ }
 
 " by. @wuelnermartinez
