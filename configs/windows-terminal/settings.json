@@ -31,14 +31,16 @@
     "copyFormatting": "none",
     "copyOnSelect": false,
     "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-    "launchMode": "maximized",
+    "initialCols": 110,
+    "initialRows": 23,
+    "launchMode": "default",
     "profiles": 
     {
         "defaults": 
         {
             "colorScheme": "Nord",
             "cursorShape": "vintage",
-            "fontFace": "Iosevka Fixed SS14",
+            "fontFace": "JetBrains Mono NL",
             "fontSize": 15,
             "fontWeight": "bold",
             "padding": "0",
