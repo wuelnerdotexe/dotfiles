@@ -70,7 +70,7 @@
                 "commandline": "nvim.exe",
                 "guid": "{3a15ad0b-9397-4189-a76c-3eb571a6cf8c}",
                 "hidden": false,
-                "icon": "%USERPROFILE%/scoop/apps/neovim/current/share/pixmaps/nvim.png",
+                "icon": "%USERPROFILE%/scoop/apps/neovim-nightly/current/share/icons/hicolor/128x128/apps/nvim.png",
                 "name": "Neovim",
                 "startingDirectory": "%USERPROFILE%/Code"
             },
