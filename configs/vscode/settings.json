@@ -26,7 +26,7 @@
         "rgb(129,161,193,0.07)"
     ],
     "indentRainbow.errorColor": "rgb(191,97,106, 0.07)",
-    "liveServer.settings.CustomBrowser": "firefox",
+    "liveServer.settings.CustomBrowser": "chrome",
     "php.validate.executablePath": "C:\\wamp\\bin\\php\\php7.3.21\\php.exe",
     "projectManager.git.baseFolders": [
         "~\\dotfiles",
