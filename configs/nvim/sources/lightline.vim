@@ -32,8 +32,8 @@ let g:lightline.active = {
             \            [ 'readonly', 'filename', 'modified' ] ],
             \ 'right': [ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ],
             \            [ 'lineinfo' ],
-	      \            [ 'percent' ],
-	      \            [ 'filetype'] ]
+	        \            [ 'percent' ],
+	        \            [ 'filetype'] ]
             \ }
 
 " by. @wuelnermartinez
