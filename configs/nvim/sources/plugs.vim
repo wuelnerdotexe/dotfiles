@@ -12,14 +12,14 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
 Plug 'chrisbra/colorizer'
 
-Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
-
 Plug 'preservim/nerdtree' |
             \ Plug 'scrooloose/nerdtree-project-plugin' |
             \ Plug 'PhilRunninger/nerdtree-visual-selection'
 
 Plug 'tpope/vim-commentary'
 Plug 'mhinz/vim-signify'
+
+Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
 " -------------------------------------------------------
 call plug#end()
 
