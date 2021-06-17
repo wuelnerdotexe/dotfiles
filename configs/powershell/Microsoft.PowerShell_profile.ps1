@@ -1,1 +1,1 @@
-cowsay "Nunca pares de aprender"
+winfetch
