@@ -31,9 +31,7 @@
     "copyFormatting": "none",
     "copyOnSelect": false,
     "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-    "initialCols": 110,
-    "initialRows": 23,
-    "launchMode": "default",
+    "launchMode": "maximized",
     "profiles": 
     {
         "defaults": 
@@ -72,7 +70,7 @@
                 "hidden": false,
                 "icon": "%USERPROFILE%/scoop/apps/neovim-nightly/current/share/icons/hicolor/128x128/apps/nvim.png",
                 "name": "Neovim",
-                "startingDirectory": "%USERPROFILE%/Code"
+                "startingDirectory": "%USERPROFILE%"
             },
             {
                 "commandline": "%GIT_INSTALL_ROOT%/bin/bash.exe --login",
@@ -80,7 +78,7 @@
                 "hidden": false,
                 "icon": "%GIT_INSTALL_ROOT%/mingw64/share/git/git-for-windows.ico",
                 "name": "Git Bash",
-                "startingDirectory": "%USERPROFILE%/Code"
+                "startingDirectory": "%USERPROFILE%"
             }
         ]
     },

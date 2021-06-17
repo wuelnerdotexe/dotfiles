@@ -1,7 +1,7 @@
 # FILE PS1 FOR INSTALL TOOLS FOR NEOVIM IN WINDOWS WITH POWERSHELL.
 
 # Add scoop versions bucket for neovim pre-release:
-scoop add bucket versions
+scoop bucket add versions
 
 # Install neovim pre-release with scoop:
 scoop install neovim-nightly
