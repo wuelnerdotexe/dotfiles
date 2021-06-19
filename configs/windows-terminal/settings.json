@@ -135,14 +135,14 @@
             "brightRed": "#BF616A",
             "brightWhite": "#ECEFF4",
             "brightYellow": "#EBCB8B",
-            "cursorColor": "#ECEFF4",
+            "cursorColor": "#D8DEE9",
             "cyan": "#88C0D0",
             "foreground": "#D8DEE9",
             "green": "#A3BE8C",
             "name": "Nord",
             "purple": "#B48EAD",
             "red": "#BF616A",
-            "selectionBackground": "#ECEFF4",
+            "selectionBackground": "#D8DEE9",
             "white": "#E5E9F0",
             "yellow": "#EBCB8B"
         },
@@ -309,4 +309,3 @@
         }
     ]
 }
-
