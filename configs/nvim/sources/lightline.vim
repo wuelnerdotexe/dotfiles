@@ -25,16 +25,6 @@ let g:lightline.active = {
       \                [ 'filetype'] ]
       \ }
 
-" Register the components:
-let g:lightline.component_expand = {
-      \  'buffers': 'lightline#bufferline#buffers',
-      \  'linter_checking': 'lightline#ale#checking',
-      \  'linter_infos': 'lightline#ale#infos',
-      \  'linter_warnings': 'lightline#ale#warnings',
-      \  'linter_errors': 'lightline#ale#errors',
-      \  'linter_ok': 'lightline#ale#ok',
-      \ }
-
 " Set color to the components:
 let g:lightline.component_type = {
       \     'buffers': 'tabsel',
@@ -43,6 +33,16 @@ let g:lightline.component_type = {
       \     'linter_warnings': 'warning',
       \     'linter_errors': 'error',
       \     'linter_ok': 'right',
+      \ }
+
+" Register the components:
+let g:lightline.component_expand = {
+      \  'buffers': 'lightline#bufferline#buffers',
+      \  'linter_checking': 'lightline#ale#checking',
+      \  'linter_infos': 'lightline#ale#infos',
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
       \ }
 
 " by. @wuelnermartinez

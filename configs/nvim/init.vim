@@ -11,6 +11,7 @@ source ~\dotfiles\configs\nvim\sources\nerdtree.vim
 source ~\dotfiles\configs\nvim\sources\lightline.vim
 source ~\dotfiles\configs\nvim\sources\coc.vim
 source ~\dotfiles\configs\nvim\sources\theme.vim
-source ~\dotfiles\configs\nvim\sources\shorcuts.vim
+source ~\dotfiles\configs\nvim\sources\auto-cmds.vim
+source ~\dotfiles\configs\nvim\sources\key-maps.vim
 
 " by. @wuelnermartinez
