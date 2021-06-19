@@ -19,4 +19,7 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 vmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
+" Buffers commands:
+map <C-J> :bnext<CR>
+map <C-K> :bprev<CR>
 " by. @wuelnermartinez

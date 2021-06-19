@@ -11,6 +11,7 @@ Plug 'preservim/nerdtree' |
             \ Plug 'PhilRunninger/nerdtree-visual-selection'
 
 Plug 'itchyny/lightline.vim' |
+			\ Plug 'mengelbrecht/lightline-bufferline' |
             \ Plug 'maximbaz/lightline-ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
