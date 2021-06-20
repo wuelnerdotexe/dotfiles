@@ -1,8 +1,6 @@
 {
     "diagnostic.displayByAle": true,
-    "snippets.ultisnips.directories": [
-        "~/dotfiles/ultisnips"
-    ],
+    "snippets.ultisnips.directories": ["~/dotfiles/ultisnips"],
     "html.format.enable": false,
     "html.autoClosingTags": true,
     "javascript.format.enabled": false,

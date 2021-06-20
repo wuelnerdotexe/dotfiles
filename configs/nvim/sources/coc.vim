@@ -154,7 +154,7 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 " Install coc extensions.
-let g:coc_global_extensions = [ 'coc-bootstrap-classname', 'coc-css', 'coc-cssmodules', 'coc-html', 'coc-htmlhint', 'coc-json', 'coc-pairs', 'coc-prettier', 'coc-snippets', 'coc-tsserver' ]
+let g:coc_global_extensions = [ 'coc-bootstrap-classname', 'coc-css', 'coc-cssmodules', 'coc-highlight', 'coc-html', 'coc-htmlhint', 'coc-json', 'coc-pairs', 'coc-prettier', 'coc-snippets', 'coc-tsserver' ]
 
 " Ale integration with coc:
 let g:ale_disable_lsp=1
