@@ -10,6 +10,7 @@ let g:loaded_perl_provider = 0
 set hidden
 set nobackup
 set nowritebackup
+set clipboard=unnamed
 
 " Vim interfaz settings:
 set number relativenumber
