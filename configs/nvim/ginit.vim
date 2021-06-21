@@ -5,7 +5,7 @@ set nocompatible
 set mouse=a
 
 if exists(':GuiFont')
-    GuiFont! Jetbrains Mono NL:h13
+    GuiFont! Jetbrains Mono NL:h11
 endif
 
 if exists(':GuiTabline')

@@ -1,7 +1,7 @@
 CursorType=block
 CursorBlinks=no
 Font=JetBrains Mono NL
-FontHeight=13
+FontHeight=11
 ThemeFile=nord
 FontIsBold=yes
 ScrollbackLines=9001
