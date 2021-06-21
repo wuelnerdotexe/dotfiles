@@ -56,22 +56,6 @@
                 "hidden": true,
                 "name": "Azure Cloud Shell",
                 "source": "Windows.Terminal.Azure"
-            },
-            {
-                "commandline": "nvim.exe",
-                "guid": "{3a15ad0b-9397-4189-a76c-3eb571a6cf8c}",
-                "hidden": false,
-                "icon": "%USERPROFILE%/scoop/apps/neovim-nightly/current/share/icons/hicolor/128x128/apps/nvim.png",
-                "name": "Neovim",
-                "startingDirectory": "%USERPROFILE%"
-            },
-            {
-                "commandline": "%GIT_INSTALL_ROOT%/bin/bash.exe --login",
-                "guid": "{5eb0918d-d244-48b5-a381-d7db1098b27b}",
-                "hidden": false,
-                "icon": "%GIT_INSTALL_ROOT%/mingw64/share/git/git-for-windows.ico",
-                "name": "Git Bash",
-                "startingDirectory": "%USERPROFILE%"
             }
         ]
     },
