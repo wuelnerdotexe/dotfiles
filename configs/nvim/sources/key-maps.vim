@@ -2,7 +2,6 @@
 
 " NERDTree map keys:
 nnoremap <leader>n :NERDTreeToggle<CR>
-nnoremap <leader>r :NERDTreeRefreshRoot<CR>
 
 " Buffers map keys:
 nnoremap <leader>h :bprev<CR>
