@@ -8,11 +8,12 @@
             "newline": true,
             "segments": [
                 {
-                    "type": "shell",
+                    "type": "text",
                     "style": "plain",
                     "foreground": "#E5E9F0",
                     "properties": {
-                        "prefix": "\u250c "
+                        "prefix": "\u250c ",
+                        "text": "Insert Command"
                     }
                 },
                 {

@@ -12,7 +12,7 @@ let g:lightline = {
 " Add tabline with bufferline:
 let g:lightline.tabline = {
       \     'left': [ ['buffers'] ],
-      \     'right': [ ['close'] ]
+      \     'right': [ ['tabline_name'] ]
 	  \ }
 
 " Add the components to the lightline:
@@ -25,7 +25,13 @@ let g:lightline.active = {
       \                [ 'filetype'] ]
       \ }
 
-" Set color to the components:
+" Set the components content:
+let g:lightline.component = {
+      \ 'editor': 'NEOVIM',
+      \ 'tabline_name': 'BUFFERS'
+	  \ }
+
+" Set the components type:
 let g:lightline.component_type = {
       \     'buffers': 'tabsel',
       \     'linter_checking': 'right',
@@ -35,7 +41,7 @@ let g:lightline.component_type = {
       \     'linter_ok': 'right',
       \ }
 
-" Register the components:
+" Set the components expand:
 let g:lightline.component_expand = {
       \  'buffers': 'lightline#bufferline#buffers',
       \  'linter_checking': 'lightline#ale#checking',

@@ -7,6 +7,7 @@ filetype plugin on
 call plug#begin(expand('~/.config/nvim/plugged'))
 " -------------------------------------------------------
 Plug 'preservim/nerdtree' |
+			\ Plug 'Xuyuanp/nerdtree-git-plugin' |
             \ Plug 'scrooloose/nerdtree-project-plugin'
 
 Plug 'itchyny/lightline.vim' |
