@@ -3,6 +3,7 @@
 " Status bar settings:
 set showtabline=2
 set noshowmode
+let g:lightline#bufferline#unnamed = '[No Name]'
 
 " Set theme:
 let g:lightline = {
