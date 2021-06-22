@@ -16,6 +16,7 @@ let g:nord_underline = 0
 syntax on
 set t_Co=256
 set termguicolors
+set background=dark
 colorscheme nord
 
 " by. @wuelnermartinez
