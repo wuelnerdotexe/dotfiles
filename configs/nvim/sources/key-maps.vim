@@ -6,6 +6,6 @@ nnoremap <silent> <leader>l :bnext<CR>
 nnoremap <silent> <leader>d :bdelete<CR>
 
 " Signify map keys:
-nnoremap <silent> <leader>s :SignifyDiff<CR>
+nnoremap <silent> <leader>s :SignifyHunkDiff<CR>
 
 " by. @wuelnermartinez
