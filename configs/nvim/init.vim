@@ -19,4 +19,7 @@ source ~\dotfiles\configs\nvim\sources\nord.vim
 " Import mappings file:
 source ~\dotfiles\configs\nvim\sources\key-maps.vim
 
+" Map Key for reload nvim-qt settings:
+nnoremap <silent> <Leader><Leader> :source ~\AppData\Local\nvim\init.vim<cr>
+
 " by. @wuelnermartinez
