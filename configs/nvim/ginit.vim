@@ -1,7 +1,8 @@
 " FILE CONFIG GINIT.VIM FOR NEOVIM-QT SETTINGS.
 
-" Neovim-qt recommended settings:
 set nocompatible
+
+" Neovim-qt recommended settings:
 set mouse=a
 
 if exists(':GuiFont')
@@ -30,8 +31,11 @@ source ~\dotfiles\configs\nvim\sources\plugs.vim
 source ~\dotfiles\configs\nvim\sources\nerdtree.vim
 source ~\dotfiles\configs\nvim\sources\lightline.vim
 source ~\dotfiles\configs\nvim\sources\coc.vim
-source ~\dotfiles\configs\nvim\sources\theme.vim
-source ~\dotfiles\configs\nvim\sources\auto-cmds.vim
 source ~\dotfiles\configs\nvim\sources\key-maps.vim
+
+" Set theme:
+set t_Co=256
+syntax on
+source ~\dotfiles\configs\nvim\sources\nord.vim
 
 " by. @wuelnermartinez

@@ -10,15 +10,17 @@ let g:loaded_perl_provider = 0
 set hidden
 set nobackup
 set nowritebackup
+set updatetime=100
 set clipboard=unnamed
 
 " Vim interfaz settings:
-set number relativenumber
+set signcolumn=number
+set relativenumber
 set cursorline
+set cmdheight=1
 set laststatus=2
 
 " Vim coding settings:
-syntax on
 set autoindent
 set shiftround
 set shiftwidth=4
@@ -27,8 +29,8 @@ set tabstop=4
 set nowrap
 
 " Vim search settings:
-set hlsearch
 set ignorecase
 set incsearch
+set hlsearch
 
 " by. @wuelnermartinez
