@@ -13,6 +13,9 @@ let g:nord_italic_comments = 0
 let g:nord_underline = 0
 
 " Set nord theme:
+syntax on
+set t_Co=256
+set termguicolors
 colorscheme nord
 
 " by. @wuelnermartinez

@@ -11,8 +11,6 @@ source ~\dotfiles\configs\nvim\sources\nerdtree.vim
 source ~\dotfiles\configs\nvim\sources\coc.vim
 
 " Config and import themes files:
-set termguicolors
-syntax on
 source ~\dotfiles\configs\nvim\sources\lightline.vim
 source ~\dotfiles\configs\nvim\sources\nord.vim
 

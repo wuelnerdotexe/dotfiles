@@ -16,8 +16,6 @@ GuiTabline 0
 GuiPopupmenu 0
 
 " Config and import themes files:
-set t_Co=256
-syntax on
 source ~\dotfiles\configs\nvim\sources\lightline.vim
 source ~\dotfiles\configs\nvim\sources\nord.vim
 
