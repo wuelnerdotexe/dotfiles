@@ -1,8 +1,6 @@
-CursorType=block
 CursorBlinks=no
+CursorType=block
 Font=JetBrains Mono NL
 FontHeight=11
-ThemeFile=nord
-FontIsBold=yes
 ScrollbackLines=9001
-BoldAsFont=yes
+ThemeFile=nord
