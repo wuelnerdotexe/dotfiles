@@ -11,6 +11,7 @@ set hidden
 set nobackup
 set nowritebackup
 set updatetime=100
+set mouse=a
 set clipboard=unnamed
 
 " Vim interfaz settings:
