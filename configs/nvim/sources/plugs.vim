@@ -20,11 +20,13 @@ Plug 'tpope/vim-commentary'
 
 Plug 'mhinz/vim-signify'
 
-Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
+Plug 'folke/tokyonight.nvim'
 " -------------------------------------------------------
 call plug#end()
 
 " Nvim plugs desactivated:
+" Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 " Plug 'overcache/NeoSolarized'
+" Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
 
 " by. @wuelnermartinez
