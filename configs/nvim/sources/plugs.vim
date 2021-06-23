@@ -7,8 +7,7 @@ filetype plugin on
 call plug#begin(expand('~/.config/nvim/plugged'))
 " -------------------------------------------------------
 Plug 'preservim/nerdtree' |
-			\ Plug 'Xuyuanp/nerdtree-git-plugin' |
-            \ Plug 'scrooloose/nerdtree-project-plugin'
+			\ Plug 'Xuyuanp/nerdtree-git-plugin'
 
 Plug 'itchyny/lightline.vim' |
 			\ Plug 'mengelbrecht/lightline-bufferline' |
@@ -20,13 +19,13 @@ Plug 'tpope/vim-commentary'
 
 Plug 'mhinz/vim-signify'
 
-Plug 'folke/tokyonight.nvim'
+Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
 " -------------------------------------------------------
 call plug#end()
 
 " Nvim plugs desactivated:
 " Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 " Plug 'overcache/NeoSolarized'
-" Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
+" Plug 'folke/tokyonight.nvim'
 
 " by. @wuelnermartinez

@@ -7,6 +7,7 @@ let g:loaded_ruby_provider = 0
 let g:loaded_perl_provider = 0
 
 " Vim interaction settings:
+set encoding=utf-8
 set hidden
 set nobackup
 set nowritebackup
