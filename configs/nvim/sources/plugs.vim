@@ -23,9 +23,4 @@ Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
 " -------------------------------------------------------
 call plug#end()
 
-" Nvim plugs desactivated:
-" Plug 'kaicataldo/material.vim', { 'branch': 'main' }
-" Plug 'overcache/NeoSolarized'
-" Plug 'folke/tokyonight.nvim'
-
 " by. @wuelnermartinez
