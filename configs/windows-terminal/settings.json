@@ -32,7 +32,7 @@
         "defaults": {
             "colorScheme": "Nord",
             "cursorShape": "vintage",
-            "fontFace": "JetBrains Mono NL",
+            "fontFace": "JetBrains Mono",
             "fontSize": 11,
             "scrollbarState": "hidden"
         },

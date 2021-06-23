@@ -6,10 +6,6 @@ mklink "%USERPROFILE%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.p
 :: Symbolic link for VSCode settings file.
 mklink "%APPDATA%\Code\User\settings.json" "%USERPROFILE%\dotfiles\configs\vscode\settings.json"
 
-:: Symbolic link for Git-Bash file settings.
-mklink "%USERPROFILE%\.minttyrc" "%USERPROFILE%\dotfiles\configs\mintty\.minttyrc"
-mklink "%USERPROFILE%\.bashrc" "%USERPROFILE%\dotfiles\configs\git-bash\.bashrc"
-
 :: Symbolic link for Neovim file settings.
 mklink "%LOCALAPPDATA%\nvim\init.vim" "%USERPROFILE%\dotfiles\configs\nvim\init.vim"
 mklink "%LOCALAPPDATA%\nvim\ginit.vim" "%USERPROFILE%\dotfiles\configs\nvim\ginit.vim"

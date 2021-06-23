@@ -1,11 +1,11 @@
 {
     "editor.cursorBlinking": "solid",
     "editor.cursorStyle": "block",
-    "editor.fontFamily": "Jetbrains Mono NL",
+    "editor.fontFamily": "Jetbrains Mono",
     "editor.fontSize": 18,
     "editor.fontWeight": "bold",
     "editor.linkedEditing": true,
-    "editor.inlayHints.fontFamily": "Jetbrains Mono NL",
+    "editor.inlayHints.fontFamily": "Jetbrains Mono",
     "editor.inlayHints.fontSize": 17,
     "terminal.integrated.fontFamily": "Jetbrains Mono NL",
     "terminal.integrated.fontSize": 17,
@@ -28,4 +28,3 @@
         "~\\Code\\Personal.Codm.Sensitivities"
     ]
 }
-
