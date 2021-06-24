@@ -11,7 +11,7 @@ source ~\dotfiles\configs\nvim\sources\nerdtree.vim
 source ~\dotfiles\configs\nvim\sources\coc.vim
 
 " Neovim-qt recommended settings:
-GuiFont! JetBrains Mono NL:h11
+GuiFont! Agave:h13
 GuiTabline 0
 GuiPopupmenu 0
 
