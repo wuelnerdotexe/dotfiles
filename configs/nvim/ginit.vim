@@ -11,14 +11,14 @@ source ~\dotfiles\configs\nvim\sources\nerdtree.vim
 source ~\dotfiles\configs\nvim\sources\coc.vim
 
 " Neovim-qt recommended settings:
-GuiFont! Cascadia Mono PL:h11
+GuiFont! JetBrains Mono NL:h11:b
 GuiTabline 0
 GuiPopupmenu 0
 
 " Config and import themes files:
 source ~\dotfiles\configs\nvim\sources\theme.vim
 source ~\dotfiles\configs\nvim\sources\lightline.vim
-source ~\dotfiles\configs\nvim\sources\tokyonight.vim
+source ~\dotfiles\configs\nvim\sources\gruvbox.vim
 
 " Import mappings file:
 source ~\dotfiles\configs\nvim\sources\key-maps.vim

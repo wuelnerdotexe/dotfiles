@@ -1,4 +1,4 @@
-" FILE CONFIG THEME.VIM FOR CONFIG ALL NEOVIM COLORSCHEMES.
+" FILE CONFIG TOKYONIGHT.VIM FOR CONFIG AND SET TOKYONIGHT THEME.
 
 " Tokyo Night settings:
 let g:tokyonight_style = 'storm' " available: night, storm
