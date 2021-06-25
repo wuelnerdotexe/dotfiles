@@ -20,7 +20,7 @@ Plug 'tpope/vim-commentary'
 Plug 'mhinz/vim-signify'
 
 Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
-Plug 'morhetz/gruvbox'
+Plug 'sainnhe/gruvbox-material'
 Plug 'ghifarit53/tokyonight-vim'
 " -------------------------------------------------------
 call plug#end()

@@ -10,7 +10,7 @@
                 {
                     "type": "text",
                     "style": "plain",
-                    "foreground": "#EBDBB2",
+                    "foreground": "#D4BE98",
                     "properties": {
                         "prefix": "\u250c ",
                         "text": "Insert Command"
@@ -21,7 +21,7 @@
                     "style": "powerline",
                     "powerline_symbol": "\ue0b0",
                     "foreground": "#1D2021",
-                    "background": "#689D6A",
+                    "background": "#89B482",
                     "properties": {
                         "style": "full",
                         "enable_hyperlink": false
@@ -32,7 +32,7 @@
                     "style": "powerline",
                     "powerline_symbol": "\ue0b0",
                     "foreground": "#1D2021",
-                    "background": "#B16286",
+                    "background": "#D3869B",
                     "properties": {
                         "branch_ahead_icon": "\u2191",
                         "branch_behind_icon": "\u2193",
@@ -52,10 +52,10 @@
                         "status_colors_enabled": true,
                         "status_separator_icon": " \u2502",
                         "tag_icon": "\u25b6 ",
-                        "local_changes_color": "#D79921",
-                        "ahead_and_behind_color": "#fe8019",
-                        "behind_color": "#d65d0e",
-                        "ahead_color": "#98971A"
+                        "local_changes_color": "#D8A657",
+                        "ahead_and_behind_color": "#e78a4e",
+                        "behind_color": "#e78a4e",
+                        "ahead_color": "#A9B665"
                     }
                 },
                 {
@@ -63,14 +63,14 @@
                     "style": "powerline",
                     "powerline_symbol": "\ue0b0",
                     "foreground": "#1D2021",
-                    "background": "#B16286"
+                    "background": "#D3869B"
                 },
                 {
                     "type": "exit",
                     "style": "powerline",
                     "powerline_symbol": "\ue0b0",
                     "foreground": "#1D2021",
-                    "background": "#CC241D",
+                    "background": "#EA6962",
                     "properties": {
                         "display_exit_code": false,
                         "prefix": " ",
@@ -88,7 +88,7 @@
                 {
                     "type": "text",
                     "style": "plain",
-                    "foreground": "#EBDBB2",
+                    "foreground": "#D4BE98",
                     "properties": {
                         "prefix": "",
                         "postfix": "",
@@ -98,7 +98,7 @@
                 {
                     "type": "text",
                     "style": "plain",
-                    "foreground": "#EBDBB2",
+                    "foreground": "#D4BE98",
                     "properties": {
                         "prefix": "",
                         "postfix": "",
