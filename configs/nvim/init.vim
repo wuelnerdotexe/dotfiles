@@ -13,7 +13,7 @@ source ~\dotfiles\configs\nvim\sources\coc.vim
 " Config and import themes files:
 source ~\dotfiles\configs\nvim\sources\theme.vim
 source ~\dotfiles\configs\nvim\sources\lightline.vim
-source ~\dotfiles\configs\nvim\sources\nord.vim
+source ~\dotfiles\configs\nvim\sources\tokyonight.vim
 
 " Import mappings file:
 source ~\dotfiles\configs\nvim\sources\key-maps.vim
