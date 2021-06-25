@@ -11,7 +11,7 @@ source ~\dotfiles\configs\nvim\sources\nerdtree.vim
 source ~\dotfiles\configs\nvim\sources\coc.vim
 
 " Neovim-qt recommended settings:
-GuiFont! Agave:h13
+GuiFont! Cascadia Mono PL:h11
 GuiTabline 0
 GuiPopupmenu 0
 
@@ -24,6 +24,6 @@ source ~\dotfiles\configs\nvim\sources\nord.vim
 source ~\dotfiles\configs\nvim\sources\key-maps.vim
 
 " Map Key for reload nvim-qt settings:
-nnoremap <silent> <Leader><Leader> :source ~\AppData\Local\nvim\ginit.vim<cr>
+nnoremap <silent> <Leader><Leader> :source ~\AppData\Local\nvim\ginit.vim<CR>
 
 " by. @wuelnermartinez

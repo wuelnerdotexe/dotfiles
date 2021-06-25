@@ -32,7 +32,7 @@
         "defaults": {
             "colorScheme": "Nord",
             "cursorShape": "vintage",
-            "fontFace": "JetBrains Mono",
+            "fontFace": "Cascadia Code PL",
             "fontSize": 11,
             "scrollbarState": "hidden"
         },

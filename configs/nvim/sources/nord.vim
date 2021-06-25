@@ -8,8 +8,8 @@ let g:nord_uniform_diff_background = 1
 
 " Nord font settings:
 let g:nord_bold = 1
-let g:nord_italic = 0
-let g:nord_italic_comments = 0
+let g:nord_italic = 1
+let g:nord_italic_comments = 1
 let g:nord_underline = 0
 
 " Set nord theme:
