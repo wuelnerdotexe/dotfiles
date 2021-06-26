@@ -30,7 +30,7 @@
     "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
     "profiles": {
         "defaults": {
-            "colorScheme": "Gruvbox",
+            "colorScheme": "Horizon",
             "cursorShape": "vintage",
             "fontFace": "JetBrains Mono",
             "fontSize": 11,
@@ -127,6 +127,29 @@
             "selectionBackground": "#665C54",
             "white": "#A89984",
             "yellow": "#D79921"
+        },
+        {
+            "background": "#232530",
+            "black": "#06060C",
+            "blue": "#26BBD9",
+            "brightBlack": "#06060C",
+            "brightBlue": "#3FC6DE",
+            "brightCyan": "#6BE6E6",
+            "brightGreen": "#3FDAA4",
+            "brightPurple": "#F075B7",
+            "brightRed": "#EC6A88",
+            "brightWhite": "#D5D8DA",
+            "brightYellow": "#FBC3A7",
+            "cursorColor": "#D5D8DA",
+            "cyan": "#59E3E3",
+            "foreground": "#D5D8DA",
+            "green": "#29D398",
+            "name": "Horizon",
+            "purple": "#EE64AE",
+            "red": "#E95678",
+            "selectionBackground": "#6C6F93",
+            "white": "#D5D8DA",
+            "yellow": "#FAB795"
         },
         {
             "background": "#2E3440",

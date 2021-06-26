@@ -18,7 +18,7 @@ GuiPopupmenu 0
 " Config and import themes files:
 source ~\dotfiles\configs\nvim\sources\theme.vim
 source ~\dotfiles\configs\nvim\sources\lightline.vim
-source ~\dotfiles\configs\nvim\sources\gruvbox.vim
+source ~\dotfiles\configs\nvim\sources\horizon.vim
 
 " Import mappings file:
 source ~\dotfiles\configs\nvim\sources\key-maps.vim

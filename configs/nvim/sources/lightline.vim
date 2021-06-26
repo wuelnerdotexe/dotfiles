@@ -7,7 +7,7 @@ let g:lightline#bufferline#unnamed = '[No Name]'
 
 " Set theme:
 let g:lightline = {
-      \  'colorscheme': 'gruvbox'
+      \  'colorscheme': 'horizon'
       \ }
 
 " Add tabline with bufferline:
