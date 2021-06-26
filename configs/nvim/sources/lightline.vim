@@ -5,10 +5,8 @@ set showtabline=2
 set noshowmode
 let g:lightline#bufferline#unnamed = '[No Name]'
 
-" Set theme:
-let g:lightline = {
-      \  'colorscheme': 'horizon'
-      \ }
+" Init lightline:
+let g:lightline = { }
 
 " Add tabline with bufferline:
 let g:lightline.tabline = {
@@ -51,5 +49,8 @@ let g:lightline.component_expand = {
       \  'linter_errors': 'lightline#ale#errors',
       \  'linter_ok': 'lightline#ale#ok',
       \ }
+
+" Set theme:
+let g:lightline.colorscheme = 'gruvbox'
 
 " by. @wuelnermartinez
