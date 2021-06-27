@@ -26,7 +26,7 @@ let g:lightline.active = {
 
 " Set the components content:
 let g:lightline.component = {
-      \ 'editor': 'NEOVIM',
+      \ 'editor': 'VIM',
       \ 'tabline_name': 'BUFFERS'
 	  \ }
 

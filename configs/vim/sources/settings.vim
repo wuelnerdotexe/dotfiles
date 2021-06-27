@@ -8,6 +8,7 @@ set nowritebackup
 set updatetime=100
 set mouse=a
 set clipboard=unnamed
+set backspace=2 
 
 " Vim interfaz settings:
 set signcolumn=yes

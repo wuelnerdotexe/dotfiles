@@ -1,6 +1,10 @@
 " FILE CONFIG _VIMRC FOR VIM SETTINGS.
 
-set nocompatible
+" gVIM settings:
+if has('gui_running')
+	set guioptions-=e
+	set guifont=JetBrains_Mono_NL:h11:b
+endif
 
 " Import general settings file:
 source ~\dotfiles\configs\vim\sources\settings.vim
