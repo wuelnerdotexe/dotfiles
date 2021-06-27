@@ -1,0 +1,24 @@
+" FILE CONFIG _VIMRC FOR VIM SETTINGS.
+
+set nocompatible
+
+" Import general settings file:
+source ~\dotfiles\configs\vim\sources\settings.vim
+
+" Import plugs files:
+source ~\dotfiles\configs\vim\sources\plugs.vim
+source ~\dotfiles\configs\vim\sources\nerdtree.vim
+source ~\dotfiles\configs\vim\sources\coc.vim
+
+" Config and import themes files:
+source ~\dotfiles\configs\vim\sources\theme.vim
+source ~\dotfiles\configs\vim\sources\lightline.vim
+source ~\dotfiles\configs\vim\sources\gruvbox.vim
+
+" Import mappings file:
+source ~\dotfiles\configs\vim\sources\key-maps.vim
+
+" Map Key for reload nvim settings:
+nnoremap <silent> <Leader><Leader> :source ~\_vimrc<CR>
+
+" by. @wuelnermartinez
