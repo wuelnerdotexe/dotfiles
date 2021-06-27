@@ -3,7 +3,7 @@
 " gVIM settings:
 if has('gui_running')
 	set guioptions-=e
-	set guifont=JetBrains_Mono_NL:h11:b
+	set guifont=Cascadia_Mono_PL:h11:b
 endif
 
 " Import general settings file:
@@ -17,7 +17,7 @@ source ~\dotfiles\configs\vimfiles\sources\coc.vim
 " Config and import themes files:
 source ~\dotfiles\configs\vimfiles\sources\theme.vim
 source ~\dotfiles\configs\vimfiles\sources\lightline.vim
-source ~\dotfiles\configs\vimfiles\sources\gruvbox.vim
+source ~\dotfiles\configs\vimfiles\sources\tokyonight.vim
 
 " Import mappings file:
 source ~\dotfiles\configs\vimfiles\sources\key-maps.vim

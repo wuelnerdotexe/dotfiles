@@ -51,6 +51,6 @@ let g:lightline.component_expand = {
       \ }
 
 " Set theme:
-let g:lightline.colorscheme = 'gruvbox'
+let g:lightline.colorscheme = 'tokyonight'
 
 " by. @wuelnermartinez

@@ -11,8 +11,7 @@ set clipboard=unnamed
 set backspace=2 
 
 " Vim interfaz settings:
-set title
-set titlestring=VIM\ -\ Vi\ IMproved
+set signcolumn=yes
 set relativenumber
 set cursorline
 set cmdheight=1

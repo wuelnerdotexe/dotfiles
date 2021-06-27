@@ -20,7 +20,6 @@ Plug 'tpope/vim-commentary'
 Plug 'mhinz/vim-signify'
 
 Plug 'morhetz/gruvbox'
-Plug 'ntk148v/vim-horizon'
 Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
 Plug 'ghifarit53/tokyonight-vim'
 " -------------------------------------------------------
