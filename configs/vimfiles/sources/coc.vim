@@ -10,7 +10,6 @@ let g:coc_global_extensions = [
 			\ 'coc-htmlhint',
 			\ 'coc-json',
 			\ 'coc-pairs',
-			\ 'coc-prettier',
 			\ 'coc-snippets',
 			\ 'coc-tsserver'
 			\ ]
@@ -50,7 +49,7 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting code:
-nnoremap <silent> <leader>p :CocCommand prettier.formatFile<CR>
+nnoremap <silent> <leader>f :call CocAction('format')<CR>
 
 " Remap keys for applying codeAction to the current buffer.
 nmap <leader>ac  <Plug>(coc-codeaction)

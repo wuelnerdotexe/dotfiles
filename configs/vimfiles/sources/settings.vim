@@ -11,11 +11,9 @@ set clipboard=unnamed
 set backspace=2 
 
 " Vim interfaz settings:
-set signcolumn=yes
+set signcolumn=auto
 set relativenumber
 set cursorline
-set textwidth=80
-set cc=+1 
 set cmdheight=1
 set laststatus=2
 set showmatch
