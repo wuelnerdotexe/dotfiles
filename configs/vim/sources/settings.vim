@@ -10,11 +10,12 @@ set mouse=a
 set clipboard=unnamed
 
 " Vim interfaz settings:
-set signcolumn=number
+set signcolumn=yes
 set relativenumber
 set cursorline
 set cmdheight=1
 set laststatus=2
+set showmatch
 
 " Vim coding settings:
 set autoindent
