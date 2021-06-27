@@ -1,9 +1,9 @@
 " FILE CONFIG NORD.VIM FOR CONFIG AND SET NORD THEME.
 
 " Nord font settings:
-let g:nord_bold = 1
-let g:nord_italic = 1
-let g:nord_italic_comments = 1
+let g:nord_bold = 0
+let g:nord_italic = 0
+let g:nord_italic_comments = 0
 let g:nord_underline = 0
 
 " Nord theme settings:

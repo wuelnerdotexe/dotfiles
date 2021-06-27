@@ -13,6 +13,8 @@ set clipboard=unnamed
 set signcolumn=yes
 set relativenumber
 set cursorline
+set textwidth=80
+set cc=+1 
 set cmdheight=1
 set laststatus=2
 set showmatch

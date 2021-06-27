@@ -2,7 +2,7 @@
 
 " Tokyo Night settings:
 let g:tokyonight_style = 'storm' " available: night, storm
-let g:tokyonight_enable_italic = 1
+let g:tokyonight_enable_italic = 0
 
 " Set Tokyo Night theme:
 colorscheme tokyonight
