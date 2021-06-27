@@ -11,12 +11,12 @@ set clipboard=unnamed
 set backspace=2 
 
 " Vim interfaz settings:
-set signcolumn=auto
+set title
+set titlestring=VIM\ -\ Vi\ IMproved
 set relativenumber
 set cursorline
 set cmdheight=1
 set laststatus=2
-set showmatch
 
 " Vim coding settings:
 set autoindent
@@ -25,6 +25,7 @@ set shiftwidth=4
 set smarttab
 set tabstop=4
 set nowrap
+set showmatch
 
 " Vim search settings:
 set ignorecase
