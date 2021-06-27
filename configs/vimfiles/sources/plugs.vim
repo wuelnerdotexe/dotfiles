@@ -3,8 +3,8 @@
 " Plug settings:
 filetype plugin on
 
-" Nvim plugs installeds:
-call plug#begin(expand('~/.config/nvim/plugged'))
+" Vim plugs installeds:
+call plug#begin('~/vimfiles/plugged')
 " -------------------------------------------------------
 Plug 'preservim/nerdtree' |
 			\ Plug 'Xuyuanp/nerdtree-git-plugin'

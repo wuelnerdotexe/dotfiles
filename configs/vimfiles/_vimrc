@@ -7,20 +7,20 @@ if has('gui_running')
 endif
 
 " Import general settings file:
-source ~\dotfiles\configs\vim\sources\settings.vim
+source ~\dotfiles\configs\vimfiles\sources\settings.vim
 
 " Import plugs files:
-source ~\dotfiles\configs\vim\sources\plugs.vim
-source ~\dotfiles\configs\vim\sources\nerdtree.vim
-source ~\dotfiles\configs\vim\sources\coc.vim
+source ~\dotfiles\configs\vimfiles\sources\plugs.vim
+source ~\dotfiles\configs\vimfiles\sources\nerdtree.vim
+source ~\dotfiles\configs\vimfiles\sources\coc.vim
 
 " Config and import themes files:
-source ~\dotfiles\configs\vim\sources\theme.vim
-source ~\dotfiles\configs\vim\sources\lightline.vim
-source ~\dotfiles\configs\vim\sources\gruvbox.vim
+source ~\dotfiles\configs\vimfiles\sources\theme.vim
+source ~\dotfiles\configs\vimfiles\sources\lightline.vim
+source ~\dotfiles\configs\vimfiles\sources\gruvbox.vim
 
 " Import mappings file:
-source ~\dotfiles\configs\vim\sources\key-maps.vim
+source ~\dotfiles\configs\vimfiles\sources\key-maps.vim
 
 " Map Key for reload nvim settings:
 nnoremap <silent> <Leader><Leader> :source ~\_vimrc<CR>

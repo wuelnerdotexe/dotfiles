@@ -1,8 +1,10 @@
 {
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions": [
+    "actions": 
+    [
         {
-            "command": {
+            "command": 
+            {
                 "action": "copy",
                 "singleLine": false
             },
@@ -17,19 +19,26 @@
             "keys": "ctrl+v"
         },
         {
-            "command": {
+            "command": 
+            {
                 "action": "splitPane",
                 "split": "auto",
                 "splitMode": "duplicate"
             },
             "keys": "alt+shift+d"
+        },
+        {
+            "command": "toggleFocusMode",
+            "keys": "alt+f"
         }
     ],
     "copyFormatting": "none",
     "copyOnSelect": false,
     "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-    "profiles": {
-        "defaults": {
+    "profiles": 
+    {
+        "defaults": 
+        {
             "colorScheme": "Gruvbox",
             "cursorShape": "vintage",
             "fontFace": "JetBrains Mono",
@@ -37,7 +46,8 @@
             "fontWeight": "bold",
             "scrollbarState": "hidden"
         },
-        "list": [
+        "list": 
+        [
             {
                 "commandline": "powershell.exe",
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
@@ -58,7 +68,8 @@
             }
         ]
     },
-    "schemes": [
+    "schemes": 
+    [
         {
             "background": "#0C0C0C",
             "black": "#0C0C0C",
