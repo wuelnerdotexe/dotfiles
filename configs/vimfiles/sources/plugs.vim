@@ -1,8 +1,5 @@
 " FILE CONFIG PLUGS.VIM FOR INSTALL VIM PLUGS.
 
-" Plug settings:
-filetype plugin on
-
 " Vim plugs installeds:
 call plug#begin('~/vimfiles/plugged')
 " -------------------------------------------------------
