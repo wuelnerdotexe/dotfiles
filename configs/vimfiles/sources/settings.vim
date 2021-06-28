@@ -1,12 +1,16 @@
 " FILE CONFIG SETTINGS.VIM FOR VIM GENERAL AJUSTS.
 
 " Vim performance settings:
-set nobackup
-set nowritebackup
 set hidden
 set ttyfast
 set lazyredraw
 set updatetime=100
+
+" Files management settings:
+set nobackup
+set nowritebackup
+set undofile
+set undodir=~\vimfiles\undodir\
 
 " Vim interaction settings:
 set backspace=2 
