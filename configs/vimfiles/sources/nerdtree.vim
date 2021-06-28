@@ -18,7 +18,8 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
     \ quit | endif
 
-" Map for NERDTreeToggle:
-nnoremap <silent> <leader>n :NERDTreeToggle<CR>
+" Maps for NERDTree:
+nnoremap <silent> <leader>e :NERDTreeToggle<CR>
+nnoremap <silent> <leader>nf :NERDTreeFind<CR>
 
 " by. @wuelnermartinez

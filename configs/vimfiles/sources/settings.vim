@@ -1,11 +1,14 @@
 " FILE CONFIG SETTINGS.VIM FOR VIM GENERAL AJUSTS.
 
-" Vim interaction settings:
+" Vim performance settings:
 set nobackup
 set nowritebackup
 set hidden
+set ttyfast
 set lazyredraw
 set updatetime=100
+
+" Vim interaction settings:
 set backspace=2 
 set clipboard=unnamed
 set mouse=a
@@ -16,8 +19,7 @@ set relativenumber
 set cursorline
 set cmdheight=1
 set laststatus=2
-set wildmenu
-set wildmode=longest:full,full
+set ruler
 set splitright
 set splitbelow
 

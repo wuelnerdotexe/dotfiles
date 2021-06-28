@@ -1,10 +1,5 @@
 " FILE CONFIG LIGHTLINE.VIM FOR LIGHTLINE PLUGIN DESIGN.
 
-" Status bar settings:
-set showtabline=2
-set noshowmode
-let g:lightline#bufferline#unnamed = '[No Name]'
-
 " Init lightline:
 let g:lightline = { }
 
@@ -26,7 +21,6 @@ let g:lightline.active = {
 
 " Set the components content:
 let g:lightline.component = {
-      \ 'editor': 'VIM',
       \ 'tabline_name': 'BUFFERS'
 	  \ }
 
@@ -49,6 +43,15 @@ let g:lightline.component_expand = {
       \  'linter_errors': 'lightline#ale#errors',
       \  'linter_ok': 'lightline#ale#ok',
       \ }
+
+" Bufferline options:
+let g:lightline#bufferline#unnamed = '[No Name]'
+
+" Necessary native settings:
+set wildmenu
+set wildmode=longest:full,full
+set noshowmode
+set showtabline=2
 
 " Set theme:
 let g:lightline.colorscheme = 'tokyonight'
