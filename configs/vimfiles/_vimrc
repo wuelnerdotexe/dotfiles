@@ -1,12 +1,7 @@
 " FILE CONFIG _VIMRC FOR VIM SETTINGS.
 
-" gVIM settings:
-if has('gui_running')
-	set guioptions-=e
-	set guifont=Cascadia_Mono_PL:h11:b
-endif
-
 " Import general settings file:
+source ~\dotfiles\configs\vimfiles\sources\gui.vim
 source ~\dotfiles\configs\vimfiles\sources\settings.vim
 
 " Import plugs files:
@@ -21,8 +16,5 @@ source ~\dotfiles\configs\vimfiles\sources\tokyonight.vim
 
 " Import mappings file:
 source ~\dotfiles\configs\vimfiles\sources\key-maps.vim
-
-" Map Key for reload nvim settings:
-nnoremap <silent> <Leader><Leader> :source ~\_vimrc<CR>
 
 " by. @wuelnermartinez

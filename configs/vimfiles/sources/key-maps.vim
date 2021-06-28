@@ -8,4 +8,7 @@ nnoremap <silent> <leader>d :bdelete<CR>
 " Signify map keys:
 nnoremap <silent> <leader>s :SignifyHunkDiff<CR>
 
+" Map Key for reload nvim settings:
+nnoremap <silent> <Leader><Leader> :source ~\_vimrc<CR>
+
 " by. @wuelnermartinez
