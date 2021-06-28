@@ -1,9 +1,10 @@
 " FILE CONFIG SETTINGS.VIM FOR VIM GENERAL AJUSTS.
 
 " Vim interaction settings:
-set hidden
 set nobackup
 set nowritebackup
+set hidden
+set lazyredraw
 set updatetime=100
 set backspace=2 
 set clipboard=unnamed
