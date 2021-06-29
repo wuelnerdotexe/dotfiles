@@ -10,7 +10,6 @@ let g:coc_global_extensions = [
 			\ 'coc-htmlhint',
 			\ 'coc-json',
 			\ 'coc-pairs',
-			\ 'coc-snippets',
 			\ 'coc-tsserver'
 			\ ]
 

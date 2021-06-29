@@ -13,7 +13,6 @@ set undofile
 set undodir=~\vimfiles\undodir\
 
 " Vim interaction settings:
-set backspace=2 
 set clipboard=unnamed
 set mouse=a
 
