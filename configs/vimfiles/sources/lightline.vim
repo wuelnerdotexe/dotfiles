@@ -49,7 +49,6 @@ let g:lightline#bufferline#unnamed = '[No Name]'
 
 " Necessary native settings:
 set wildmenu
-set wildmode=longest:full,full
 set noshowmode
 set showtabline=2
 

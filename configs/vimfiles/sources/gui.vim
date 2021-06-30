@@ -1,13 +1,13 @@
-" FILE CONFIG GUI.VIM FOR GVIM SETTINGS.
+" FILE CONFIG GUI.VIM FOR DIFERENT GUI VIM SETTINGS.
 
-" gVIM interfaz settings:
+" Sólo si está corriendo gVIM:
 if has('gui_running')
+    set guifont=Cascadia_Mono_PL:h10:b
     set guioptions-=e
     set guioptions-=m
     set guioptions-=L
     set guioptions-=r
     set guioptions-=T
-    set guifont=Cascadia_Mono_PL:h10:b
 endif
 
 " by. @wuelnermartinez

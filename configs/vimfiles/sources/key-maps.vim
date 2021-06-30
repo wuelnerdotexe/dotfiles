@@ -9,6 +9,6 @@ nnoremap <silent> <leader>d :bdelete<CR>
 nnoremap <silent> <leader>s :SignifyHunkDiff<CR>
 
 " Map Key for reload nvim settings:
-nnoremap <silent> <Leader><Leader> :source ~\_vimrc<CR>
+nnoremap <silent> <Leader><Leader> :source $MYVIMRC<CR>
 
 " by. @wuelnermartinez

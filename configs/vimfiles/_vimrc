@@ -1,23 +1,23 @@
 " FILE CONFIG _VIMRC FOR VIM SETTINGS.
 
-" Se define la tecla de espacio como leader:
+" Se establece la tecla de espacio como leader:
 let mapleader=" "
 
 " Import general settings file:
-source ~\dotfiles\configs\vimfiles\sources\gui.vim
-source ~\dotfiles\configs\vimfiles\sources\settings.vim
+source $USERPROFILE\dotfiles\configs\vimfiles\sources\gui.vim
+source $USERPROFILE\dotfiles\configs\vimfiles\sources\settings.vim
 
 " Import plugs files:
-source ~\dotfiles\configs\vimfiles\sources\plugs.vim
-source ~\dotfiles\configs\vimfiles\sources\nerdtree.vim
-source ~\dotfiles\configs\vimfiles\sources\coc.vim
+source $USERPROFILE\dotfiles\configs\vimfiles\sources\plugs.vim
+source $USERPROFILE\dotfiles\configs\vimfiles\sources\nerdtree.vim
+source $USERPROFILE\dotfiles\configs\vimfiles\sources\coc.vim
 
 " Config and import themes files:
-source ~\dotfiles\configs\vimfiles\sources\theme.vim
-source ~\dotfiles\configs\vimfiles\sources\lightline.vim
-source ~\dotfiles\configs\vimfiles\sources\tokyonight.vim
+source $USERPROFILE\dotfiles\configs\vimfiles\sources\theme.vim
+source $USERPROFILE\dotfiles\configs\vimfiles\sources\lightline.vim
+source $USERPROFILE\dotfiles\configs\vimfiles\sources\tokyonight.vim
 
 " Import mappings file:
-source ~\dotfiles\configs\vimfiles\sources\key-maps.vim
+source $USERPROFILE\dotfiles\configs\vimfiles\sources\key-maps.vim
 
 " by. @wuelnermartinez
