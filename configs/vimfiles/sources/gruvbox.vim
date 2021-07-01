@@ -10,6 +10,7 @@ let g:gruvbox_italicize_strings=0
 
 " Gruvbox theme settings:
 let g:gruvbox_contrast_dark="soft"
+let g:gruvbox_contrast_light="soft"
 let g:gruvbox_termcolors=16
 
 " Set gruvbox theme:

@@ -37,10 +37,8 @@
             "colorScheme": "Tokyo Night",
             "fontFace": "Cascadia Code PL",
             "fontSize": 10,
-            "fontWeight": "bold",
             "scrollbarState": "hidden",
-            "suppressApplicationTitle": true,
-            "useAcrylic": true
+            "suppressApplicationTitle": true
         },
         "list": [
             {

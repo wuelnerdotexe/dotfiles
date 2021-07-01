@@ -53,8 +53,8 @@
                         "status_separator_icon": " \u2502",
                         "tag_icon": "\u25b6 ",
                         "local_changes_color": "#E0AF68",
-                        "ahead_and_behind_color": "#ff9e64",
-                        "behind_color": "#ff9e64",
+                        "ahead_and_behind_color": "#FF9E64",
+                        "behind_color": "#ff9E64",
                         "ahead_color": "#41A6B5"
                     }
                 },

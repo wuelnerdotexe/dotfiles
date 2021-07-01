@@ -2,7 +2,7 @@
 
 " Sólo si está corriendo gVIM:
 if has('gui_running')
-    set guifont=Cascadia_Mono_PL:h10:b
+    set guifont=Cascadia_Mono_PL:h10
     set guioptions-=e
     set guioptions-=m
     set guioptions-=L

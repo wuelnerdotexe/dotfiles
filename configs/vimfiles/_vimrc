@@ -15,7 +15,7 @@ source $USERPROFILE\dotfiles\configs\vimfiles\sources\coc.vim
 " Config and import themes files:
 source $USERPROFILE\dotfiles\configs\vimfiles\sources\theme.vim
 source $USERPROFILE\dotfiles\configs\vimfiles\sources\lightline.vim
-source $USERPROFILE\dotfiles\configs\vimfiles\sources\tokyonight.vim
+source $USERPROFILE\dotfiles\configs\vimfiles\sources\gruvbox.vim
 
 " Import mappings file:
 source $USERPROFILE\dotfiles\configs\vimfiles\sources\key-maps.vim

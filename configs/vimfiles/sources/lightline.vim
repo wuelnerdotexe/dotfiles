@@ -53,6 +53,6 @@ set noshowmode
 set showtabline=2
 
 " Set theme:
-let g:lightline.colorscheme = 'tokyonight'
+let g:lightline.colorscheme = 'gruvbox'
 
 " by. @wuelnermartinez
