@@ -1,7 +1,7 @@
 " FILE CONFIG _VIMRC FOR VIM SETTINGS.
 
 " Se establece la tecla de espacio como leader:
-let mapleader=" "
+let mapleader = " "
 
 " Import general settings file:
 source $USERPROFILE\dotfiles\configs\vimfiles\sources\gui.vim
