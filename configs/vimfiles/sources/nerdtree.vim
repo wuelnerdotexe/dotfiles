@@ -1,8 +1,8 @@
 " FILE CONFIG NERDTREE.VIM FOR NERDTREE PLUGIN AJUSTS.
 
 " Change default arrows:
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeDirArrowExpandable='▸'
+let g:NERDTreeDirArrowCollapsible='▾'
 
 " NERDTree interaction settings:
 let NERDTreeShowHidden=1
@@ -20,6 +20,6 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 
 " Maps for NERDTree:
 nnoremap <silent> <leader>e :NERDTreeToggle<CR>
-nnoremap <silent> <leader>nf :NERDTreeFind<CR>
+nnoremap <leader>nf :NERDTreeFind<CR>
 
 " by. @wuelnermartinez

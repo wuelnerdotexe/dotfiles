@@ -16,6 +16,8 @@ Plug 'tpope/vim-commentary'
 
 Plug 'mhinz/vim-signify'
 
+Plug 'szw/vim-maximizer'
+
 Plug 'morhetz/gruvbox'
 Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
 Plug 'lifepillar/vim-solarized8'
