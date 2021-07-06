@@ -12,7 +12,4 @@ let g:gruvbox_italicize_strings=0
 let g:gruvbox_contrast_dark="soft"
 let g:gruvbox_termcolors=16
 
-" Set gruvbox theme:
-colorscheme gruvbox
-
 " by. @wuelnermartinez

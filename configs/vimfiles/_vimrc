@@ -6,21 +6,27 @@ set shell=powershell
 " Se establece la tecla de espacio como leader:
 let mapleader=" "
 
-" Import general settings file:
-source $USERPROFILE\dotfiles\configs\vimfiles\sources\gui.vim
+" Import general settings files:
 source $USERPROFILE\dotfiles\configs\vimfiles\sources\settings.vim
+source $USERPROFILE\dotfiles\configs\vimfiles\sources\gui.vim
 
-" Import plugs files:
+" Import runtime plugs file:
 source $USERPROFILE\dotfiles\configs\vimfiles\sources\plugs.vim
+
+" Import plug settings files:
 source $USERPROFILE\dotfiles\configs\vimfiles\sources\nerdtree.vim
 source $USERPROFILE\dotfiles\configs\vimfiles\sources\coc.vim
-
-" Config and import themes files:
-source $USERPROFILE\dotfiles\configs\vimfiles\sources\theme.vim
 source $USERPROFILE\dotfiles\configs\vimfiles\sources\lightline.vim
 source $USERPROFILE\dotfiles\configs\vimfiles\sources\gruvbox.vim
+source $USERPROFILE\dotfiles\configs\vimfiles\sources\nord.vim
 
-" Import mappings file:
+" Import user mappings file:
 source $USERPROFILE\dotfiles\configs\vimfiles\sources\key-maps.vim
+
+" Set lightline theme:
+let g:lightline.colorscheme='gruvbox'
+
+" Set vim theme when all plugs load:
+colorscheme gruvbox
 
 " by. @wuelnermartinez

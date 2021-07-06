@@ -12,7 +12,10 @@ let g:nord_uniform_status_lines=1
 let g:nord_bold_vertical_split_line=1
 let g:nord_uniform_diff_background=1
 
-" Set nord theme:
-colorscheme nord
+" General theme settings:
+set background=dark
+set t_Co=16
+set termguicolors
+syntax on
 
 " by. @wuelnermartinez

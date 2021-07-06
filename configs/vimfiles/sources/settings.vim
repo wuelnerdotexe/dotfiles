@@ -30,8 +30,8 @@ set splitbelow
 " Vim encoding settings:
 set encoding=utf-8
 filetype on
-filetype plugin on
 filetype indent on
+filetype plugin on
 
 " Vim coding settings:
 set nowrap
@@ -48,5 +48,11 @@ set showmatch
 set ignorecase
 set incsearch
 set hlsearch
+
+" Vim color settings:
+set background=dark
+set t_Co=16
+set termguicolors
+syntax on
 
 " by. @wuelnermartinez

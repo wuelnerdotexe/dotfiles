@@ -10,22 +10,22 @@ let g:lightline.component={
 
 " Set color to the components:
 let g:lightline.component_type = {
-    \ 'buffers': 'tabsel',
-    \ 'linter_warnings': 'warning',
-    \ 'linter_errors': 'error',
-    \ 'linter_info': 'info',
-    \ 'linter_hints': 'hints',
-    \ 'linter_ok': 'left'
+    \ 'buffers':'tabsel',
+    \ 'linter_warnings':'warning',
+    \ 'linter_errors':'error',
+    \ 'linter_info':'info',
+    \ 'linter_hints':'hints',
+    \ 'linter_ok':'left'
     \ }
 
 let g:lightline.component_expand = {
-    \ 'buffers': 'lightline#bufferline#buffers',
-    \ 'linter_warnings': 'lightline#coc#warnings',
-    \ 'linter_errors': 'lightline#coc#errors',
-    \ 'linter_info': 'lightline#coc#info',
-    \ 'linter_hints': 'lightline#coc#hints',
-    \ 'linter_ok': 'lightline#coc#ok',
-    \ 'status': 'lightline#coc#status'
+    \ 'buffers':'lightline#bufferline#buffers',
+    \ 'linter_warnings':'lightline#coc#warnings',
+    \ 'linter_errors':'lightline#coc#errors',
+    \ 'linter_info':'lightline#coc#info',
+    \ 'linter_hints':'lightline#coc#hints',
+    \ 'linter_ok':'lightline#coc#ok',
+    \ 'status':'lightline#coc#status'
     \ }
 
 " Bufferline options:
@@ -55,8 +55,5 @@ call lightline#coc#register()
 set wildmenu
 set noshowmode
 set showtabline=2
-
-" Set theme:
-let g:lightline.colorscheme='gruvbox'
 
 " by. @wuelnermartinez
