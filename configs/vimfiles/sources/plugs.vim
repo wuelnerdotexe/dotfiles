@@ -8,9 +8,8 @@ Plug 'preservim/nerdtree' |
 
 Plug 'itchyny/lightline.vim' |
 			\ Plug 'mengelbrecht/lightline-bufferline' |
-            \ Plug 'maximbaz/lightline-ale'
+            \ Plug 'josa42/vim-lightline-coc'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'dense-analysis/ale'
 
 Plug 'tpope/vim-commentary'
 

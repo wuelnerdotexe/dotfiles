@@ -3,49 +3,53 @@
 " Init lightline:
 let g:lightline={}
 
-" Add tabline with bufferline:
-let g:lightline.tabline={
-      \     'left':[['buffers']],
-      \     'right':[['tabline_name']]
-	  \ }
-
-" Add the components to the lightline:
-let g:lightline.active={
-      \     'left':[['mode','paste'],
-      \                ['readonly','filename','modified']],
-      \     'right':[['linter_checking','linter_errors','linter_warnings','linter_infos','linter_ok'],
-      \                ['lineinfo'],
-      \                ['percent'],
-      \                ['filetype']]
-      \ }
-
 " Set the components content:
 let g:lightline.component={
-      \ 'tabline_name':'BUFFERS'
-	  \ }
+    \ 'tabline_name':'BUFFERS'
+    \ }
 
-" Set the components type:
-let g:lightline.component_type={
-      \     'buffers':'tabsel',
-      \     'linter_checking':'right',
-      \     'linter_infos':'right',
-      \     'linter_warnings':'warning',
-      \     'linter_errors':'error',
-      \     'linter_ok':'right',
-      \ }
+" Set color to the components:
+let g:lightline.component_type = {
+    \ 'buffers': 'tabsel',
+    \ 'linter_warnings': 'warning',
+    \ 'linter_errors': 'error',
+    \ 'linter_info': 'info',
+    \ 'linter_hints': 'hints',
+    \ 'linter_ok': 'left'
+    \ }
 
-" Set the components expand:
-let g:lightline.component_expand={
-      \  'buffers':'lightline#bufferline#buffers',
-      \  'linter_checking':'lightline#ale#checking',
-      \  'linter_infos':'lightline#ale#infos',
-      \  'linter_warnings':'lightline#ale#warnings',
-      \  'linter_errors':'lightline#ale#errors',
-      \  'linter_ok':'lightline#ale#ok',
-      \ }
+let g:lightline.component_expand = {
+    \ 'buffers': 'lightline#bufferline#buffers',
+    \ 'linter_warnings': 'lightline#coc#warnings',
+    \ 'linter_errors': 'lightline#coc#errors',
+    \ 'linter_info': 'lightline#coc#info',
+    \ 'linter_hints': 'lightline#coc#hints',
+    \ 'linter_ok': 'lightline#coc#ok',
+    \ 'status': 'lightline#coc#status'
+    \ }
 
 " Bufferline options:
 let g:lightline#bufferline#unnamed='[No Name]'
+
+" Add tabline with bufferline:
+let g:lightline.tabline={
+    \ 'left':[['buffers']],
+    \ 'right':[['tabline_name']]
+    \ }
+
+" Add the components to the lightline:
+let g:lightline.active={
+    \ 'left':[['mode', 'paste'],
+    \         ['coc_info','coc_hints','coc_errors','coc_warnings','coc_ok'],
+    \         ['coc_status'],
+    \         ['readonly','filename','modified']],
+    \ 'right':[['lineinfo'],
+    \          ['percent'],
+    \          ['filetype']]
+    \ }
+
+" register compoments:
+call lightline#coc#register()
 
 " Necessary native settings:
 set wildmenu

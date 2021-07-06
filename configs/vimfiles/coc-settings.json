@@ -1,15 +1,7 @@
 {
-    "diagnostic.displayByAle": true,
-    "html.format.enable": true,
     "html.autoClosingTags": true,
+    "html.format.enable": true,
     "javascript.format.enabled": true,
-    "typescript.format.enabled": true,
     "json.format.enable": true,
-    "coc.preferences.formatOnType": true,
-    "coc.preferences.formatOnSaveFiletypes": [
-        "css",
-        "html",
-        "javascript",
-        "json"
-    ]
+    "coc.preferences.formatOnType": true
 }
