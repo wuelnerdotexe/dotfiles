@@ -20,8 +20,6 @@ Plug 'szw/vim-maximizer'
 
 Plug 'morhetz/gruvbox'
 Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
-Plug 'lifepillar/vim-solarized8'
-Plug 'ghifarit53/tokyonight-vim'
 " -------------------------------------------------------
 call plug#end()
 

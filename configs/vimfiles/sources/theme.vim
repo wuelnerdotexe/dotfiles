@@ -4,6 +4,6 @@
 syntax on
 set termguicolors
 set t_Co=16
-set background=light
+set background=dark
 
 " by. @wuelnermartinez

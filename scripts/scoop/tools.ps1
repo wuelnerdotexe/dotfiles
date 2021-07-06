@@ -1,7 +1,7 @@
 # FILE PS1 FOR INSTALL SCOOP TOOLS ON WINDOWS WITH POWERSHELL.
 
 # Install tools:
-scoop install cowsay nodejs ntop https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json
+scoop install cowsay nodejs ntop
 
 # ---------------------------------------------------------------------------
 # Add scoop extras bucket for caffeine and winfetch:
