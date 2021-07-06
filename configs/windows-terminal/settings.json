@@ -50,9 +50,8 @@
         "defaults": {
             "colorScheme": "Green Hat Term",
             "cursorShape": "filledBox",
-            "fontFace": "Consolas",
-            "fontSize": 12,
-            "fontWeight": "bold",
+            "fontFace": "SF Mono",
+            "fontSize": 11,
             "scrollbarState": "hidden",
             "suppressApplicationTitle": true
         },
