@@ -1,2 +1,2 @@
 # dotfiles
-My dotfiles and config files
+Config files for my Windows programs.
