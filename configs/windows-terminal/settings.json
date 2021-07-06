@@ -48,8 +48,8 @@
     "keybindings": null,
     "profiles": {
         "defaults": {
-            "colorScheme": "Vintage",
-            "cursorShape": "vintage",
+            "colorScheme": "Green Hat Term",
+            "cursorShape": "filledBox",
             "fontFace": "Consolas",
             "fontSize": 12,
             "fontWeight": "bold",
@@ -123,6 +123,29 @@
             "selectionBackground": "#FFFFFF",
             "white": "#CCCCCC",
             "yellow": "#C19C00"
+        },
+        {
+            "background": "#000000",
+            "black": "#000000",
+            "blue": "#008000",
+            "brightBlack": "#808080",
+            "brightBlue": "#00FF00",
+            "brightCyan": "#00FF00",
+            "brightGreen": "#00FF00",
+            "brightPurple": "#00FF00",
+            "brightRed": "#00FF00",
+            "brightWhite": "#FFFFFF",
+            "brightYellow": "#00FF00",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#008000",
+            "foreground": "#00FF00",
+            "green": "#008000",
+            "name": "Green Hat Term",
+            "purple": "#008000",
+            "red": "#008000",
+            "selectionBackground": "#FFFFFF",
+            "white": "#C0C0C0",
+            "yellow": "#008000"
         },
         {
             "background": "#282C34",
