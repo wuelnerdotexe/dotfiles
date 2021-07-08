@@ -18,6 +18,7 @@ set clipboard=unnamed
 set mouse=a
 
 " Vim interfaz settings:
+set notitle
 set signcolumn=yes
 set relativenumber
 set cursorline
