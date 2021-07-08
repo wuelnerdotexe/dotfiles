@@ -10,7 +10,11 @@ set updatetime=100
 set nobackup
 set nowritebackup
 set undofile
-set undodir=$TEMP//
+if has('nvim')
+    set undodir=$TEMP\nvim//
+else
+    set undodir=$TEMP//
+endif
 
 " Vim interaction settings:
 set backspace=
