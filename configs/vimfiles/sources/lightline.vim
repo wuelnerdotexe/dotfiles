@@ -12,12 +12,12 @@ let g:lightline.component={
 let g:lightline#bufferline#unnamed='[No Name]'
 
 " Register all components:
-let g:lightline.component_expand = {
+let g:lightline.component_expand={
     \ 'buffers':'lightline#bufferline#buffers'
     \ }
 
 " Set color to the components:
-let g:lightline.component_type = {
+let g:lightline.component_type={
     \ 'buffers':'tabsel'
     \ }
 

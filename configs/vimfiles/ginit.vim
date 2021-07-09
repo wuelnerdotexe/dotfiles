@@ -1,7 +1,7 @@
 " FILE CONFIG GINIT.VIM FOR NEOVIM-QT SETTINGS.
 
 " Neovim-QT gui options:
-GuiFont! Meslo\ LG\ S\ DZ:h9:b
+GuiFont! Meslo\ LG\ S\ DZ:h8:b
 GuiTabline 0
 GuiPopupmenu 0
 GuiScrollBar 0
