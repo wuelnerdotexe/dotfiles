@@ -1,5 +1,12 @@
 " FILE CONFIG SETTINGS.VIM FOR VIM GENERAL AJUSTS.
 
+" Disabling Neovim providers: 
+let g:loaded_python_provider=0
+let g:loaded_python3_provider=0
+let g:loaded_node_provider=0
+let g:loaded_ruby_provider=0
+let g:loaded_perl_provider=0
+
 " Vim performance settings:
 set hidden
 set ttyfast
@@ -10,11 +17,7 @@ set updatetime=100
 set nobackup
 set nowritebackup
 set undofile
-if has('nvim')
-    set undodir=$TEMP\nvim//
-else
-    set undodir=$TEMP//
-endif
+set undodir=$TEMP\nvim-undodir//
 
 " Vim interaction settings:
 set backspace=

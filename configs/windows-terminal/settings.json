@@ -53,8 +53,7 @@
             "fontFace": "Meslo LG S DZ",
             "fontSize": 9,
             "fontWeight": "bold",
-            "scrollbarState": "hidden",
-            "suppressApplicationTitle": true
+            "scrollbarState": "hidden"
         },
         "list": [
             {

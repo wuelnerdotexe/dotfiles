@@ -1,7 +1,7 @@
 " FILE CONFIG PLUGS.VIM FOR INSTALL VIM PLUGS.
 
 " Vim plugs installeds:
-call plug#begin('$USERPROFILE\vimfiles\plugged\')
+call plug#begin('$LOCALAPPDATA\nvim-data\plugged\')
 " -------------------------------------------------------
 Plug 'preservim/nerdtree' |
 			\ Plug 'Xuyuanp/nerdtree-git-plugin'

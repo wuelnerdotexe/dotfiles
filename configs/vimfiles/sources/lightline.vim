@@ -8,16 +8,13 @@ let g:lightline.component={
     \ 'tabline_name':'BUFFERS'
     \ }
 
-" Set color to the components:
-let g:lightline.component_type = {
-    \ 'buffers':'tabsel',
-    \ 'linter_warnings':'warning',
-    \ 'linter_errors':'error',
-    \ 'linter_info':'info',
-    \ 'linter_hints':'hints',
-    \ 'linter_ok':'left'
-    \ }
+" Bufferline options:
+let g:lightline#bufferline#unnamed='[No Name]'
 
+" Register coc components:
+call lightline#coc#register()
+
+" Register all components:
 let g:lightline.component_expand = {
     \ 'buffers':'lightline#bufferline#buffers',
     \ 'linter_warnings':'lightline#coc#warnings',
@@ -28,8 +25,15 @@ let g:lightline.component_expand = {
     \ 'status':'lightline#coc#status'
     \ }
 
-" Bufferline options:
-let g:lightline#bufferline#unnamed='[No Name]'
+" Set color to the components:
+let g:lightline.component_type = {
+    \ 'buffers':'tabsel',
+    \ 'linter_warnings':'warning',
+    \ 'linter_errors':'error',
+    \ 'linter_info':'info',
+    \ 'linter_hints':'hints',
+    \ 'linter_ok':'left'
+    \ }
 
 " Add tabline with bufferline:
 let g:lightline.tabline={
@@ -47,9 +51,6 @@ let g:lightline.active={
     \          ['percent'],
     \          ['filetype']]
     \ }
-
-" register compoments:
-call lightline#coc#register()
 
 " Necessary native settings:
 set wildmenu

@@ -1,15 +1,13 @@
 " FILE CONFIG _VIMRC FOR VIM SETTINGS.
 
-" Se establece powershell como la shell por defecto:
+" Powershell is set as the default shell:
 set shell=powershell
 
-" Se establece la tecla de espacio como leader:
+" The space key is set as leader:
 let mapleader=" "
 
 " Import general settings files:
-source $USERPROFILE\dotfiles\configs\vimfiles\sources\neovim.vim
 source $USERPROFILE\dotfiles\configs\vimfiles\sources\settings.vim
-source $USERPROFILE\dotfiles\configs\vimfiles\sources\gui.vim
 
 " Import runtime plugs file:
 source $USERPROFILE\dotfiles\configs\vimfiles\sources\plugs.vim
