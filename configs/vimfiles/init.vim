@@ -1,7 +1,7 @@
 " FILE CONFIG _VIMRC FOR VIM SETTINGS.
 
-" Powershell is set as the default shell:
-set shell=powershell
+" Required setting to use custom options: 
+set nocompatible
 
 " The space key is set as leader:
 let mapleader=" "
