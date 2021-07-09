@@ -11,29 +11,18 @@ let g:lightline.component={
 " Bufferline options:
 let g:lightline#bufferline#unnamed='[No Name]'
 
-" Register coc components:
-call lightline#coc#register()
-
 " Register all components:
 let g:lightline.component_expand = {
-    \ 'buffers':'lightline#bufferline#buffers',
-    \ 'linter_warnings':'lightline#coc#warnings',
-    \ 'linter_errors':'lightline#coc#errors',
-    \ 'linter_info':'lightline#coc#info',
-    \ 'linter_hints':'lightline#coc#hints',
-    \ 'linter_ok':'lightline#coc#ok',
-    \ 'status':'lightline#coc#status'
+    \ 'buffers':'lightline#bufferline#buffers'
     \ }
 
 " Set color to the components:
 let g:lightline.component_type = {
-    \ 'buffers':'tabsel',
-    \ 'linter_warnings':'warning',
-    \ 'linter_errors':'error',
-    \ 'linter_info':'info',
-    \ 'linter_hints':'hints',
-    \ 'linter_ok':'left'
+    \ 'buffers':'tabsel'
     \ }
+
+" Register coc components:
+call lightline#coc#register()
 
 " Add tabline with bufferline:
 let g:lightline.tabline={
