@@ -22,8 +22,11 @@ source $USERPROFILE\dotfiles\configs\vimfiles\sources\nord.vim
 " Import user mappings file:
 source $USERPROFILE\dotfiles\configs\vimfiles\sources\key-maps.vim
 
-" Set lightline theme:
-let g:lightline.colorscheme='gruvbox'
+" Vim general color settings:
+set termguicolors
+set t_Co=16
+set background=dark
+syntax on
 
 " Set vim theme when all plugs load:
 colorscheme gruvbox

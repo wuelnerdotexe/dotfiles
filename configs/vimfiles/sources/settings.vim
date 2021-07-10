@@ -26,7 +26,7 @@ set mouse=a
 
 " Vim interfaz settings:
 set notitle
-set signcolumn=yes
+set signcolumn=auto
 set relativenumber
 set cursorline
 set cmdheight=1
@@ -56,11 +56,5 @@ set showmatch
 set ignorecase
 set incsearch
 set hlsearch
-
-" Vim color settings:
-set background=dark
-set t_Co=16
-set termguicolors
-syntax on
 
 " by. @wuelnermartinez

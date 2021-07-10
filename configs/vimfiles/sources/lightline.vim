@@ -41,6 +41,9 @@ let g:lightline.active={
     \          ['filetype']]
     \ }
 
+" Set lightline theme:
+let g:lightline.colorscheme='gruvbox'
+
 " Necessary native settings:
 set wildmenu
 set noshowmode

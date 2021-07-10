@@ -50,9 +50,7 @@
         "defaults": {
             "colorScheme": "Green Hat Term",
             "cursorShape": "filledBox",
-            "fontFace": "Meslo LG S DZ",
-            "fontSize": 8,
-            "fontWeight": "bold",
+            "fontFace": "Fira Code Retina",
             "scrollbarState": "hidden"
         },
         "list": [
