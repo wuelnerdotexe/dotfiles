@@ -9,7 +9,7 @@ let g:gruvbox_italicize_comments=0
 let g:gruvbox_italicize_strings=0
 
 " Gruvbox theme settings:
-let g:gruvbox_contrast_dark="dark"
+let g:gruvbox_contrast_dark="hard"
 let g:gruvbox_termcolors=16
 
 " by. @wuelnermartinez
