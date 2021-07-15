@@ -7,6 +7,7 @@ Plug 'preservim/nerdtree' |
 			\ Plug 'Xuyuanp/nerdtree-git-plugin'
 
 Plug 'itchyny/lightline.vim' |
+            \ Plug 'itchyny/vim-gitbranch' |
 			\ Plug 'mengelbrecht/lightline-bufferline' |
             \ Plug 'josa42/vim-lightline-coc'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}

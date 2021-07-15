@@ -16,6 +16,10 @@ let g:lightline.component_expand={
     \ 'buffers':'lightline#bufferline#buffers'
     \ }
 
+let g:lightline.component_function={
+    \ 'gitbranch':'gitbranch#name'
+    \ }
+
 " Set color to the components:
 let g:lightline.component_type={
     \ 'buffers':'tabsel'
@@ -35,7 +39,7 @@ let g:lightline.active={
     \ 'left':[['mode', 'paste'],
     \         ['coc_info','coc_hints','coc_errors','coc_warnings','coc_ok'],
     \         ['coc_status'],
-    \         ['readonly','filename','modified']],
+    \         ['gitbranch','readonly','filename','modified']],
     \ 'right':[['lineinfo'],
     \          ['percent'],
     \          ['filetype']]

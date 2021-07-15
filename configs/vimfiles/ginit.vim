@@ -1,7 +1,6 @@
 " FILE CONFIG GINIT.VIM FOR NEOVIM-QT SETTINGS.
 
 " Neovim-QT gui options:
-GuiFont! Fira\ Code\ Retina:h11
 GuiTabline 0
 GuiPopupmenu 0
 GuiScrollBar 0

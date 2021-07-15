@@ -50,7 +50,6 @@
         "defaults": {
             "colorScheme": "Green Hat Term",
             "cursorShape": "filledBox",
-            "fontFace": "Fira Code Retina",
             "scrollbarState": "hidden"
         },
         "list": [
