@@ -46,7 +46,7 @@ let g:lightline.active={
     \ }
 
 " Set lightline theme:
-let g:lightline.colorscheme='gruvbox'
+let g:lightline.colorscheme='nord'
 
 " Necessary native settings:
 set wildmenu

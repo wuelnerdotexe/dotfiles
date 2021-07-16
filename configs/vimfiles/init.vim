@@ -29,6 +29,6 @@ set background=dark
 syntax on
 
 " Set vim theme when all plugs load:
-colorscheme gruvbox
+colorscheme nord
 
 " by. @wuelnermartinez
