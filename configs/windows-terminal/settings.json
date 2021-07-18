@@ -34,12 +34,6 @@
                 "splitMode": "duplicate"
             },
             "keys": "alt+shift+d"
-        },
-        {
-            "command": {
-                "action": "toggleFocusMode"
-            },
-            "keys": "alt+f"
         }
     ],
     "copyFormatting": "none",
@@ -48,8 +42,10 @@
     "keybindings": null,
     "profiles": {
         "defaults": {
-            "colorScheme": "Green Hat Term",
+            "colorScheme": "Black Hat Term",
             "cursorShape": "filledBox",
+            "fontFace": "Fira Mono",
+            "fontWeight": "medium",
             "scrollbarState": "hidden"
         },
         "list": [
@@ -78,21 +74,21 @@
             "background": "#000000",
             "black": "#000000",
             "blue": "#008000",
-            "brightBlack": "#808080",
-            "brightBlue": "#00FF00",
-            "brightCyan": "#00FF00",
+            "brightBlack": "#404040",
+            "brightBlue": "#00C000",
+            "brightCyan": "#00C000",
             "brightGreen": "#00FF00",
-            "brightPurple": "#00FF00",
-            "brightRed": "#00FF00",
-            "brightWhite": "#00FF00",
-            "brightYellow": "#00FF00",
+            "brightPurple": "#00C000",
+            "brightRed": "#FF0000",
+            "brightWhite": "#00C000",
+            "brightYellow": "#00C000",
             "cursorColor": "#00FF00",
             "cyan": "#008000",
-            "foreground": "#00FF00",
-            "green": "#008000",
+            "foreground": "#00C000",
+            "green": "#00FF00",
             "name": "Black Hat Term",
             "purple": "#008000",
-            "red": "#008000",
+            "red": "#FF0000",
             "selectionBackground": "#FFFFFF",
             "white": "#008000",
             "yellow": "#008000"
@@ -303,29 +299,6 @@
             "selectionBackground": "#FFFFFF",
             "white": "#C0C0C0",
             "yellow": "#808000"
-        },
-        {
-            "background": "#181818",
-            "black": "#252525",
-            "blue": "#3FC5B7",
-            "brightBlack": "#3B3B3B",
-            "brightBlue": "#56D8C9",
-            "brightCyan": "#56D8C9",
-            "brightGreen": "#83C746",
-            "brightPurple": "#56D8C9",
-            "brightRed": "#FF5E56",
-            "brightWhite": "#56D8C9",
-            "brightYellow": "#56D8C9",
-            "cursorColor": "#56D8C9",
-            "cyan": "#3FC5B7",
-            "foreground": "#56D8C9",
-            "green": "#70B433",
-            "name": "White Hat Term",
-            "purple": "#3FC5B7",
-            "red": "#ED4A46",
-            "selectionBackground": "#B9B9B9",
-            "white": "#3FC5B7",
-            "yellow": "#3FC5B7"
         }
     ],
     "theme": "dark"

@@ -1,7 +1,7 @@
 # FILE PS1 FOR INSTALL SCOOP TOOLS ON WINDOWS WITH POWERSHELL.
 
 # Install tools:
-scoop install bitwarden-cli cowsay neovim nodejs ntop
+scoop install bitwarden-cli cowsay nano neovim nodejs ntop
 
 # ---------------------------------------------------------------------------
 # Add scoop extras bucket for caffeine and winfetch:
