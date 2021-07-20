@@ -44,8 +44,7 @@
         "defaults": {
             "colorScheme": "Black Hat Term",
             "cursorShape": "filledBox",
-            "fontFace": "Fira Mono",
-            "fontWeight": "medium",
+            "fontWeight": "700",
             "scrollbarState": "hidden"
         },
         "list": [
