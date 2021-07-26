@@ -11,11 +11,12 @@ let g:lightline.component={
 " Bufferline options:
 let g:lightline#bufferline#unnamed='[No Name]'
 
-" Register all components:
+" Register components:
 let g:lightline.component_expand={
     \ 'buffers':'lightline#bufferline#buffers'
     \ }
 
+" Register functions:
 let g:lightline.component_function={
     \ 'gitbranch':'gitbranch#name'
     \ }
