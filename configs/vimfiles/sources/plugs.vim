@@ -14,6 +14,7 @@ Plug 'mengelbrecht/lightline-bufferline'
 Plug 'szw/vim-maximizer'
 Plug 'morhetz/gruvbox'
 Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 " -------------------------------------------------------
 call plug#end()
 

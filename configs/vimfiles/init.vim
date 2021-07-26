@@ -18,6 +18,7 @@ source $USERPROFILE\dotfiles\configs\vimfiles\sources\coc.vim
 source $USERPROFILE\dotfiles\configs\vimfiles\sources\lightline.vim
 source $USERPROFILE\dotfiles\configs\vimfiles\sources\gruvbox.vim
 source $USERPROFILE\dotfiles\configs\vimfiles\sources\nord.vim
+source $USERPROFILE\dotfiles\configs\vimfiles\sources\tokyonight.vim
 
 " Import user mappings file:
 source $USERPROFILE\dotfiles\configs\vimfiles\sources\key-maps.vim
@@ -29,6 +30,6 @@ set background=dark
 syntax on
 
 " Set vim theme when all plugs load:
-colorscheme gruvbox
+colorscheme tokyonight
 
 " by. @wuelnermartinez
