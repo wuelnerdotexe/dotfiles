@@ -4,7 +4,7 @@
 set nocompatible
 
 " The space key is set as leader:
-let mapleader=" "
+let mapleader="\<Space>"
 
 " Import general settings files:
 source $USERPROFILE\dotfiles\configs\vimfiles\sources\settings.vim

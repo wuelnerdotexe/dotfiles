@@ -11,10 +11,10 @@ Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
 Plug 'josa42/vim-lightline-coc'
 Plug 'mengelbrecht/lightline-bufferline'
-Plug 'szw/vim-maximizer'
 Plug 'morhetz/gruvbox'
 Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'szw/vim-maximizer'
 " -------------------------------------------------------
 call plug#end()
 

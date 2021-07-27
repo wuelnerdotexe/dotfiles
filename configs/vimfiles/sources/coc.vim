@@ -2,17 +2,12 @@
 
 " Install coc extensions.
 let g:coc_global_extensions=[
-    \ 'coc-bootstrap-classname',
-    \ 'coc-css',
-    \ 'coc-cssmodules',
+    \ 'coc-marketplace',
     \ 'coc-highlight',
-    \ 'coc-html',
-    \ 'coc-htmlhint',
     \ 'coc-json',
     \ 'coc-pairs',
-    \ 'coc-vimlsp',
-    \ 'coc-tsserver'
-    \ ]
+    \ 'coc-vimlsp'
+  \ ]
 
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c

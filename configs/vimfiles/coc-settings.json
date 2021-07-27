@@ -1,7 +1,4 @@
 {
-    "html.autoClosingTags": true,
-    "html.format.enable": true,
-    "javascript.format.enabled": true,
-    "json.format.enable": true,
-    "coc.preferences.formatOnType": true
+    "coc.preferences.formatOnType": true,
+    "json.format.enable": true
 }

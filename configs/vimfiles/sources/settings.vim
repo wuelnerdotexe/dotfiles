@@ -26,7 +26,7 @@ set mouse=a
 
 " Vim interfaz settings:
 set notitle
-set signcolumn=auto
+set signcolumn=yes
 set relativenumber
 set cursorline
 set cmdheight=1
