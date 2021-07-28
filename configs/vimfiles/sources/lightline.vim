@@ -24,8 +24,7 @@ let g:lightline.component_function={
 
 " Set color to the components:
 let g:lightline.component_type={
-    \ 'buffers':'tabsel',
-    \ 'tabline_name':'warning'
+    \ 'buffers':'tabsel'
   \ }
 
 " Register coc components:
