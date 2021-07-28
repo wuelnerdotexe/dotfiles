@@ -5,7 +5,8 @@ let g:lightline={}
 
 " Set the components content:
 let g:lightline.component={
-    \ 'tabline_name':'BUFFERS | NEOVIM'
+    \ 'tabline_name':'BUFFERS',
+    \ 'editor_name':'NEOVIM'
   \ }
 
 " Bufferline options:
@@ -33,10 +34,10 @@ call lightline#coc#register()
 " Add tabline with bufferline:
 let g:lightline.tabline={
     \ 'left':[
-    \     ['buffers']
+    \     ['tabline_name','buffers']
   \ ],
     \ 'right':[
-    \     ['tabline_name']
+    \     ['editor_name']
   \ ]
   \ }
 
@@ -44,14 +45,11 @@ let g:lightline.tabline={
 let g:lightline.active={
     \ 'left':[
     \   ['mode', 'paste'],
-    \   ['gitbranch'],
-    \   ['coc_status']
+    \   ['gitbranch','coc_status']
   \ ],
     \ 'right':[
     \   ['coc_info','coc_hints','coc_errors','coc_warnings','coc_ok'],
-    \   ['percent'],
-    \   ['lineinfo'],
-    \   ['filename']
+    \   ['filename','lineinfo','percent']
   \ ]
   \ }
 
@@ -61,9 +59,7 @@ let g:lightline.inactive={
     \   ['coc_status']
   \ ],
     \ 'right':[
-    \   ['percent'],
-    \   ['lineinfo'],
-    \   ['filename']
+    \   ['filename','lineinfo','percent']
   \ ]
   \ }
 

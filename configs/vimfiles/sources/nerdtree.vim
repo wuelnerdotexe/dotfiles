@@ -5,7 +5,7 @@ let NERDTreeShowHidden=1
 let NERDTreeMinimalUI=1
 let g:NERDTreeDirArrowExpandable='▸'
 let g:NERDTreeDirArrowCollapsible='▾'
-let g:NERDTreeStatusline='NERDTree | Working Directory'
+let g:NERDTreeStatusline='NERDTREE | WORKING DIRECTORY'
 
 " Start NERDTree when Vim starts with a directory argument:
 autocmd StdinReadPre * let s:std_in=1
