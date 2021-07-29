@@ -1,4 +1,4 @@
-" FILE CONFIG _VIMRC FOR VIM SETTINGS.
+" FILE CONFIG INIT.VIM FOR NEOVIM SETTINGS.
 
 " Required setting to use custom options: 
 set nocompatible
@@ -15,7 +15,7 @@ source $USERPROFILE\dotfiles\configs\vimfiles\sources\plugs.vim
 " Import plug settings files:
 source $USERPROFILE\dotfiles\configs\vimfiles\sources\nerdtree.vim
 source $USERPROFILE\dotfiles\configs\vimfiles\sources\coc.vim
-source $USERPROFILE\dotfiles\configs\vimfiles\sources\lightline.vim
+source $USERPROFILE\dotfiles\configs\vimfiles\sources\airline.vim
 source $USERPROFILE\dotfiles\configs\vimfiles\sources\gruvbox.vim
 source $USERPROFILE\dotfiles\configs\vimfiles\sources\nord.vim
 source $USERPROFILE\dotfiles\configs\vimfiles\sources\tokyonight.vim

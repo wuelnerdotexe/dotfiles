@@ -1,11 +1,9 @@
 " FILE CONFIG TOKYONIGHT.VIM FOR TOKYONIGHT THEME SETTINGS.
 
 " Tokyo Night font settings:
-let g:tokyonight_italic_comments=0
-let g:tokyonight_italic_keywords=0
+let g:tokyonight_disable_italic_comment=1
 
 " Tokyo Night theme settings:
-let g:tokyonight_style="night"
-let g:tokyonight_sidebars=["qf","vista_kind","terminal","packer","NERDtree"]
+let g:tokyonight_style='storm' " available: night, storm
 
 " by. @wuelnermartinez
