@@ -4,6 +4,6 @@
 let g:tokyonight_disable_italic_comment=1
 
 " Tokyo Night theme settings:
-let g:tokyonight_style='storm' " available: night, storm
+let g:tokyonight_style='night' " available: night, storm
 
 " by. @wuelnermartinez

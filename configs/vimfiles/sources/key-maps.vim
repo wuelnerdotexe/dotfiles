@@ -8,4 +8,7 @@ nnoremap <silent> <leader>d :bdelete<CR>
 " Signify map keys:
 nnoremap <silent> <leader>s :SignifyHunkDiff<CR>
 
+" Maximizer map keys:
+nnoremap <silent> <leader>m :MaximizerToggle<CR>
+
 " by. @wuelnermartinez
