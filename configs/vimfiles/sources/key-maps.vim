@@ -11,4 +11,8 @@ nnoremap <silent> <leader>s :SignifyHunkDiff<CR>
 " Maximizer map keys:
 nnoremap <silent> <leader>m :MaximizerToggle<CR>
 
+" Fuzzy Finder map keys:
+command! -bang ProjectFiles call fzf#vim#files('getcwd()', <bang>0)
+nnoremap <silent> <leader>f :Files<CR>
+
 " by. @wuelnermartinez
