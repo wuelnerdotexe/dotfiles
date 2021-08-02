@@ -42,9 +42,10 @@
     "keybindings": null,
     "profiles": {
         "defaults": {
-            "colorScheme": "Black Hat Term",
+            "antialiasingMode": "cleartype",
+            "colorScheme": "White Hat Term",
             "cursorShape": "filledBox",
-            "fontWeight": "700",
+            "fontWeight": "bold",
             "scrollbarState": "hidden"
         },
         "list": [
@@ -85,7 +86,7 @@
             "cyan": "#008000",
             "foreground": "#00C000",
             "green": "#00FF00",
-            "name": "Black Hat Term",
+            "name": "Green Hat Term",
             "purple": "#008000",
             "red": "#FF0000",
             "selectionBackground": "#FFFFFF",
@@ -298,6 +299,29 @@
             "selectionBackground": "#FFFFFF",
             "white": "#C0C0C0",
             "yellow": "#808000"
+        },
+        {
+            "background": "#000000",
+            "black": "#000000",
+            "blue": "#808080",
+            "brightBlack": "#404040",
+            "brightBlue": "#C0C0C0",
+            "brightCyan": "#C0C0C0",
+            "brightGreen": "#FFFFFF",
+            "brightPurple": "#C0C0C0",
+            "brightRed": "#FF0000",
+            "brightWhite": "#C0C0C0",
+            "brightYellow": "#C0C0C0",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#808080",
+            "foreground": "#C0C0C0",
+            "green": "#FFFFFF",
+            "name": "White Hat Term",
+            "purple": "#808080",
+            "red": "#FF0000",
+            "selectionBackground": "#FFFFFF",
+            "white": "#808080",
+            "yellow": "#808080"
         }
     ],
     "theme": "dark"
