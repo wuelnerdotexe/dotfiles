@@ -34,6 +34,12 @@
                 "splitMode": "duplicate"
             },
             "keys": "alt+shift+d"
+        },
+        {
+            "command": {
+                "action": "toggleFocusMode"
+            },
+            "keys": "alt+f"
         }
     ],
     "copyFormatting": "none",
@@ -43,9 +49,10 @@
     "profiles": {
         "defaults": {
             "antialiasingMode": "cleartype",
-            "colorScheme": "White Hat Term",
+            "colorScheme": "Green Hat Term",
             "cursorShape": "filledBox",
-            "fontWeight": "bold",
+            "fontFace": "Iosevka Term Slab",
+            "fontWeight": "medium",
             "scrollbarState": "hidden"
         },
         "list": [
@@ -70,29 +77,6 @@
         ]
     },
     "schemes": [
-        {
-            "background": "#000000",
-            "black": "#000000",
-            "blue": "#008000",
-            "brightBlack": "#404040",
-            "brightBlue": "#00C000",
-            "brightCyan": "#00C000",
-            "brightGreen": "#00FF00",
-            "brightPurple": "#00C000",
-            "brightRed": "#FF0000",
-            "brightWhite": "#00C000",
-            "brightYellow": "#00C000",
-            "cursorColor": "#00FF00",
-            "cyan": "#008000",
-            "foreground": "#00C000",
-            "green": "#00FF00",
-            "name": "Green Hat Term",
-            "purple": "#008000",
-            "red": "#FF0000",
-            "selectionBackground": "#FFFFFF",
-            "white": "#008000",
-            "yellow": "#008000"
-        },
         {
             "background": "#0C0C0C",
             "black": "#0C0C0C",
@@ -138,6 +122,29 @@
             "selectionBackground": "#FFFFFF",
             "white": "#CCCCCC",
             "yellow": "#C19C00"
+        },
+        {
+            "background": "#000000",
+            "black": "#000000",
+            "blue": "#17803E",
+            "brightBlack": "#0C401F",
+            "brightBlue": "#22BF5C",
+            "brightCyan": "#22BF5C",
+            "brightGreen": "#2EFF7B",
+            "brightPurple": "#22BF5C",
+            "brightRed": "#FF0000",
+            "brightWhite": "#22BF5C",
+            "brightYellow": "#22BF5C",
+            "cursorColor": "#2EFF7B",
+            "cyan": "#17803E",
+            "foreground": "#22BF5C",
+            "green": "#2EFF7B",
+            "name": "Green Hat Term",
+            "purple": "#17803E",
+            "red": "#FF0000",
+            "selectionBackground": "#FFFFFF",
+            "white": "#17803E",
+            "yellow": "#17803E"
         },
         {
             "background": "#282C34",
