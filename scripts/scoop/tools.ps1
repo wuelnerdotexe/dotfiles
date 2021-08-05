@@ -1,24 +1,24 @@
 # FILE PS1 FOR INSTALL SCOOP TOOLS ON WINDOWS WITH POWERSHELL.
 
-# Install tools:
+# Install tools.
 scoop install bitwarden-cli cowsay nano neovim nodejs ntop
 # ---------------------------------------------------------------------------
 
-# Add scoop extras bucket for caffeine and winfetch:
+# Add scoop extras bucket for caffeine and winfetch.
 scoop bucket add extras
 
-# Install caffeine:
+# Install caffeine.
 scoop install caffeine winfetch
 # ---------------------------------------------------------------------------
 
-# Add scoop java bucket for openjdk:
+# Add scoop java bucket for openjdk.
 scoop bucket add java
 
-# Install openjdk:
+# Install openjdk.
 scoop install openjdk
 # ---------------------------------------------------------------------------
 
-# Remove download cache:
+# Remove download cache.
 scoop cache rm *
 
 # by. @wuelnerdotexe
