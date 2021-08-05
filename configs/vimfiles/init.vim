@@ -4,14 +4,6 @@
 " line by line to optimize Vim / Neovim boot performance to the maximum.
 " -----------------------------------------------------------------------------
 
-" Neovim provider settings. 
-let g:loaded_python_provider=0
-let g:loaded_python3_provider=0
-let g:loaded_node_provider=0
-let g:loaded_ruby_provider=0
-let g:loaded_perl_provider=0
-" -----------------------------------------------------------------------------
-
 " Setting required to set custom option values in vim.
 set nocompatible
 
@@ -63,50 +55,30 @@ set autoindent
 set shiftround
 set showmatch
 
-" Vim color option values.
-set t_Co=16
-set background=dark
-set termguicolors
-
 " Vim search option values.
 set ignorecase
 set incsearch
 set hlsearch
+
+" Vim color option values.
+set t_Co=16
+set background=dark
+set termguicolors
 " -----------------------------------------------------------------------------
 
 " It is indicated that the <Space> key will be the <leader> key.
 let mapleader="\<Space>"
 
-" User key-maps.
-nnoremap <silent> <leader>h :bprev<CR>
-nnoremap <silent> <leader>l :bnext<CR>
-nnoremap <silent> <leader>d :bdelete<CR>
-nnoremap <silent> <leader>s :SignifyHunkDiff<CR>
-nnoremap <silent> <leader>m :MaximizerToggle<CR>
+" Key maps to interact with buffers.
+nmap <silent> <leader>h :bprev<CR>
+nmap <silent> <leader>l :bnext<CR>
+nmap <silent> <leader>d :bdelete<CR>
+
+" NOTE: The key maps of the plugin actions are found in the '.\settingsfiles\'
 " -----------------------------------------------------------------------------
 
-" Vim plugins installed with vim-plug.
-call plug#begin('$LOCALAPPDATA\nvim-data\plugged\')
-Plug 'https://github.com/mhinz/vim-signify.git'
-Plug 'https://github.com/neoclide/coc.nvim.git',{'branch':'release'}
-Plug 'https://github.com/preservim/nerdcommenter.git'
-Plug 'https://github.com/MattesGroeger/vim-bookmarks.git'
-Plug 'https://github.com/preservim/nerdtree.git'
-Plug 'https://github.com/Xuyuanp/nerdtree-git-plugin.git'
-Plug 'https://github.com/vim-airline/vim-airline.git'
-Plug 'https://github.com/morhetz/gruvbox.git'
-Plug 'https://github.com/arcticicestudio/nord-vim.git',{'branch':'develop'}
-Plug 'https://github.com/ghifarit53/tokyonight-vim.git'
-Plug 'https://github.com/szw/vim-maximizer.git'
-call plug#end()
-
-" Import plugin configuration files.
-source $USERPROFILE\dotfiles\configs\vimfiles\settingsfiles\coc.settings.vim
-source $USERPROFILE\dotfiles\configs\vimfiles\settingsfiles\nerdtree.settings.vim
-source $USERPROFILE\dotfiles\configs\vimfiles\settingsfiles\airline.settings.vim
-source $USERPROFILE\dotfiles\configs\vimfiles\settingsfiles\gruvbox.settings.vim
-source $USERPROFILE\dotfiles\configs\vimfiles\settingsfiles\nord.settings.vim
-source $USERPROFILE\dotfiles\configs\vimfiles\settingsfiles\tokyonight.settings.vim
+" Import vim-plug settings file.
+source $USERPROFILE\dotfiles\configs\vimfiles\plugins.vim
 " -----------------------------------------------------------------------------
 
 " Set colorscheme when all plugs, settings, and options are loaded.
