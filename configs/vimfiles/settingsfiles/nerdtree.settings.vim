@@ -1,21 +1,21 @@
-" FILE CONFIG NERDTREE.VIM FOR NERDTREE PLUGIN AJUSTS.
+" FILE CONFIG NERDTREE.SETTINGS.VIM FOR NERDTREE PLUGIN AJUSTS.
 
-" NERDTree interfaz settings:
+" NERDTree interfaz settings.
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI=1
 let g:NERDTreeDirArrowExpandable='▸'
 let g:NERDTreeDirArrowCollapsible='▾'
 let g:NERDTreeStatusline='NERDTree | working directory'
 
-" NERDTree interaction settings:
+" NERDTree interaction settings.
 let NERDTreeQuitOnOpen=1
 
-" Exit Vim if NERDTree is the only window left:
+" Exit Vim if NERDTree is the only window left.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
     \ quit | endif
 
-" Maps for NERDTree:
+" Maps for NERDTree.
 nnoremap <silent> <leader>e :NERDTreeToggle<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
 
-" by. @wuelnermartinez
+" by. @wuelnerdotexe

@@ -1,4 +1,4 @@
-" FILE CONFIG COC.VIM FOR CONQUER OF COMPLETITION PLUGIN AJUSTS.
+" FILE CONFIG COC.SETTINGS.VIM FOR CONQUER OF COMPLETITION PLUGIN AJUSTS.
 
 " Install coc extensions.
 let g:coc_global_extensions=[
@@ -63,4 +63,4 @@ nmap <leader>ac <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf <Plug>(coc-fix-current)
 
-" by. @wuelnermartinez
+" by. @wuelnerdotexe
