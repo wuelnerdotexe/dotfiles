@@ -11,4 +11,4 @@ mklink "%LOCALAPPDATA%\nvim\init.vim" "%USERPROFILE%\dotfiles\configs\vimfiles\i
 mklink "%LOCALAPPDATA%\nvim\ginit.vim" "%USERPROFILE%\dotfiles\configs\vimfiles\ginit.vim"
 mklink "%LOCALAPPDATA%\nvim\coc-settings.json" "%USERPROFILE%\dotfiles\configs\vim\coc-settings.json"
 
-Rem by. @wuelnermartinez
+Rem by. @wuelnerdotexe

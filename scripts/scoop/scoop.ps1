@@ -10,4 +10,4 @@ scoop install 7zip dark git innounp sudo
 # Remove download cache:
 scoop cache rm *
 
-# by. @wuelnermartinez
+# by. @wuelnerdotexe
