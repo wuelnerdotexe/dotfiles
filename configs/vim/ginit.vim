@@ -7,6 +7,6 @@ GuiScrollBar 0
 " -----------------------------------------------------------------------------
 
 " Import init.vim file to load all vim setup.
-source $USERPROFILE\dotfiles\configs\vimfiles\init.vim
+source $USERPROFILE\dotfiles\configs\vim\init.vim
 
 " by. @wuelnerdotexe
