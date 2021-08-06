@@ -74,11 +74,11 @@ nmap <silent> <leader>h :bprev<CR>
 nmap <silent> <leader>l :bnext<CR>
 nmap <silent> <leader>d :bdelete<CR>
 
-" NOTE: The key maps of the plugin actions are found in the '.\settingsfiles\'
+" NOTE: The key maps of the plugin actions are found in the '.\pluginfiles\'
 " -----------------------------------------------------------------------------
 
 " Import vim-plug settings file.
-source $USERPROFILE\dotfiles\configs\vimfiles\plugins.vim
+source $USERPROFILE\dotfiles\configs\vim\pluginfiles\plugins.vim
 " -----------------------------------------------------------------------------
 
 " Set colorscheme when all plugs, settings, and options are loaded.

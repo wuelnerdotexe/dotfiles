@@ -7,8 +7,7 @@ mklink "%APPDATA%\Code\User\settings.json" "%USERPROFILE%\dotfiles\configs\vscod
 mkdir "%LOCALAPPDATA%\nvim\"
 
 :: Symbolic link for Neovim file settings.
-mklink "%LOCALAPPDATA%\nvim\init.vim" "%USERPROFILE%\dotfiles\configs\vimfiles\init.vim"
-mklink "%LOCALAPPDATA%\nvim\ginit.vim" "%USERPROFILE%\dotfiles\configs\vimfiles\ginit.vim"
-mklink "%LOCALAPPDATA%\nvim\coc-settings.json" "%USERPROFILE%\dotfiles\configs\vim\coc-settings.json"
+mklink "%LOCALAPPDATA%\nvim\init.vim" "%USERPROFILE%\dotfiles\configs\vim\init.vim"
+mklink "%LOCALAPPDATA%\nvim\ginit.vim" "%USERPROFILE%\dotfiles\configs\vim\ginit.vim"
 
 Rem by. @wuelnerdotexe

@@ -23,11 +23,11 @@ Plug 'https://github.com/szw/vim-maximizer.git'
 call plug#end()
 
 " Import plugin configuration files.
-source $USERPROFILE\dotfiles\configs\vimfiles\settingsfiles\coc.settings.vim
-source $USERPROFILE\dotfiles\configs\vimfiles\settingsfiles\nerdtree.settings.vim
-source $USERPROFILE\dotfiles\configs\vimfiles\settingsfiles\airline.settings.vim
-source $USERPROFILE\dotfiles\configs\vimfiles\settingsfiles\gruvbox.settings.vim
-source $USERPROFILE\dotfiles\configs\vimfiles\settingsfiles\nord.settings.vim
-source $USERPROFILE\dotfiles\configs\vimfiles\settingsfiles\tokyonight.settings.vim
+source $USERPROFILE\dotfiles\configs\vim\pluginfiles\settings\coc.settings.vim
+source $USERPROFILE\dotfiles\configs\vim\pluginfiles\settings\nerdtree.settings.vim
+source $USERPROFILE\dotfiles\configs\vim\pluginfiles\settings\airline.settings.vim
+source $USERPROFILE\dotfiles\configs\vim\pluginfiles\settings\gruvbox.settings.vim
+source $USERPROFILE\dotfiles\configs\vim\pluginfiles\settings\nord.settings.vim
+source $USERPROFILE\dotfiles\configs\vim\pluginfiles\settings\tokyonight.settings.vim
 
 " by. @wuelnerdotexe
