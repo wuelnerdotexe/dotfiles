@@ -61,6 +61,8 @@ set incsearch
 set hlsearch
 
 " Vim color option values.
+set t_8f=^[[38;2;%lu;%lu;%lum
+set t_8b=^[[48;2;%lu;%lu;%lum
 set t_Co=16
 set background=dark
 set termguicolors
