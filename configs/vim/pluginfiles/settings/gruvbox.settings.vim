@@ -9,6 +9,5 @@ let g:gruvbox_italicize_comments=0
 
 " Gruvbox theme settings.
 let g:gruvbox_contrast_dark="hard"
-let g:gruvbox_termcolors=16
 
 " by. @wuelnerdotexe

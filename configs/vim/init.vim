@@ -61,10 +61,6 @@ set incsearch
 set hlsearch
 
 " Vim color option values.
-set t_8f=^[[38;2;%lu;%lu;%lum
-set t_8b=^[[48;2;%lu;%lu;%lum
-set t_Co=16
-set background=dark
 set termguicolors
 " -----------------------------------------------------------------------------
 
@@ -84,6 +80,7 @@ source $USERPROFILE\dotfiles\configs\vim\pluginfiles\plugins.vim
 " -----------------------------------------------------------------------------
 
 " Set colorscheme when all plugs, settings, and options are loaded.
+set background=dark
 colorscheme tokyonight
 
 " by. @wuelnerdotexe
