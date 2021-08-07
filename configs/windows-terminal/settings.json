@@ -132,7 +132,7 @@
             "brightCyan": "#22BF5C",
             "brightGreen": "#2EFF7B",
             "brightPurple": "#22BF5C",
-            "brightRed": "#FF0000",
+            "brightRed": "#FF2E2E",
             "brightWhite": "#22BF5C",
             "brightYellow": "#22BF5C",
             "cursorColor": "#2EFF7B",
@@ -141,7 +141,7 @@
             "green": "#2EFF7B",
             "name": "Green Hat Term",
             "purple": "#17803E",
-            "red": "#FF0000",
+            "red": "#FF2E2E",
             "selectionBackground": "#FFFFFF",
             "white": "#17803E",
             "yellow": "#17803E"
