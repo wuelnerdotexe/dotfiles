@@ -62,6 +62,7 @@ set hlsearch
 
 " Vim color option values.
 set termguicolors
+set background=dark
 " -----------------------------------------------------------------------------
 
 " It is indicated that the <Space> key will be the <leader> key.
@@ -77,10 +78,5 @@ nmap <silent> <leader>d :bdelete<CR>
 
 " Import vim-plug settings file.
 source $USERPROFILE\dotfiles\configs\vim\pluginfiles\plugins.vim
-" -----------------------------------------------------------------------------
-
-" Set colorscheme when all plugs, settings, and options are loaded.
-set background=dark
-colorscheme tokyonight
 
 " by. @wuelnerdotexe

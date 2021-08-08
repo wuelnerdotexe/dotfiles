@@ -1,6 +1,6 @@
 " FILE CONFIG PLUGINS.VIM FOR VIM-PLUG SETTINGS.
 
-" Providers setting for neovim plugins. 
+" Providers setting for neovim plugins.
 let g:loaded_python_provider=0
 let g:loaded_python3_provider=0
 let g:loaded_node_provider=0
@@ -29,5 +29,8 @@ source $USERPROFILE\dotfiles\configs\vim\pluginfiles\settings\airline.settings.v
 source $USERPROFILE\dotfiles\configs\vim\pluginfiles\settings\gruvbox.settings.vim
 source $USERPROFILE\dotfiles\configs\vim\pluginfiles\settings\nord.settings.vim
 source $USERPROFILE\dotfiles\configs\vim\pluginfiles\settings\tokyonight.settings.vim
+
+" Set colorscheme when all plugs, settings, and options are loaded.
+colorscheme tokyonight
 
 " by. @wuelnerdotexe

@@ -2,21 +2,18 @@
 
 # Install tools.
 scoop install bitwarden-cli cowsay nano neovim nodejs ntop
-# ---------------------------------------------------------------------------
 
-# Add scoop extras bucket for caffeine and winfetch.
+# Add scoop extras bucket.
 scoop bucket add extras
 
-# Install caffeine.
+# Install extras apps.
 scoop install caffeine winfetch
-# ---------------------------------------------------------------------------
 
 # Add scoop java bucket for openjdk.
 scoop bucket add java
 
 # Install openjdk.
 scoop install openjdk
-# ---------------------------------------------------------------------------
 
 # Remove download cache.
 scoop cache rm *
