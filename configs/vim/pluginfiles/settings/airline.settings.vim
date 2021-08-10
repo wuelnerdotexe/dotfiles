@@ -1,5 +1,8 @@
 " FILE CONFIG AIRLINE.SETTINGS.VIM FOR AIRLINE PLUGIN SETTINGS.
 
+" No show vim native mode.
+set noshowmode
+
 " Airline extensions settings.
 let g:airline_extensions=(['bookmark','coc','hunks','tabline','term'])
 let g:airline#extensions#tabline#formatter='unique_tail'
@@ -13,10 +16,5 @@ let g:airline_section_x='%y'
 
 " Airline font/symbols settings.
 let g:airline_symbols_ascii=1
-
-" Necessary options values.
-set wildmenu
-set noshowmode
-set showtabline=2
 
 " by. @wuelnerdotexe

@@ -7,6 +7,14 @@ let g:loaded_node_provider=0
 let g:loaded_ruby_provider=0
 let g:loaded_perl_provider=0
 
+" Import plugin configuration files.
+source $USERPROFILE\dotfiles\configs\vim\pluginfiles\settings\coc.settings.vim
+source $USERPROFILE\dotfiles\configs\vim\pluginfiles\settings\nerdtree.settings.vim
+source $USERPROFILE\dotfiles\configs\vim\pluginfiles\settings\airline.settings.vim
+source $USERPROFILE\dotfiles\configs\vim\pluginfiles\settings\gruvbox.settings.vim
+source $USERPROFILE\dotfiles\configs\vim\pluginfiles\settings\nord.settings.vim
+source $USERPROFILE\dotfiles\configs\vim\pluginfiles\settings\tokyonight.settings.vim
+
 " Vim plugins installed with vim-plug.
 call plug#begin('$LOCALAPPDATA\nvim-data\plugged\')
 Plug 'https://github.com/mhinz/vim-signify.git'
@@ -21,14 +29,6 @@ Plug 'https://github.com/arcticicestudio/nord-vim.git',{'branch':'develop'}
 Plug 'https://github.com/ghifarit53/tokyonight-vim.git'
 Plug 'https://github.com/szw/vim-maximizer.git'
 call plug#end()
-
-" Import plugin configuration files.
-source $USERPROFILE\dotfiles\configs\vim\pluginfiles\settings\coc.settings.vim
-source $USERPROFILE\dotfiles\configs\vim\pluginfiles\settings\nerdtree.settings.vim
-source $USERPROFILE\dotfiles\configs\vim\pluginfiles\settings\airline.settings.vim
-source $USERPROFILE\dotfiles\configs\vim\pluginfiles\settings\gruvbox.settings.vim
-source $USERPROFILE\dotfiles\configs\vim\pluginfiles\settings\nord.settings.vim
-source $USERPROFILE\dotfiles\configs\vim\pluginfiles\settings\tokyonight.settings.vim
 
 " Set colorscheme when all plugs, settings, and options are loaded.
 colorscheme tokyonight

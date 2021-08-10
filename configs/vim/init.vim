@@ -10,11 +10,13 @@ set nocompatible
 " Vim encoding option values.
 set encoding=utf-8
 
+" Vim color option values.
+set termguicolors
+set background=dark
+
 " Vim syntax and filetype option values.
-syntax on
-filetype on
-filetype indent on
-filetype plugin on
+filetype plugin indent on
+syntax enable | syntax on
 
 " Files management option values.
 set nobackup
@@ -22,60 +24,62 @@ set nowritebackup
 set undofile
 set undodir=$TEMP\undofiles\
 
-" Vim performance option values.
-set hidden
-set ttyfast
-set lazyredraw
-set updatetime=100
-
-" Vim interaction option values.
-set backspace=
-set clipboard=unnamed
-set mouse=a
+" Vim coding option values.
+set autoindent
+set smartindent
+set shiftwidth=4
+set shiftround
+set tabstop=4
+set softtabstop=4
+set expandtab
+set smarttab
+set showmatch
+set nowrap
 
 " Vim interfaz option values.
 set notitle
-set signcolumn=yes
-set relativenumber
+set number relativenumber
 set cursorline
-set cmdheight=1
-set laststatus=2
 set ruler
+set laststatus=2
+set cmdheight=1
+set wildmenu
+set showcmd
+set signcolumn=yes
 set splitright
 set splitbelow
 
-" Vim coding option values.
-set nowrap
-set shiftwidth=4
-set tabstop=4
-set smarttab
-set expandtab
-set smartindent
-set autoindent
-set shiftround
-set showmatch
-
 " Vim search option values.
-set ignorecase
-set incsearch
 set hlsearch
+set incsearch
+set ignorecase
 
-" Vim color option values.
-set termguicolors
-set background=dark
+" Vim interaction option values.
+set backspace=
+set mouse=a
+set clipboard=unnamed
+
+" Vim performance option values.
+set hidden
+set lazyredraw
+set ttyfast
+set updatetime=100
 " -----------------------------------------------------------------------------
-
 " It is indicated that the <Space> key will be the <leader> key.
 let mapleader="\<Space>"
 
 " Key maps to interact with buffers.
-nmap <silent> <leader>h :bprev<CR>
-nmap <silent> <leader>l :bnext<CR>
-nmap <silent> <leader>d :bdelete<CR>
+nmap <silent> <leader>nb :bnext<CR>
+nmap <silent> <leader>pb :bprev<CR>
+nmap <silent> <leader>db :bdelete<CR>
+
+" Key maps to interact with tabs.
+nmap <silent> <leader>nt :tabnext<CR>
+nmap <silent> <leader>pt :tabprevious<CR>
+nmap <silent> <leader>ct :tabclose<CR>
 
 " NOTE: The key maps of the plugin actions are found in the '.\pluginfiles\'
 " -----------------------------------------------------------------------------
-
 " Import vim-plug settings file.
 source $USERPROFILE\dotfiles\configs\vim\pluginfiles\plugins.vim
 

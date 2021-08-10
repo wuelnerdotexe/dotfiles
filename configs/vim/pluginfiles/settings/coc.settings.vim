@@ -57,7 +57,6 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
-
 " Remap keys for applying codeAction to the current buffer.
 nmap <leader>ac <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.

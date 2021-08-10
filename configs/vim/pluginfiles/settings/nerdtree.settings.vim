@@ -15,7 +15,7 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
     \ quit | endif
 
 " Maps for NERDTree.
-nmap <silent> <leader>e :NERDTreeToggle<CR>
-nmap <leader>nf :NERDTreeFind<CR>
+nmap <silent> <leader>te :NERDTreeToggle<CR>
+nmap <silent> <leader>fe :NERDTreeFind<CR>
 
 " by. @wuelnerdotexe
