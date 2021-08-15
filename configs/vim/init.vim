@@ -7,8 +7,17 @@
 " Setting required to set custom option values in vim.
 set nocompatible
 
+" Use a trick to reset compatible only when the +eval feature is missing.
+silent! while 0
+  set nocompatible
+silent! endwhile
+
 " Vim encoding option values.
 set encoding=utf-8
+
+" Vim languajes option values.
+set spelllang=en,es 
+set helplang=en,es
 
 " Vim color option values.
 set termguicolors
@@ -21,8 +30,11 @@ syntax enable | syntax on
 " Files management option values.
 set nobackup
 set nowritebackup
+set swapfile
+set directory=$LOCALAPPDATA\nvim-data\swap\\
 set undofile
-set undodir=$TEMP\undofiles\
+set undodir=$LOCALAPPDATA\nvim-data\undo\\
+set autoread
 
 " Vim coding option values.
 set autoindent
@@ -38,13 +50,14 @@ set nowrap
 
 " Vim interfaz option values.
 set notitle
-set number relativenumber
+set number
+set relativenumber
 set cursorline
-set ruler
+set noruler
 set laststatus=2
-set cmdheight=1
+set cmdheight=2
 set wildmenu
-set showcmd
+set noshowcmd
 set signcolumn=yes
 set splitright
 set splitbelow
@@ -53,15 +66,25 @@ set splitbelow
 set hlsearch
 set incsearch
 set ignorecase
+set smartcase
 
 " Vim interaction option values.
+set shortmess+=F
+set shortmess-=S
+set ttimeout
+set ttimeoutlen=50
+set scroll=1
+set scrolloff=0
+set sidescroll=1
+set sidescrolloff=0
 set backspace=
-set mouse=a
+set mouse=nvi
 set clipboard=unnamed
+set history=200
 
 " Vim performance option values.
+set complete-=i
 set hidden
-set lazyredraw
 set ttyfast
 set updatetime=100
 " -----------------------------------------------------------------------------
