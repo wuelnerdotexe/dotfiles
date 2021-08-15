@@ -86,6 +86,7 @@ set history=200
 set complete-=i
 set hidden
 set ttyfast
+set nolazyredraw
 set updatetime=100
 " -----------------------------------------------------------------------------
 " It is indicated that the <Space> key will be the <leader> key.
