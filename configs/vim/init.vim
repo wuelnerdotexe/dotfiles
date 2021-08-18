@@ -35,6 +35,7 @@ set directory=$LOCALAPPDATA\nvim-data\swap\\
 set undofile
 set undodir=$LOCALAPPDATA\nvim-data\undo\\
 set autoread
+set hidden
 
 " Vim coding option values.
 set autoindent
@@ -57,6 +58,7 @@ set noruler
 set laststatus=2
 set cmdheight=2
 set wildmenu
+set wildignorecase
 set noshowcmd
 set signcolumn=yes
 set splitright
@@ -83,7 +85,6 @@ set history=200
 
 " Vim performance option values.
 set complete-=i
-set hidden
 set ttyfast
 set nolazyredraw
 set updatetime=100
