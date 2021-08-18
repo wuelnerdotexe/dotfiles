@@ -98,8 +98,7 @@ nmap <silent> <leader>pb :bprev<CR>
 nmap <silent> <leader>db :bdelete<CR>
 
 " Key maps to interact with tabs.
-nmap <silent> <leader>nt :tabnext<CR>
-nmap <silent> <leader>pt :tabprevious<CR>
+nmap <silent> <leader>ct :tabnew<CR>
 nmap <silent> <leader>ct :tabclose<CR>
 
 " NOTE: The key maps of the plugin actions are found in the '.\pluginfiles\'
