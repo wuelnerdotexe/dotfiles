@@ -66,7 +66,6 @@ set splitbelow
 set hlsearch
 set incsearch
 set ignorecase
-set smartcase
 
 " Vim interaction option values.
 set shortmess+=F
