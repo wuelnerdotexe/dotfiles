@@ -9,7 +9,7 @@ set nocompatible
 
 " Use a trick to reset compatible only when the +eval feature is missing.
 silent! while 0
-  set nocompatible
+    set nocompatible
 silent! endwhile
 
 " Vim encoding option values.
@@ -92,14 +92,18 @@ set updatetime=100
 " It is indicated that the <Space> key will be the <leader> key.
 let mapleader="\<Space>"
 
-" Key maps to interact with buffers.
-nmap <silent> <leader>nb :bnext<CR>
-nmap <silent> <leader>pb :bprev<CR>
-nmap <silent> <leader>db :bdelete<CR>
+" Key maps to move previous/left with buffers.
+nnoremap <silent> gB :bprev<CR>
+nnoremap <silent> <S-PageUp> :bprev<CR>
+inoremap <silent> <S-PageUp> <Esc>:bprev<CR>i
 
-" Key maps to interact with tabs.
-nmap <silent> <leader>ct :tabnew<CR>
-nmap <silent> <leader>ct :tabclose<CR>
+" Key maps to move next/right with buffers.
+nnoremap <silent> gb :bnext<CR>
+nnoremap <silent> <S-PageDown> :bnext<CR>
+inoremap <silent> <S-PageDown> <Esc>:bnext<CR>i
+
+" Key maps to delete/close buffers or tabs.
+nnoremap <silent> <leader>db :bdelete<CR>
 
 " NOTE: The key maps of the plugin actions are found in the '.\pluginfiles\'
 " -----------------------------------------------------------------------------
