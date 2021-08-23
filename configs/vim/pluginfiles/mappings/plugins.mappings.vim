@@ -36,5 +36,8 @@ nmap <silent> <leader>fe :NERDTreeFind<CR>
 " SIGNIFY MAPPINGS.
 " Show Signify hunk diff on the current line.
 nnoremap <silent> <leader>hd :SignifyHunkDiff<CR>
+" -----------------------------------------------------------------------------
+" FUZZY FINDER MAPPINGS.
+nnoremap <silent> <leader>ff :FZF<CR>
 
 " by. @wuelnerdotexe

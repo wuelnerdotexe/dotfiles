@@ -55,12 +55,12 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 set noshowmode
 
 " Airline extensions settings.
-let g:airline_extensions=(['bookmark','coc','hunks','tabline','term'])
+let g:airline_extensions=(['bookmark','branch','coc','hunks','tabline','term'])
 let g:airline#extensions#tabline#formatter='unique_tail'
 let g:airline#extensions#hunks#non_zero_only=1
 
 " Airline section settings.
-let g:airline_section_c='%t'
+let g:airline_section_c='%F'
 let g:airline_section_z='%l/%L'
 let g:airline_section_y='%p%%'
 let g:airline_section_x='%y'
