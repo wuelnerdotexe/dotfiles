@@ -60,7 +60,7 @@ let g:airline#extensions#tabline#formatter='unique_tail'
 let g:airline#extensions#hunks#non_zero_only=1
 
 " Airline section settings.
-let g:airline_section_c='%F'
+let g:airline_section_c='%f'
 let g:airline_section_z='%l/%L'
 let g:airline_section_y='%p%%'
 let g:airline_section_x='%y'

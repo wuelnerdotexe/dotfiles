@@ -92,20 +92,26 @@ set updatetime=100
 " It is indicated that the <Space> key will be the <leader> key.
 let mapleader="\<Space>"
 
-" Key maps to move previous/left with buffers.
+" Mappings to move previous/left with buffers.
 nnoremap <silent> gB :bprev<CR>
 nnoremap <silent> <S-PageUp> :bprev<CR>
 inoremap <silent> <S-PageUp> <Esc>:bprev<CR>i
 
-" Key maps to move next/right with buffers.
+" Mappings to move next/right with buffers.
 nnoremap <silent> gb :bnext<CR>
 nnoremap <silent> <S-PageDown> :bnext<CR>
 inoremap <silent> <S-PageDown> <Esc>:bnext<CR>i
 
-" Key maps to delete/close buffers or tabs.
+" Mappings to delete/close buffers or tabs.
 nnoremap <silent> <leader>db :bdelete<CR>
 
-" NOTE: The key maps of the plugin actions are found in the '.\pluginfiles\'
+" Mappings to resize splits.
+nnoremap <silent> <C-h> 1<C-w>>
+nnoremap <silent> <C-j> 1<C-w>-
+nnoremap <silent> <C-l> 1<C-w><
+nnoremap <silent> <C-k> 1<C-w>+
+
+" NOTE: The key maps of the plugin actions are found in 'plugins.mappings.vim'.
 " -----------------------------------------------------------------------------
 " Import vim-plug settings file.
 source $USERPROFILE\dotfiles\configs\vim\pluginfiles\plugins.vim

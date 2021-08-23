@@ -38,6 +38,7 @@ nmap <silent> <leader>fe :NERDTreeFind<CR>
 nnoremap <silent> <leader>hd :SignifyHunkDiff<CR>
 " -----------------------------------------------------------------------------
 " FUZZY FINDER MAPPINGS.
+" Find with fuzzy finder.
 nnoremap <silent> <leader>ff :FZF<CR>
 
 " by. @wuelnerdotexe
