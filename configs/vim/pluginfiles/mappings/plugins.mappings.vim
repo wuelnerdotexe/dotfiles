@@ -32,5 +32,9 @@ nmap <silent> <leader>te :NERDTreeToggle<CR>
 
 " NERDTree find open file.
 nmap <silent> <leader>fe :NERDTreeFind<CR>
+" -----------------------------------------------------------------------------
+" SIGNIFY MAPPINGS.
+" Show Signify hunk diff on the current line.
+nnoremap <silent> <leader>hd :SignifyHunkDiff<CR>
 
 " by. @wuelnerdotexe
