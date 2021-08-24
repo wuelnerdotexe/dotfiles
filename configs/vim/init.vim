@@ -107,9 +107,13 @@ nnoremap <silent> <leader>db :bdelete<CR>
 
 " Mappings to resize splits.
 nnoremap <silent> <C-h> 1<C-w>>
-nnoremap <silent> <C-j> 1<C-w>-
-nnoremap <silent> <C-l> 1<C-w><
 nnoremap <silent> <C-k> 1<C-w>+
+nnoremap <silent> <C-l> 1<C-w><
+nnoremap <silent> <C-j> 1<C-w>-
+
+" Mappings to move text block selected.
+xnoremap <silent> K :move '<-2<CR>gv-gv
+xnoremap <silent> J :move '>+1<CR>gv-gv
 
 " NOTE: The key maps of the plugin actions are found in 'plugins.mappings.vim'.
 " -----------------------------------------------------------------------------
