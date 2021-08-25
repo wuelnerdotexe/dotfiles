@@ -42,4 +42,4 @@ Plug 'https://github.com/ghifarit53/tokyonight-vim.git'
 call plug#end()
 
 " Set colorscheme when all plugs, settings, and options are loaded.
-colorscheme NeoSolarized
+colorscheme tokyonight

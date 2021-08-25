@@ -1,4 +1,10 @@
-Rem BASH SCRIPT FOR MAKE CONFIG FILES SYMBOLIC LINKS IN WINDOWS WITH CMD. 
+:: ----------------------------------------------------------------------------
+:: Name:     mklinks.vim
+:: Author:   Wuelner Martínez <wuelnerdotexe@gmail.com>
+:: URL:      https://github.com/wuelnerdotexe/dotfiles
+:: License:  MIT
+:: About:    Bash script for make symbolic links for config files in Windows.
+:: ----------------------------------------------------------------------------
 
 :: Symbolic link for VSCode settings file.
 mklink "%APPDATA%\Code\User\settings.json" "%USERPROFILE%\dotfiles\configs\vscode\settings.json"
@@ -9,5 +15,3 @@ mkdir "%LOCALAPPDATA%\nvim\"
 :: Symbolic link for Neovim file settings.
 mklink "%LOCALAPPDATA%\nvim\init.vim" "%USERPROFILE%\dotfiles\configs\vim\init.vim"
 mklink "%LOCALAPPDATA%\nvim\ginit.vim" "%USERPROFILE%\dotfiles\configs\vim\ginit.vim"
-
-Rem by. @wuelnerdotexe

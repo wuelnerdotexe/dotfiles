@@ -1,4 +1,10 @@
-# FILE PS1 FOR INSTALL SCOOP TOOLS ON WINDOWS WITH POWERSHELL.
+# -----------------------------------------------------------------------------
+# Name:     ginit.vim
+# Author:   Wuelner Martínez <wuelnerdotexe@gmail.com>
+# URL:      https://github.com/wuelnerdotexe/dotfiles
+# License:  MIT
+# About:    Powershell script for install tools with scoop in Windows.
+# -----------------------------------------------------------------------------
 
 # Install tools.
 scoop install adb bitwarden-cli cowsay nano neovim nodejs ntop
@@ -17,5 +23,3 @@ scoop install openjdk
 
 # Remove download cache.
 scoop cache rm *
-
-# by. @wuelnerdotexe
