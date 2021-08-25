@@ -16,6 +16,12 @@ let g:gruvbox_italic=0
 let g:gruvbox_underline=0
 let g:gruvbox_undercurl=0
 
+" NeoSolarized font.
+let g:neosolarized_bold=0
+let g:neosolarized_underline=0
+let g:neosolarized_italic=0
+let g:neosolarized_termBoldAsBright=0
+
 " Nord interfaz.
 let g:nord_cursor_line_number_background=1
 let g:nord_uniform_status_lines=1

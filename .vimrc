@@ -182,23 +182,11 @@ let g:airline_symbols_ascii=1
 " -----------------------------------------------------------------------------
 " SECTION: Colors settings. 
 " -----------------------------------------------------------------------------
-" Gruvbox interfaz.
-let g:gruvbox_contrast_dark="hard"
-
-" Gruvbox font.
-let g:gruvbox_italicize_comments=0
-let g:gruvbox_bold=0
-let g:gruvbox_italic=0
-let g:gruvbox_underline=0
-let g:gruvbox_undercurl=0
-
-" Nord interfaz.
-let g:nord_cursor_line_number_background=1
-let g:nord_uniform_status_lines=1
-let g:nord_uniform_diff_background=1
-
-" Nord font.
-let g:nord_bold=0
+" NeoSolarized font.
+let g:neosolarized_bold=0
+let g:neosolarized_underline=0
+let g:neosolarized_italic=0
+let g:neosolarized_termBoldAsBright=0
 
 " Tokyo Night interfaz.
 let g:tokyonight_style='night'
@@ -278,11 +266,11 @@ Plug 'https://github.com/junegunn/fzf.git',{'do':{ -> fzf#install()}}
 Plug 'https://github.com/junegunn/fzf.vim.git'
 Plug 'https://github.com/szw/vim-maximizer.git'
 Plug 'https://github.com/vim-airline/vim-airline.git'
+Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 " Colors.
-Plug 'https://github.com/morhetz/gruvbox.git'
-Plug 'https://github.com/arcticicestudio/nord-vim.git',{'branch':'develop'}
+Plug 'https://github.com/overcache/NeoSolarized.git'
 Plug 'https://github.com/ghifarit53/tokyonight-vim.git'
 call plug#end()
 
 " Set colorscheme when all plugs, settings, and options are loaded.
-colorscheme tokyonight
+colorscheme NeoSolarized

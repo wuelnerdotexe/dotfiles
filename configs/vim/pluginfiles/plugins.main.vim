@@ -33,11 +33,13 @@ Plug 'https://github.com/junegunn/fzf.git',{'do':{ -> fzf#install()}}
 Plug 'https://github.com/junegunn/fzf.vim.git'
 Plug 'https://github.com/szw/vim-maximizer.git'
 Plug 'https://github.com/vim-airline/vim-airline.git'
+Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 " Colors.
 Plug 'https://github.com/morhetz/gruvbox.git'
+Plug 'https://github.com/overcache/NeoSolarized.git'
 Plug 'https://github.com/arcticicestudio/nord-vim.git',{'branch':'develop'}
 Plug 'https://github.com/ghifarit53/tokyonight-vim.git'
 call plug#end()
 
 " Set colorscheme when all plugs, settings, and options are loaded.
-colorscheme tokyonight
+colorscheme NeoSolarized
