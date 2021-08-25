@@ -4,10 +4,19 @@
 " line by line to optimize Vim boot performance to the maximum.
 " -----------------------------------------------------------------------------
 
+" Set the path to the data directory depending on the OS.
 if has('win32') || has ('win64')
-    let g:data_home = '~/vimfiles/'
-elseif has('unix')
-    let data_home = '~/.vim/'
+    if has('nvim')
+        let g:data_home = '~/AppData/Local/nvim-data/'
+    else
+        let g:data_home = '~/vimfiles/'
+    endif
+else
+    if has('nvim')
+        let g:data_home = '~/.local/share/nvim/'
+    else
+        let g:data_home = '~/.vim/'
+    endif
 endif
 
 " Setting required to set custom option values in vim.
@@ -163,23 +172,6 @@ let g:coc_global_extensions=[
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
-" Use tab for trigger completion with characters ahead and navigate.
-function! s:check_back_space() abort
-  let col=col('.') - 1
-  return !col || getline('.')[col - 1]=~# '\s'
-endfunction
-
-" Use K to show documentation in preview window.
-function! s:show_documentation()
-    if (index(['vim','help'], &filetype) >= 0)
-        execute 'h '.expand('<cword>')
-    elseif (coc#rpc#ready())
-        call CocActionAsync('doHover')
-    else
-        execute '!' . &keywordprg . " " . expand('<cword>')
-    endif
-endfunction
-
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 " -----------------------------------------------------------------------------
@@ -218,6 +210,11 @@ let g:airline_symbols_ascii=1
 " -----------------------------------------------------------------------------
 " CONQUER OF COMPLETITION MAPPINGS.
 " Use tab for trigger completion with characters ahead and navigate.
+function! s:check_back_space() abort
+  let col=col('.') - 1
+  return !col || getline('.')[col - 1]=~# '\s'
+endfunction
+
 inoremap <silent> <expr> <TAB>
     \ pumvisible() ? "\<C-n>" :
     \ <SID>check_back_space() ? "\<TAB>" :
@@ -229,6 +226,17 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    elseif (coc#rpc#ready())
+        call CocActionAsync('doHover')
+    else
+        execute '!' . &keywordprg . " " . expand('<cword>')
+    endif
+endfunction
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
