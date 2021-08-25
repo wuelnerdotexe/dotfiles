@@ -1,5 +1,5 @@
 # -----------------------------------------------------------------------------
-# Name:     ginit.vim
+# Name:     vim-plug.ps1
 # Author:   Wuelner Martínez <wuelnerdotexe@gmail.com>
 # URL:      https://github.com/wuelnerdotexe/dotfiles
 # License:  MIT

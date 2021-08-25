@@ -1,5 +1,5 @@
 :: ----------------------------------------------------------------------------
-:: Name:     mklinks.vim
+:: Name:     mklinks.cmd
 :: Author:   Wuelner Martínez <wuelnerdotexe@gmail.com>
 :: URL:      https://github.com/wuelnerdotexe/dotfiles
 :: License:  MIT
