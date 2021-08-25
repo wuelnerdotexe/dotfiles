@@ -1,10 +1,13 @@
-" FILE CONFIG INIT.VIM FOR NEOVIM SETTINGS.
 " -----------------------------------------------------------------------------
-" NOTE: All options, settings, files and their imports are extremely ordered
+" Name:     init.vim
+" Author:   Wuelner Martínez <wuelnerdotexe@gmail.com>
+" URL:      https://github.com/wuelnerdotexe/dotfiles
+" License:  MIT
+" About:    All options, settings, files and imports are extremely ordered
 " line by line to optimize Vim / Neovim boot performance to the maximum.
 " -----------------------------------------------------------------------------
 
-" Setting required to set custom option values in vim.
+" Setting required to set custom option values.
 set nocompatible
 
 " Use a trick to reset compatible only when the +eval feature is missing.
@@ -12,22 +15,22 @@ silent! while 0
     set nocompatible
 silent! endwhile
 
-" Vim encoding option values.
+" Encoding.
 set encoding=utf-8
 
-" Vim languajes option values.
+" Languajes.
 set spelllang=en,es 
 set helplang=en,es
 
-" Vim color option values.
+" Colors.
 set termguicolors
 set background=dark
 
-" Vim syntax and filetype option values.
+" Syntax and filetype.
 filetype plugin indent on
 syntax enable | syntax on
 
-" Files management option values.
+" Files management.
 set nobackup
 set nowritebackup
 set swapfile
@@ -37,7 +40,7 @@ set undodir=$LOCALAPPDATA\nvim-data\undo\\
 set autoread
 set hidden
 
-" Vim coding option values.
+" Coding.
 set autoindent
 set smartindent
 set shiftwidth=4
@@ -49,27 +52,29 @@ set smarttab
 set showmatch
 set nowrap
 
-" Vim interfaz option values.
+" Interfaz.
 set notitle
 set number
 set relativenumber
 set cursorline
-set noruler
+set noruler                 " Disabled for best performance.
 set laststatus=2
 set cmdheight=2
 set wildmenu
 set wildignorecase
-set noshowcmd
+set noshowcmd               " Disabled for best performance.
+set noshowmode
 set signcolumn=yes
 set splitright
 set splitbelow
 
-" Vim search option values.
+" Search.
 set hlsearch
 set incsearch
 set ignorecase
 
-" Vim interaction option values.
+" Interaction.
+set shortmess+=c
 set shortmess+=F
 set shortmess-=S
 set ttimeout
@@ -78,46 +83,47 @@ set scroll=1
 set scrolloff=0
 set sidescroll=1
 set sidescrolloff=0
-set backspace=
 set mouse=nvi
 set clipboard=unnamed
+set complete-=i             " Disabled for best performance.
 set history=200
 
-" Vim performance option values.
-set complete-=i
-set ttyfast
-set nolazyredraw
+" Performance.
 set updatetime=100
+set nolazyredraw
+set ttyfast
+" -----------------------------------------------------------------------------
+" SECTION: Native mappings. 
 " -----------------------------------------------------------------------------
 " It is indicated that the <Space> key will be the <leader> key.
 let mapleader="\<Space>"
 
-" Mappings to move previous/left with buffers.
+" Move previous/left with buffers.
 nnoremap <silent> gB :bprev<CR>
 nnoremap <silent> <S-PageUp> :bprev<CR>
 inoremap <silent> <S-PageUp> <Esc>:bprev<CR>i
 
-" Mappings to move next/right with buffers.
+" Move next/right with buffers.
 nnoremap <silent> gb :bnext<CR>
 nnoremap <silent> <S-PageDown> :bnext<CR>
 inoremap <silent> <S-PageDown> <Esc>:bnext<CR>i
 
-" Mappings to delete/close buffers or tabs.
+" Delete buffers.
 nnoremap <silent> <leader>db :bdelete<CR>
 
-" Mappings to resize splits.
+" Resize splits.
 nnoremap <silent> <C-h> 1<C-w>>
 nnoremap <silent> <C-k> 1<C-w>+
 nnoremap <silent> <C-l> 1<C-w><
 nnoremap <silent> <C-j> 1<C-w>-
 
-" Mappings to move text block selected.
+" Move a selected block text.
 xnoremap <silent> K :move '<-2<CR>gv-gv
 xnoremap <silent> J :move '>+1<CR>gv-gv
 
 " NOTE: The key maps of the plugin actions are found in 'plugins.mappings.vim'.
 " -----------------------------------------------------------------------------
-" Import vim-plug settings file.
-source $USERPROFILE\dotfiles\configs\vim\pluginfiles\plugins.vim
-
-" by. @wuelnerdotexe
+" SECTION: Plugins files. 
+" -----------------------------------------------------------------------------
+" Import plugins main file.
+source $USERPROFILE\dotfiles\configs\vim\pluginfiles\plugins.main.vim

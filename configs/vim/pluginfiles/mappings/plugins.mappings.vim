@@ -1,7 +1,12 @@
-" FILE CONFIG PLUGINS.MAPPINGS.VIM FOR PLUGIN MAPPINGS.
+" -----------------------------------------------------------------------------
+" Name:     plugins.mappings.vim
+" Author:   Wuelner Martínez <wuelnerdotexe@gmail.com>
+" URL:      https://github.com/wuelnerdotexe/dotfiles
+" License:  MIT
+" About:    File config for plugins mappings.
+" -----------------------------------------------------------------------------
 
-" CONQUER OF COMPLETITION MAPPINGS.
-" Use tab for trigger completion with characters ahead and navigate.
+" Coc use tab for trigger completion with characters ahead and navigate.
 function! s:check_back_space() abort
   let col=col('.') - 1
   return !col || getline('.')[col - 1]=~# '\s'
@@ -13,13 +18,13 @@ inoremap <silent> <expr> <TAB>
     \ coc#refresh()
 inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-" GoTo code navigation.
+" Coc GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" Use K to show documentation in preview window.
+" Coc use K to show documentation in preview window.
 function! s:show_documentation()
     if (index(['vim','help'], &filetype) >= 0)
         execute 'h '.expand('<cword>')
@@ -32,28 +37,26 @@ endfunction
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-" Symbol renaming.
+" Coc symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 
-" Remap keys for applying codeAction to the current buffer.
+" Coc remap keys for applying codeAction to the current buffer.
 nmap <leader>ac <Plug>(coc-codeaction)
 
-" Apply AutoFix to problem on the current line.
+" Coc apply AutoFix to problem on the current line.
 nmap <leader>qf <Plug>(coc-fix-current)
-" -----------------------------------------------------------------------------
-" NERDTREE MAPPINGS.
+
 " NERDTree toggle.
 nmap <silent> <leader>te :NERDTreeToggle<CR>
 
 " NERDTree find open file.
 nmap <silent> <leader>fe :NERDTreeFind<CR>
-" -----------------------------------------------------------------------------
-" SIGNIFY MAPPINGS.
-" Show Signify hunk diff on the current line.
+
+" Sygnify show hunk diff on the current line.
 nnoremap <silent> <leader>hd :SignifyHunkDiff<CR>
-" -----------------------------------------------------------------------------
-" FUZZY FINDER MAPPINGS.
-" Find with fuzzy finder.
+
+" Fuzzy finder activate.
 nnoremap <silent> <leader>ff :FZF<CR>
 
-" by. @wuelnerdotexe
+" Maximizer toggle.
+nnoremap <silent> <leader>mt :MaximizerToggle<CR>
