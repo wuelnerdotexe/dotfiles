@@ -59,4 +59,4 @@ nnoremap <silent> <leader>hd :SignifyHunkDiff<CR>
 nnoremap <silent> <leader>ff :FZF<CR>
 
 " Maximizer toggle.
-nnoremap <silent> <leader>mt :MaximizerToggle<CR>
+nnoremap <silent> <leader>tm :MaximizerToggle<CR>

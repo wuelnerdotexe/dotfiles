@@ -101,12 +101,12 @@ let mapleader="\<Space>"
 " Move previous/left with buffers.
 nnoremap <silent> gB :bprev<CR>
 nnoremap <silent> <S-PageUp> :bprev<CR>
-inoremap <silent> <S-PageUp> <Esc>:bprev<CR>i
+inoremap <silent> <S-PageUp> <Cmd>bprev<CR>
 
 " Move next/right with buffers.
 nnoremap <silent> gb :bnext<CR>
 nnoremap <silent> <S-PageDown> :bnext<CR>
-inoremap <silent> <S-PageDown> <Esc>:bnext<CR>i
+inoremap <silent> <S-PageDown> <Cmd>bnext<CR>
 
 " Delete buffers.
 nnoremap <silent> <leader>db :bdelete<CR>
