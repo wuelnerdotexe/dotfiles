@@ -58,17 +58,26 @@ set number
 set relativenumber
 set numberwidth=3
 set cursorline
-set ruler
+set noruler                 " Disabled for best performance.
 set laststatus=2
 set showtabline=0
 set cmdheight=2
 set wildmenu
 set wildignorecase
-set showcmd
+set noshowcmd               " Disabled for best performance.
 set showmode
 set signcolumn=yes
 set splitright
 set splitbelow
+
+" Statusline.
+set statusline=
+set statusline+=\ %f\ 
+set statusline+=\ %m
+set statusline+=%=
+set statusline+=\ %Y
+set statusline+=\ %p%%
+set statusline+=\ %l/%L\ 
 
 " Search.
 set hlsearch
@@ -87,7 +96,7 @@ set sidescroll=1
 set sidescrolloff=0
 set mouse=nvi
 set clipboard=unnamed
-set complete-=i             " Disabled for best performance.
+set complete-=i                 " Disabled for best performance.
 set history=200
 
 " Performance.
