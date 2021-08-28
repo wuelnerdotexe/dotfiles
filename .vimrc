@@ -168,7 +168,7 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
     \ quit | endif
 
 " Airline extensions.
-let g:airline_extensions=(['bookmark','branch','coc','hunks','tabline','term'])
+let g:airline_extensions=(['branch','coc','hunks','tabline','term'])
 let g:airline#extensions#tabline#formatter='unique_tail'
 let g:airline#extensions#hunks#non_zero_only=1
 
@@ -259,15 +259,13 @@ call plug#begin(g:data_home.'/plugged/')
 Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'https://github.com/mhinz/vim-signify.git'
 Plug 'https://github.com/neoclide/coc.nvim.git',{'branch':'release'}
-Plug 'https://github.com/preservim/nerdcommenter.git'
 Plug 'https://github.com/MattesGroeger/vim-bookmarks.git'
 Plug 'https://github.com/preservim/nerdtree.git'
-Plug 'https://github.com/Xuyuanp/nerdtree-git-plugin.git'
 Plug 'https://github.com/junegunn/fzf.git',{'do':{ -> fzf#install()}}
 Plug 'https://github.com/junegunn/fzf.vim.git'
-Plug 'https://github.com/szw/vim-maximizer.git'
 Plug 'https://github.com/vim-airline/vim-airline.git'
 Plug 'https://github.com/vim-airline/vim-airline-themes.git'
+Plug 'https://github.com/szw/vim-maximizer.git'
 " Colors.
 Plug 'https://github.com/overcache/NeoSolarized.git'
 Plug 'https://github.com/ghifarit53/tokyonight-vim.git'
