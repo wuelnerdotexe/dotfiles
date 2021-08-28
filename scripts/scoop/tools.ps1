@@ -7,13 +7,13 @@
 # -----------------------------------------------------------------------------
 
 # Install tools.
-scoop install adb bitwarden-cli cowsay nano neovim nodejs ntop
+scoop install adb bitwarden-cli nano neovim nodejs
 
 # Add scoop extras bucket.
 scoop bucket add extras
 
 # Install extras apps.
-scoop install caffeine winfetch
+scoop install caffeine
 
 # Add scoop java bucket for openjdk.
 scoop bucket add java
