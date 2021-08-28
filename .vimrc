@@ -71,6 +71,7 @@ set nowrap
 set notitle
 set number
 set relativenumber
+set numberwidth=3
 set cursorline
 set noruler                 " Disabled for best performance.
 set laststatus=2
