@@ -35,7 +35,7 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
     \ quit | endif
 
 " Airline extensions.
-let g:airline_extensions=(['bookmark','branch','coc','hunks','tabline','term'])
+let g:airline_extensions=(['branch','coc','hunks','tabline','term'])
 let g:airline#extensions#tabline#formatter='unique_tail'
 let g:airline#extensions#hunks#non_zero_only=1
 
