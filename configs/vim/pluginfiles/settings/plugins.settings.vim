@@ -35,7 +35,7 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
     \ quit | endif
 
 " Airline extensions.
-let g:airline_extensions=(['branch','coc','hunks','tabline','term'])
+let g:airline_extensions=(['coc','tabline','term'])
 let g:airline#extensions#tabline#formatter='unique_tail'
 let g:airline#extensions#hunks#non_zero_only=1
 
@@ -49,3 +49,6 @@ let g:airline_section_x='%Y'
 " Airline font/symbols.
 let g:airline_symbols_ascii=1
 let g:airline_powerline_fonts=1
+
+" Airline already shows current mode.
+set noshowmode

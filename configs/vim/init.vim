@@ -58,13 +58,14 @@ set number
 set relativenumber
 set numberwidth=3
 set cursorline
-set noruler                 " Disabled for best performance.
+set ruler
 set laststatus=2
+set showtabline=0
 set cmdheight=2
 set wildmenu
 set wildignorecase
-set noshowcmd               " Disabled for best performance.
-set noshowmode
+set showcmd
+set showmode
 set signcolumn=yes
 set splitright
 set splitbelow
@@ -113,9 +114,9 @@ inoremap <silent> <S-PageDown> <Cmd>bnext<CR>
 nnoremap <silent> <leader>db :bdelete<CR>
 
 " Resize splits.
-nnoremap <silent> <C-h> 1<C-w>>
+nnoremap <silent> <C-h> 10<C-w><
 nnoremap <silent> <C-k> 1<C-w>+
-nnoremap <silent> <C-l> 1<C-w><
+nnoremap <silent> <C-l> 10<C-w>>
 nnoremap <silent> <C-j> 1<C-w>-
 
 " Move a selected block text.

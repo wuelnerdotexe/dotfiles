@@ -22,7 +22,6 @@ source $USERPROFILE\dotfiles\configs\vim\pluginfiles\mappings\plugins.mappings.v
 
 call plug#begin('$LOCALAPPDATA\nvim-data\plugged\')
 " Plugins.
-Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'https://github.com/mhinz/vim-signify.git'
 Plug 'https://github.com/neoclide/coc.nvim.git',{'branch':'release'}
 Plug 'https://github.com/preservim/nerdcommenter.git'
