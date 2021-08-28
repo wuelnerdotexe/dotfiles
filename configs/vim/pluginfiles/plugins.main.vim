@@ -31,9 +31,9 @@ Plug 'https://github.com/preservim/nerdtree.git'
 Plug 'https://github.com/Xuyuanp/nerdtree-git-plugin.git'
 Plug 'https://github.com/junegunn/fzf.git',{'do':{ -> fzf#install()}}
 Plug 'https://github.com/junegunn/fzf.vim.git'
-Plug 'https://github.com/szw/vim-maximizer.git'
 Plug 'https://github.com/vim-airline/vim-airline.git'
 Plug 'https://github.com/vim-airline/vim-airline-themes.git'
+Plug 'https://github.com/szw/vim-maximizer.git'
 " Colors.
 Plug 'https://github.com/morhetz/gruvbox.git'
 Plug 'https://github.com/overcache/NeoSolarized.git'

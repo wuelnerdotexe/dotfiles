@@ -157,7 +157,7 @@ let NERDTreeShowHidden=1
 let NERDTreeMinimalUI=1
 let g:NERDTreeDirArrowExpandable='▸'
 let g:NERDTreeDirArrowCollapsible='▾'
-let g:NERDTreeStatusline='NERDTree | working directory'
+let g:NERDTreeStatusline='working directory'
 
 " NERDTree interaction.
 let NERDTreeQuitOnOpen=1
@@ -172,6 +172,7 @@ let g:airline#extensions#tabline#formatter='unique_tail'
 let g:airline#extensions#hunks#non_zero_only=1
 
 " Airline sections.
+let w:airline_skip_empty_sections=1
 let g:airline_section_c='%f'
 let g:airline_section_z='%l/%L'
 let g:airline_section_y='%p%%'
@@ -179,6 +180,7 @@ let g:airline_section_x='%y'
 
 " Airline font/symbols.
 let g:airline_symbols_ascii=1
+let g:airline_powerline_fonts=1
 " -----------------------------------------------------------------------------
 " SECTION: Colors settings. 
 " -----------------------------------------------------------------------------
