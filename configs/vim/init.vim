@@ -54,7 +54,7 @@ set nowrap
 
 " Interfaz.
 set notitle
-set number
+set nonumber
 set relativenumber
 set numberwidth=3
 set cursorline
@@ -71,13 +71,10 @@ set splitright
 set splitbelow
 
 " Statusline.
-set statusline=
-set statusline+=\ %f\ 
-set statusline+=\ %m
-set statusline+=%=
-set statusline+=\ %Y
-set statusline+=\ %p%%
-set statusline+=\ %l/%L\ 
+set statusline=%#StatusLine#
+set statusline+=%t\ %m\ 
+set statusline+=%=\ 
+set statusline+=%y\ %p%%\ %l/%L\ 
 
 " Search.
 set hlsearch

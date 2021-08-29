@@ -69,7 +69,7 @@ set nowrap
 
 " Interfaz.
 set notitle
-set number
+set nonumber
 set relativenumber
 set numberwidth=3
 set cursorline
@@ -86,13 +86,10 @@ set splitright
 set splitbelow
 
 " Statusline.
-set statusline=
-set statusline+=\ %f\ 
-set statusline+=\ %m
-set statusline+=%=
-set statusline+=\ %Y
-set statusline+=\ %p%%
-set statusline+=\ %l/%L\ 
+set statusline=%#StatusLine#
+set statusline+=%t\ %m\ 
+set statusline+=%=\ 
+set statusline+=%y\ %p%%\ %l/%L\ 
 
 " Search.
 set hlsearch
@@ -168,7 +165,7 @@ let NERDTreeShowHidden=1
 let NERDTreeMinimalUI=1
 let g:NERDTreeDirArrowExpandable='▸'
 let g:NERDTreeDirArrowCollapsible='▾'
-let g:NERDTreeStatusline='working directory'
+let g:NERDTreeStatusline='files'
 
 " NERDTree interaction.
 let NERDTreeQuitOnOpen=1
@@ -178,7 +175,7 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
     \ quit | endif
 
 " Airline extensions.
-let g:airline_extensions=(['coc','tabline','term'])
+let g:airline_extensions=(['coc','hunks','tabline','term'])
 let g:airline#extensions#tabline#formatter='unique_tail'
 let g:airline#extensions#hunks#non_zero_only=1
 
@@ -285,4 +282,4 @@ Plug 'https://github.com/ghifarit53/tokyonight-vim.git'
 call plug#end()
 
 " Set colorscheme when all plugs, settings, and options are loaded.
-colorscheme tokyonight
+colorscheme NeoSolarized
