@@ -45,7 +45,7 @@
     "copyFormatting": "none",
     "copyOnSelect": false,
     "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-    "initialCols": 133,
+    "initialCols": 85,
     "initialRows": 20,
     "keybindings": null,
     "profiles": {
@@ -59,7 +59,7 @@
         },
         "list": [
             {
-                "commandline": "powershell.exe",
+                "commandline": "powershell.exe /nologo",
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "hidden": false,
                 "name": "Windows PowerShell"
@@ -67,7 +67,7 @@
             {
                 "commandline": "cmd.exe",
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-                "hidden": false,
+                "hidden": true,
                 "name": "Command Prompt"
             },
             {
