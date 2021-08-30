@@ -6,6 +6,9 @@
 " About:    File config for colors settings.
 " -----------------------------------------------------------------------------
 
+" Airline theme.
+let g:airline_theme='solarized'
+
 " NeoSolarized interfaz.
 let g:neosolarized_vertSplitBgTrans=1
 

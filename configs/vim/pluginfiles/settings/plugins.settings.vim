@@ -52,6 +52,3 @@ let g:airline_powerline_fonts=1
 
 " Airline already shows current mode.
 set noshowmode
-
-" Airline theme.
-let g:airline_theme='solarized'

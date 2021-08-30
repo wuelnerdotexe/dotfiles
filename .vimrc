@@ -192,12 +192,12 @@ let g:airline_powerline_fonts=1
 
 " Airline already shows current mode.
 set noshowmode
-
-" Airline theme.
-let g:airline_theme='solarized'
 " -----------------------------------------------------------------------------
 " SECTION: Colors settings. 
 " -----------------------------------------------------------------------------
+" Airline theme.
+let g:airline_theme='solarized'
+
 " NeoSolarized interfaz.
 let g:neosolarized_vertSplitBgTrans=1
 
