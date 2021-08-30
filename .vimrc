@@ -71,7 +71,7 @@ set nowrap
 set notitle
 set nonumber
 set relativenumber
-set numberwidth=3
+set numberwidth=2
 set cursorline
 set noruler                 " Disabled for best performance.
 set laststatus=2
@@ -81,7 +81,7 @@ set wildmenu
 set wildignorecase
 set noshowcmd               " Disabled for best performance.
 set showmode
-set signcolumn=yes
+set signcolumn=auto
 set splitright
 set splitbelow
 
@@ -184,7 +184,7 @@ let w:airline_skip_empty_sections=1
 let g:airline_section_c='%t'
 let g:airline_section_z='%l/%L'
 let g:airline_section_y='%p%%'
-let g:airline_section_x='%Y'
+let g:airline_section_x='%y'
 
 " Airline font/symbols.
 let g:airline_symbols_ascii=1
@@ -192,20 +192,20 @@ let g:airline_powerline_fonts=1
 
 " Airline already shows current mode.
 set noshowmode
+
+" Airline theme.
+let g:airline_theme='solarized'
 " -----------------------------------------------------------------------------
 " SECTION: Colors settings. 
 " -----------------------------------------------------------------------------
+" NeoSolarized interfaz.
+let g:neosolarized_vertSplitBgTrans=1
+
 " NeoSolarized font.
 let g:neosolarized_bold=0
 let g:neosolarized_underline=0
 let g:neosolarized_italic=0
 let g:neosolarized_termBoldAsBright=0
-
-" Tokyo Night interfaz.
-let g:tokyonight_style='night'
-
-" Tokyo Night font.
-let g:tokyonight_disable_italic_comment=1
 " -----------------------------------------------------------------------------
 " SECTION: Plugins mappings. 
 " -----------------------------------------------------------------------------
@@ -264,7 +264,9 @@ nnoremap <silent> <leader>tm :MaximizerToggle<CR>
 " -----------------------------------------------------------------------------
 " SECTION: Plugins main. 
 " -----------------------------------------------------------------------------
+" Install plugins.
 call plug#begin(g:data_home.'/plugged/')
+
 " Plugins.
 Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'https://github.com/mhinz/vim-signify.git'
@@ -276,9 +278,10 @@ Plug 'https://github.com/junegunn/fzf.vim.git'
 Plug 'https://github.com/vim-airline/vim-airline.git'
 Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 Plug 'https://github.com/szw/vim-maximizer.git'
+
 " Colors.
 Plug 'https://github.com/overcache/NeoSolarized.git'
-Plug 'https://github.com/ghifarit53/tokyonight-vim.git'
+
 call plug#end()
 
 " Set colorscheme when all plugs, settings, and options are loaded.

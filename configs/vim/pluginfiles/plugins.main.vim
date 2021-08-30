@@ -20,7 +20,9 @@ source $USERPROFILE\dotfiles\configs\vim\pluginfiles\settings\colors.settings.vi
 " Import plugins mappings files.
 source $USERPROFILE\dotfiles\configs\vim\pluginfiles\mappings\plugins.mappings.vim
 
+" Install plugins.
 call plug#begin('$LOCALAPPDATA\nvim-data\plugged\')
+
 " Plugins.
 Plug 'https://github.com/mhinz/vim-signify.git'
 Plug 'https://github.com/neoclide/coc.nvim.git',{'branch':'release'}
@@ -31,12 +33,11 @@ Plug 'https://github.com/junegunn/fzf.vim.git'
 Plug 'https://github.com/vim-airline/vim-airline.git'
 Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 Plug 'https://github.com/szw/vim-maximizer.git'
+
 " Colors.
-Plug 'https://github.com/morhetz/gruvbox.git'
 Plug 'https://github.com/overcache/NeoSolarized.git'
-Plug 'https://github.com/arcticicestudio/nord-vim.git',{'branch':'develop'}
-Plug 'https://github.com/ghifarit53/tokyonight-vim.git'
+
 call plug#end()
 
 " Set colorscheme when all plugs, settings, and options are loaded.
-colorscheme tokyonight
+colorscheme NeoSolarized

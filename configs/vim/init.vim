@@ -56,7 +56,7 @@ set nowrap
 set notitle
 set nonumber
 set relativenumber
-set numberwidth=3
+set numberwidth=2
 set cursorline
 set noruler                 " Disabled for best performance.
 set laststatus=2
@@ -66,7 +66,7 @@ set wildmenu
 set wildignorecase
 set noshowcmd               " Disabled for best performance.
 set showmode
-set signcolumn=yes
+set signcolumn=auto
 set splitright
 set splitbelow
 

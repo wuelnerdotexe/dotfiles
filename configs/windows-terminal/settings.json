@@ -45,7 +45,7 @@
     "copyFormatting": "none",
     "copyOnSelect": false,
     "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-    "initialCols": 85,
+    "initialCols": 120,
     "initialRows": 20,
     "keybindings": null,
     "profiles": {
@@ -53,13 +53,12 @@
             "antialiasingMode": "cleartype",
             "colorScheme": "Green Hat Term",
             "cursorShape": "filledBox",
-            "fontFace": "Iosevka Term Slab",
-            "fontWeight": "medium",
+            "fontFace": "JetBrains Mono",
             "scrollbarState": "hidden"
         },
         "list": [
             {
-                "commandline": "powershell.exe /nologo",
+                "commandline": "powershell.exe",
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "hidden": false,
                 "name": "Windows PowerShell"
@@ -67,7 +66,7 @@
             {
                 "commandline": "cmd.exe",
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-                "hidden": true,
+                "hidden": false,
                 "name": "Command Prompt"
             },
             {
@@ -128,25 +127,25 @@
         {
             "background": "#000000",
             "black": "#000000",
-            "blue": "#17803E",
-            "brightBlack": "#0C401F",
-            "brightBlue": "#22BF5C",
-            "brightCyan": "#22BF5C",
-            "brightGreen": "#2EFF7B",
-            "brightPurple": "#22BF5C",
-            "brightRed": "#FF2E2E",
-            "brightWhite": "#22BF5C",
-            "brightYellow": "#22BF5C",
-            "cursorColor": "#2EFF7B",
-            "cyan": "#17803E",
-            "foreground": "#22BF5C",
-            "green": "#2EFF7B",
+            "blue": "#008000",
+            "brightBlack": "#004000",
+            "brightBlue": "#00C000",
+            "brightCyan": "#00C000",
+            "brightGreen": "#00FF00",
+            "brightPurple": "#00C000",
+            "brightRed": "#FF0000",
+            "brightWhite": "#00C000",
+            "brightYellow": "#00C000",
+            "cursorColor": "#00FF00",
+            "cyan": "#008000",
+            "foreground": "#00C000",
+            "green": "#00FF00",
             "name": "Green Hat Term",
-            "purple": "#17803E",
-            "red": "#FF2E2E",
+            "purple": "#008000",
+            "red": "#FF0000",
             "selectionBackground": "#FFFFFF",
-            "white": "#17803E",
-            "yellow": "#17803E"
+            "white": "#008000",
+            "yellow": "#008000"
         },
         {
             "background": "#282C34",
@@ -308,29 +307,6 @@
             "selectionBackground": "#FFFFFF",
             "white": "#C0C0C0",
             "yellow": "#808000"
-        },
-        {
-            "background": "#000000",
-            "black": "#000000",
-            "blue": "#808080",
-            "brightBlack": "#404040",
-            "brightBlue": "#C0C0C0",
-            "brightCyan": "#C0C0C0",
-            "brightGreen": "#FFFFFF",
-            "brightPurple": "#C0C0C0",
-            "brightRed": "#FF0000",
-            "brightWhite": "#C0C0C0",
-            "brightYellow": "#C0C0C0",
-            "cursorColor": "#FFFFFF",
-            "cyan": "#808080",
-            "foreground": "#C0C0C0",
-            "green": "#FFFFFF",
-            "name": "White Hat Term",
-            "purple": "#808080",
-            "red": "#FF0000",
-            "selectionBackground": "#FFFFFF",
-            "white": "#808080",
-            "yellow": "#808080"
         }
     ],
     "theme": "dark"
