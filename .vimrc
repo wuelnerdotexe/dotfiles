@@ -10,15 +10,15 @@
 " Set the path to the data directory depending on the OS.
 if has('win32') || has ('win64')
     if has('nvim')
-        let g:data_home = '~/AppData/Local/nvim-data/'
+        let g:data_home='~/AppData/Local/nvim-data/'
     else
-        let g:data_home = '~/vimfiles/'
+        let g:data_home='~/vimfiles/'
     endif
 else
     if has('nvim')
-        let g:data_home = '~/.local/share/nvim/'
+        let g:data_home='~/.local/share/nvim/'
     else
-        let g:data_home = '~/.vim/'
+        let g:data_home='~/.vim/'
     endif
 endif
 
@@ -71,7 +71,7 @@ set nowrap
 set notitle
 set nonumber
 set relativenumber
-set numberwidth=2
+set numberwidth=4
 set cursorline
 set noruler                 " Disabled for best performance.
 set laststatus=2
@@ -248,10 +248,10 @@ nmap <leader>ac <Plug>(coc-codeaction)
 nmap <leader>qf <Plug>(coc-fix-current)
 
 " NERDTree toggle.
-nmap <silent> <leader>te :NERDTreeToggle<CR>
+nnoremap <silent> <leader>te :NERDTreeToggle<CR>
 
 " NERDTree find open file.
-nmap <silent> <leader>fe :NERDTreeFind<CR>
+nnoremap <silent> <leader>fe :NERDTreeFind<CR>
 
 " Sygnify show hunk diff on the current line.
 nnoremap <silent> <leader>hd :SignifyHunkDiff<CR>
@@ -268,10 +268,10 @@ nnoremap <silent> <leader>tm :MaximizerToggle<CR>
 call plug#begin(g:data_home.'/plugged/')
 
 " Plugins.
-Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'https://github.com/mhinz/vim-signify.git'
 Plug 'https://github.com/neoclide/coc.nvim.git',{'branch':'release'}
-Plug 'https://github.com/MattesGroeger/vim-bookmarks.git'
+Plug 'https://github.com/tpope/vim-surround.git'
+Plug 'https://github.com/preservim/nerdcommenter.git'
 Plug 'https://github.com/preservim/nerdtree.git'
 Plug 'https://github.com/junegunn/fzf.git',{'do':{ -> fzf#install()}}
 Plug 'https://github.com/junegunn/fzf.vim.git'
