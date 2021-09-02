@@ -306,10 +306,9 @@ Plug 'https://github.com/overcache/NeoSolarized.git'
 
 call plug#end()
 
-" Missing plugins are installed.
+" Missing plugins are installed and set the colorscheme when all have loaded.
 if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))
-    autocmd VimEnter * PlugInstall --sync
+    autocmd VimEnter * PlugInstall --sync | colorscheme NeoSolarized
+else
+    autocmd VimEnter * ++nested colorscheme NeoSolarized
 endif
-
-" Set colorscheme when all plugs, settings, and options are loaded.
-autocmd VimEnter * ++nested colorscheme NeoSolarized
