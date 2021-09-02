@@ -8,18 +8,14 @@
 " -----------------------------------------------------------------------------
 
 " Set the path to the data directory depending on the OS.
-if has('win32') || has ('win64')
-    if has('nvim')
-        let g:data_home='~/AppData/Local/nvim-data/'
-    else
-        let g:data_home='~/vimfiles/'
-    endif
-else
-    if has('nvim')
-        let g:data_home='~/.local/share/nvim/'
-    else
-        let g:data_home='~/.vim/'
-    endif
+if has('win32') && has('nvim')
+    let g:data_home='~/AppData/Local/nvim-data/'
+elseif has('win32') && !has('nvim')
+    let g:data_home='~/vimfiles/'
+elseif !has('win32') && has('nvim')
+    let g:data_home='~/.local/share/nvim/'
+elseif !has('win32') && !has('nvim')
+    let g:data_home='~/.vim/'
 endif
 
 " Setting required to set custom option values in vim.
@@ -264,6 +260,14 @@ nnoremap <silent> <leader>tm :MaximizerToggle<CR>
 " -----------------------------------------------------------------------------
 " SECTION: Plugins main. 
 " -----------------------------------------------------------------------------
+" Automatic installation of Vim-Plug only if it is not installed.
+let g:vimplug_exists=expand(g:data_home.'autoload/plug.vim')
+if !filereadable(g:vimplug_exists)
+    echo "Installing Vim-Plug..." | echo ""
+    silent exec "!curl -fLo " . shellescape(g:vimplug_exists) . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+    autocmd VimEnter * PlugInstall
+endif
+
 " Install plugins.
 call plug#begin(g:data_home.'/plugged/')
 

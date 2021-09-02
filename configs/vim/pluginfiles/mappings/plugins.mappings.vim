@@ -45,10 +45,10 @@ nmap <leader>ac <Plug>(coc-codeaction)
 nmap <leader>qf <Plug>(coc-fix-current)
 
 " NERDTree toggle.
-nmap <silent> <leader>te :NERDTreeToggle<CR>
+nnoremap <silent> <leader>te :NERDTreeToggle<CR>
 
 " NERDTree find open file.
-nmap <silent> <leader>fe :NERDTreeFind<CR>
+nnoremap <silent> <leader>fe :NERDTreeFind<CR>
 
 " Sygnify show hunk diff on the current line.
 nnoremap <silent> <leader>hd :SignifyHunkDiff<CR>
