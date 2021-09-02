@@ -282,12 +282,11 @@ endif
 
 " Automatic installation of Vim-Plug only if it is not installed.
 if empty(glob(g:plug_file))
-    echo "Installing Vim-Plug..."
     silent exec "!curl -fLo " . shellescape(g:plug_file) . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 endif
 
 " Install plugins.
-call plug#begin(g:vim_plug.'/plugged/')
+call plug#begin(g:vim_plug.'plugged/')
 
 " Plugins.
 Plug 'https://github.com/sheerun/vim-polyglot.git'
