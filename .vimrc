@@ -29,6 +29,9 @@ silent! endwhile
 " Encoding.
 set encoding=utf-8
 
+" Font.
+set guifont=JetBrains\ Mono
+
 " Languajes.
 set spelllang=en,es 
 set helplang=en,es
@@ -93,19 +96,19 @@ set incsearch
 set ignorecase
 
 " Interaction.
-set shortmess+=c
-set shortmess+=F
-set shortmess-=S
 set ttimeout
 set ttimeoutlen=50
+set complete-=i                 " Disabled for best performance.
+set history=200
+set shortmess+=cIF
+set shortmess-=S
 set scroll=1
 set scrolloff=0
 set sidescroll=1
 set sidescrolloff=0
 set mouse=nvi
+set backspace=indent,eol,start
 set clipboard=unnamed
-set complete-=i                 " Disabled for best performance.
-set history=200
 
 " Performance.
 set updatetime=100
@@ -261,22 +264,28 @@ nnoremap <silent> <leader>tm :MaximizerToggle<CR>
 " SECTION: Plugins main. 
 " -----------------------------------------------------------------------------
 " Automatic installation of Vim-Plug only if it is not installed.
-let g:vimplug_exists=expand(g:data_home.'autoload/plug.vim')
+if has('nvim')
+    let g:vimplug_exists=expand(g:data_home.'site/autoload/plug.vim')
+else
+    let g:vimplug_exists=expand(g:data_home.'autoload/plug.vim')
+endif
+
 if !filereadable(g:vimplug_exists)
     echo "Installing Vim-Plug..." | echo ""
     silent exec "!curl -fLo " . shellescape(g:vimplug_exists) . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-    autocmd VimEnter * PlugInstall
+    autocmd VimEnter * PlugInstall --sync
 endif
 
 " Install plugins.
 call plug#begin(g:data_home.'/plugged/')
 
 " Plugins.
-Plug 'https://github.com/mhinz/vim-signify.git'
+Plug 'https://github.com/sheerun/vim-polyglot.git'
 Plug 'https://github.com/neoclide/coc.nvim.git',{'branch':'release'}
 Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/preservim/nerdcommenter.git'
 Plug 'https://github.com/preservim/nerdtree.git'
+Plug 'https://github.com/mhinz/vim-signify.git'
 Plug 'https://github.com/junegunn/fzf.git',{'do':{ -> fzf#install()}}
 Plug 'https://github.com/junegunn/fzf.vim.git'
 Plug 'https://github.com/vim-airline/vim-airline.git'
@@ -289,4 +298,4 @@ Plug 'https://github.com/overcache/NeoSolarized.git'
 call plug#end()
 
 " Set colorscheme when all plugs, settings, and options are loaded.
-colorscheme NeoSolarized
+autocmd VimEnter * ++nested colorscheme NeoSolarized

@@ -18,6 +18,9 @@ silent! endwhile
 " Encoding.
 set encoding=utf-8
 
+" Font.
+set guifont=JetBrains\ Mono
+
 " Languajes.
 set spelllang=en,es 
 set helplang=en,es
@@ -34,9 +37,9 @@ syntax enable | syntax on
 set nobackup
 set nowritebackup
 set swapfile
-set directory=$LOCALAPPDATA\nvim-data\swap\\
+set directory=~/AppData/Local/nvim-data/swap//
 set undofile
-set undodir=$LOCALAPPDATA\nvim-data\undo\\
+set undodir=~/AppData/Local/nvim-data/undo//
 set autoread
 set hidden
 
@@ -82,19 +85,19 @@ set incsearch
 set ignorecase
 
 " Interaction.
-set shortmess+=c
-set shortmess+=F
-set shortmess-=S
 set ttimeout
 set ttimeoutlen=50
+set complete-=i                 " Disabled for best performance.
+set history=200
+set shortmess+=cIF
+set shortmess-=S
 set scroll=1
 set scrolloff=0
 set sidescroll=1
 set sidescrolloff=0
 set mouse=nvi
+set backspace=indent,eol,start
 set clipboard=unnamed
-set complete-=i                 " Disabled for best performance.
-set history=200
 
 " Performance.
 set updatetime=100
@@ -134,4 +137,4 @@ xnoremap <silent> J :move '>+1<CR>gv-gv
 " SECTION: Plugins files. 
 " -----------------------------------------------------------------------------
 " Import plugins main file.
-source $USERPROFILE\dotfiles\configs\vim\pluginfiles\plugins.main.vim
+source ~/dotfiles/configs/vim/pluginfiles/plugins.main.vim

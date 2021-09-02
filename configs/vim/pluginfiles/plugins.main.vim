@@ -14,21 +14,22 @@ let g:loaded_ruby_provider=0
 let g:loaded_perl_provider=0
 
 " Import plugins settings files.
-source $USERPROFILE\dotfiles\configs\vim\pluginfiles\settings\plugins.settings.vim
-source $USERPROFILE\dotfiles\configs\vim\pluginfiles\settings\colors.settings.vim
+source ~/dotfiles/configs/vim/pluginfiles/settings/plugins.settings.vim
+source ~/dotfiles/configs/vim/pluginfiles/settings/colors.settings.vim
 
 " Import plugins mappings files.
-source $USERPROFILE\dotfiles\configs\vim\pluginfiles\mappings\plugins.mappings.vim
+source ~/dotfiles/configs/vim/pluginfiles/mappings/plugins.mappings.vim
 
 " Install plugins.
-call plug#begin('$LOCALAPPDATA\nvim-data\plugged\')
+call plug#begin('~/AppData/Local/nvim-data/plugged/')
 
 " Plugins.
-Plug 'https://github.com/mhinz/vim-signify.git'
+Plug 'https://github.com/sheerun/vim-polyglot.git'
 Plug 'https://github.com/neoclide/coc.nvim.git',{'branch':'release'}
 Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/preservim/nerdcommenter.git'
 Plug 'https://github.com/preservim/nerdtree.git'
+Plug 'https://github.com/mhinz/vim-signify.git'
 Plug 'https://github.com/junegunn/fzf.git',{'do':{ -> fzf#install()}}
 Plug 'https://github.com/junegunn/fzf.vim.git'
 Plug 'https://github.com/vim-airline/vim-airline.git'
@@ -41,4 +42,4 @@ Plug 'https://github.com/overcache/NeoSolarized.git'
 call plug#end()
 
 " Set colorscheme when all plugs, settings, and options are loaded.
-colorscheme NeoSolarized
+autocmd VimEnter * ++nested colorscheme NeoSolarized

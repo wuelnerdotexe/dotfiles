@@ -6,6 +6,9 @@
 " About:    File config for NEOVIM-QT setup.
 " -----------------------------------------------------------------------------
 
+" Neovim-QT set font.
+GuiFont! JetBrains\ Mono
+
 " Neovim-QT gui option values.
 GuiTabline 0
 GuiPopupmenu 0
