@@ -7,6 +7,29 @@
 " line by line to optimize Vim / Neovim boot performance to the maximum.
 " -----------------------------------------------------------------------------
 
+" Set vim paths based on the OS and whether you are using Vim or Neovim.
+if has('win32')
+
+    if has('nvim')
+        let g:vim_data='~/AppData/Local/nvim-data/'
+    else
+        let g:vim_data='~/vimfiles/'
+    endif
+
+    let g:vim_plug='~/AppData/Local/vim-plug/'
+
+else
+
+    if has('nvim')
+        let g:vim_data='~/.local/share/nvim/'
+    else
+        let g:vim_data='~/.vim/'
+    endif
+
+    let g:vim_plug='~/.local/share/vim-plug/'
+
+endif
+
 " Setting required to set custom option values.
 set nocompatible
 
@@ -37,9 +60,7 @@ syntax enable | syntax on
 set nobackup
 set nowritebackup
 set swapfile
-set directory=~/AppData/Local/nvim-data/swap//
 set undofile
-set undodir=~/AppData/Local/nvim-data/undo//
 set autoread
 set hidden
 
@@ -132,7 +153,7 @@ nnoremap <silent> <C-j> 1<C-w>-
 xnoremap <silent> K :move '<-2<CR>gv-gv
 xnoremap <silent> J :move '>+1<CR>gv-gv
 
-" NOTE: The key maps of the plugin actions are found in 'plugins.mappings.vim'.
+" NOTE: The mappings of the plugin actions are found in 'plugins.mappings.vim'.
 " -----------------------------------------------------------------------------
 " SECTION: Plugins files. 
 " -----------------------------------------------------------------------------

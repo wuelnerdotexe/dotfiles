@@ -13,6 +13,19 @@ let g:loaded_node_provider=0
 let g:loaded_ruby_provider=0
 let g:loaded_perl_provider=0
 
+" It checks if Vim-Plug is installed on Vim or Neovim.
+if has('nvim')
+    let g:plug_file=expand(g:vim_data.'site/autoload/plug.vim')
+else
+    let g:plug_file=expand(g:vim_data.'autoload/plug.vim')
+endif
+
+" Automatic installation of Vim-Plug only if it is not installed.
+if empty(glob(g:plug_file))
+    echo "Installing Vim-Plug..."
+    silent exec "!curl -fLo " . shellescape(g:plug_file) . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+endif
+
 " Import plugins settings files.
 source ~/dotfiles/configs/vim/pluginfiles/settings/plugins.settings.vim
 source ~/dotfiles/configs/vim/pluginfiles/settings/colors.settings.vim
@@ -21,7 +34,7 @@ source ~/dotfiles/configs/vim/pluginfiles/settings/colors.settings.vim
 source ~/dotfiles/configs/vim/pluginfiles/mappings/plugins.mappings.vim
 
 " Install plugins.
-call plug#begin('~/AppData/Local/nvim-data/plugged/')
+call plug#begin(g:vim_plug.'/plugged/')
 
 " Plugins.
 Plug 'https://github.com/sheerun/vim-polyglot.git'
@@ -40,6 +53,11 @@ Plug 'https://github.com/szw/vim-maximizer.git'
 Plug 'https://github.com/overcache/NeoSolarized.git'
 
 call plug#end()
+
+" Missing plugins are installed.
+if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))
+    autocmd VimEnter * PlugInstall --sync
+endif
 
 " Set colorscheme when all plugs, settings, and options are loaded.
 autocmd VimEnter * ++nested colorscheme NeoSolarized

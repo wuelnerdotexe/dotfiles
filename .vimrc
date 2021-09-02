@@ -7,15 +7,27 @@
 " test all my vim setup. My main vim files are at configs/vim/ directory.
 " -----------------------------------------------------------------------------
 
-" Set the path to the data directory depending on the OS.
-if has('win32') && has('nvim')
-    let g:data_home='~/AppData/Local/nvim-data/'
-elseif has('win32') && !has('nvim')
-    let g:data_home='~/vimfiles/'
-elseif !has('win32') && has('nvim')
-    let g:data_home='~/.local/share/nvim/'
-elseif !has('win32') && !has('nvim')
-    let g:data_home='~/.vim/'
+" Set vim paths based on the OS and whether you are using Vim or Neovim.
+if has('win32')
+
+    if has('nvim')
+        let g:vim_data='~/AppData/Local/nvim-data/'
+    else
+        let g:vim_data='~/vimfiles/'
+    endif
+
+    let g:vim_plug='~/AppData/Local/vim-plug/'
+
+else
+
+    if has('nvim')
+        let g:vim_data='~/.local/share/nvim/'
+    else
+        let g:vim_data='~/.vim/'
+    endif
+
+    let g:vim_plug='~/.local/share/vim-plug/'
+
 endif
 
 " Setting required to set custom option values in vim.
@@ -48,9 +60,7 @@ syntax enable | syntax on
 set nobackup
 set nowritebackup
 set swapfile
-let &directory=g:data_home.'swap//'
 set undofile
-let &undodir=g:data_home.'undo//'
 set autoread
 set hidden
 
@@ -263,21 +273,21 @@ nnoremap <silent> <leader>tm :MaximizerToggle<CR>
 " -----------------------------------------------------------------------------
 " SECTION: Plugins main. 
 " -----------------------------------------------------------------------------
-" Automatic installation of Vim-Plug only if it is not installed.
+" It checks if Vim-Plug is installed on Vim or Neovim.
 if has('nvim')
-    let g:vimplug_exists=expand(g:data_home.'site/autoload/plug.vim')
+    let g:plug_file=expand(g:vim_data.'site/autoload/plug.vim')
 else
-    let g:vimplug_exists=expand(g:data_home.'autoload/plug.vim')
+    let g:plug_file=expand(g:vim_data.'autoload/plug.vim')
 endif
 
-if !filereadable(g:vimplug_exists)
-    echo "Installing Vim-Plug..." | echo ""
-    silent exec "!curl -fLo " . shellescape(g:vimplug_exists) . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-    autocmd VimEnter * PlugInstall --sync
+" Automatic installation of Vim-Plug only if it is not installed.
+if empty(glob(g:plug_file))
+    echo "Installing Vim-Plug..."
+    silent exec "!curl -fLo " . shellescape(g:plug_file) . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 endif
 
 " Install plugins.
-call plug#begin(g:data_home.'/plugged/')
+call plug#begin(g:vim_plug.'/plugged/')
 
 " Plugins.
 Plug 'https://github.com/sheerun/vim-polyglot.git'
@@ -296,6 +306,11 @@ Plug 'https://github.com/szw/vim-maximizer.git'
 Plug 'https://github.com/overcache/NeoSolarized.git'
 
 call plug#end()
+
+" Missing plugins are installed.
+if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))
+    autocmd VimEnter * PlugInstall --sync
+endif
 
 " Set colorscheme when all plugs, settings, and options are loaded.
 autocmd VimEnter * ++nested colorscheme NeoSolarized
