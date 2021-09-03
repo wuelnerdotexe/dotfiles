@@ -251,6 +251,15 @@ nnoremap <silent> <leader>tm :MaximizerToggle<CR>
 " -----------------------------------------------------------------------------
 " SECTION: Plugins main. 
 " -----------------------------------------------------------------------------
+" Providers settings for neovim plugins.
+if has('nvim')
+    let g:loaded_python_provider=0
+    let g:loaded_python3_provider=0
+    let g:loaded_node_provider=0
+    let g:loaded_ruby_provider=0
+    let g:loaded_perl_provider=0
+endif
+
 " Set path to plugins directory.
 let g:vim_plug=has('win32') ?
     \ '~/AppData/Local/vim-plug/plugged/' : '~/.local/share/vim-plug/plugged/'
