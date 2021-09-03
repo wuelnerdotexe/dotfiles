@@ -13,16 +13,22 @@ let g:loaded_node_provider=0
 let g:loaded_ruby_provider=0
 let g:loaded_perl_provider=0
 
-" It checks if Vim-Plug is installed on Vim or Neovim.
+" Set path to plugins directory.
+let g:vim_plug=has('win32') ?
+    \ '~/AppData/Local/vim-plug/plugged/' : '~/.local/share/vim-plug/plugged/'
+
+" Set path to vim-plug file.
 if has('nvim')
-    let g:plug_file=expand(g:vim_data.'site/autoload/plug.vim')
+    let g:plug_file=stdpath('data').'/site/autoload/plug.vim'
 else
-    let g:plug_file=expand(g:vim_data.'autoload/plug.vim')
+    let g:plug_file=has('win32') ?
+        \ '~/vimfiles/autoload/plug.vim' : '~/.vim/autoload/plug.vim'
 endif
 
 " Automatic installation of Vim-Plug only if it is not installed.
 if empty(glob(g:plug_file))
-    silent exec "!curl -fLo " . shellescape(g:plug_file) . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+    silent exec "!curl -fLo " . shellescape(g:plug_file) . " --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 endif
 
 " Import plugins settings files.
@@ -33,7 +39,7 @@ source ~/dotfiles/configs/vim/pluginfiles/settings/colors.settings.vim
 source ~/dotfiles/configs/vim/pluginfiles/mappings/plugins.mappings.vim
 
 " Install plugins.
-call plug#begin(g:vim_plug.'plugged/')
+call plug#begin(g:vim_plug)
 
 " Plugins.
 Plug 'https://github.com/sheerun/vim-polyglot.git'

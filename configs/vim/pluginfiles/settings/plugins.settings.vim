@@ -31,8 +31,8 @@ let g:NERDTreeStatusline='files'
 let NERDTreeQuitOnOpen=1
 
 " NERDTree exit vim if is the only window left.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
-    \ quit | endif
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 &&
+    \ exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 " Airline extensions.
 let g:airline_extensions=(['coc','hunks','tabline','term'])

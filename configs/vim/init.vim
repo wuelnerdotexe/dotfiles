@@ -7,29 +7,6 @@
 " line by line to optimize Vim / Neovim boot performance to the maximum.
 " -----------------------------------------------------------------------------
 
-" Set vim paths based on the OS and whether you are using Vim or Neovim.
-if has('win32')
-
-    if has('nvim')
-        let g:vim_data='~/AppData/Local/nvim-data/'
-    else
-        let g:vim_data='~/vimfiles/'
-    endif
-
-    let g:vim_plug='~/AppData/Local/vim-plug/'
-
-else
-
-    if has('nvim')
-        let g:vim_data='~/.local/share/nvim/'
-    else
-        let g:vim_data='~/.vim/'
-    endif
-
-    let g:vim_plug='~/.local/share/vim-plug/'
-
-endif
-
 " Setting required to set custom option values.
 set nocompatible
 
@@ -78,6 +55,7 @@ set nowrap
 
 " Interfaz.
 set notitle
+set nolist
 set nonumber
 set relativenumber
 set numberwidth=4
