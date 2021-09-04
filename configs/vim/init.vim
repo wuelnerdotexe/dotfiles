@@ -133,8 +133,6 @@ xnoremap <silent> K :move '<-2<CR>gv-gv
 xnoremap <silent> J :move '>+1<CR>gv-gv
 
 " NOTE: The mappings of the plugin actions are found in 'plugins.mappings.vim'.
-" -----------------------------------------------------------------------------
-" SECTION: Plugins files. 
-" -----------------------------------------------------------------------------
+
 " Import plugins main file.
 source ~/dotfiles/configs/vim/pluginfiles/plugins.main.vim
