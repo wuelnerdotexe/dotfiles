@@ -82,6 +82,7 @@ set statusline+=%y\ %p%%\ %l/%L\
 set hlsearch
 set incsearch
 set ignorecase
+set nosmartcase
 
 " Interaction.
 set ttimeout
