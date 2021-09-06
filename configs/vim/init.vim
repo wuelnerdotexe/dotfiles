@@ -31,7 +31,7 @@ set background=dark
 
 " Syntax and filetype.
 filetype plugin indent on
-syntax enable | syntax on
+syntax on | syntax enable
 
 " Files management.
 set nobackup

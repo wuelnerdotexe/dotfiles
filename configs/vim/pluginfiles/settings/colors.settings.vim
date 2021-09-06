@@ -13,7 +13,7 @@ let g:airline_theme='solarized'
 let g:neosolarized_vertSplitBgTrans=1
 
 " NeoSolarized font.
-let g:neosolarized_bold=0
-let g:neosolarized_underline=0
-let g:neosolarized_italic=0
-let g:neosolarized_termBoldAsBright=0
+let g:neosolarized_bold=1
+let g:neosolarized_underline=1
+let g:neosolarized_italic=1
+let g:neosolarized_termBoldAsBright=1

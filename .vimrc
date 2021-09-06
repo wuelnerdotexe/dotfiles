@@ -31,7 +31,7 @@ set background=dark
 
 " Syntax and filetype.
 filetype plugin indent on
-syntax enable | syntax on
+syntax on | syntax enable
 
 " Files management.
 set nobackup
@@ -190,10 +190,10 @@ let g:airline_theme='solarized'
 let g:neosolarized_vertSplitBgTrans=1
 
 " NeoSolarized font.
-let g:neosolarized_bold=0
-let g:neosolarized_underline=0
-let g:neosolarized_italic=0
-let g:neosolarized_termBoldAsBright=0
+let g:neosolarized_bold=1
+let g:neosolarized_underline=1
+let g:neosolarized_italic=1
+let g:neosolarized_termBoldAsBright=1
 " -----------------------------------------------------------------------------
 " SECTION: Plugins mappings. 
 " -----------------------------------------------------------------------------
@@ -275,6 +275,7 @@ endif
 
 " Automatic installation of Vim-Plug only if it is not installed.
 if empty(glob(g:plug_file))
+    echo "Installing Vim-Plug..."
     silent exec "!curl -fLo " . shellescape(g:plug_file) . " --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 endif
