@@ -63,7 +63,7 @@ set cursorline
 set noruler                 " Disabled for best performance.
 set laststatus=2
 set showtabline=0
-set cmdheight=2
+set cmdheight=1
 set wildmenu
 set wildignorecase
 set noshowcmd               " Disabled for best performance.
@@ -162,20 +162,22 @@ let NERDTreeQuitOnOpen=1
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 &&
     \ exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
+" Airline activate detection mode.
+set statusline=%!airline#check_mode(winnr())
+
 " Airline extensions.
 let g:airline_extensions=(['coc','hunks','tabline','term'])
 let g:airline#extensions#tabline#formatter='unique_tail'
 let g:airline#extensions#hunks#non_zero_only=1
 
 " Airline sections.
-let w:airline_skip_empty_sections=1
+let g:airline_skip_empty_sections=1
 let g:airline_section_c='%t'
 let g:airline_section_z='%l/%L'
 let g:airline_section_y='%p%%'
 let g:airline_section_x='%y'
 
 " Airline font/symbols.
-let g:airline_symbols_ascii=1
 let g:airline_powerline_fonts=1
 
 " Airline already shows current mode.
@@ -280,6 +282,9 @@ if empty(glob(g:plug_file))
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 endif
 
+" Disable filetypes.
+filetype plugin indent off
+
 " Install plugins.
 call plug#begin(g:vim_plug)
 
@@ -300,6 +305,9 @@ Plug 'https://github.com/szw/vim-maximizer.git'
 Plug 'https://github.com/overcache/NeoSolarized.git'
 
 call plug#end()
+
+" Enable filetypes.
+filetype plugin indent on
 
 " Missing plugins are installed and set the colorscheme when all have loaded.
 if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))

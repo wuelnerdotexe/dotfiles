@@ -41,6 +41,9 @@ source ~/dotfiles/configs/vim/pluginfiles/settings/colors.settings.vim
 " Import plugins mappings files.
 source ~/dotfiles/configs/vim/pluginfiles/mappings/plugins.mappings.vim
 
+" Disable filetypes.
+filetype plugin indent off
+
 " Install plugins.
 call plug#begin(g:vim_plug)
 
@@ -61,6 +64,9 @@ Plug 'https://github.com/szw/vim-maximizer.git'
 Plug 'https://github.com/overcache/NeoSolarized.git'
 
 call plug#end()
+
+" Enable filetypes.
+filetype plugin indent on
 
 " Missing plugins are installed and set the colorscheme when all have loaded.
 if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))

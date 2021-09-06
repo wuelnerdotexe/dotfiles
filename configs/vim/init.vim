@@ -63,7 +63,7 @@ set cursorline
 set noruler                 " Disabled for best performance.
 set laststatus=2
 set showtabline=0
-set cmdheight=2
+set cmdheight=1
 set wildmenu
 set wildignorecase
 set noshowcmd               " Disabled for best performance.
