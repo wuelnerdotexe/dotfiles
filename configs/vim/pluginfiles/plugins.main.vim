@@ -47,7 +47,6 @@ call plug#begin(g:vim_plug)
 
 " Plugins.
 Plug 'https://github.com/neoclide/coc.nvim.git',{'branch' : 'release'}
-Plug 'https://github.com/sheerun/vim-polyglot.git'
 Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/tpope/vim-commentary.git'
 Plug 'https://github.com/preservim/nerdtree.git'
