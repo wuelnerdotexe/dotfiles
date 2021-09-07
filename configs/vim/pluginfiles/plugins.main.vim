@@ -42,9 +42,6 @@ endif
 let g:vim_plug=has('win32') ?
     \ '$HOME/AppData/Local/vim-plug/plugged/' : '$HOME/.config/vim-plug/plugged/'
 
-" Disable filetypes.
-filetype off | syntax off
-
 " Install plugins.
 call plug#begin(g:vim_plug)
 
@@ -65,12 +62,9 @@ Plug 'https://github.com/overcache/NeoSolarized.git'
 
 call plug#end()
 
-" Enable filetypes.
-filetype plugin indent on | syntax enable
-
 " Missing plugins are installed and set the colorscheme when all have loaded.
 if !empty(filter(copy(g:plugs),'!isdirectory(v:val.dir)'))
-    PlugInstall --sync
+    PlugInstall --sync | source $MYVIMRC
 endif
 
 autocmd VimEnter * ++nested colorscheme NeoSolarized

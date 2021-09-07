@@ -26,6 +26,9 @@ set helplang=en,es
 set termguicolors
 set background=dark
 
+" Syntax and filetype.
+filetype plugin indent on | syntax on
+
 " Files management.
 set nobackup
 set nowritebackup
@@ -55,7 +58,7 @@ set numberwidth=4
 set cursorline
 set noruler                                 " Disabled for best performance.
 set laststatus=2
-set showtabline=0
+set showtabline=2
 set cmdheight=1
 set wildmenu
 set wildignorecase
@@ -198,9 +201,6 @@ endif
 let g:vim_plug=has('win32') ?
     \ '$HOME/AppData/Local/vim-plug/plugged/' : '$HOME/.config/vim-plug/plugged/'
 
-" Disable filetypes.
-filetype off | syntax off
-
 " Install plugins.
 call plug#begin(g:vim_plug)
 
@@ -221,12 +221,9 @@ Plug 'https://github.com/overcache/NeoSolarized.git'
 
 call plug#end()
 
-" Enable filetypes.
-filetype plugin indent on | syntax enable
-
 " Missing plugins are installed and set the colorscheme when all have loaded.
 if !empty(filter(copy(g:plugs),'!isdirectory(v:val.dir)'))
-    PlugInstall --sync
+    PlugInstall --sync | source $MYVIMRC
 endif
 
 autocmd VimEnter * ++nested colorscheme NeoSolarized

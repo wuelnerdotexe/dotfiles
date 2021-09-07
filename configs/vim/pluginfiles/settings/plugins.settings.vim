@@ -26,6 +26,9 @@ let NERDTreeShowHidden=1
 " NERDTree interaction.
 let NERDTreeQuitOnOpen=1
 
+" Airline tabline.
+set showtabline=2
+
 " Airline extensions.
 let g:airline_extensions=(['tabline','hunks','coc','term'])
 let g:airline#extensions#tabline#formatter='unique_tail'
