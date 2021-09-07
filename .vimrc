@@ -18,9 +18,6 @@ silent! endwhile
 " Encoding.
 set encoding=utf-8
 
-" Font.
-set guifont=JetBrains\ Mono
-
 " Languajes.
 set spelllang=en,es 
 set helplang=en,es
@@ -28,10 +25,6 @@ set helplang=en,es
 " Colors.
 set termguicolors
 set background=dark
-
-" Syntax and filetype.
-filetype plugin indent on
-syntax on | syntax enable
 
 " Files management.
 set nobackup
@@ -67,16 +60,10 @@ set cmdheight=1
 set wildmenu
 set wildignorecase
 set noshowcmd               " Disabled for best performance.
-set showmode
+set noshowmode
 set signcolumn=auto
 set splitright
 set splitbelow
-
-" Statusline.
-set statusline=%#StatusLine#
-set statusline+=%t\ %m\ 
-set statusline+=%=\ 
-set statusline+=%y\ %p%%\ %l/%L\ 
 
 " Search.
 set hlsearch
@@ -139,34 +126,23 @@ let g:coc_global_extensions=[
     \ 'coc-marketplace',
     \ 'coc-highlight',
     \ 'coc-json',
-    \ 'coc-markdownlint',
     \ 'coc-pairs',
     \ 'coc-tabnine',
     \ 'coc-vimlsp'
   \ ]
 
-" Coc highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
 " NERDTree interfaz.
-let NERDTreeShowHidden=1
 let NERDTreeMinimalUI=1
+let g:NERDTreeStatusline='files'
 let g:NERDTreeDirArrowExpandable='▸'
 let g:NERDTreeDirArrowCollapsible='▾'
-let g:NERDTreeStatusline='files'
+let NERDTreeShowHidden=1
 
 " NERDTree interaction.
 let NERDTreeQuitOnOpen=1
 
-" NERDTree exit vim if is the only window left.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 &&
-    \ exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-
-" Airline activate detection mode.
-set statusline=%!airline#check_mode(winnr())
-
 " Airline extensions.
-let g:airline_extensions=(['coc','hunks','tabline','term'])
+let g:airline_extensions=(['tabline','hunks','coc','term'])
 let g:airline#extensions#tabline#formatter='unique_tail'
 let g:airline#extensions#hunks#non_zero_only=1
 
@@ -178,10 +154,8 @@ let g:airline_section_y='%p%%'
 let g:airline_section_x='%y'
 
 " Airline font/symbols.
-let g:airline_powerline_fonts=1
-
-" Airline already shows current mode.
-set noshowmode
+let g:airline_powerline_fonts=0
+let g:airline_symbols_ascii=1
 " -----------------------------------------------------------------------------
 " SECTION: Colors settings. 
 " -----------------------------------------------------------------------------
@@ -192,80 +166,18 @@ let g:airline_theme='solarized'
 let g:neosolarized_vertSplitBgTrans=1
 
 " NeoSolarized font.
-let g:neosolarized_bold=1
-let g:neosolarized_underline=1
-let g:neosolarized_italic=1
-let g:neosolarized_termBoldAsBright=1
-" -----------------------------------------------------------------------------
-" SECTION: Plugins mappings. 
-" -----------------------------------------------------------------------------
-" Coc use tab for trigger completion with characters ahead and navigate.
-inoremap <silent> <expr> <TAB>
-    \ pumvisible() ? "\<C-n>" :
-    \ <SID>check_back_space() ? "\<TAB>" :
-    \ coc#refresh()
-inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-function! s:check_back_space() abort
-  let col=col('.') - 1
-  return !col || getline('.')[col - 1]=~# '\s'
-endfunction
-
-" Coc GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Coc use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-    if (index(['vim','help'], &filetype) >= 0)
-        execute 'h '.expand('<cword>')
-    elseif (coc#rpc#ready())
-        call CocActionAsync('doHover')
-    else
-        execute '!' . &keywordprg . " " . expand('<cword>')
-    endif
-endfunction
-
-" Coc symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
-
-" Coc remap keys for applying codeAction to the current buffer.
-nmap <leader>ac <Plug>(coc-codeaction)
-
-" Coc apply AutoFix to problem on the current line.
-nmap <leader>qf <Plug>(coc-fix-current)
-
-" NERDTree toggle.
-nnoremap <silent> <leader>te :NERDTreeToggle<CR>
-
-" NERDTree find open file.
-nnoremap <silent> <leader>fe :NERDTreeFind<CR>
-
-" Sygnify show hunk diff on the current line.
-nnoremap <silent> <leader>hd :SignifyHunkDiff<CR>
-
-" Fuzzy finder activate.
-nnoremap <silent> <leader>ff :FZF<CR>
-
-" Maximizer toggle.
-nnoremap <silent> <leader>tm :MaximizerToggle<CR>
+let g:neosolarized_bold=0
+let g:neosolarized_underline=0
+let g:neosolarized_italic=0
+let g:neosolarized_termBoldAsBright=0
 " -----------------------------------------------------------------------------
 " SECTION: Plugins main. 
 " -----------------------------------------------------------------------------
 " Providers settings for neovim plugins.
 if has('nvim')
-    let g:loaded_python_provider=0
-    let g:loaded_python3_provider=0
-    let g:loaded_node_provider=0
     let g:loaded_ruby_provider=0
     let g:loaded_perl_provider=0
 endif
-
-" Set path to plugins directory.
-let g:vim_plug=has('win32') ?
-    \ '~/AppData/Local/vim-plug/plugged/' : '~/.local/share/vim-plug/plugged/'
 
 " Set path to vim-plug file.
 if has('nvim')
@@ -282,15 +194,19 @@ if empty(glob(g:plug_file))
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 endif
 
+" Set path to plugins directory.
+let g:vim_plug=has('win32') ?
+    \ '~/AppData/Local/vim-plug/plugged/' : '~/.config/vim-plug/plugged/'
+
 " Disable filetypes.
-filetype plugin indent off
+filetype off | syntax off
 
 " Install plugins.
 call plug#begin(g:vim_plug)
 
 " Plugins.
-Plug 'https://github.com/sheerun/vim-polyglot.git'
 Plug 'https://github.com/neoclide/coc.nvim.git',{'branch':'release'}
+Plug 'https://github.com/sheerun/vim-polyglot.git'
 Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/preservim/nerdcommenter.git'
 Plug 'https://github.com/preservim/nerdtree.git'
@@ -307,7 +223,7 @@ Plug 'https://github.com/overcache/NeoSolarized.git'
 call plug#end()
 
 " Enable filetypes.
-filetype plugin indent on
+filetype plugin indent on | syntax enable
 
 " Missing plugins are installed and set the colorscheme when all have loaded.
 if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))
@@ -315,3 +231,60 @@ if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))
 else
     autocmd VimEnter * ++nested colorscheme NeoSolarized
 endif
+" -----------------------------------------------------------------------------
+" SECTION: Plugins mappings. 
+" -----------------------------------------------------------------------------
+" Coc use tab for trigger completion with characters ahead and navigate.
+inoremap <silent> <expr> <TAB>
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ coc#refresh()
+inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col=col('.') - 1
+  return !col || getline('.')[col - 1]=~# '\s'
+endfunction
+
+" Coc use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    elseif (coc#rpc#ready())
+        call CocActionAsync('doHover')
+    else
+        execute '!' . &keywordprg . " " . expand('<cword>')
+    endif
+endfunction
+
+" Coc GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Coc symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Coc remap keys for applying codeAction to the current buffer.
+nmap <leader>ac <Plug>(coc-codeaction)
+
+" Coc apply AutoFix to problem on the current line.
+nmap <leader>qf <Plug>(coc-fix-current)
+
+" Fuzzy finder activate.
+nnoremap <silent> <leader>ff :FZF<CR>
+
+" Maximizer toggle.
+nnoremap <silent> <leader>tm :MaximizerToggle<CR>
+
+" NERDTree toggle.
+nnoremap <silent> <leader>te :NERDTreeToggle<CR>
+
+" NERDTree find open file.
+nnoremap <silent> <leader>fe :NERDTreeFind<CR>
+
+" Signify show hunk diff on the current line.
+nnoremap <silent> <leader>hd :SignifyHunkDiff<CR>

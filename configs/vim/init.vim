@@ -30,8 +30,7 @@ set termguicolors
 set background=dark
 
 " Syntax and filetype.
-filetype plugin indent on
-syntax on | syntax enable
+filetype plugin indent on | syntax on
 
 " Files management.
 set nobackup
@@ -137,4 +136,4 @@ xnoremap <silent> J :move '>+1<CR>gv-gv
 " SECTION: Plugins files. 
 " -----------------------------------------------------------------------------
 " Import plugins main file.
-source ~/dotfiles/configs/vim/pluginfiles/plugins.main.vim
+source $HOME/dotfiles/configs/vim/pluginfiles/plugins.main.vim
