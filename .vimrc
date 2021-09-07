@@ -205,17 +205,16 @@ filetype off | syntax off
 call plug#begin(g:vim_plug)
 
 " Plugins.
-Plug 'https://github.com/neoclide/coc.nvim.git',{'branch':'release'}
+Plug 'https://github.com/neoclide/coc.nvim.git',{'branch' : 'release'}
 Plug 'https://github.com/sheerun/vim-polyglot.git'
 Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/preservim/nerdcommenter.git'
 Plug 'https://github.com/preservim/nerdtree.git'
 Plug 'https://github.com/mhinz/vim-signify.git'
-Plug 'https://github.com/junegunn/fzf.git',{'do':{ -> fzf#install()}}
-Plug 'https://github.com/junegunn/fzf.vim.git'
+Plug 'https://github.com/junegunn/fzf.git',{'do' : { -> fzf#install()},'on' : 'FZF'}
 Plug 'https://github.com/vim-airline/vim-airline.git'
 Plug 'https://github.com/vim-airline/vim-airline-themes.git'
-Plug 'https://github.com/szw/vim-maximizer.git'
+Plug 'https://github.com/szw/vim-maximizer.git',{'on' : 'MaximizerToggle'}
 
 " Colors.
 Plug 'https://github.com/overcache/NeoSolarized.git'
@@ -226,7 +225,7 @@ call plug#end()
 filetype plugin indent on | syntax enable
 
 " Missing plugins are installed and set the colorscheme when all have loaded.
-if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))
+if !empty(filter(copy(g:plugs),'!isdirectory(v:val.dir)'))
     PlugInstall --sync
 endif
 
@@ -243,19 +242,19 @@ inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col=col('.') - 1
-  return !col || getline('.')[col - 1]=~# '\s'
+  return !col || getline('.')[col - 1]=~#'\s'
 endfunction
 
 " Coc use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
-    if (index(['vim','help'], &filetype) >= 0)
+    if (index(['vim','help'],&filetype) >= 0)
         execute 'h '.expand('<cword>')
     elseif (coc#rpc#ready())
         call CocActionAsync('doHover')
     else
-        execute '!' . &keywordprg . " " . expand('<cword>')
+        execute '!'.&keywordprg." ".expand('<cword>')
     endif
 endfunction
 
