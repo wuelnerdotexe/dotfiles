@@ -71,10 +71,10 @@ filetype plugin indent on | syntax enable
 
 " Missing plugins are installed and set the colorscheme when all have loaded.
 if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))
-    autocmd VimEnter * PlugInstall --sync | colorscheme NeoSolarized
-else
-    autocmd VimEnter * ++nested colorscheme NeoSolarized
+    autocmd VimEnter * PlugInstall --sync
 endif
+
+autocmd VimEnter * ++nested colorscheme NeoSolarized
 
 " Import plugins mappings files.
 source $HOME/dotfiles/configs/vim/pluginfiles/mappings/plugins.mappings.vim

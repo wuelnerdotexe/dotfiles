@@ -53,13 +53,13 @@ set nonumber
 set relativenumber
 set numberwidth=4
 set cursorline
-set noruler                 " Disabled for best performance.
+set noruler                                 " Disabled for best performance.
 set laststatus=2
 set showtabline=0
 set cmdheight=1
 set wildmenu
 set wildignorecase
-set noshowcmd               " Disabled for best performance.
+set noshowcmd                               " Disabled for best performance.
 set noshowmode
 set signcolumn=auto
 set splitright
@@ -74,7 +74,7 @@ set nosmartcase
 " Interaction.
 set ttimeout
 set ttimeoutlen=50
-set complete-=i                 " Disabled for best performance.
+set complete-=i                             " Disabled for best performance.
 set history=200
 set shortmess+=cIF
 set shortmess-=S
@@ -184,7 +184,7 @@ if has('nvim')
     let g:plug_file=stdpath('data').'/site/autoload/plug.vim'
 else
     let g:plug_file=has('win32') ?
-        \ '~/vimfiles/autoload/plug.vim' : '~/.vim/autoload/plug.vim'
+        \ '$HOME/vimfiles/autoload/plug.vim' : '$HOME/.vim/autoload/plug.vim'
 endif
 
 " Automatic installation of Vim-Plug only if it is not installed.
@@ -196,7 +196,7 @@ endif
 
 " Set path to plugins directory.
 let g:vim_plug=has('win32') ?
-    \ '~/AppData/Local/vim-plug/plugged/' : '~/.config/vim-plug/plugged/'
+    \ '$HOME/AppData/Local/vim-plug/plugged/' : '$HOME/.config/vim-plug/plugged/'
 
 " Disable filetypes.
 filetype off | syntax off
@@ -227,10 +227,10 @@ filetype plugin indent on | syntax enable
 
 " Missing plugins are installed and set the colorscheme when all have loaded.
 if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))
-    autocmd VimEnter * PlugInstall --sync | colorscheme NeoSolarized
-else
-    autocmd VimEnter * ++nested colorscheme NeoSolarized
+    autocmd VimEnter * PlugInstall --sync
 endif
+
+autocmd VimEnter * ++nested colorscheme NeoSolarized
 " -----------------------------------------------------------------------------
 " SECTION: Plugins mappings. 
 " -----------------------------------------------------------------------------

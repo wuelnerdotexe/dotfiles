@@ -59,13 +59,13 @@ set nonumber
 set relativenumber
 set numberwidth=4
 set cursorline
-set noruler                 " Disabled for best performance.
+set noruler                             " Disabled for best performance.
 set laststatus=2
 set showtabline=0
 set cmdheight=1
 set wildmenu
 set wildignorecase
-set noshowcmd               " Disabled for best performance.
+set noshowcmd                           " Disabled for best performance.
 set showmode
 set signcolumn=auto
 set splitright
@@ -86,7 +86,7 @@ set nosmartcase
 " Interaction.
 set ttimeout
 set ttimeoutlen=50
-set complete-=i                 " Disabled for best performance.
+set complete-=i                             " Disabled for best performance.
 set history=200
 set shortmess+=cIF
 set shortmess-=S
