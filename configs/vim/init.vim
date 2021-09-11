@@ -40,6 +40,9 @@ set undofile
 set autoread
 set hidden
 
+" Explore.
+let g:netrw_list_hide='\.git$,\.svn$,\.hg$,\CVS$,\.DS_store$'
+
 " Coding.
 set autoindent
 set smartindent
@@ -55,33 +58,33 @@ set nowrap
 " Interfaz.
 set notitle
 set nolist
-set nonumber
-set relativenumber
-set numberwidth=4
-set cursorline
+set number
+set numberwidth=5
+set norelativenumber
+set nocursorline
 set noruler                             " Disabled for best performance.
 set laststatus=2
 set showtabline=0
 set cmdheight=1
 set wildmenu
-set wildignorecase
 set noshowcmd                           " Disabled for best performance.
 set showmode
-set signcolumn=auto
-set splitright
-set splitbelow
+set signcolumn=auto:1
 
 " Statusline.
 set statusline=%#StatusLine#
 set statusline+=%t\ %m\ 
 set statusline+=%=\ 
-set statusline+=%y\ %p%%\ %l/%L\ 
+set statusline+=%y\ %{&fileencoding}\ L%l\ 
 
 " Search.
 set hlsearch
 set incsearch
 set ignorecase
 set nosmartcase
+set wildignore+=**/.git,**/.svn,**/.hg,**/CVS,**/.DS_store
+set wildignore+=**/node_modules,**/bower_components
+set wildignorecase
 
 " Interaction.
 set ttimeout
@@ -94,9 +97,11 @@ set scroll=1
 set scrolloff=0
 set sidescroll=1
 set sidescrolloff=0
-set mouse=nvi
+set splitright
+set splitbelow
 set backspace=indent,eol,start
 set clipboard=unnamed
+set mouse=nvi
 
 " Performance.
 set updatetime=100

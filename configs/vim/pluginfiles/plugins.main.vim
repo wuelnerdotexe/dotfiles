@@ -51,6 +51,7 @@ Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/tpope/vim-commentary.git'
 Plug 'https://github.com/preservim/nerdtree.git'
 Plug 'https://github.com/mhinz/vim-signify.git'
+Plug 'https://github.com/itchyny/vim-gitbranch.git'
 Plug 'https://github.com/junegunn/fzf.git',{'do' : { -> fzf#install()},'on' : 'FZF'}
 Plug 'https://github.com/vim-airline/vim-airline.git'
 Plug 'https://github.com/vim-airline/vim-airline-themes.git'

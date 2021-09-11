@@ -1,23 +1,38 @@
 {
-    "editor.cursorBlinking": "solid",
-    "editor.cursorStyle": "block",
+    "editor.fontFamily": "JetBrains Mono",
+    "editor.bracketPairColorization.enabled": true,
+    "editor.detectIndentation": false,
     "editor.linkedEditing": true,
-    "workbench.colorTheme": "Nord",
-    "workbench.iconTheme": "material-icon-theme",
+    "editor.renderIndentGuides": false,
+    "editor.renderWhitespace": "none",
+    "editor.cursorBlinking": "solid",
+    "editor.fontLigatures": true,
+    "diffEditor.wordWrap": "off",
+    "editor.minimap.enabled": false,
     "workbench.productIconTheme": "material-product-icons",
-    "bracket-pair-colorizer-2.colors": [
-        "#EBCB8B",
-        "#B48EAD",
-        "#81A1C1"
+    "workbench.colorTheme": "Solarized Dark",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.tree.renderIndentGuides": "none",
+    "window.menuBarVisibility": "compact",
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "terminal.integrated.localEchoExcludePrograms": [
+        "nvim",
+        "vim",
+        "vi",
+        "nano",
+        "tmux"
     ],
-    "indentRainbow.colors": [
-        "rgb(235,203,139,0.07)",
-        "rgb(163,190,140,0.07)",
-        "rgb(180,142,173,0.07)",
-        "rgb(129,161,193,0.07)"
+    "git.scanRepositories": [
+        "C:\\Users\\wueln\\dotfiles",
+        "C:\\Users\\wueln\\Workspace\\Personal.Codm.Sensitivities",
+        "C:\\Users\\wueln\\Workspace\\wuelnerdotexe"
     ],
-    "indentRainbow.errorColor": "rgb(191,97,106, 0.07)",
+    "path-intellisense.autoSlashAfterDirectory": true,
+    "path-intellisense.showHiddenFiles": true,
     "projectManager.git.baseFolders": [
-        "~\\dotfiles"
+        "C:\\Users\\wueln\\dotfiles",
+        "C:\\Users\\wueln\\Workspace\\Personal.Codm.Sensitivities",
+        "C:\\Users\\wueln\\Workspace\\wuelnerdotexe"
     ]
 }

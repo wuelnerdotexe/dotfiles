@@ -17,29 +17,40 @@ let g:coc_global_extensions=[
   \ ]
 
 " NERDTree interfaz.
-let NERDTreeMinimalUI=1
-let g:NERDTreeStatusline='files'
+let g:NERDTreeMinimalUI=1
+let g:NERDTreeStatusline='explorer'
 let g:NERDTreeDirArrowExpandable='▸'
 let g:NERDTreeDirArrowCollapsible='▾'
-let NERDTreeShowHidden=1
+
+" NERDTree operation.
+let g:NERDTreeMarkBookmarks=0
+let g:NERDTreeShowHidden=1
+let g:NERDTreeIgnore=['\.git$','\.svn$','\.hg$','\CSV$','\.DS_Store$','\Thumbs.db$']
 
 " NERDTree interaction.
-let NERDTreeQuitOnOpen=1
+let g:NERDTreeQuitOnOpen=1
+let g:NERDTreeAutoDeleteBuffer=1
 
 " Airline tabline.
 set showtabline=2
 
 " Airline extensions.
-let g:airline_extensions=(['tabline','hunks','coc','term'])
+let g:airline_extensions=(['tabline','branch','hunks','coc','term','fzf'])
 let g:airline#extensions#tabline#formatter='unique_tail'
+let g:airline#extensions#tabline#tab_nr_type=1
+let g:airline#extensions#branch#custom_head='gitbranch#name'
 let g:airline#extensions#hunks#non_zero_only=1
 
 " Airline sections.
-let g:airline_skip_empty_sections=1
 let g:airline_section_c='%t'
-let g:airline_section_z='%l/%L'
-let g:airline_section_y='%p%%'
+let g:airline_section_z='L%l,C%c'
+let g:airline_section_y='%{&fileencoding}'
 let g:airline_section_x='%y'
+let g:airline#extensions#default#section_truncate_width={
+    \ 'b': 100,
+    \ 'y': 100,
+    \ 'x': 100
+  \ }
 
 " Airline font/symbols.
 let g:airline_powerline_fonts=1
