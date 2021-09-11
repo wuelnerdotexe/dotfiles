@@ -58,8 +58,7 @@ set nowrap
 " Interfaz.
 set notitle
 set nolist
-set number
-set numberwidth=5
+set nonumber
 set norelativenumber
 set nocursorline
 set noruler                             " Disabled for best performance.
@@ -90,7 +89,7 @@ set wildignorecase
 set ttimeout
 set ttimeoutlen=50
 set complete-=i                             " Disabled for best performance.
-set history=200
+set history=50
 set shortmess+=cIF
 set shortmess-=S
 set scroll=1

@@ -52,9 +52,8 @@ set nowrap
 " Interfaz.
 set notitle
 set nolist
-set number
+set nonumber
 set norelativenumber
-set numberwidth=5
 set nocursorline
 set noruler                                 " Disabled for best performance.
 set laststatus=2
@@ -64,7 +63,7 @@ set wildmenu
 set wildignorecase
 set noshowcmd                               " Disabled for best performance.
 set noshowmode
-set signcolumn=auto
+set signcolumn=auto:1
 
 " Search.
 set hlsearch
@@ -79,7 +78,7 @@ set wildignorecase
 set ttimeout
 set ttimeoutlen=50
 set complete-=i                             " Disabled for best performance.
-set history=200
+set history=50
 set shortmess+=cIF
 set shortmess-=S
 set scroll=1
@@ -161,13 +160,15 @@ let g:airline#extensions#hunks#non_zero_only=1
 
 " Airline sections.
 let g:airline_section_c='%t'
-let g:airline_section_z='L%l,C%c'
+let g:airline_section_z='L%l'
 let g:airline_section_y='%{&fileencoding}'
 let g:airline_section_x='%y'
 let g:airline#extensions#default#section_truncate_width={
-    \ 'b': 100,
-    \ 'y': 100,
-    \ 'x': 100
+    \ 'b' : 100,
+    \ 'y' : 100,
+    \ 'x' : 100,
+    \ 'error' : 100,
+    \ 'warning' : 100
   \ }
 
 " Airline font/symbols.

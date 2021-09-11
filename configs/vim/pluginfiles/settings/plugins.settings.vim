@@ -43,13 +43,15 @@ let g:airline#extensions#hunks#non_zero_only=1
 
 " Airline sections.
 let g:airline_section_c='%t'
-let g:airline_section_z='L%l,C%c'
+let g:airline_section_z='L%l'
 let g:airline_section_y='%{&fileencoding}'
 let g:airline_section_x='%y'
 let g:airline#extensions#default#section_truncate_width={
-    \ 'b': 100,
-    \ 'y': 100,
-    \ 'x': 100
+    \ 'b' : 100,
+    \ 'y' : 100,
+    \ 'x' : 100,
+    \ 'error' : 100,
+    \ 'warning' : 100
   \ }
 
 " Airline font/symbols.
