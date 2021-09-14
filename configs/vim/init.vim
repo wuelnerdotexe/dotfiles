@@ -58,9 +58,10 @@ set nowrap
 " Interfaz.
 set notitle
 set nolist
-set nonumber
+set number
 set norelativenumber
-set nocursorline
+set numberwidth=5
+set cursorline
 set noruler                             " Disabled for best performance.
 set laststatus=2
 set showtabline=0
@@ -74,7 +75,7 @@ set signcolumn=auto:1
 set statusline=%#StatusLine#
 set statusline+=%t\ %m\ 
 set statusline+=%=\ 
-set statusline+=%y\ %{&fileencoding}\ L%l\ 
+set statusline+=%{&filetype}\ %{&fenc}[%{&ff}]\ L%l\ 
 
 " Search.
 set hlsearch
