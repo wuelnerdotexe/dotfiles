@@ -1,0 +1,14 @@
+{
+  "eslint.autoFixOnSave": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "html",
+    "json",
+    "markdown",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "prettier.eslintIntegration": true,
+  "cssmodules.hintName": "cssmodules"
+}

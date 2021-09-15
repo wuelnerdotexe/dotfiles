@@ -6,6 +6,18 @@
 " About:    File config for plugins mappings.
 " -----------------------------------------------------------------------------
 
+" Coc make <CR> auto-select the first completion item and notify to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Coc use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
 " Coc use tab for trigger completion with characters ahead and navigate.
 inoremap <silent> <expr> <TAB>
     \ pumvisible() ? "\<C-n>" :
@@ -31,6 +43,16 @@ function! s:show_documentation()
     endif
 endfunction
 
+" Coc remap <C-f> and <C-b> for scroll float windows/popups.
+if has('nvim-0.4.0') || has('patch-8.2.0750')
+  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+endif
+
 " Coc GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -45,6 +67,9 @@ nmap <leader>ac <Plug>(coc-codeaction)
 
 " Coc apply AutoFix to problem on the current line.
 nmap <leader>qf <Plug>(coc-fix-current)
+
+" Coc add `:Format` and `:Prettier` command to format current buffer.
+nnoremap <silent> <leader>fp :CocCommand prettier.formatFile<CR>
 
 " Fuzzy finder activate.
 nnoremap <silent> <leader>ff :FZF<CR>

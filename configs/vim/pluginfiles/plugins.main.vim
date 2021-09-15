@@ -47,12 +47,17 @@ call plug#begin(g:vim_plug)
 
 " Plugins.
 Plug 'https://github.com/neoclide/coc.nvim.git',{'branch' : 'release'}
+Plug 'https://github.com/tpope/vim-sleuth.git'
+Plug 'https://github.com/alvan/vim-closetag.git'
+Plug 'https://github.com/AndrewRadev/tagalong.vim.git'
+Plug 'https://github.com/jiangmiao/auto-pairs.git'
 Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/tpope/vim-commentary.git'
+Plug 'https://github.com/chrisbra/Colorizer.git'
 Plug 'https://github.com/preservim/nerdtree.git'
-Plug 'https://github.com/mhinz/vim-signify.git'
 Plug 'https://github.com/itchyny/vim-gitbranch.git'
-Plug 'https://github.com/junegunn/fzf.git',{'do' : { -> fzf#install()},'on' : 'FZF'}
+Plug 'https://github.com/mhinz/vim-signify.git'
+Plug 'https://github.com/junegunn/fzf.git',{'do' : { -> fzf#install()}}
 Plug 'https://github.com/vim-airline/vim-airline.git'
 Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 Plug 'https://github.com/szw/vim-maximizer.git',{'on' : 'MaximizerToggle'}

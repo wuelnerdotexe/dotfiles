@@ -38,14 +38,7 @@ set autoread
 set hidden
 
 " Coding.
-set autoindent
 set smartindent
-set shiftwidth=4
-set shiftround
-set tabstop=4
-set softtabstop=4
-set expandtab
-set smarttab
 set showmatch
 set nowrap
 
@@ -129,13 +122,19 @@ xnoremap <silent> J :move '>+1<CR>gv-gv
 " -----------------------------------------------------------------------------
 " Coc extensions.
 let g:coc_global_extensions=[
-    \ 'coc-marketplace',
-    \ 'coc-highlight',
+    \ 'coc-cssmodules',
+    \ 'coc-eslint',
     \ 'coc-json',
-    \ 'coc-pairs',
-    \ 'coc-tabnine',
+    \ 'coc-prettier',
+    \ 'coc-tsserver',
     \ 'coc-vimlsp'
   \ ]
+
+" Closetag enable filenames.
+let g:closetag_filetypes='html,javascript,javascriptreact,typescript,typescriptreact'
+
+" Tagalong enable filetypes.
+let g:tagalong_filetypes=['html','javascript','javascriptreact','typescript','typescriptreact']
 
 " NERDTree interfaz.
 let g:NERDTreeMinimalUI=1
@@ -149,11 +148,11 @@ let g:NERDTreeShowHidden=1
 let g:NERDTreeIgnore=['\.git$','\.svn$','\.hg$','\CSV$','\.DS_Store$','\Thumbs.db$']
 
 " NERDTree interaction.
-let NERDTreeQuitOnOpen=1
+let g:NERDTreeQuitOnOpen=1
 let g:NERDTreeAutoDeleteBuffer=1
 
 " Airline extensions.
-let g:airline_extensions=(['tabline','branch','hunks','coc','term','fzf'])
+let g:airline_extensions=(['tabline','netrw','branch','hunks','coc','term','fzf'])
 let g:airline#extensions#tabline#formatter='unique_tail'
 let g:airline#extensions#tabline#tab_nr_type=1
 let g:airline#extensions#branch#custom_head='gitbranch#name'
@@ -162,6 +161,8 @@ let g:airline#extensions#hunks#non_zero_only=1
 " Airline sections.
 let g:airline_section_c='%t'
 let g:airline_section_z='L%l'
+let g:airline_section_y='%{&fenc?&fenc:&enc}[%{&ff}] %{SleuthIndicator()}'
+let g:airline_section_x='%{&filetype}'
 let g:airline#extensions#default#section_truncate_width={
     \ 'b' : 100,
     \ 'y' : 100,
@@ -220,12 +221,17 @@ call plug#begin(g:vim_plug)
 
 " Plugins.
 Plug 'https://github.com/neoclide/coc.nvim.git',{'branch' : 'release'}
+Plug 'https://github.com/tpope/vim-sleuth.git'
+Plug 'https://github.com/alvan/vim-closetag.git'
+Plug 'https://github.com/AndrewRadev/tagalong.vim.git'
+Plug 'https://github.com/jiangmiao/auto-pairs.git'
 Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/tpope/vim-commentary.git'
+Plug 'https://github.com/chrisbra/Colorizer.git'
 Plug 'https://github.com/preservim/nerdtree.git'
-Plug 'https://github.com/mhinz/vim-signify.git'
 Plug 'https://github.com/itchyny/vim-gitbranch.git'
-Plug 'https://github.com/junegunn/fzf.git',{'do' : { -> fzf#install()},'on' : 'FZF'}
+Plug 'https://github.com/mhinz/vim-signify.git'
+Plug 'https://github.com/junegunn/fzf.git',{'do' : { -> fzf#install()}}
 Plug 'https://github.com/vim-airline/vim-airline.git'
 Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 Plug 'https://github.com/szw/vim-maximizer.git',{'on' : 'MaximizerToggle'}
@@ -244,6 +250,18 @@ autocmd VimEnter * ++nested colorscheme NeoSolarized
 " -----------------------------------------------------------------------------
 " SECTION: Plugins mappings. 
 " -----------------------------------------------------------------------------
+" Coc make <CR> auto-select the first completion item and notify to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Coc use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
 " Coc use tab for trigger completion with characters ahead and navigate.
 inoremap <silent> <expr> <TAB>
     \ pumvisible() ? "\<C-n>" :
@@ -269,6 +287,16 @@ function! s:show_documentation()
     endif
 endfunction
 
+" Coc remap <C-f> and <C-b> for scroll float windows/popups.
+if has('nvim-0.4.0') || has('patch-8.2.0750')
+  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+endif
+
 " Coc GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -283,6 +311,9 @@ nmap <leader>ac <Plug>(coc-codeaction)
 
 " Coc apply AutoFix to problem on the current line.
 nmap <leader>qf <Plug>(coc-fix-current)
+
+" Coc add `:Format` command to format current buffer.
+nnoremap <silent> <leader>fc :call CocAction('format')<CR>
 
 " Fuzzy finder activate.
 nnoremap <silent> <leader>ff :FZF<CR>

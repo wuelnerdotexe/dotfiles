@@ -40,18 +40,8 @@ set undofile
 set autoread
 set hidden
 
-" Explore.
-let g:netrw_list_hide='\.git$,\.svn$,\.hg$,\CVS$,\.DS_store$'
-
 " Coding.
-set autoindent
 set smartindent
-set shiftwidth=4
-set shiftround
-set tabstop=4
-set softtabstop=4
-set expandtab
-set smarttab
 set showmatch
 set nowrap
 
@@ -75,7 +65,7 @@ set signcolumn=auto:1
 set statusline=%#StatusLine#
 set statusline+=%t\ %m\ 
 set statusline+=%=\ 
-set statusline+=%{&filetype}\ %{&fenc}[%{&ff}]\ L%l\ 
+set statusline+=%{&filetype}\ %{&fenc?&fenc:&enc}[%{&ff}]\ L%l\ 
 
 " Search.
 set hlsearch

@@ -14,4 +14,4 @@ mkdir "%LOCALAPPDATA%\nvim\"
 
 :: Symbolic link for Neovim file settings.
 mklink "%LOCALAPPDATA%\nvim\init.vim" "%USERPROFILE%\dotfiles\configs\vim\init.vim"
-mklink "%LOCALAPPDATA%\nvim\ginit.vim" "%USERPROFILE%\dotfiles\configs\vim\ginit.vim"
+mklink "%LOCALAPPDATA%\nvim\coc-settings.json" "%USERPROFILE%\dotfiles\configs\vim\coc-settings.json"
