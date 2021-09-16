@@ -68,9 +68,6 @@ nmap <leader>ac <Plug>(coc-codeaction)
 " Coc apply AutoFix to problem on the current line.
 nmap <leader>qf <Plug>(coc-fix-current)
 
-" Coc add `:Format` and `:Prettier` command to format current buffer.
-nnoremap <silent> <leader>fp :CocCommand prettier.formatFile<CR>
-
 " Fuzzy finder activate.
 nnoremap <silent> <leader>ff :FZF<CR>
 
