@@ -1,8 +1,5 @@
 {
-  "eslint.autoFixOnSave": true,
-  "coc.preferences.formatOnSaveFiletypes": [
-    "*"
-  ],
+  "coc.preferences.formatOnSaveFiletypes": ["*"],
   "prettier.eslintIntegration": true,
   "cssmodules.hintName": "cssmodules"
 }

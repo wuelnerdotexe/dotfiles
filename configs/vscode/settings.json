@@ -1,12 +1,13 @@
 {
   "editor.fontFamily": "JetBrains Mono",
   "editor.bracketPairColorization.enabled": true,
-  "editor.detectIndentation": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.linkedEditing": true,
   "editor.renderIndentGuides": false,
   "editor.renderWhitespace": "none",
   "editor.cursorBlinking": "solid",
   "editor.fontLigatures": true,
+  "editor.formatOnSave": true,
   "diffEditor.wordWrap": "off",
   "editor.minimap.enabled": false,
   "workbench.productIconTheme": "material-product-icons",
@@ -25,14 +26,13 @@
   ],
   "git.scanRepositories": [
     "C:\\Users\\wueln\\dotfiles",
-    "C:\\Users\\wueln\\Workspace\\Personal.Codm.Sensitivities",
-    "C:\\Users\\wueln\\Workspace\\wuelnerdotexe"
+    "C:\\Users\\wueln\\Workspace\\wuelnerdotexe",
+    "C:\\Users\\wueln\\Workspace\\wuelnerdotexe.github.io"
   ],
   "path-intellisense.autoSlashAfterDirectory": true,
   "path-intellisense.showHiddenFiles": true,
   "projectManager.git.baseFolders": [
     "C:\\Users\\wueln\\dotfiles",
-    "C:\\Users\\wueln\\Workspace\\Personal.Codm.Sensitivities",
     "C:\\Users\\wueln\\Workspace\\wuelnerdotexe",
     "C:\\Users\\wueln\\Workspace\\wuelnerdotexe.github.io"
   ]

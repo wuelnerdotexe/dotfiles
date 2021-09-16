@@ -13,14 +13,16 @@ let g:coc_global_extensions=[
     \ 'coc-json',
     \ 'coc-prettier',
     \ 'coc-tsserver',
-    \ 'coc-vimlsp'
   \ ]
 
 " Closetag enable filenames.
-let g:closetag_filetypes='html,javascript,javascriptreact,typescript,typescriptreact'
+let g:closetag_filetypes='typescript,typescriptreact'
 
 " Tagalong enable filetypes.
-let g:tagalong_filetypes=['html','javascript','javascriptreact','typescript','typescriptreact']
+let g:tagalong_filetypes=['typescript','typescriptreact']
+
+" Colorizer enable on startup.
+let g:colorizer_auto_color=1
 
 " NERDTree interfaz.
 let g:NERDTreeMinimalUI=1
