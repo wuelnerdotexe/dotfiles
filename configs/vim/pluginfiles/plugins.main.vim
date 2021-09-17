@@ -52,9 +52,7 @@ Plug 'https://github.com/junegunn/fzf.git',{'do' : { -> fzf#install()}}
 " Coding.
 Plug 'https://github.com/neoclide/coc.nvim.git',{'branch' : 'release'}
 Plug 'https://github.com/tpope/vim-commentary.git'
-Plug 'https://github.com/alvan/vim-closetag.git'
 Plug 'https://github.com/AndrewRadev/tagalong.vim.git'
-Plug 'https://github.com/chrisbra/Colorizer.git'
 
 " Tools.
 Plug 'https://github.com/tpope/vim-sleuth.git'

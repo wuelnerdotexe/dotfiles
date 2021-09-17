@@ -8,21 +8,11 @@
 
 " Coc extensions.
 let g:coc_global_extensions=[
-    \ 'coc-cssmodules',
     \ 'coc-eslint',
     \ 'coc-json',
     \ 'coc-prettier',
-    \ 'coc-tsserver',
+    \ 'coc-tsserver'
   \ ]
-
-" Closetag enable filenames.
-let g:closetag_filetypes='typescript,typescriptreact'
-
-" Tagalong enable filetypes.
-let g:tagalong_filetypes=['typescript','typescriptreact']
-
-" Colorizer enable on startup.
-let g:colorizer_auto_color=1
 
 " NERDTree interfaz.
 let g:NERDTreeMinimalUI=1
@@ -41,6 +31,9 @@ let g:NERDTreeAutoDeleteBuffer=1
 
 " Airline tabline.
 set showtabline=2
+
+" Airline font/symbols.
+let g:airline_powerline_fonts=1
 
 " Airline extensions.
 let g:airline_extensions=(['tabline','netrw','branch','hunks','coc','term','fzf'])
@@ -61,9 +54,6 @@ let g:airline#extensions#default#section_truncate_width={
     \ 'error' : 100,
     \ 'warning' : 100
   \ }
-
-" Airline font/symbols.
-let g:airline_powerline_fonts=1
 
 " Airline already shows current mode.
 set noshowmode

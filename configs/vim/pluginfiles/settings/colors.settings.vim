@@ -9,6 +9,11 @@
 " Airline theme.
 let g:airline_theme='solarized'
 
+" Airline solarized theme.
+let g:airline_solarized_dark_inactive_background=1
+let g:airline_solarized_dark_inactive_border=1
+let g:airline_solarized_enable_command_color=1
+
 " NeoSolarized interfaz.
 let g:neosolarized_vertSplitBgTrans=1
 

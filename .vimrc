@@ -122,21 +122,11 @@ xnoremap <silent> J :move '>+1<CR>gv-gv
 " -----------------------------------------------------------------------------
 " Coc extensions.
 let g:coc_global_extensions=[
-    \ 'coc-cssmodules',
     \ 'coc-eslint',
     \ 'coc-json',
     \ 'coc-prettier',
-    \ 'coc-tsserver',
+    \ 'coc-tsserver'
   \ ]
-
-" Closetag enable filenames.
-let g:closetag_filetypes='typescript,typescriptreact'
-
-" Tagalong enable filetypes.
-let g:tagalong_filetypes=['typescript','typescriptreact']
-
-" Colorizer enable on startup.
-let g:colorizer_auto_color=1
 
 " NERDTree interfaz.
 let g:NERDTreeMinimalUI=1
@@ -152,6 +142,10 @@ let g:NERDTreeIgnore=['\.git$','\.svn$','\.hg$','\CSV$','\.DS_Store$','\Thumbs.d
 " NERDTree interaction.
 let g:NERDTreeQuitOnOpen=1
 let g:NERDTreeAutoDeleteBuffer=1
+
+" Airline font/symbols.
+let g:airline_powerline_fonts=0
+let g:airline_symbols_ascii=1
 
 " Airline extensions.
 let g:airline_extensions=(['tabline','netrw','branch','hunks','coc','term','fzf'])
@@ -172,15 +166,16 @@ let g:airline#extensions#default#section_truncate_width={
     \ 'error' : 100,
     \ 'warning' : 100
   \ }
-
-" Airline font/symbols.
-let g:airline_powerline_fonts=0
-let g:airline_symbols_ascii=1
 " -----------------------------------------------------------------------------
 " SECTION: Colors settings. 
 " -----------------------------------------------------------------------------
 " Airline theme.
 let g:airline_theme='solarized'
+
+" Airline solarized theme.
+let g:airline_solarized_dark_inactive_background=1
+let g:airline_solarized_dark_inactive_border=1
+let g:airline_solarized_enable_command_color=1
 
 " NeoSolarized interfaz.
 let g:neosolarized_vertSplitBgTrans=1
@@ -228,9 +223,7 @@ Plug 'https://github.com/junegunn/fzf.git',{'do' : { -> fzf#install()}}
 " Coding.
 Plug 'https://github.com/neoclide/coc.nvim.git',{'branch' : 'release'}
 Plug 'https://github.com/tpope/vim-commentary.git'
-Plug 'https://github.com/alvan/vim-closetag.git'
 Plug 'https://github.com/AndrewRadev/tagalong.vim.git'
-Plug 'https://github.com/chrisbra/Colorizer.git'
 
 " Tools.
 Plug 'https://github.com/tpope/vim-sleuth.git'

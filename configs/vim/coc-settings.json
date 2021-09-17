@@ -1,5 +1,19 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": ["*"],
   "prettier.eslintIntegration": true,
-  "cssmodules.hintName": "cssmodules"
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "css",
+    "less",
+    "scss",
+    "json",
+    "graphql",
+    "markdown",
+    "vue",
+    "svelte",
+    "yaml",
+    "html"
+  ]
 }
