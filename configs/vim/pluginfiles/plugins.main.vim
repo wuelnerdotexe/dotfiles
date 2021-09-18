@@ -8,7 +8,6 @@
 
 " Import plugins settings files.
 source $HOME/dotfiles/configs/vim/pluginfiles/settings/plugins.settings.vim
-source $HOME/dotfiles/configs/vim/pluginfiles/settings/colors.settings.vim
 
 " Providers settings for neovim plugins.
 if has('nvim')
@@ -66,7 +65,7 @@ Plug 'https://github.com/vim-airline/vim-airline.git'
 Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 
 " Colors.
-Plug 'https://github.com/overcache/NeoSolarized.git'
+Plug 'https://github.com/wuelnerdotexe/vim-enfocado.git',{'branch' : 'development'}
 
 call plug#end()
 
@@ -75,7 +74,7 @@ if !empty(filter(copy(g:plugs),'!isdirectory(v:val.dir)'))
     PlugInstall --sync | source $MYVIMRC
 endif
 
-autocmd VimEnter * ++nested colorscheme NeoSolarized
+autocmd VimEnter * ++nested colorscheme solarized-enfocado
 
 " Import plugins mappings files.
 source $HOME/dotfiles/configs/vim/pluginfiles/mappings/plugins.mappings.vim
