@@ -74,7 +74,7 @@ if !empty(filter(copy(g:plugs),'!isdirectory(v:val.dir)'))
     PlugInstall --sync | source $MYVIMRC
 endif
 
-autocmd VimEnter * ++nested colorscheme solarized-enfocado
+autocmd VimEnter * ++nested colorscheme enfocado
 
 " Import plugins mappings files.
 source $HOME/dotfiles/configs/vim/pluginfiles/mappings/plugins.mappings.vim

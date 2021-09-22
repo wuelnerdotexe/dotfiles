@@ -167,25 +167,6 @@ let g:airline#extensions#default#section_truncate_width={
     \ 'warning' : 100
   \ }
 " -----------------------------------------------------------------------------
-" SECTION: Colors settings. 
-" -----------------------------------------------------------------------------
-" Airline theme.
-let g:airline_theme='solarized'
-
-" Airline solarized theme.
-let g:airline_solarized_dark_inactive_background=1
-let g:airline_solarized_dark_inactive_border=1
-let g:airline_solarized_enable_command_color=1
-
-" NeoSolarized interfaz.
-let g:neosolarized_vertSplitBgTrans=1
-
-" NeoSolarized font.
-let g:neosolarized_bold=0
-let g:neosolarized_underline=0
-let g:neosolarized_italic=0
-let g:neosolarized_termBoldAsBright=0
-" -----------------------------------------------------------------------------
 " SECTION: Plugins main. 
 " -----------------------------------------------------------------------------
 " Providers settings for neovim plugins.
@@ -234,10 +215,9 @@ Plug 'https://github.com/szw/vim-maximizer.git',{'on' : 'MaximizerToggle'}
 " Statusline.
 Plug 'https://github.com/itchyny/vim-gitbranch.git'
 Plug 'https://github.com/vim-airline/vim-airline.git'
-Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 
 " Colors.
-Plug 'https://github.com/overcache/NeoSolarized.git'
+Plug 'https://github.com/wuelnerdotexe/vim-enfocado.git'
 
 call plug#end()
 
@@ -246,7 +226,7 @@ if !empty(filter(copy(g:plugs),'!isdirectory(v:val.dir)'))
     PlugInstall --sync | source $MYVIMRC
 endif
 
-autocmd VimEnter * ++nested colorscheme NeoSolarized
+autocmd VimEnter * ++nested colorscheme enfocado
 " -----------------------------------------------------------------------------
 " SECTION: Plugins mappings. 
 " -----------------------------------------------------------------------------
