@@ -62,7 +62,6 @@ Plug 'https://github.com/szw/vim-maximizer.git',{'on' : 'MaximizerToggle'}
 " Statusline.
 Plug 'https://github.com/itchyny/vim-gitbranch.git'
 Plug 'https://github.com/vim-airline/vim-airline.git'
-Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 
 " Colors.
 Plug 'https://github.com/wuelnerdotexe/vim-enfocado.git',{'branch' : 'development'}
