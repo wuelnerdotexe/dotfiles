@@ -205,11 +205,13 @@ Plug 'https://github.com/junegunn/fzf.git',{'do' : { -> fzf#install()}}
 Plug 'https://github.com/neoclide/coc.nvim.git',{'branch' : 'release'}
 Plug 'https://github.com/tpope/vim-commentary.git'
 Plug 'https://github.com/AndrewRadev/tagalong.vim.git'
+Plug 'https://github.com/shime/vim-livedown.git'
 
 " Tools.
 Plug 'https://github.com/tpope/vim-sleuth.git'
 Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/mhinz/vim-signify.git'
+Plug 'https://github.com/mg979/vim-visual-multi.git',{'branch' : 'master'}
 Plug 'https://github.com/szw/vim-maximizer.git',{'on' : 'MaximizerToggle'}
 
 " Statusline.
@@ -234,13 +236,6 @@ autocmd VimEnter * ++nested colorscheme enfocado
 " format on enter, <cr> could be remapped by other vim plugin
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" Coc use <c-space> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
 
 " Coc use tab for trigger completion with characters ahead and navigate.
 inoremap <silent> <expr> <TAB>

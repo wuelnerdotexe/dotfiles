@@ -11,13 +11,6 @@
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-" Coc use <c-space> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
-
 " Coc use tab for trigger completion with characters ahead and navigate.
 inoremap <silent> <expr> <TAB>
     \ pumvisible() ? "\<C-n>" :
