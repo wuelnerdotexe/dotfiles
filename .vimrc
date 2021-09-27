@@ -7,14 +7,6 @@
 " test all my vim setup. My main vim files are at configs/vim/ directory.
 " -----------------------------------------------------------------------------
 
-" Setting required to set custom option values in vim.
-set nocompatible
-
-" Use a trick to reset compatible only when the +eval feature is missing.
-silent! while 0
-    set nocompatible
-silent! endwhile
-
 " Encoding.
 set encoding=utf-8
 
@@ -26,9 +18,6 @@ set helplang=en,es
 set termguicolors
 set background=dark
 
-" Syntax and filetype.
-filetype plugin indent on | syntax on
-
 " Files management.
 set nobackup
 set nowritebackup
@@ -38,7 +27,7 @@ set autoread
 set hidden
 
 " Coding.
-set smartindent
+set autoindent
 set showmatch
 set nowrap
 
@@ -89,34 +78,9 @@ set mouse=nvi
 set updatetime=100
 set nolazyredraw
 set ttyfast
-" -----------------------------------------------------------------------------
-" SECTION: Native mappings. 
-" -----------------------------------------------------------------------------
-" It is indicated that the <Space> key will be the <leader> key.
-let mapleader="\<Space>"
 
-" Move previous/left with buffers.
-nnoremap <silent> gB :bprev<CR>
-nnoremap <silent> <S-PageUp> :bprev<CR>
-inoremap <silent> <S-PageUp> <Cmd>bprev<CR>
-
-" Move next/right with buffers.
-nnoremap <silent> gb :bnext<CR>
-nnoremap <silent> <S-PageDown> :bnext<CR>
-inoremap <silent> <S-PageDown> <Cmd>bnext<CR>
-
-" Delete buffers.
-nnoremap <silent> <leader>db :bdelete<CR>
-
-" Resize splits.
-nnoremap <silent> <C-h> 10<C-w><
-nnoremap <silent> <C-k> 1<C-w>+
-nnoremap <silent> <C-l> 10<C-w>>
-nnoremap <silent> <C-j> 1<C-w>-
-
-" Move a selected block text.
-xnoremap <silent> K :move '<-2<CR>gv-gv
-xnoremap <silent> J :move '>+1<CR>gv-gv
+" Syntax and filetype.
+filetype plugin indent on | syntax on
 " -----------------------------------------------------------------------------
 " SECTION: Plugins settings. 
 " -----------------------------------------------------------------------------
@@ -131,8 +95,6 @@ let g:coc_global_extensions=[
 " NERDTree interfaz.
 let g:NERDTreeMinimalUI=1
 let g:NERDTreeStatusline='explorer'
-let g:NERDTreeDirArrowExpandable='▸'
-let g:NERDTreeDirArrowCollapsible='▾'
 
 " NERDTree operation.
 let g:NERDTreeMarkBookmarks=0
@@ -166,6 +128,9 @@ let g:airline#extensions#default#section_truncate_width={
     \ 'error' : 100,
     \ 'warning' : 100
   \ }
+
+" Airline theme.
+let g:airline_theme='enfocado'
 " -----------------------------------------------------------------------------
 " SECTION: Plugins main. 
 " -----------------------------------------------------------------------------
@@ -185,7 +150,7 @@ endif
 
 " Automatic installation of Vim-Plug only if it is not installed.
 if empty(glob(g:plug_file))
-    echo "Installing Vim-Plug..."
+    echomsg "Installing vim-plug..."
     silent exec "!curl -fLo " . shellescape(g:plug_file) . " --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 endif
@@ -198,37 +163,84 @@ let g:vim_plug=has('win32') ?
 call plug#begin(g:vim_plug)
 
 " Files.
-Plug 'https://github.com/preservim/nerdtree.git'
-Plug 'https://github.com/junegunn/fzf.git',{'do' : { -> fzf#install()}}
+Plug 'preservim/nerdtree'
+Plug 'junegunn/fzf',{'do' : { -> fzf#install()}}
 
 " Coding.
-Plug 'https://github.com/neoclide/coc.nvim.git',{'branch' : 'release'}
-Plug 'https://github.com/tpope/vim-commentary.git'
-Plug 'https://github.com/AndrewRadev/tagalong.vim.git'
-Plug 'https://github.com/shime/vim-livedown.git'
+if has('nvim')
+  Plug 'nvim-treesitter/nvim-treesitter',{'do' : ':TSUpdate'}
+endif
+
+Plug 'neoclide/coc.nvim',{'branch' : 'release'}
+Plug 'tpope/vim-commentary'
+Plug 'AndrewRadev/tagalong.vim'
+Plug 'shime/vim-livedown'
 
 " Tools.
-Plug 'https://github.com/tpope/vim-sleuth.git'
-Plug 'https://github.com/tpope/vim-surround.git'
-Plug 'https://github.com/mhinz/vim-signify.git'
-Plug 'https://github.com/mg979/vim-visual-multi.git',{'branch' : 'master'}
-Plug 'https://github.com/szw/vim-maximizer.git',{'on' : 'MaximizerToggle'}
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-surround'
+Plug 'mhinz/vim-signify'
+Plug 'mg979/vim-visual-multi',{'branch' : 'master'}
+Plug 'szw/vim-maximizer',{'on' : 'MaximizerToggle'}
 
 " Statusline.
-Plug 'https://github.com/itchyny/vim-gitbranch.git'
-Plug 'https://github.com/vim-airline/vim-airline.git'
+Plug 'itchyny/vim-gitbranch'
+Plug 'vim-airline/vim-airline'
 
 " Colors.
-Plug 'https://github.com/wuelnerdotexe/vim-enfocado.git'
+Plug 'wuelnerdotexe/vim-enfocado'
 
 call plug#end()
 
 " Missing plugins are installed and set the colorscheme when all have loaded.
 if !empty(filter(copy(g:plugs),'!isdirectory(v:val.dir)'))
+    echomsg "Installing missing plugs..."
     PlugInstall --sync | source $MYVIMRC
 endif
 
 autocmd VimEnter * ++nested colorscheme enfocado
+" -----------------------------------------------------------------------------
+" SECTION: Treesitter config. 
+" -----------------------------------------------------------------------------
+if has('nvim')
+lua <<EOF
+  require'nvim-treesitter.configs'.setup {
+    ensure_installed = { "javascript", "json", "typescript", "tsx" },
+    highlight = {
+      enable = true,
+      additional_vim_regex_highlighting = false,
+    },
+  }
+EOF
+endif
+" -----------------------------------------------------------------------------
+" SECTION: Native mappings. 
+" -----------------------------------------------------------------------------
+" It is indicated that the <Space> key will be the <leader> key.
+let mapleader="\<Space>"
+
+" Move previous/left with buffers.
+nnoremap <silent> gB :bprev<CR>
+nnoremap <silent> <S-PageUp> :bprev<CR>
+inoremap <silent> <S-PageUp> <Cmd>bprev<CR>
+
+" Move next/right with buffers.
+nnoremap <silent> gb :bnext<CR>
+nnoremap <silent> <S-PageDown> :bnext<CR>
+inoremap <silent> <S-PageDown> <Cmd>bnext<CR>
+
+" Delete buffers.
+nnoremap <silent> <leader>db :bdelete<CR>
+
+" Resize splits.
+nnoremap <silent> <C-h> 10<C-w><
+nnoremap <silent> <C-k> 1<C-w>+
+nnoremap <silent> <C-l> 10<C-w>>
+nnoremap <silent> <C-j> 1<C-w>-
+
+" Move a selected block text.
+xnoremap <silent> K :move '<-2<CR>gv-gv
+xnoremap <silent> J :move '>+1<CR>gv-gv
 " -----------------------------------------------------------------------------
 " SECTION: Plugins mappings. 
 " -----------------------------------------------------------------------------

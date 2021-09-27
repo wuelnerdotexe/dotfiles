@@ -7,14 +7,6 @@
 " line by line to optimize Vim / Neovim boot performance to the maximum.
 " -----------------------------------------------------------------------------
 
-" Setting required to set custom option values.
-set nocompatible
-
-" Use a trick to reset compatible only when the +eval feature is missing.
-silent! while 0
-    set nocompatible
-silent! endwhile
-
 " Encoding.
 set encoding=utf-8
 
@@ -29,9 +21,6 @@ set helplang=en,es
 set termguicolors
 set background=dark
 
-" Syntax and filetype.
-filetype plugin indent on | syntax on
-
 " Files management.
 set nobackup
 set nowritebackup
@@ -41,7 +30,7 @@ set autoread
 set hidden
 
 " Coding.
-set smartindent
+set autoindent
 set showmatch
 set nowrap
 
@@ -54,11 +43,10 @@ set numberwidth=5
 set cursorline
 set noruler                             " Disabled for best performance.
 set laststatus=2
-set showtabline=0
 set cmdheight=1
 set wildmenu
 set noshowcmd                           " Disabled for best performance.
-set showmode
+set noshowmode
 set signcolumn=auto:1
 
 " Statusline.
@@ -97,6 +85,9 @@ set mouse=nvi
 set updatetime=100
 set nolazyredraw
 set ttyfast
+
+" Filetype and syntax.
+filetype plugin indent on | syntax on
 " -----------------------------------------------------------------------------
 " SECTION: Native mappings. 
 " -----------------------------------------------------------------------------
@@ -131,4 +122,4 @@ xnoremap <silent> J :move '>+1<CR>gv-gv
 " SECTION: Plugins files. 
 " -----------------------------------------------------------------------------
 " Import plugins main file.
-source $HOME/dotfiles/configs/vim/pluginfiles/plugins.main.vim
+runtime pluginfiles/plugins.main.vim

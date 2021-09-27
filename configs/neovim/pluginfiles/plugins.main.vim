@@ -7,7 +7,7 @@
 " -----------------------------------------------------------------------------
 
 " Import plugins settings files.
-source $HOME/dotfiles/configs/vim/pluginfiles/settings/plugins.settings.vim
+runtime pluginfiles/settings/plugins.settings.vim
 
 " Providers settings for neovim plugins.
 if has('nvim')
@@ -32,7 +32,7 @@ endif
 
 " Automatic installation of Vim-Plug only if it is not installed.
 if empty(glob(g:plug_file))
-    echo "Installing Vim-Plug..."
+    echomsg "Installing vim-plug..."
     silent exec "!curl -fLo " . shellescape(g:plug_file) . " --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 endif
@@ -49,33 +49,38 @@ Plug 'https://github.com/preservim/nerdtree.git'
 Plug 'https://github.com/junegunn/fzf.git',{'do' : { -> fzf#install()}}
 
 " Coding.
-Plug 'https://github.com/neoclide/coc.nvim.git',{'branch' : 'release'}
-Plug 'https://github.com/tpope/vim-commentary.git'
-Plug 'https://github.com/AndrewRadev/tagalong.vim.git'
-Plug 'https://github.com/shime/vim-livedown.git'
+if has('nvim')
+    Plug 'nvim-treesitter/nvim-treesitter',{'do' : ':TSUpdate'}
+endif
+Plug 'neoclide/coc.nvim',{'branch' : 'release'}
+Plug 'tpope/vim-commentary'
+Plug 'AndrewRadev/tagalong.vim'
+Plug 'shime/vim-livedown'
 
 " Tools.
-Plug 'https://github.com/tpope/vim-sleuth.git'
-Plug 'https://github.com/tpope/vim-surround.git'
-Plug 'https://github.com/mhinz/vim-signify.git'
-Plug 'https://github.com/mg979/vim-visual-multi.git',{'branch' : 'master'}
-Plug 'https://github.com/szw/vim-maximizer.git',{'on' : 'MaximizerToggle'}
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-surround'
+Plug 'mhinz/vim-signify'
+Plug 'mg979/vim-visual-multi',{'branch' : 'master'}
+Plug 'szw/vim-maximizer',{'on' : 'MaximizerToggle'}
 
 " Statusline.
-Plug 'https://github.com/itchyny/vim-gitbranch.git'
-Plug 'https://github.com/vim-airline/vim-airline.git'
+Plug 'itchyny/vim-gitbranch'
+Plug 'vim-airline/vim-airline'
 
 " Colors.
-Plug 'https://github.com/wuelnerdotexe/vim-enfocado.git',{'branch' : 'development'}
+Plug 'wuelnerdotexe/vim-enfocado',{'branch' : 'development'}
 
 call plug#end()
 
-" Missing plugins are installed and set the colorscheme when all have loaded.
+" Missing plugins are installed.
 if !empty(filter(copy(g:plugs),'!isdirectory(v:val.dir)'))
+    echomsg "Installing missing plugs..."
     PlugInstall --sync | source $MYVIMRC
 endif
 
+" Enable the colorscheme when everything has loaded.
 autocmd VimEnter * ++nested colorscheme enfocado
 
 " Import plugins mappings files.
-source $HOME/dotfiles/configs/vim/pluginfiles/mappings/plugins.mappings.vim
+runtime pluginfiles/mappings/plugins.mappings.vim

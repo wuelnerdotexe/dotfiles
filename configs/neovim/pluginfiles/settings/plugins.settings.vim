@@ -17,8 +17,6 @@ let g:coc_global_extensions=[
 " NERDTree interfaz.
 let g:NERDTreeMinimalUI=1
 let g:NERDTreeStatusline='explorer'
-let g:NERDTreeDirArrowExpandable='▸'
-let g:NERDTreeDirArrowCollapsible='▾'
 
 " NERDTree operation.
 let g:NERDTreeMarkBookmarks=0
@@ -28,9 +26,6 @@ let g:NERDTreeIgnore=['\.git$','\.svn$','\.hg$','\CSV$','\.DS_Store$','\Thumbs.d
 " NERDTree interaction.
 let g:NERDTreeQuitOnOpen=1
 let g:NERDTreeAutoDeleteBuffer=1
-
-" Airline tabline.
-set showtabline=2
 
 " Airline font/symbols.
 let g:airline_powerline_fonts=1
@@ -55,5 +50,5 @@ let g:airline#extensions#default#section_truncate_width={
     \ 'warning' : 100
   \ }
 
-" Airline already shows current mode.
-set noshowmode
+" Airline theme.
+let g:airline_theme="enfocado"
