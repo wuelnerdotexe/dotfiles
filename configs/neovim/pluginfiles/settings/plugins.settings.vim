@@ -10,9 +10,11 @@
 let g:coc_global_extensions=[
     \ 'coc-eslint',
     \ 'coc-json',
-    \ 'coc-prettier',
     \ 'coc-tsserver'
   \ ]
+
+" Echodoc enable at startup.
+let g:echodoc#enable_at_startup=1
 
 " NERDTree interfaz.
 let g:NERDTreeMinimalUI=1

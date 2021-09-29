@@ -33,6 +33,7 @@ set hidden
 set autoindent
 set showmatch
 set nowrap
+set nojoinspaces
 
 " Interfaz.
 set notitle
@@ -69,7 +70,7 @@ set ttimeout
 set ttimeoutlen=50
 set complete-=i                             " Disabled for best performance.
 set history=50
-set shortmess+=cIF
+set shortmess+=IF
 set shortmess-=S
 set scroll=1
 set scrolloff=0
@@ -77,9 +78,10 @@ set sidescroll=1
 set sidescrolloff=0
 set splitright
 set splitbelow
+set equalalways
 set backspace=indent,eol,start
-set clipboard=unnamed
-set mouse=nvi
+set clipboard+=unnamedplus
+set mouse=a
 
 " Performance.
 set updatetime=100

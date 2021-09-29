@@ -30,6 +30,7 @@ set hidden
 set autoindent
 set showmatch
 set nowrap
+set nojoinspaces
 
 " Interfaz.
 set notitle
@@ -62,7 +63,7 @@ set ttimeout
 set ttimeoutlen=50
 set complete-=i                             " Disabled for best performance.
 set history=50
-set shortmess+=cIF
+set shortmess+=IF
 set shortmess-=S
 set scroll=1
 set scrolloff=0
@@ -71,8 +72,8 @@ set sidescrolloff=0
 set splitright
 set splitbelow
 set backspace=indent,eol,start
-set clipboard=unnamed
-set mouse=nvi
+set clipboard+=unnamedplus
+set mouse=a
 
 " Performance.
 set updatetime=100
@@ -88,7 +89,6 @@ filetype plugin indent on | syntax on
 let g:coc_global_extensions=[
     \ 'coc-eslint',
     \ 'coc-json',
-    \ 'coc-prettier',
     \ 'coc-tsserver'
   \ ]
 
@@ -298,6 +298,9 @@ nmap <leader>ac <Plug>(coc-codeaction)
 
 " Coc apply AutoFix to problem on the current line.
 nmap <leader>qf <Plug>(coc-fix-current)
+
+" Coc add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
 
 " Fuzzy finder activate.
 nnoremap <silent> <leader>ff :FZF<CR>

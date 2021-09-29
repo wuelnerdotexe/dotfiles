@@ -1,19 +1,22 @@
 {
-  "prettier.eslintIntegration": true,
-  "coc.preferences.formatOnSaveFiletypes": [
-    "javascript",
-    "javascriptreact",
+  "coc.preferences.colorSupport": false,
+  "coc.preferences.enableMarkdown": false,
+  "coc.preferences.enableMessageDialog": true,
+  "coc.preferences.semanticTokensHighlights": false,
+  "eslint.autoFixOnSave": true,
+  "eslint.format.enable": true,
+  "eslint.probe": [
     "typescript",
-    "typescriptreact",
-    "css",
-    "less",
-    "scss",
-    "json",
-    "graphql",
-    "markdown",
-    "vue",
-    "svelte",
-    "yaml",
-    "html"
-  ]
+    "typescriptreact"
+  ],
+  "eslint.workingDirectories": [
+    {
+      "mode": "auto"
+    }
+  ],
+  "javascript.format.enabled": false,
+  "javascript.preferences.quoteStyle": "double",
+  "typescript.format.enabled": false,
+  "typescript.preferences.quoteStyle": "double",
+  "tsserver.formatOnType": false
 }
