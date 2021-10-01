@@ -205,7 +205,7 @@ autocmd VimEnter * ++nested colorscheme enfocado
 if has('nvim')
 lua <<EOF
   require'nvim-treesitter.configs'.setup {
-    ensure_installed = { "javascript", "json", "typescript", "tsx" },
+    ensure_installed = { "html", "css", "javascript", "json", "typescript", "tsx" },
     highlight = {
       enable = true,
       additional_vim_regex_highlighting = false,
