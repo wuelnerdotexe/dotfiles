@@ -38,10 +38,10 @@ set nojoinspaces
 " Interfaz.
 set notitle
 set nolist
-set number
+set nonumber
 set norelativenumber
 set numberwidth=5
-set cursorline
+set nocursorline
 set noruler                             " Disabled for best performance.
 set laststatus=2
 set cmdheight=1
