@@ -51,8 +51,7 @@ set noshowmode
 set signcolumn=auto:1
 
 " Statusline.
-set statusline=%#StatusLine#
-set statusline+=%t\ %m\ 
+set statusline=%t\ %m\ 
 set statusline+=%=\ 
 set statusline+=%{&filetype}\ %{&fenc?&fenc:&enc}[%{&ff}]\ L%l\ 
 
@@ -84,7 +83,7 @@ set clipboard+=unnamedplus
 set mouse=a
 
 " Performance.
-set updatetime=100
+set updatetime=300
 set nolazyredraw
 set ttyfast
 

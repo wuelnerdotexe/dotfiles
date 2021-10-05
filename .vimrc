@@ -47,7 +47,7 @@ set wildmenu
 set wildignorecase
 set noshowcmd                               " Disabled for best performance.
 set noshowmode
-set signcolumn=auto:1
+set signcolumn=auto
 
 " Search.
 set hlsearch
@@ -76,7 +76,7 @@ set clipboard+=unnamedplus
 set mouse=a
 
 " Performance.
-set updatetime=100
+set updatetime=300
 set nolazyredraw
 set ttyfast
 
