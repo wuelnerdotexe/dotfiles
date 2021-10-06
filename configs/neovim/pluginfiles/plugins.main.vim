@@ -68,6 +68,9 @@ Plug 'szw/vim-maximizer',{'on' : 'MaximizerToggle'}
 Plug 'itchyny/vim-gitbranch'
 Plug 'vim-airline/vim-airline'
 
+" Icons.
+Plug 'ryanoasis/vim-devicons'
+
 " Colors.
 Plug 'wuelnerdotexe/vim-enfocado',{'branch' : 'development'}
 

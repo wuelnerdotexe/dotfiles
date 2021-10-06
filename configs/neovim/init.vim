@@ -11,7 +11,7 @@
 set encoding=utf-8
 
 " Font.
-set guifont=JetBrains\ Mono
+set guifont=VictorMono\ Nerd\ Font
 
 " Languajes.
 set spelllang=en,es 
