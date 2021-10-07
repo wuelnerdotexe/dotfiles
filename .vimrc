@@ -4,7 +4,7 @@
 " URL:      https://github.com/wuelnerdotexe/dotfiles
 " License:  MIT
 " About:    This file is created to be easy to test by other users who want to
-" test all my vim setup. My main vim files are at configs/vim/ directory.
+" test all my vim setup. My main vim files are at configs/neovim/ directory.
 " -----------------------------------------------------------------------------
 
 " Encoding.
@@ -41,7 +41,6 @@ set numberwidth=5
 set nocursorline
 set noruler                                 " Disabled for best performance.
 set laststatus=2
-set showtabline=2
 set cmdheight=1
 set wildmenu
 set wildignorecase
@@ -71,6 +70,7 @@ set sidescroll=1
 set sidescrolloff=0
 set splitright
 set splitbelow
+set equalalways
 set backspace=indent,eol,start
 set clipboard+=unnamedplus
 set mouse=a
@@ -130,7 +130,7 @@ let g:airline#extensions#default#section_truncate_width={
   \ }
 
 " Airline theme.
-let g:airline_theme='enfocado'
+let g:airline_theme="enfocado"
 " -----------------------------------------------------------------------------
 " SECTION: Plugins main. 
 " -----------------------------------------------------------------------------
