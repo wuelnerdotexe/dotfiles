@@ -1,8 +1,8 @@
 # -----------------------------------------------------------------------------
-# Name:     tools.ps1
-# Author:   Wuelner Martínez <wuelnerdotexe@gmail.com>
+# Name:     SCOOP TOOLS.
+# Author:   Wuelner Martínez <wuelner.martinez@outlook.com>
 # URL:      https://github.com/wuelnerdotexe/dotfiles
-# License:  MIT
+# License:  MIT (C) Wuelner Martínez.
 # About:    Powershell script for install tools with scoop in Windows.
 # -----------------------------------------------------------------------------
 

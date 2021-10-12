@@ -1,8 +1,8 @@
 # -----------------------------------------------------------------------------
-# Name:     scoop.ps1
-# Author:   Wuelner Martínez <wuelnerdotexe@gmail.com>
+# Name:     INSTALL SCOOP.
+# Author:   Wuelner Martínez <wuelner.martinez@outlook.com>
 # URL:      https://github.com/wuelnerdotexe/dotfiles
-# License:  MIT
+# License:  MIT (C) Wuelner Martínez.
 # About:    Powershell script for install scoop in Windows.
 # -----------------------------------------------------------------------------
 

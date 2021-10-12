@@ -1,8 +1,8 @@
 :: ----------------------------------------------------------------------------
-:: Name:     mklinks.cmd
-:: Author:   Wuelner Martínez <wuelnerdotexe@gmail.com>
+:: Name:     SYMBOLIC LINKS.
+:: Author:   Wuelner Martínez <wuelner.martinez@outlook.com>
 :: URL:      https://github.com/wuelnerdotexe/dotfiles
-:: License:  MIT
+:: License:  MIT (C) Wuelner Martínez.
 :: About:    Bash script for make symbolic links for config files in Windows.
 :: ----------------------------------------------------------------------------
 
