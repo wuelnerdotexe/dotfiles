@@ -1,5 +1,5 @@
 " -----------------------------------------------------------------------------
-" Name:     MY VIMRC (complete).
+" Name:     MY VIMRC (minimal).
 " Author:   Wuelner Martínez <wuelner.martinez@outlook.com>
 " URL:      https://github.com/wuelnerdotexe/dotfiles
 " License:  MIT (C) Wuelner Martínez.
@@ -55,7 +55,7 @@ set wildmenu
 set wildignorecase
 set noshowcmd                           " Disabled for best performance.
 set noshowmode
-set signcolumn=auto:1
+set signcolumn=auto
 
 " Statusline.
 set laststatus=2
@@ -73,9 +73,6 @@ set wildignore+=**/.git,**/.svn,**/.hg,**/CVS,**/.DS_store
 set wildignore+=**/node_modules,**/bower_components
 set wildignorecase
 
-" Substitute.
-set inccommand=nosplit
-
 " Interaction.
 set confirm
 set ttimeout
@@ -92,8 +89,8 @@ set splitright
 set splitbelow
 set equalalways
 set backspace=indent,eol,start
-set clipboard+=unnamedplus
-set mouse=a
+set clipboard+=unnamed,unnamedplus
+set mouse=nvi
 
 " Performance.
 set synmaxcol=160
@@ -128,7 +125,8 @@ let g:NERDTreeQuitOnOpen=1
 let g:NERDTreeAutoDeleteBuffer=1
 
 " Airline font/symbols.
-let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=0
+let g:airline_symbols_ascii=1
 
 " Airline extensions.
 let g:airline_extensions=(['tabline','netrw','branch','hunks','coc','term','fzf'])
@@ -159,12 +157,6 @@ let g:airline_theme="enfocado"
 if has('nvim')
   let g:loaded_ruby_provider=0
   let g:loaded_perl_provider=0
-  
-  " IMPORTANT: These settings depend on each user because the installation
-  " is different depending on the OS, the package manager, and the Python
-  " version. In my case I have Python3 installed on Windows using scoop. 
-  let g:loaded_python_provider=0
-  let g:python3_host_prog='$HOME/scoop/apps/python/current/python.exe'
 endif
 
 " Check if curl.exe is installed on 32-bit Windows.
@@ -216,9 +208,6 @@ Plug 'preservim/nerdtree'
 Plug 'junegunn/fzf',{'do' : { -> fzf#install()}}
 
 " Coding.
-if has('nvim')
-  Plug 'nvim-treesitter/nvim-treesitter',{'do' : ':TSUpdate'}
-endif
 Plug 'neoclide/coc.nvim',{'branch' : 'release'}
 
 " Typing.
@@ -247,20 +236,6 @@ if !empty(filter(copy(g:plugs),'!isdirectory(v:val.dir)'))
 endif
 
 autocmd VimEnter * ++nested colorscheme enfocado
-" -----------------------------------------------------------------------------
-" SECTION: Treesitter config. 
-" -----------------------------------------------------------------------------
-if has('nvim')
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "html", "css", "javascript", "json", "typescript", "tsx" },
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  },
-}
-EOF
-endif
 " -----------------------------------------------------------------------------
 " SECTION: Native mappings. 
 " -----------------------------------------------------------------------------
