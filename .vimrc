@@ -93,7 +93,7 @@ set clipboard+=unnamed,unnamedplus
 set mouse=nvi
 
 " Performance.
-set synmaxcol=160
+set synmaxcol=220
 set updatetime=100
 set redrawtime=1500
 set nolazyredraw
