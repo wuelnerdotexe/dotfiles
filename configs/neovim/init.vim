@@ -114,6 +114,14 @@ let g:coc_global_extensions=[
     \ 'coc-tsserver'
   \ ]
 
+" Signify signs.
+let g:signify_sign_show_count=0
+let g:signify_sign_add='▎'
+let g:signify_sign_change='▎'
+let g:signify_sign_delete='▁'
+let g:signify_sign_delete_first_line='▔'
+let g:signify_sign_change_delete='~'
+
 " NERDTree interfaz.
 let g:NERDTreeMinimalUI=1
 let g:NERDTreeStatusline='explorer'
@@ -185,7 +193,7 @@ else
   endif
 endif
 
-" Automatic installation of Vim-Plug only if it is not installed.
+" Automatic installation of vim-plug only if it is not installed.
 if !filereadable(expand(plug_file))
   if !executable(expand(curl_exe))
     echoerr "You have to install curl or first install vim-plug yourself!"
@@ -214,11 +222,10 @@ Plug 'tpope/vim-sensible'
 " Files.
 Plug 'preservim/nerdtree'
 Plug 'junegunn/fzf',{'do' : { -> fzf#install()}}
+Plug 'junegunn/fzf.vim'
 
 " Coding.
-if has('nvim')
-  Plug 'nvim-treesitter/nvim-treesitter',{'do' : ':TSUpdate'}
-endif
+Plug 'nvim-treesitter/nvim-treesitter',{'do' : ':TSUpdate'}
 Plug 'neoclide/coc.nvim',{'branch' : 'release'}
 
 " Typing.
@@ -236,21 +243,21 @@ Plug 'mhinz/vim-signify'
 Plug 'itchyny/vim-gitbranch'
 
 " Interfaz.
-Plug 'wuelnerdotexe/vim-enfocado'
+Plug 'wuelnerdotexe/vim-enfocado',{'branch' : 'development'}
 Plug 'vim-airline/vim-airline'
 call plug#end()
 
-" Missing plugins are installed and set the colorscheme when all have loaded.
+" Missing plugins are installed.
 if !empty(filter(copy(g:plugs),'!isdirectory(v:val.dir)'))
   echomsg "Installing missing plugs..."
   PlugInstall --sync | source $MYVIMRC
 endif
 
+" Set Enfocado colorscheme when all have loaded.
 autocmd VimEnter * ++nested colorscheme enfocado
 " -----------------------------------------------------------------------------
 " SECTION: Treesitter config. 
 " -----------------------------------------------------------------------------
-if has('nvim')
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = { "html", "css", "javascript", "json", "typescript", "tsx" },
@@ -260,7 +267,6 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 EOF
-endif
 " -----------------------------------------------------------------------------
 " SECTION: Native mappings. 
 " -----------------------------------------------------------------------------

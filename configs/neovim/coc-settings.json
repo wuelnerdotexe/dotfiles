@@ -3,6 +3,10 @@
   "coc.preferences.enableMarkdown": false,
   "coc.preferences.enableMessageDialog": true,
   "coc.preferences.semanticTokensHighlights": false,
+  "diagnostic.errorSign": "❯",
+  "diagnostic.warningSign": "❯",
+  "diagnostic.infoSign": "❯",
+  "diagnostic.hintSign": "❯",
   "eslint.autoFixOnSave": true,
   "eslint.format.enable": true,
   "eslint.probe": [

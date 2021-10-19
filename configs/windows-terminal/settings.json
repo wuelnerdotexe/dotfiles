@@ -40,9 +40,11 @@
       "colorScheme": "White Hat Term",
       "cursorShape": "filledBox",
       "font": {
-        "face": "VictorMono Nerd Font"
+        "face": "Cartograph CF",
+        "size": 11
       },
       "intenseTextStyle": "all",
+      "padding": "4, 4, 4, 4",
       "scrollbarState": "hidden",
       "suppressApplicationTitle": true
     },
@@ -297,7 +299,7 @@
       "name": "White Hat Term",
       "purple": "#808080",
       "red": "#808080",
-      "selectionBackground": "#FFFFFF",
+      "selectionBackground": "#C0C0C0",
       "white": "#808080",
       "yellow": "#808080"
     }

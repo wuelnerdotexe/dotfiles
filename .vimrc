@@ -111,6 +111,14 @@ let g:coc_global_extensions=[
     \ 'coc-tsserver'
   \ ]
 
+" Signify signs.
+let g:signify_sign_show_count=0
+let g:signify_sign_add='▎'
+let g:signify_sign_change='▎'
+let g:signify_sign_delete='▁'
+let g:signify_sign_delete_first_line='▔'
+let g:signify_sign_change_delete='~'
+
 " NERDTree interfaz.
 let g:NERDTreeMinimalUI=1
 let g:NERDTreeStatusline='explorer'
@@ -153,12 +161,6 @@ let g:airline_theme="enfocado"
 " -----------------------------------------------------------------------------
 " SECTION: Plugins main. 
 " -----------------------------------------------------------------------------
-" Providers settings for neovim plugins.
-if has('nvim')
-  let g:loaded_ruby_provider=0
-  let g:loaded_perl_provider=0
-endif
-
 " Check if curl.exe is installed on 32-bit Windows.
 if has('win32') && !has('win64')
   let curl_exe = 'C:\Windows\Sysnative\curl.exe'
@@ -177,7 +179,7 @@ else
   endif
 endif
 
-" Automatic installation of Vim-Plug only if it is not installed.
+" Automatic installation of vim-plug only if it is not installed.
 if !filereadable(expand(plug_file))
   if !executable(expand(curl_exe))
     echoerr "You have to install curl or first install vim-plug yourself!"
@@ -229,12 +231,13 @@ Plug 'wuelnerdotexe/vim-enfocado'
 Plug 'vim-airline/vim-airline'
 call plug#end()
 
-" Missing plugins are installed and set the colorscheme when all have loaded.
+" Missing plugins are installed.
 if !empty(filter(copy(g:plugs),'!isdirectory(v:val.dir)'))
   echomsg "Installing missing plugs..."
   PlugInstall --sync | source $MYVIMRC
 endif
 
+" Set Enfocado colorscheme when all have loaded.
 autocmd VimEnter * ++nested colorscheme enfocado
 " -----------------------------------------------------------------------------
 " SECTION: Native mappings. 
