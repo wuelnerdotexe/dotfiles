@@ -33,7 +33,7 @@ set hidden
 " Coding.
 set nowrap
 set conceallevel=2
-set concealcursor=nvc
+set concealcursor=c
 set shiftround
 set autoindent
 set breakindent
@@ -202,32 +202,31 @@ endif
 
 " Install plugins.
 call plug#begin(expand(vim_plug))
-" Options.
-Plug 'tpope/vim-sensible'
+" Colors.
+Plug 'wuelnerdotexe/vim-enfocado'
+
+" General.
+Plug 'sheerun/vim-polyglot'
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 " Files.
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'preservim/nerdtree'
-Plug 'junegunn/fzf',{'do' : { -> fzf#install()}}
-
-" Coding.
-Plug 'neoclide/coc.nvim',{'branch' : 'release'}
 
 " Typing.
-Plug 'tpope/vim-sleuth'
+Plug 'mg979/vim-visual-multi', { 'branch': 'master' }
+Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
-Plug 'junegunn/vim-easy-align'
-Plug 'mg979/vim-visual-multi',{'branch' : 'master'}
 Plug 'matze/vim-move'
-Plug 'shime/vim-livedown'
 
 " Tools.
 Plug 'szw/vim-maximizer'
-Plug 'mhinz/vim-signify'
-Plug 'itchyny/vim-gitbranch'
+Plug 'shime/vim-livedown'
 
 " Interfaz.
-Plug 'wuelnerdotexe/vim-enfocado'
+Plug 'mhinz/vim-signify'
+Plug 'itchyny/vim-gitbranch'
 Plug 'vim-airline/vim-airline'
 call plug#end()
 
