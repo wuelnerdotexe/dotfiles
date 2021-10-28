@@ -160,6 +160,9 @@ let g:airline#extensions#default#section_truncate_width={
 
 " Airline theme.
 let g:airline_theme="enfocado"
+
+" Enfocado theme.
+let g:enfocado_style="neon" " Avaiables: 'nature' or 'neon'.
 " -----------------------------------------------------------------------------
 " SECTION: Plugins main. 
 " -----------------------------------------------------------------------------
@@ -223,6 +226,7 @@ Plug 'wuelnerdotexe/vim-enfocado', { 'branch': 'development' }
 Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+Plug 'github/copilot.vim'
 
 " Files.
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
