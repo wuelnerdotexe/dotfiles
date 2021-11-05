@@ -142,7 +142,6 @@ let g:airline_powerline_fonts=1
 let g:airline_extensions=(['tabline','netrw','branch','hunks','coc','term','fzf'])
 let g:airline#extensions#tabline#formatter='unique_tail'
 let g:airline#extensions#tabline#tab_nr_type=1
-let g:airline#extensions#branch#custom_head='gitbranch#name'
 let g:airline#extensions#hunks#non_zero_only=1
 
 " Airline sections.
@@ -219,18 +218,11 @@ endif
 
 " Install plugins.
 call plug#begin(expand(vim_plug))
-" Colors.
-Plug 'wuelnerdotexe/vim-enfocado', { 'branch': 'development' }
-
-" General.
+" IDE. 
 Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'github/copilot.vim'
-
-" Files.
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'preservim/nerdtree'
 
 " Typing.
 Plug 'mg979/vim-visual-multi', { 'branch': 'master' }
@@ -239,14 +231,21 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'matze/vim-move'
 
+" Git.
+Plug 'tpope/vim-fugitive'
+Plug 'mhinz/vim-signify'
+
+" Files.
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'preservim/nerdtree'
+
+" Interfaz.
+Plug 'wuelnerdotexe/vim-enfocado', { 'branch': 'development' }
+Plug 'vim-airline/vim-airline'
+
 " Tools.
 Plug 'szw/vim-maximizer'
 Plug 'shime/vim-livedown'
-
-" Interfaz.
-Plug 'mhinz/vim-signify'
-Plug 'itchyny/vim-gitbranch'
-Plug 'vim-airline/vim-airline'
 call plug#end()
 
 " Missing plugins are installed.
