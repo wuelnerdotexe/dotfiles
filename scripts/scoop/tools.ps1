@@ -7,7 +7,7 @@
 # -----------------------------------------------------------------------------
 
 # Install tools.
-scoop install adb bitwarden-cli nano neovim nodejs
+scoop install adb bitwarden-cli nano neovim-nightly nodejs python ziglang
 
 # Add scoop extras bucket.
 scoop bucket add extras
