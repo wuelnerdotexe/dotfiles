@@ -109,9 +109,12 @@ filetype plugin indent on | syntax on
 " -----------------------------------------------------------------------------
 " Coc extensions.
 let g:coc_global_extensions=[
+    \ 'coc-css',
     \ 'coc-eslint',
+    \ 'coc-html',
     \ 'coc-json',
-    \ 'coc-tsserver'
+    \ 'coc-tsserver',
+    \ 'coc-vimlsp'
   \ ]
 
 " Signify signs.
