@@ -55,7 +55,7 @@ set wildmenu
 set wildignorecase
 set noshowcmd                           " Disabled for best performance.
 set noshowmode
-set signcolumn=auto
+set signcolumn=yes
 
 " Statusline.
 set laststatus=2

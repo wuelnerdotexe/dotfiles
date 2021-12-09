@@ -7,19 +7,13 @@
 # -----------------------------------------------------------------------------
 
 # Install tools.
-scoop install adb bitwarden-cli nano neovim-nightly nodejs python ziglang
+scoop install adb bitwarden-cli nano neovim-nightly nodejs python starship
 
 # Add scoop extras bucket.
 scoop bucket add extras
 
 # Install extras apps.
 scoop install caffeine
-
-# Add scoop java bucket for openjdk.
-scoop bucket add java
-
-# Install openjdk.
-scoop install openjdk
 
 # Remove download cache.
 scoop cache rm *

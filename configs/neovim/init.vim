@@ -55,7 +55,7 @@ set wildmenu
 set wildignorecase
 set noshowcmd                           " Disabled for best performance.
 set noshowmode
-set signcolumn=auto:1
+set signcolumn=yes:2
 
 " Statusline.
 set laststatus=2
@@ -164,7 +164,7 @@ let g:airline#extensions#default#section_truncate_width={
 let g:airline_theme="enfocado"
 
 " Enfocado theme.
-let g:enfocado_style="neon" " Avaiables: 'nature' or 'neon'.
+let g:enfocado_style="nature" " Avaiables: 'nature' or 'neon'.
 " -----------------------------------------------------------------------------
 " SECTION: Plugins main. 
 " -----------------------------------------------------------------------------
