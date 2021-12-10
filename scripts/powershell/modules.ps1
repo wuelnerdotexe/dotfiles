@@ -6,7 +6,10 @@
 # About:    Powershell script for install powershell modules in Windows.
 # -----------------------------------------------------------------------------
 
-# Install PSReadLine.
+# Install PowerShellGet pre-release.
+Install-Module -Name PowerShellGet -AllowPrerelease -Force
+
+# Install PSReadLine pre-release.
 Install-Module -Name PSReadLine -AllowPrerelease -Force
 
 # Install Terminal-Icons.

@@ -1,0 +1,10 @@
+[user]
+	name = Wuelner Ofdely Martínez Domingo
+	email = wuelner.martinez@outlook.com
+[color]
+	ui = auto
+[core]
+	editor = nvim
+	autocrlf = true
+[credential]
+	helper = manager-core
