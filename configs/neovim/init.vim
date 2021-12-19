@@ -40,7 +40,7 @@ set breakindent
 set showmatch
 set matchpairs+=<:>
 set nojoinspaces
-set noemoji
+set emoji
 
 " Interfaz.
 set notitle
@@ -48,7 +48,7 @@ set nolist
 set nonumber
 set norelativenumber
 set numberwidth=5
-set nocursorline
+set cursorline
 set noruler                             " Disabled for best performance.
 set cmdheight=1
 set wildmenu
@@ -116,6 +116,9 @@ let g:coc_global_extensions=[
     \ 'coc-tsserver',
     \ 'coc-vimlsp'
   \ ]
+
+" Coc syntax.
+let g:coc_default_semantic_highlight_groups=1
 
 " Signify signs.
 let g:signify_sign_show_count=0
@@ -248,7 +251,7 @@ Plug 'vim-airline/vim-airline'
 
 " Tools.
 Plug 'szw/vim-maximizer'
-Plug 'shime/vim-livedown'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': [ 'markdown', 'vim-plug' ] }
 call plug#end()
 
 " Missing plugins are installed.

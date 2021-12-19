@@ -48,7 +48,7 @@ set nolist
 set nonumber
 set norelativenumber
 set numberwidth=5
-set nocursorline
+set cursorline
 set noruler                             " Disabled for best performance.
 set cmdheight=1
 set wildmenu

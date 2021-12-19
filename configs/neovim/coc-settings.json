@@ -1,8 +1,8 @@
 {
-  "coc.preferences.colorSupport": false,
-  "coc.preferences.enableMarkdown": false,
+  "coc.preferences.colorSupport": true,
+  "coc.preferences.enableMarkdown": true,
   "coc.preferences.enableMessageDialog": true,
-  "coc.preferences.semanticTokensHighlights": false,
+  "coc.preferences.semanticTokensHighlights": true,
   "diagnostic.errorSign": "❯",
   "diagnostic.warningSign": "❯",
   "diagnostic.infoSign": "❯",
