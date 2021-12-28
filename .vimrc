@@ -17,6 +17,7 @@ set encoding=utf-8
 " Languajes.
 set spelllang=en,es 
 set helplang=en,es
+set spell
 
 " Colors.
 set termguicolors
@@ -44,7 +45,7 @@ set noemoji
 
 " Interfaz.
 set notitle
-set nolist
+set list
 set nonumber
 set norelativenumber
 set numberwidth=5
@@ -114,13 +115,37 @@ let g:coc_global_extensions=[
     \ 'coc-vimlsp'
   \ ]
 
+" Coc syntax.
+let g:coc_default_semantic_highlight_groups=1
+
+" Rainbow activate.
+let g:rainbow_active=1
+
+" IndentLine excludes.
+let g:indentLine_fileTypeExclude = ['text', 'sh']
+let g:indentLine_bufTypeExclude = ['help', 'terminal']
+let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*']
+
+" IndentLine chars.
+let g:indentLine_first_char="▏"
+let g:indentLine_char="▏"
+
+" IndentLine level.
+let g:indentLine_showFirstIndentLevel=1
+
+" Matchit disable.
+let g:loaded_matchit=1
+
+" Match-up off-screen.
+let g:matchup_matchparen_offscreen = {'method': 'popup'}
+
 " Signify signs.
 let g:signify_sign_show_count=0
 let g:signify_sign_add='▎'
 let g:signify_sign_change='▎'
 let g:signify_sign_delete='▁'
 let g:signify_sign_delete_first_line='▔'
-let g:signify_sign_change_delete='~'
+let g:signify_sign_change_delete='≈'
 
 " NERDTree interfaz.
 let g:NERDTreeMinimalUI=1
@@ -160,6 +185,9 @@ let g:airline#extensions#default#section_truncate_width={
 
 " Airline theme.
 let g:airline_theme="enfocado"
+
+" Enfocado theme.
+let g:enfocado_style="nature" " Available: 'nature' or 'neon'.
 " -----------------------------------------------------------------------------
 " SECTION: Plugins main. 
 " -----------------------------------------------------------------------------
@@ -207,6 +235,9 @@ call plug#begin(expand(vim_plug))
 " IDE.
 Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'luochen1990/rainbow'
+Plug 'Yggdroot/indentLine'
+Plug 'andymass/vim-matchup'
 
 " Typing.
 Plug 'mg979/vim-visual-multi', { 'branch': 'master' }
@@ -229,7 +260,7 @@ Plug 'vim-airline/vim-airline'
 
 " Tools.
 Plug 'szw/vim-maximizer'
-Plug 'shime/vim-livedown'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': [ 'markdown', 'vim-plug' ] }
 call plug#end()
 
 " Missing plugins are installed.

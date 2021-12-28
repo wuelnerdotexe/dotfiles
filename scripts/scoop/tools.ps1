@@ -7,7 +7,7 @@
 # -----------------------------------------------------------------------------
 
 # Install tools.
-scoop install adb bitwarden-cli cowsay neovim nodejs python starship winfetch
+scoop install adb bitwarden-cli cowsay mingw neovim nodejs python starship winfetch
 
 # Add scoop extras bucket.
 scoop bucket add extras

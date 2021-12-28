@@ -1,22 +1,18 @@
 " -----------------------------------------------------------------------------
-" Name:     MY VIMRC (complete).
+" Name:     INIT.VIM
 " Author:   Wuelner Martínez <wuelner.martinez@outlook.com>
 " URL:      https://github.com/wuelnerdotexe/dotfiles
 " License:  MIT (C) Wuelner Martínez.
-" About:    Minimal and multi-platform Vim/Neovim config.
+" About:    Minimal Neovim config.
 " -----------------------------------------------------------------------------
-
-" Get the defaults that most users want (only vim).
-if !has('nvim')
-  source $VIMRUNTIME/defaults.vim
-endif
 
 " Encoding.
 set encoding=utf-8
 
-" Languajes.
-set spelllang=en,es 
+" Languages.
+set spelllang=en,es
 set helplang=en,es
+set spell
 
 " Colors.
 set termguicolors
@@ -44,7 +40,7 @@ set emoji
 
 " Interfaz.
 set notitle
-set nolist
+set list
 set nonumber
 set norelativenumber
 set numberwidth=5
@@ -59,9 +55,6 @@ set signcolumn=yes:2
 
 " Statusline.
 set laststatus=2
-set statusline=%t\ %m\ 
-set statusline+=%=\ 
-set statusline+=%{&filetype}\ %{&fenc?&fenc:&enc}[%{&ff}]\ L%l\ 
 set showtabline=2
 
 " Search.
@@ -105,7 +98,7 @@ set ttyfast
 " Filetype and syntax.
 filetype plugin indent on | syntax on
 " -----------------------------------------------------------------------------
-" SECTION: Plugins settings. 
+" SECTION: Plugins settings.
 " -----------------------------------------------------------------------------
 " Coc extensions.
 let g:coc_global_extensions=[
@@ -120,13 +113,34 @@ let g:coc_global_extensions=[
 " Coc syntax.
 let g:coc_default_semantic_highlight_groups=1
 
+" Rainbow activate.
+let g:rainbow_active=1
+
+" IndentLine excludes.
+let g:indentLine_fileTypeExclude = ['text', 'sh']
+let g:indentLine_bufTypeExclude = ['help', 'terminal']
+let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*']
+
+" IndentLine chars.
+let g:indentLine_first_char="▏"
+let g:indentLine_char="▏"
+
+" IndentLine level.
+let g:indentLine_showFirstIndentLevel=1
+
+" Matchit disable.
+let g:loaded_matchit=1
+
+" Match-up off-screen.
+let g:matchup_matchparen_offscreen = {'method': 'popup'}
+
 " Signify signs.
 let g:signify_sign_show_count=0
 let g:signify_sign_add='▎'
 let g:signify_sign_change='▎'
 let g:signify_sign_delete='▁'
 let g:signify_sign_delete_first_line='▔'
-let g:signify_sign_change_delete='~'
+let g:signify_sign_change_delete='≈'
 
 " NERDTree interfaz.
 let g:NERDTreeMinimalUI=1
@@ -167,67 +181,30 @@ let g:airline#extensions#default#section_truncate_width={
 let g:airline_theme="enfocado"
 
 " Enfocado theme.
-let g:enfocado_style="nature" " Avaiables: 'nature' or 'neon'.
+let g:enfocado_style="nature" " Available: 'nature' or 'neon'.
 " -----------------------------------------------------------------------------
-" SECTION: Plugins main. 
+" SECTION: Plugins main.
 " -----------------------------------------------------------------------------
 " Providers settings for neovim plugins.
 if has('nvim')
   let g:loaded_ruby_provider=0
   let g:loaded_perl_provider=0
-  
+
   " IMPORTANT: These settings depend on each user because the installation
   " is different depending on the OS, the package manager, and the Python
-  " version. In my case I have Python3 installed on Windows using scoop. 
+  " version. In my case I have Python3 installed on Windows using scoop.
   let g:loaded_python_provider=0
-  let g:python3_host_prog='$HOME/scoop/apps/python/current/python.exe'
-endif
-
-" Check if curl.exe is installed on 32-bit Windows.
-if has('win32') && !has('win64')
-  let curl_exe = 'C:\Windows\Sysnative\curl.exe'
-else
-  let curl_exe = 'curl'
-endif
-
-" Set path to vim-plug file.
-if has('nvim')
-  let plug_file=stdpath('data').'/site/autoload/plug.vim'
-else
-  if has('win32')
-    let plug_file='$HOME/vimfiles/autoload/plug.vim'
-  else
-    let plug_file='$HOME/.vim/autoload/plug.vim'
-  endif
-endif
-
-" Automatic installation of vim-plug only if it is not installed.
-if !filereadable(expand(plug_file))
-  if !executable(expand(curl_exe))
-    echoerr "You have to install curl or first install vim-plug yourself!"
-  endif
-  echomsg "Installing vim-plug..."
-  silent execute "!"curl_exe" -fLo " . shellescape(expand(plug_file)) . " --create-dirs
-      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-endif
-
-" Set path to plugins directory.
-if has('nvim')
-  let vim_plug=stdpath('data').'/plugged/'
-else
-  if has('win32')
-    let vim_plug='$HOME/vimfiles/plugged/'
-  else
-    let vim_plug='$HOME/.vim/plugged/'
-  endif
+  let g:python3_host_prog='$HOME\scoop\apps\python\current\python.exe'
 endif
 
 " Install plugins.
-call plug#begin(expand(vim_plug))
-" IDE. 
+call plug#begin(stdpath('data').'\plugged\')
+" IDE.
 Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+Plug 'luochen1990/rainbow'
+Plug 'Yggdroot/indentLine'
+Plug 'andymass/vim-matchup'
 Plug 'github/copilot.vim'
 
 " Typing.
@@ -254,27 +231,10 @@ Plug 'szw/vim-maximizer'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': [ 'markdown', 'vim-plug' ] }
 call plug#end()
 
-" Missing plugins are installed.
-if !empty(filter(copy(g:plugs),'!isdirectory(v:val.dir)'))
-  echomsg "Installing missing plugs..."
-  PlugInstall --sync | source $MYVIMRC
-endif
-
 " Set Enfocado colorscheme when all have loaded.
 autocmd VimEnter * ++nested colorscheme enfocado
 " -----------------------------------------------------------------------------
-" SECTION: Treesitter config. 
-" -----------------------------------------------------------------------------
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  },
-}
-EOF
-" -----------------------------------------------------------------------------
-" SECTION: Native mappings. 
+" SECTION: Native mappings.
 " -----------------------------------------------------------------------------
 " It is indicated that the <Space> key will be the <leader> key.
 let mapleader="\<Space>"
@@ -295,7 +255,7 @@ nnoremap <silent> <C-k> 1<C-w>+
 nnoremap <silent> <C-l> 1<C-w>>
 nnoremap <silent> <C-j> 1<C-w>-
 " -----------------------------------------------------------------------------
-" SECTION: Plugins mappings. 
+" SECTION: Plugins mappings.
 " -----------------------------------------------------------------------------
 " Coc make <CR> auto-select the first completion item and notify to
 " format on enter, <cr> could be remapped by other vim plugin
