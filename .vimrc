@@ -15,7 +15,7 @@ endif
 set encoding=utf-8
 
 " Languajes.
-set spelllang=en,es 
+set spelllang=en,es
 set helplang=en,es
 set spell
 
@@ -161,11 +161,14 @@ let g:NERDTreeQuitOnOpen=1
 let g:NERDTreeAutoDeleteBuffer=1
 
 " Airline font/symbols.
+let g:airline_left_alt_sep=''
+let g:airline_right_alt_sep=''
 let g:airline_powerline_fonts=0
 let g:airline_symbols_ascii=1
 
 " Airline extensions.
-let g:airline_extensions=(['tabline','netrw','branch','hunks','coc','term','fzf'])
+let g:airline_extensions=(['branch','coc','fzf','hunks','netrw','tabline','term','whitespace'])
+let g:airline#extensions#tabline#show_close_button=0
 let g:airline#extensions#tabline#formatter='unique_tail'
 let g:airline#extensions#tabline#tab_nr_type=1
 let g:airline#extensions#hunks#non_zero_only=1
@@ -183,13 +186,15 @@ let g:airline#extensions#default#section_truncate_width={
     \ 'warning' : 100
   \ }
 
+let g:airline_inactive_alt_sep=1
+
 " Airline theme.
 let g:airline_theme="enfocado"
 
 " Enfocado theme.
 let g:enfocado_style="nature" " Available: 'nature' or 'neon'.
 " -----------------------------------------------------------------------------
-" SECTION: Plugins main. 
+" SECTION: Plugins main.
 " -----------------------------------------------------------------------------
 " Check if curl.exe is installed on 32-bit Windows.
 if has('win32') && !has('win64')
@@ -272,7 +277,7 @@ endif
 " Set Enfocado colorscheme when all have loaded.
 autocmd VimEnter * ++nested colorscheme enfocado
 " -----------------------------------------------------------------------------
-" SECTION: Native mappings. 
+" SECTION: Native mappings.
 " -----------------------------------------------------------------------------
 " It is indicated that the <Space> key will be the <leader> key.
 let mapleader="\<Space>"
@@ -293,7 +298,7 @@ nnoremap <silent> <C-k> 1<C-w>+
 nnoremap <silent> <C-l> 1<C-w>>
 nnoremap <silent> <C-j> 1<C-w>-
 " -----------------------------------------------------------------------------
-" SECTION: Plugins mappings. 
+" SECTION: Plugins mappings.
 " -----------------------------------------------------------------------------
 " Coc make <CR> auto-select the first completion item and notify to
 " format on enter, <cr> could be remapped by other vim plugin

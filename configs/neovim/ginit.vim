@@ -15,11 +15,6 @@ if exists(':GuiFont')
     GuiFont! BlexMono\ Nerd\ Font:h10
 endif
 
-" Enable GUI Linespace
-if exists(':GuiLinespace')
-    GuiLinespace 1.5
-endif
-
 " Disable GUI Tabline
 if exists(':GuiTabline')
     GuiTabline 0

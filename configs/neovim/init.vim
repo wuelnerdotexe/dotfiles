@@ -122,8 +122,8 @@ let g:indentLine_bufTypeExclude = ['help', 'terminal']
 let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*']
 
 " IndentLine chars.
-let g:indentLine_first_char="▏"
-let g:indentLine_char="▏"
+let g:indentLine_first_char='▏'
+let g:indentLine_char='▏'
 
 " IndentLine level.
 let g:indentLine_showFirstIndentLevel=1
@@ -156,10 +156,15 @@ let g:NERDTreeQuitOnOpen=1
 let g:NERDTreeAutoDeleteBuffer=1
 
 " Airline font/symbols.
+let g:airline_left_sep=''
+let g:airline_left_alt_sep=''
+let g:airline_right_sep=''
+let g:airline_right_alt_sep=''
 let g:airline_powerline_fonts=1
 
 " Airline extensions.
-let g:airline_extensions=(['tabline','netrw','branch','hunks','coc','term','fzf'])
+let g:airline_extensions=(['branch','coc','fzf','hunks','netrw','tabline','term','whitespace'])
+let g:airline#extensions#tabline#show_close_button=0
 let g:airline#extensions#tabline#formatter='unique_tail'
 let g:airline#extensions#tabline#tab_nr_type=1
 let g:airline#extensions#hunks#non_zero_only=1
@@ -178,10 +183,10 @@ let g:airline#extensions#default#section_truncate_width={
   \ }
 
 " Airline theme.
-let g:airline_theme="enfocado"
+let g:airline_theme='enfocado'
 
 " Enfocado theme.
-let g:enfocado_style="nature" " Available: 'nature' or 'neon'.
+let g:enfocado_style='nature' " Available: 'nature' or 'neon'.
 " -----------------------------------------------------------------------------
 " SECTION: Plugins main.
 " -----------------------------------------------------------------------------
@@ -198,7 +203,7 @@ if has('nvim')
 endif
 
 " Install plugins.
-call plug#begin(stdpath('data').'\plugged\')
+call plug#begin(stdpath('data') . '\plugged\')
 " IDE.
 Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
