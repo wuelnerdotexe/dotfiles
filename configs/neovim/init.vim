@@ -15,6 +15,7 @@ set helplang=en,es
 set nospell
 
 " Colors.
+set t_Co=256
 set termguicolors
 set background=dark
 
@@ -45,11 +46,11 @@ set nonumber
 set norelativenumber
 set numberwidth=5
 set cursorline
-set noruler                             " Disabled for best performance.
+set noruler                                    " Disabled for best performance.
 set cmdheight=1
 set wildmenu
 set wildignorecase
-set noshowcmd                           " Disabled for best performance.
+set noshowcmd                                  " Disabled for best performance.
 set noshowmode
 set signcolumn=yes:2
 
@@ -73,7 +74,7 @@ set inccommand=nosplit
 set confirm
 set ttimeout
 set ttimeoutlen=50
-set complete-=i                             " Disabled for best performance.
+set complete-=i                                " Disabled for best performance.
 set history=50
 set shortmess+=IF
 set shortmess-=S
@@ -116,13 +117,13 @@ let g:coc_default_semantic_highlight_groups=1
 " Rainbow activate.
 let g:rainbow_active=1
 
-" IndentLine chars.
+" IndentLine conceal.
 let g:indentLine_setConceal=0
 
 " IndentLine excludes.
-let g:indentLine_fileTypeExclude = ['text', 'sh']
-let g:indentLine_bufTypeExclude = ['help', 'terminal']
-let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*']
+let g:indentLine_fileTypeExclude=[ 'text', 'sh' ]
+let g:indentLine_bufTypeExclude=[ 'help', 'terminal' ]
+let g:indentLine_bufNameExclude=[ '_.*', 'NERD_tree.*' ]
 
 " IndentLine chars.
 let g:indentLine_first_char='▏'
@@ -135,7 +136,7 @@ let g:indentLine_showFirstIndentLevel=1
 let g:loaded_matchit=1
 
 " Match-up off-screen.
-let g:matchup_matchparen_offscreen = {'method': 'popup'}
+let g:matchup_matchparen_offscreen={ 'method': 'popup' }
 
 " Signify signs.
 let g:signify_sign_show_count=0
@@ -143,7 +144,7 @@ let g:signify_sign_add='▎'
 let g:signify_sign_change='▎'
 let g:signify_sign_delete='▁'
 let g:signify_sign_delete_first_line='▔'
-let g:signify_sign_change_delete='≈'
+let g:signify_sign_change_delete='▎'
 
 " NERDTree interfaz.
 let g:NERDTreeMinimalUI=1
@@ -154,7 +155,14 @@ let g:NERDTreeStatusline='explorer'
 " NERDTree operation.
 let g:NERDTreeMarkBookmarks=0
 let g:NERDTreeShowHidden=1
-let g:NERDTreeIgnore=['\.git$','\.svn$','\.hg$','\CSV$','\.DS_Store$','\Thumbs.db$']
+let g:NERDTreeIgnore=[
+    \ '\.git$',
+    \ '\.svn$',
+    \ '\.hg$',
+    \ '\CSV$',
+    \ '\.DS_Store$',
+    \ '\Thumbs.db$'
+  \ ]
 
 " NERDTree interaction.
 let g:NERDTreeQuitOnOpen=1
@@ -168,7 +176,16 @@ let g:airline_right_alt_sep=''
 let g:airline_powerline_fonts=1
 
 " Airline extensions.
-let g:airline_extensions=(['branch','coc','fzf','hunks','netrw','tabline','term','whitespace'])
+let g:airline_extensions=([
+    \ 'branch',
+    \ 'coc',
+    \ 'fzf',
+    \ 'hunks',
+    \ 'netrw',
+    \ 'tabline',
+    \ 'term',
+    \ 'whitespace'
+  \ ])
 let g:airline#extensions#tabline#show_close_button=0
 let g:airline#extensions#tabline#formatter='unique_tail'
 let g:airline#extensions#tabline#tab_nr_type=1
@@ -180,11 +197,11 @@ let g:airline_section_z='L%l'
 let g:airline_section_y='%{&fenc?&fenc:&enc}[%{&ff}] %{SleuthIndicator()}'
 let g:airline_section_x='%{&filetype}'
 let g:airline#extensions#default#section_truncate_width={
-    \ 'b' : 100,
-    \ 'y' : 100,
-    \ 'x' : 100,
-    \ 'error' : 100,
-    \ 'warning' : 100
+    \ 'b': 100,
+    \ 'y': 100,
+    \ 'x': 100,
+    \ 'error': 100,
+    \ 'warning': 100
   \ }
 
 " Airline theme.
@@ -196,19 +213,17 @@ let g:enfocado_style='nature' " Available: 'nature' or 'neon'.
 " SECTION: Plugins main.
 " -----------------------------------------------------------------------------
 " Providers settings for neovim plugins.
-if has('nvim')
-  let g:loaded_ruby_provider=0
-  let g:loaded_perl_provider=0
+let g:loaded_ruby_provider=0
+let g:loaded_perl_provider=0
 
-  " IMPORTANT: These settings depend on each user because the installation
-  " is different depending on the OS, the package manager, and the Python
-  " version. In my case I have Python3 installed on Windows using scoop.
-  let g:loaded_python_provider=0
-  let g:python3_host_prog='$HOME\scoop\apps\python\current\python.exe'
-endif
+" IMPORTANT: These settings depend on each user because the installation
+" is different depending on the OS, the package manager, and the Python
+" version. In my case I have Python3 installed on Windows using scoop.
+let g:loaded_python_provider=0
+let g:python3_host_prog=expand('$HOME\scoop\apps\python\current\python.exe')
 
 " Install plugins.
-call plug#begin(stdpath('data') . '\plugged\')
+call plug#begin(expand('$LOCALAPPDATA\vim\plugins\'))
 " IDE.
 Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
@@ -238,7 +253,8 @@ Plug 'vim-airline/vim-airline'
 
 " Tools.
 Plug 'szw/vim-maximizer'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': [ 'markdown', 'vim-plug' ] }
+Plug 'iamcco/markdown-preview.nvim',
+    \ { 'do': { -> mkdp#util#install() }, 'for': [ 'markdown', 'vim-plug' ] }
 call plug#end()
 
 " Set Enfocado colorscheme when all have loaded.
@@ -269,42 +285,48 @@ nnoremap <silent> <C-j> 1<C-w>-
 " -----------------------------------------------------------------------------
 " Coc make <CR> auto-select the first completion item and notify to
 " format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <cr> pumvisible() ?
+    \ coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Coc use tab for trigger completion with characters ahead and navigate.
 inoremap <silent> <expr> <TAB>
-  \ pumvisible() ? "\<C-n>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ coc#refresh()
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ coc#refresh()
 inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
-  let col=col('.') - 1
-  return !col || getline('.')[col - 1]=~#'\s'
+    let col=col('.') - 1
+    return !col || getline('.')[col - 1]=~#'\s'
 endfunction
 
 " Coc use K to show documentation in preview window.
 nnoremap <silent> K <Cmd>call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
-  if (index(['vim','help'],&filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!'.&keywordprg." ".expand('<cword>')
-  endif
+    if (index(['vim','help'],&filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    elseif (coc#rpc#ready())
+        call CocActionAsync('doHover')
+    else
+        execute '!'.&keywordprg." ".expand('<cword>')
+    endif
 endfunction
 
 " Coc remap <C-f> and <C-b> for scroll float windows/popups.
 if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+    nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ?
+        \ coc#float#scroll(1) : "\<C-f>"
+    nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ?
+        \ coc#float#scroll(0) : "\<C-b>"
+    inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ?
+        \ "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+    inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ?
+        \ "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+    vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ?
+        \ coc#float#scroll(1) : "\<C-f>"
+    vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ?
+        \ coc#float#scroll(0) : "\<C-b>"
 endif
 
 " Coc GoTo code navigation.

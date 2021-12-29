@@ -3,12 +3,12 @@
 " Author:   Wuelner Martínez <wuelner.martinez@outlook.com>
 " URL:      https://github.com/wuelnerdotexe/dotfiles
 " License:  MIT (C) Wuelner Martínez.
-" About:    Minimal and multi-platform Vim/Neovim config.
+" About:    Minimal and multi-platform Vim or Neovim config.
 " -----------------------------------------------------------------------------
 
 " Get the defaults that most users want (only vim).
 if !has('nvim')
-  source $VIMRUNTIME/defaults.vim
+    source $VIMRUNTIME/defaults.vim
 endif
 
 " Encoding.
@@ -20,6 +20,7 @@ set helplang=en,es
 set nospell
 
 " Colors.
+set t_Co=256
 set termguicolors
 set background=dark
 
@@ -50,11 +51,11 @@ set nonumber
 set norelativenumber
 set numberwidth=5
 set cursorline
-set noruler                             " Disabled for best performance.
+set noruler                                    " Disabled for best performance.
 set cmdheight=1
 set wildmenu
 set wildignorecase
-set noshowcmd                           " Disabled for best performance.
+set noshowcmd                                  " Disabled for best performance.
 set noshowmode
 set signcolumn=yes
 
@@ -78,7 +79,7 @@ set wildignorecase
 set confirm
 set ttimeout
 set ttimeoutlen=50
-set complete-=i                             " Disabled for best performance.
+set complete-=i                                " Disabled for best performance.
 set history=50
 set shortmess+=IF
 set shortmess-=S
@@ -122,9 +123,9 @@ let g:coc_default_semantic_highlight_groups=1
 let g:rainbow_active=1
 
 " IndentLine excludes.
-let g:indentLine_fileTypeExclude = ['text', 'sh']
-let g:indentLine_bufTypeExclude = ['help', 'terminal']
-let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*']
+let g:indentLine_fileTypeExclude=[ 'text', 'sh' ]
+let g:indentLine_bufTypeExclude=[ 'help' , 'terminal' ]
+let g:indentLine_bufNameExclude=[ '_.*' , 'NERD_tree.*' ]
 
 " IndentLine chars.
 let g:indentLine_first_char="▏"
@@ -137,7 +138,7 @@ let g:indentLine_showFirstIndentLevel=1
 let g:loaded_matchit=1
 
 " Match-up off-screen.
-let g:matchup_matchparen_offscreen = {'method': 'popup'}
+let g:matchup_matchparen_offscreen={ 'method': 'popup' }
 
 " Signify signs.
 let g:signify_sign_show_count=0
@@ -145,16 +146,25 @@ let g:signify_sign_add='▎'
 let g:signify_sign_change='▎'
 let g:signify_sign_delete='▁'
 let g:signify_sign_delete_first_line='▔'
-let g:signify_sign_change_delete='≈'
+let g:signify_sign_change_delete='▎'
 
 " NERDTree interfaz.
 let g:NERDTreeMinimalUI=1
+let NERDTreeDirArrowExpandable="●"
+let NERDTreeDirArrowCollapsible="○"
 let g:NERDTreeStatusline='explorer'
 
 " NERDTree operation.
 let g:NERDTreeMarkBookmarks=0
 let g:NERDTreeShowHidden=1
-let g:NERDTreeIgnore=['\.git$','\.svn$','\.hg$','\CSV$','\.DS_Store$','\Thumbs.db$']
+let g:NERDTreeIgnore=[
+    \ '\.git$',
+    \ '\.svn$',
+    \ '\.hg$',
+    \ '\CSV$',
+    \ '\.DS_Store$',
+    \ '\Thumbs.db$'
+  \ ]
 
 " NERDTree interaction.
 let g:NERDTreeQuitOnOpen=1
@@ -179,14 +189,12 @@ let g:airline_section_z='L%l'
 let g:airline_section_y='%{&fenc?&fenc:&enc}[%{&ff}] %{SleuthIndicator()}'
 let g:airline_section_x='%{&filetype}'
 let g:airline#extensions#default#section_truncate_width={
-    \ 'b' : 100,
-    \ 'y' : 100,
-    \ 'x' : 100,
-    \ 'error' : 100,
-    \ 'warning' : 100
+    \ 'b': 100,
+    \ 'y': 100,
+    \ 'x': 100,
+    \ 'error': 100,
+    \ 'warning': 100
   \ }
-
-let g:airline_inactive_alt_sep=1
 
 " Airline theme.
 let g:airline_theme="enfocado"
@@ -198,41 +206,41 @@ let g:enfocado_style="nature" " Available: 'nature' or 'neon'.
 " -----------------------------------------------------------------------------
 " Check if curl.exe is installed on 32-bit Windows.
 if has('win32') && !has('win64')
-  let curl_exe = 'C:\Windows\Sysnative\curl.exe'
+    let curl_exe = 'C:\Windows\Sysnative\curl.exe'
 else
-  let curl_exe = 'curl'
+    let curl_exe = 'curl'
 endif
 
 " Set path to vim-plug file.
 if has('nvim')
-  let plug_file=stdpath('data').'/site/autoload/plug.vim'
+    let plug_file=stdpath('data').'/site/autoload/plug.vim'
 else
-  if has('win32')
-    let plug_file='$HOME/vimfiles/autoload/plug.vim'
-  else
-    let plug_file='$HOME/.vim/autoload/plug.vim'
-  endif
+    if has('win32')
+        let plug_file='$HOME/vimfiles/autoload/plug.vim'
+    else
+        let plug_file='$HOME/.vim/autoload/plug.vim'
+    endif
 endif
 
 " Automatic installation of vim-plug only if it is not installed.
 if !filereadable(expand(plug_file))
-  if !executable(expand(curl_exe))
-    echoerr "You have to install curl or first install vim-plug yourself!"
-  endif
-  echomsg "Installing vim-plug..."
-  silent execute "!"curl_exe" -fLo " . shellescape(expand(plug_file)) . " --create-dirs
-      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+    if !executable(expand(curl_exe))
+        echoerr "You have to install curl or first install vim-plug yourself!"
+    endif
+    echomsg "Installing vim-plug..."
+    silent execute "!"curl_exe" -fLo " . shellescape(expand(plug_file)) . " --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" --sync
 endif
 
 " Set path to plugins directory.
 if has('nvim')
-  let vim_plug=stdpath('data').'/plugged/'
+    let vim_plug=stdpath('data').'/plugged/'
 else
-  if has('win32')
-    let vim_plug='$HOME/vimfiles/plugged/'
-  else
-    let vim_plug='$HOME/.vim/plugged/'
-  endif
+    if has('win32')
+        let vim_plug='$HOME/vimfiles/plugged/'
+    else
+        let vim_plug='$HOME/.vim/plugged/'
+    endif
 endif
 
 " Install plugins.
@@ -265,13 +273,14 @@ Plug 'vim-airline/vim-airline'
 
 " Tools.
 Plug 'szw/vim-maximizer'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': [ 'markdown', 'vim-plug' ] }
+Plug 'iamcco/markdown-preview.nvim',
+    \ { 'do': { -> mkdp#util#install() }, 'for': [ 'markdown', 'vim-plug' ] }
 call plug#end()
 
 " Missing plugins are installed.
 if !empty(filter(copy(g:plugs),'!isdirectory(v:val.dir)'))
-  echomsg "Installing missing plugs..."
-  PlugInstall --sync | source $MYVIMRC
+    echomsg "Installing missing plugs..."
+    PlugInstall --sync | source $MYVIMRC
 endif
 
 " Set Enfocado colorscheme when all have loaded.
@@ -302,42 +311,48 @@ nnoremap <silent> <C-j> 1<C-w>-
 " -----------------------------------------------------------------------------
 " Coc make <CR> auto-select the first completion item and notify to
 " format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <cr> pumvisible() ?
+    \ coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Coc use tab for trigger completion with characters ahead and navigate.
 inoremap <silent> <expr> <TAB>
-  \ pumvisible() ? "\<C-n>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ coc#refresh()
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ coc#refresh()
 inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
-  let col=col('.') - 1
-  return !col || getline('.')[col - 1]=~#'\s'
+    let col=col('.') - 1
+    return !col || getline('.')[col - 1]=~#'\s'
 endfunction
 
 " Coc use K to show documentation in preview window.
 nnoremap <silent> K <Cmd>call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
-  if (index(['vim','help'],&filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!'.&keywordprg." ".expand('<cword>')
-  endif
+    if (index(['vim','help'],&filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    elseif (coc#rpc#ready())
+        call CocActionAsync('doHover')
+    else
+        execute '!'.&keywordprg." ".expand('<cword>')
+    endif
 endfunction
 
 " Coc remap <C-f> and <C-b> for scroll float windows/popups.
 if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+    nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ?
+        \ coc#float#scroll(1) : "\<C-f>"
+    nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ?
+        \ coc#float#scroll(0) : "\<C-b>"
+    inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ?
+        \ "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+    inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ?
+        \ "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+    vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ?
+        \ coc#float#scroll(1) : "\<C-f>"
+    vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ?
+        \ coc#float#scroll(0) : "\<C-b>"
 endif
 
 " Coc GoTo code navigation.

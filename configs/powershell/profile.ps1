@@ -6,9 +6,6 @@
 # About:    Powershell script for config powershell profile in Windows.
 # -----------------------------------------------------------------------------
 
-# Welcome message with cowsay.
-# cowsay -f kitty.cow "¡NUNCA PARES DE APRENDER!"
-
 # Customize powershell predictions.
 Set-PSReadLineOption -EditMode Emacs
 Set-PSReadLineOption -BellStyle None
