@@ -12,7 +12,7 @@ set encoding=utf-8
 " Languages.
 set spelllang=en,es
 set helplang=en,es
-set spell
+set nospell
 
 " Colors.
 set termguicolors
@@ -116,6 +116,9 @@ let g:coc_default_semantic_highlight_groups=1
 " Rainbow activate.
 let g:rainbow_active=1
 
+" IndentLine chars.
+let g:indentLine_setConceal=0
+
 " IndentLine excludes.
 let g:indentLine_fileTypeExclude = ['text', 'sh']
 let g:indentLine_bufTypeExclude = ['help', 'terminal']
@@ -144,6 +147,8 @@ let g:signify_sign_change_delete='≈'
 
 " NERDTree interfaz.
 let g:NERDTreeMinimalUI=1
+let NERDTreeDirArrowExpandable="●"
+let NERDTreeDirArrowCollapsible="○"
 let g:NERDTreeStatusline='explorer'
 
 " NERDTree operation.

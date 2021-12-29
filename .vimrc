@@ -17,7 +17,7 @@ set encoding=utf-8
 " Languajes.
 set spelllang=en,es
 set helplang=en,es
-set spell
+set nospell
 
 " Colors.
 set termguicolors

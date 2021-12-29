@@ -7,7 +7,7 @@
 # -----------------------------------------------------------------------------
 
 # Welcome message with cowsay.
-cowsay -f kitty.cow "¡NUNCA PARES DE APRENDER!"
+# cowsay -f kitty.cow "¡NUNCA PARES DE APRENDER!"
 
 # Customize powershell predictions.
 Set-PSReadLineOption -EditMode Emacs
