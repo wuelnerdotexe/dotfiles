@@ -81,5 +81,6 @@
     # "local_ip"
     # "public_ip"
     "blank"
+    "blank"
     "colorbar"
 )

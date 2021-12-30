@@ -177,7 +177,16 @@ let g:airline_powerline_fonts=0
 let g:airline_symbols_ascii=1
 
 " Airline extensions.
-let g:airline_extensions=(['branch','coc','fzf','hunks','netrw','tabline','term','whitespace'])
+let g:airline_extensions=([
+    \ 'branch',
+    \ 'coc',
+    \ 'fzf',
+    \ 'hunks',
+    \ 'netrw',
+    \ 'tabline',
+    \ 'term',
+    \ 'whitespace'
+  \ ])
 let g:airline#extensions#tabline#show_close_button=0
 let g:airline#extensions#tabline#formatter='unique_tail'
 let g:airline#extensions#tabline#tab_nr_type=1
