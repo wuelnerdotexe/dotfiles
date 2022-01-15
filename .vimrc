@@ -1,3 +1,4 @@
+" vim: fileencoding=utf-8 tabstop=2 shiftwidth=2 foldlevel=0 foldmethod=marker:
 " -----------------------------------------------------------------------------
 " Name:     MY VIMRC (minimal).
 " Author:   Wuelner Martínez <wuelner.martinez@outlook.com>
@@ -8,7 +9,7 @@
 
 " Get the defaults that most users want (only vim).
 if !has('nvim')
-    source $VIMRUNTIME/defaults.vim
+  source $VIMRUNTIME/defaults.vim
 endif
 
 " Encoding.
@@ -52,6 +53,8 @@ set norelativenumber
 set numberwidth=5
 set cursorline
 set noruler                                    " Disabled for best performance.
+set pumheight=15
+set pumwidth=15
 set cmdheight=1
 set wildmenu
 set wildignorecase
@@ -108,12 +111,12 @@ filetype plugin indent on | syntax on
 " -----------------------------------------------------------------------------
 " Coc extensions.
 let g:coc_global_extensions=[
-    \ 'coc-css',
-    \ 'coc-eslint',
-    \ 'coc-html',
-    \ 'coc-json',
-    \ 'coc-tsserver',
-    \ 'coc-vimlsp'
+  \ 'coc-css',
+  \ 'coc-eslint',
+  \ 'coc-html',
+  \ 'coc-json',
+  \ 'coc-tsserver',
+  \ 'coc-vimlsp'
   \ ]
 
 " Coc syntax.
@@ -122,10 +125,16 @@ let g:coc_default_semantic_highlight_groups=1
 " Rainbow activate.
 let g:rainbow_active=1
 
+" IndentLine color.
+let g:indentLine_setColors=0
+
+" IndentLine conceal.
+let g:indentLine_setConceal=0
+
 " IndentLine excludes.
-let g:indentLine_fileTypeExclude=[ 'text', 'sh' ]
-let g:indentLine_bufTypeExclude=[ 'help' , 'terminal' ]
-let g:indentLine_bufNameExclude=[ '_.*' , 'NERD_tree.*' ]
+let g:indentLine_fileTypeExclude=['text', 'sh']
+let g:indentLine_bufTypeExclude=['help' , 'terminal']
+let g:indentLine_bufNameExclude=['_.*' , 'NERD_tree.*']
 
 " IndentLine chars.
 let g:indentLine_first_char="▏"
@@ -150,20 +159,20 @@ let g:signify_sign_change_delete='▎'
 
 " NERDTree interfaz.
 let g:NERDTreeMinimalUI=1
-let NERDTreeDirArrowExpandable="●"
-let NERDTreeDirArrowCollapsible="○"
+let g:NERDTreeDirArrowExpandable="●"
+let g:NERDTreeDirArrowCollapsible="○"
 let g:NERDTreeStatusline='explorer'
 
 " NERDTree operation.
 let g:NERDTreeMarkBookmarks=0
 let g:NERDTreeShowHidden=1
 let g:NERDTreeIgnore=[
-    \ '\.git$',
-    \ '\.svn$',
-    \ '\.hg$',
-    \ '\CSV$',
-    \ '\.DS_Store$',
-    \ '\Thumbs.db$'
+  \ '\.git$',
+  \ '\.svn$',
+  \ '\.hg$',
+  \ '\CSV$',
+  \ '\.DS_Store$',
+  \ '\Thumbs.db$'
   \ ]
 
 " NERDTree interaction.
@@ -178,14 +187,14 @@ let g:airline_symbols_ascii=1
 
 " Airline extensions.
 let g:airline_extensions=([
-    \ 'branch',
-    \ 'coc',
-    \ 'fzf',
-    \ 'hunks',
-    \ 'netrw',
-    \ 'tabline',
-    \ 'term',
-    \ 'whitespace'
+  \ 'branch',
+  \ 'coc',
+  \ 'fzf',
+  \ 'hunks',
+  \ 'netrw',
+  \ 'tabline',
+  \ 'term',
+  \ 'whitespace'
   \ ])
 let g:airline#extensions#tabline#show_close_button=0
 let g:airline#extensions#tabline#formatter='unique_tail'
@@ -198,58 +207,58 @@ let g:airline_section_z='L%l'
 let g:airline_section_y='%{&fenc?&fenc:&enc}[%{&ff}] %{SleuthIndicator()}'
 let g:airline_section_x='%{&filetype}'
 let g:airline#extensions#default#section_truncate_width={
-    \ 'b': 100,
-    \ 'y': 100,
-    \ 'x': 100,
-    \ 'error': 100,
-    \ 'warning': 100
+  \ 'b': 100,
+  \ 'y': 100,
+  \ 'x': 100,
+  \ 'error': 100,
+  \ 'warning': 100
   \ }
 
 " Airline theme.
 let g:airline_theme="enfocado"
 
 " Enfocado theme.
-let g:enfocado_style="nature" " Available: 'nature' or 'neon'.
+let g:enfocado_style="nature" " Available: `nature` or `neon`.
 " -----------------------------------------------------------------------------
 " SECTION: Plugins main.
 " -----------------------------------------------------------------------------
 " Check if curl.exe is installed on 32-bit Windows.
 if has('win32') && !has('win64')
-    let curl_exe = 'C:\Windows\Sysnative\curl.exe'
+  let curl_exe = 'C:\Windows\Sysnative\curl.exe'
 else
-    let curl_exe = 'curl'
+  let curl_exe = 'curl'
 endif
 
 " Set path to vim-plug file.
 if has('nvim')
-    let plug_file=stdpath('data').'/site/autoload/plug.vim'
+  let plug_file=stdpath('data').'/site/autoload/plug.vim'
 else
-    if has('win32')
-        let plug_file='$HOME/vimfiles/autoload/plug.vim'
-    else
-        let plug_file='$HOME/.vim/autoload/plug.vim'
-    endif
+  if has('win32')
+    let plug_file='$HOME/vimfiles/autoload/plug.vim'
+  else
+    let plug_file='$HOME/.vim/autoload/plug.vim'
+  endif
 endif
 
 " Automatic installation of vim-plug only if it is not installed.
 if !filereadable(expand(plug_file))
-    if !executable(expand(curl_exe))
-        echoerr "You have to install curl or first install vim-plug yourself!"
-    endif
-    echomsg "Installing vim-plug..."
-    silent execute "!"curl_exe" -fLo " . shellescape(expand(plug_file)) . " --create-dirs
+  if !executable(expand(curl_exe))
+    echoerr "You have to install curl or first install vim-plug yourself!"
+  endif
+  echomsg "Installing vim-plug..."
+  silent execute "!"curl_exe" -fLo " . shellescape(expand(plug_file)) . " --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" --sync
 endif
 
 " Set path to plugins directory.
 if has('nvim')
-    let vim_plug=stdpath('data').'/plugged/'
+  let vim_plug=stdpath('data').'/plugged/'
 else
-    if has('win32')
-        let vim_plug='$HOME/vimfiles/plugged/'
-    else
-        let vim_plug='$HOME/.vim/plugged/'
-    endif
+  if has('win32')
+    let vim_plug='$HOME/vimfiles/plugged/'
+  else
+    let vim_plug='$HOME/.vim/plugged/'
+  endif
 endif
 
 " Install plugins.
@@ -283,13 +292,13 @@ Plug 'vim-airline/vim-airline'
 " Tools.
 Plug 'szw/vim-maximizer'
 Plug 'iamcco/markdown-preview.nvim',
-    \ { 'do': { -> mkdp#util#install() }, 'for': [ 'markdown', 'vim-plug' ] }
+      \ { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'] }
 call plug#end()
 
 " Missing plugins are installed.
 if !empty(filter(copy(g:plugs),'!isdirectory(v:val.dir)'))
-    echomsg "Installing missing plugs..."
-    PlugInstall --sync | source $MYVIMRC
+  echomsg "Installing missing plugs..."
+  PlugInstall --sync | source $MYVIMRC
 endif
 
 " Set Enfocado colorscheme when all have loaded.
@@ -318,51 +327,52 @@ nnoremap <silent> <C-j> 1<C-w>-
 " -----------------------------------------------------------------------------
 " SECTION: Plugins mappings.
 " -----------------------------------------------------------------------------
-" Coc make <CR> auto-select the first completion item and notify to
-" format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ?
-    \ coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" Coc use tab for trigger completion with characters ahead and navigate.
-inoremap <silent> <expr> <TAB>
-    \ pumvisible() ? "\<C-n>" :
-    \ <SID>check_back_space() ? "\<TAB>" :
-    \ coc#refresh()
-inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-    let col=col('.') - 1
-    return !col || getline('.')[col - 1]=~#'\s'
-endfunction
-
-" Coc use K to show documentation in preview window.
-nnoremap <silent> K <Cmd>call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-    if (index(['vim','help'],&filetype) >= 0)
-        execute 'h '.expand('<cword>')
-    elseif (coc#rpc#ready())
-        call CocActionAsync('doHover')
-    else
-        execute '!'.&keywordprg." ".expand('<cword>')
-    endif
-endfunction
+" Coc highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Coc remap <C-f> and <C-b> for scroll float windows/popups.
 if has('nvim-0.4.0') || has('patch-8.2.0750')
-    nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ?
+  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ?
         \ coc#float#scroll(1) : "\<C-f>"
-    nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ?
+  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ?
         \ coc#float#scroll(0) : "\<C-b>"
-    inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ?
+  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ?
         \ "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-    inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ?
+  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ?
         \ "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-    vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ?
+  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ?
         \ coc#float#scroll(1) : "\<C-f>"
-    vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ?
+  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ?
         \ coc#float#scroll(0) : "\<C-b>"
 endif
+
+" Coc make <CR> auto-select the first completion item and notify to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ?
+      \ coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Coc use tab for trigger completion with characters ahead and navigate.
+inoremap <silent> <expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col=col('.') - 1
+  return !col || getline('.')[col - 1] =~# '\s'
+endfunction
+
+" Coc use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " Coc GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
@@ -373,14 +383,91 @@ nmap <silent> gr <Plug>(coc-references)
 " Coc symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 
+" Coc use K to show documentation in preview window.
+nnoremap <silent> K <Cmd>call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'],&filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!'.&keywordprg." ".expand('<cword>')
+  endif
+endfunction
+
+" Coc use CTRL-S for selections ranges.
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
+
+augroup mygroup
+  autocmd!
+    " Coc setup formatexpr specified filetype(s).
+    autocmd FileType typescript,json setlocal formatexpr=CocAction('formatSelected')
+
+    " Coc update signature help on jump placeholder.
+    autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup END
+
+" Coc add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OR :call CocActionAsync('runCommand', 'editor.action.organizeImport')
+
+" Coc add `:Fold` command to fold current buffer.
+command! -nargs=? Fold :call CocAction('fold', <f-args>)
+
+" Coc add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocActionAsync('format')
+
+" Coc formatting selected code.
+xmap <leader>f <Plug>(coc-format-selected)
+nmap <leader>f <Plug>(coc-format-selected)
+
 " Coc remap keys for applying codeAction to the current buffer.
 nmap <leader>ac <Plug>(coc-codeaction)
 
 " Coc apply AutoFix to problem on the current line.
 nmap <leader>qf <Plug>(coc-fix-current)
 
-" Coc add `:Format` command to format current buffer.
-command! -nargs=0 Format <Cmd>call CocAction('format')
+" Coc run the Code Lens action on the current line.
+nmap <leader>cl <Plug>(coc-codelens-action)
+
+" Coc applying codeAction to the selected region.
+xmap <leader>a <Plug>(coc-codeaction-selected)
+nmap <leader>a <Plug>(coc-codeaction-selected)
+
+" Coc map function and class text objects
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+
+" Coc show all diagnostics.
+nnoremap <silent><nowait> <space>a :<C-u>CocList diagnostics<cr>
+
+" Coc manage extensions.
+nnoremap <silent><nowait> <space>e :<C-u>CocList extensions<cr>
+
+" Coc show commands.
+nnoremap <silent><nowait> <space>c :<C-u>CocList commands<cr>
+
+" Coc find symbol of current document.
+nnoremap <silent><nowait> <space>o :<C-u>CocList outline<cr>
+
+" Coc search workspace symbols.
+nnoremap <silent><nowait> <space>s :<C-u>CocList -I symbols<cr>
+
+" Coc do default action for next item.
+nnoremap <silent><nowait> <space>j :<C-u>CocNext<CR>
+
+" Coc do default action for previous item.
+nnoremap <silent><nowait> <space>k :<C-u>CocPrev<CR>
+
+" Coc resume latest coc list.
+nnoremap <silent><nowait> <space>p :<C-u>CocListResume<CR>
 
 " Fuzzy finder activate.
 nnoremap <silent> <leader>ff <Cmd>FZF<CR>
