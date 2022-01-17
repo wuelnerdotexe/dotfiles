@@ -1,10 +1,9 @@
 {
-    "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions":
+    "actions": 
     [
         {
-            "command":
+            "command": 
             {
                 "action": "copy",
                 "singleLine": false
@@ -20,7 +19,7 @@
             "keys": "ctrl+shift+f"
         },
         {
-            "command":
+            "command": 
             {
                 "action": "splitPane",
                 "split": "auto",
@@ -34,15 +33,15 @@
     "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
     "disableAnimations": true,
     "initialRows": 20,
-    "profiles":
+    "profiles": 
     {
-        "defaults":
+        "defaults": 
         {
             "antialiasingMode": "cleartype",
             "bellStyle": "taskbar",
             "colorScheme": "Enfocado",
             "cursorShape": "filledBox",
-            "font":
+            "font": 
             {
                 "face": "BlexMono Nerd Font",
                 "size": 10,
@@ -52,7 +51,7 @@
             "padding": "4",
             "scrollbarState": "hidden"
         },
-        "list":
+        "list": 
         [
             {
                 "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
@@ -81,7 +80,7 @@
             }
         ]
     },
-    "schemes":
+    "schemes": 
     [
         {
             "background": "#0C0C0C",
@@ -315,5 +314,6 @@
         }
     ],
     "theme": "dark",
-    "trimBlockSelection": true
+    "trimBlockSelection": true,
+    "useAcrylicInTabRow": true
 }

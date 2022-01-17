@@ -110,6 +110,7 @@ let g:coc_global_extensions=[
   \ 'coc-eslint',
   \ 'coc-html',
   \ 'coc-json',
+  \ 'coc-lua',
   \ 'coc-tsserver',
   \ 'coc-vimlsp'
   \ ]
@@ -198,7 +199,7 @@ let g:airline#extensions#tabline#tab_nr_type=1
 let g:airline#extensions#hunks#non_zero_only=1
 
 " Airline sections.
-let g:airline_section_c='%t'
+let g:airline_section_c='%t %{get(b:,"coc_current_function","")}'
 let g:airline_section_z='L%l'
 let g:airline_section_y='%{&fenc?&fenc:&enc}[%{&ff}] %{SleuthIndicator()}'
 let g:airline_section_x='%{&filetype}'
@@ -219,6 +220,7 @@ let g:enfocado_plugins=[
   \ 'coc',
   \ 'copilot',
   \ 'fzf',
+  \ 'highlightedyank',
   \ 'matchup',
   \ 'nerdtree',
   \ 'plug',
@@ -253,6 +255,7 @@ Plug 'mg979/vim-visual-multi', { 'branch': 'master' }
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'matze/vim-move'
+Plug 'machakann/vim-highlightedyank'
 
 " Git.
 Plug 'tpope/vim-fugitive'

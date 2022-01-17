@@ -1,5 +1,6 @@
 {
   "coc.preferences.colorSupport": true,
+  "coc.preferences.currentFunctionSymbolAutoUpdate": true,
   "coc.preferences.enableMarkdown": true,
   "coc.preferences.enableMessageDialog": true,
   "coc.preferences.semanticTokensHighlights": true,
