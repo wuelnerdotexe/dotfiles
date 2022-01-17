@@ -64,9 +64,6 @@ set signcolumn=yes
 
 " Statusline.
 set laststatus=2
-set statusline=%t\ %m\ 
-set statusline+=%=\ 
-set statusline+=%{&filetype}\ %{&fenc?&fenc:&enc}[%{&ff}]\ L%l\ 
 set showtabline=2
 
 " Search.
@@ -115,6 +112,7 @@ let g:coc_global_extensions=[
   \ 'coc-eslint',
   \ 'coc-html',
   \ 'coc-json',
+  \ 'coc-lua',
   \ 'coc-tsserver',
   \ 'coc-vimlsp'
   \ ]
@@ -202,7 +200,7 @@ let g:airline#extensions#tabline#tab_nr_type=1
 let g:airline#extensions#hunks#non_zero_only=1
 
 " Airline sections.
-let g:airline_section_c='%t'
+let g:airline_section_c='%t %{get(b:,"coc_current_function","")}'
 let g:airline_section_z='L%l'
 let g:airline_section_y='%{&fenc?&fenc:&enc}[%{&ff}] %{SleuthIndicator()}'
 let g:airline_section_x='%{&filetype}'
@@ -218,7 +216,17 @@ let g:airline#extensions#default#section_truncate_width={
 let g:airline_theme="enfocado"
 
 " Enfocado theme.
-let g:enfocado_style="nature" " Available: `nature` or `neon`.
+let g:enfocado_style='nature' " Available: `nature` or `neon`.
+let g:enfocado_plugins=[
+  \ 'coc',
+  \ 'fzf',
+  \ 'matchup',
+  \ 'nerdtree',
+  \ 'plug',
+  \ 'rainbow',
+  \ 'signify',
+  \ 'yank'
+  \ ]
 " -----------------------------------------------------------------------------
 " SECTION: Plugins main.
 " -----------------------------------------------------------------------------
@@ -272,10 +280,10 @@ Plug 'andymass/vim-matchup'
 
 " Typing.
 Plug 'mg979/vim-visual-multi', { 'branch': 'master' }
-Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'matze/vim-move'
+Plug 'machakann/vim-highlightedyank'
 
 " Git.
 Plug 'tpope/vim-fugitive'

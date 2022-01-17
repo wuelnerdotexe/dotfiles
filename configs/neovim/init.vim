@@ -220,12 +220,12 @@ let g:enfocado_plugins=[
   \ 'coc',
   \ 'copilot',
   \ 'fzf',
-  \ 'highlightedyank',
   \ 'matchup',
   \ 'nerdtree',
   \ 'plug',
   \ 'rainbow',
-  \ 'signify'
+  \ 'signify',
+  \ 'yank'
   \ ]
 " -----------------------------------------------------------------------------
 " SECTION: Plugins main.
