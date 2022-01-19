@@ -1,0 +1,12 @@
+# -----------------------------------------------------------------------------
+# Name:     STARSHIP CONFIG.
+# Author:   Wuelner Martínez <wuelner.martinez@outlook.com>
+# URL:      https://github.com/wuelnerdotexe/dotfiles
+# License:  MIT (C) Wuelner Martínez.
+# About:    Toml file for config starship profile in Windows.
+# -----------------------------------------------------------------------------
+
+# Custom prompt character.
+[character]
+success_symbol = "[🚀](bold green)"
+error_symbol = "[😕](bold red)"

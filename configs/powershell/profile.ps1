@@ -19,5 +19,8 @@ Import-Module -Name Terminal-Icons
 # Set path to winfetch config.
 $Env:WINFETCH_CONFIG_PATH = "$Env:USERPROFILE\dotfiles\configs\winfetch\config.ps1"
 
+# Set path to starship config.
+$Env:STARSHIP_CONFIG = "$Env:USERPROFILE\dotfiles\configs\starship\config.toml"
+
 # Init starship prompt.
 Invoke-Expression (&starship init powershell)

@@ -40,7 +40,7 @@
             "antialiasingMode": "cleartype",
             "bellStyle": "taskbar",
             "colorScheme": "Enfocado",
-            "cursorShape": "filledBox",
+            "cursorShape": "underscore",
             "font": 
             {
                 "face": "BlexMono Nerd Font",
