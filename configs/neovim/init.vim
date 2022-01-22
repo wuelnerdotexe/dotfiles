@@ -21,6 +21,11 @@ set termguicolors
 set background=dark
 
 " Files.
+if has('nvim')
+  set undodir=C:\ProgramData\Temp\nvim\\
+else
+  set undodir=C:\ProgramData\Temp\vim\\
+endif
 set nobackup
 set nowritebackup
 set swapfile
@@ -51,11 +56,12 @@ set noruler                                    " Disabled for best performance.
 set pumheight=15
 set pumwidth=15
 set cmdheight=1
+set cmdwinheight=15
 set wildmenu
 set wildignorecase
 set noshowcmd                                  " Disabled for best performance.
 set noshowmode
-set signcolumn=yes:2
+set signcolumn=yes
 
 " Statusline.
 set laststatus=2
@@ -66,14 +72,17 @@ set hlsearch
 set incsearch
 set ignorecase
 set nosmartcase
-set wildignore+=**/.git,**/.svn,**/.hg,**/CVS,**/.DS_store
-set wildignore+=**/node_modules,**/bower_components
+set wildignore+=**\.git,**\.svn,**\.hg,**\CVS,**\.DS_store
+set wildignore+=**\node_modules,**\bower_components
 set wildignorecase
 
 " Substitute.
-set inccommand=nosplit
+if has('nvim')
+  set inccommand=nosplit
+endif
 
 " Interaction.
+set belloff=all
 set confirm
 set ttimeout
 set ttimeoutlen=50
@@ -89,12 +98,12 @@ set splitright
 set splitbelow
 set equalalways
 set backspace=indent,eol,start
-set clipboard+=unnamedplus
+set clipboard+=unnamed,unnamedplus
 set mouse=a
 
 " Performance.
 set synmaxcol=220
-set updatetime=100
+set updatetime=300
 set redrawtime=1500
 set nolazyredraw
 set ttyfast
@@ -104,6 +113,9 @@ filetype plugin indent on | syntax on
 " -----------------------------------------------------------------------------
 " SECTION: Plugins settings.
 " -----------------------------------------------------------------------------
+" It is indicated that the comma key will be the `<leader>` key.
+let g:mapleader=','
+
 " Coc extensions.
 let g:coc_global_extensions=[
   \ 'coc-css',
@@ -155,8 +167,8 @@ let g:signify_sign_change_delete='▎'
 
 " NERDTree interfaz.
 let g:NERDTreeMinimalUI=1
-let g:NERDTreeDirArrowExpandable="●"
-let g:NERDTreeDirArrowCollapsible="○"
+let g:NERDTreeDirArrowExpandable='●'
+let g:NERDTreeDirArrowCollapsible='○'
 let g:NERDTreeStatusline='explorer'
 
 " NERDTree operation.
@@ -227,21 +239,27 @@ let g:enfocado_plugins=[
   \ 'signify',
   \ 'yank'
   \ ]
+
+" CursorHold updatetime.
+let g:cursorhold_updatetime=100
 " -----------------------------------------------------------------------------
 " SECTION: Plugins main.
 " -----------------------------------------------------------------------------
 " Providers settings for neovim plugins.
-let g:loaded_ruby_provider=0
-let g:loaded_perl_provider=0
+if has('nvim')
+  let g:loaded_ruby_provider=0
+  let g:loaded_perl_provider=0
 
-" IMPORTANT: These settings depend on each user because the installation
-" is different depending on the OS, the package manager, and the Python
-" version. In my case I have Python3 installed on Windows using scoop.
-let g:loaded_python_provider=0
-let g:python3_host_prog=expand('$HOME\scoop\apps\python\current\python.exe')
+  " IMPORTANT: These settings depend on each user because the installation
+  " is different depending on the OS, the package manager, and the Python
+  " version. In my case I have Python3 installed on Windows using scoop.
+  let g:loaded_python_provider=0
+  let g:python3_host_prog='$USERPROFILE\scoop\apps\python\current\python.exe'
+endif
 
 " Install plugins.
-call plug#begin(expand('$LOCALAPPDATA\vim\plugins\'))
+call plug#begin('$LOCALAPPDATA\vim\plugins\')
+
 " IDE.
 Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
@@ -266,23 +284,18 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'preservim/nerdtree'
 
 " Interfaz.
-Plug 'wuelnerdotexe/vim-enfocado', { 'branch': 'development' }
 Plug 'vim-airline/vim-airline'
+Plug 'wuelnerdotexe/vim-enfocado', { 'branch': 'development' }
 
 " Tools.
+Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'szw/vim-maximizer'
 Plug 'iamcco/markdown-preview.nvim',
       \ { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'] }
 call plug#end()
-
-" Set Enfocado colorscheme when all have loaded.
-autocmd VimEnter * ++nested colorscheme enfocado
 " -----------------------------------------------------------------------------
 " SECTION: Native mappings.
 " -----------------------------------------------------------------------------
-" It is indicated that the <Space> key will be the <leader> key.
-let mapleader="\<Space>"
-
 " Move previous/left with buffers.
 nnoremap <silent> gB <Cmd>bprev<CR>
 nnoremap <silent> <S-PageUp> <Cmd>bprev<CR>
@@ -294,64 +307,55 @@ nnoremap <silent> <S-PageDown> <Cmd>bnext<CR>
 inoremap <silent> <S-PageDown> <Cmd>bnext<CR>
 
 " Resize splits.
-nnoremap <silent> <C-h> 1<C-w><
-nnoremap <silent> <C-k> 1<C-w>+
-nnoremap <silent> <C-l> 1<C-w>>
-nnoremap <silent> <C-j> 1<C-w>-
-
-augroup vimStartup
-  autocmd!
-    " When editing a file, always jump to the last known cursor position.
-    autocmd BufReadPost *
-          \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
-          \ |   execute "normal! g`\""
-          \ | endif
-augroup END
+nnoremap <silent> <C-H> 1<C-W><
+nnoremap <silent> <C-K> 1<C-W>+
+nnoremap <silent> <C-L> 1<C-W>>
+nnoremap <silent> <C-J> 1<C-W>-
 " -----------------------------------------------------------------------------
 " SECTION: Plugins mappings.
 " -----------------------------------------------------------------------------
 " Coc highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" Coc remap <C-f> and <C-b> for scroll float windows/popups.
-nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ?
-      \ coc#float#scroll(1) : "\<C-f>"
-nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ?
-      \ coc#float#scroll(0) : "\<C-b>"
-inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ?
-      \ "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ?
-      \ "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ?
-      \ coc#float#scroll(1) : "\<C-f>"
-vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ?
-      \ coc#float#scroll(0) : "\<C-b>"
+" Coc remap `<C-F>` and `<C-B>` for scroll float windows/popups.
+nnoremap <silent><nowait><expr> <C-F> coc#float#has_scroll() ?
+      \ coc#float#scroll(1) : "\<C-F>"
+nnoremap <silent><nowait><expr> <C-B> coc#float#has_scroll() ?
+      \ coc#float#scroll(0) : "\<C-B>"
+inoremap <silent><nowait><expr> <C-F> coc#float#has_scroll() ?
+      \ "\<C-R>=coc#float#scroll(1)\<CR>" : "\<Right>"
+inoremap <silent><nowait><expr> <C-B> coc#float#has_scroll() ?
+      \ "\<C-R>=coc#float#scroll(0)\<CR>" : "\<Left>"
+vnoremap <silent><nowait><expr> <C-F> coc#float#has_scroll() ?
+      \ coc#float#scroll(1) : "\<C-F>"
+vnoremap <silent><nowait><expr> <C-B> coc#float#has_scroll() ?
+      \ coc#float#scroll(0) : "\<C-B>"
 
-" Coc make <CR> auto-select the first completion item and notify to
-" format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ?
+" Coc make `<CR>` auto-select the first completion item and notify to
+" format on enter, `<CR>` could be remapped by other vim plugin.
+inoremap <silent><expr> <CR> pumvisible() ?
       \ coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-" Coc use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+" Coc use `<C-Space>` to trigger completion.
+inoremap <silent><expr> <C-Space> coc#refresh()
 
-" Coc use tab for trigger completion with characters ahead and navigate.
+" Coc use `<TAB>` for trigger completion with characters ahead and navigate.
 inoremap <silent> <expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
+      \ pumvisible() ? "\<C-N>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr> <S-TAB> pumvisible() ? "\<C-P>" : "\<C-H>"
 
 function! s:check_back_space() abort
   let col=col('.') - 1
   return !col || getline('.')[col - 1] =~# '\s'
 endfunction
 
-" Coc use `[g` and `]g` to navigate diagnostics
+" Coc use `[g` and `]g` to navigate diagnostics.
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-" Coc GoTo code navigation.
+" Coc go to code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -360,8 +364,8 @@ nmap <silent> gr <Plug>(coc-references)
 " Coc symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 
-" Coc use K to show documentation in preview window.
-nnoremap <silent> K <Cmd>call <SID>show_documentation()<CR>
+" Coc use `K` to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'],&filetype) >= 0)
@@ -373,18 +377,9 @@ function! s:show_documentation()
   endif
 endfunction
 
-" Coc use CTRL-S for selections ranges.
-nmap <silent> <C-s> <Plug>(coc-range-select)
-xmap <silent> <C-s> <Plug>(coc-range-select)
-
-augroup mygroup
-  autocmd!
-    " Coc setup formatexpr specified filetype(s).
-    autocmd FileType typescript,json setlocal formatexpr=CocAction('formatSelected')
-
-    " Coc update signature help on jump placeholder.
-    autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup END
+" Coc use `CTRL-S` for selections ranges.
+nmap <silent> <C-S> <Plug>(coc-range-select)
+xmap <silent> <C-S> <Plug>(coc-range-select)
 
 " Coc add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR :call CocActionAsync('runCommand', 'editor.action.organizeImport')
@@ -399,20 +394,20 @@ command! -nargs=0 Format :call CocActionAsync('format')
 xmap <leader>f <Plug>(coc-format-selected)
 nmap <leader>f <Plug>(coc-format-selected)
 
-" Coc remap keys for applying codeAction to the current buffer.
+" Coc remap keys for applying codeaction to the current buffer.
 nmap <leader>ac <Plug>(coc-codeaction)
 
-" Coc apply AutoFix to problem on the current line.
+" Coc apply autofix to problem on the current line.
 nmap <leader>qf <Plug>(coc-fix-current)
 
-" Coc run the Code Lens action on the current line.
+" Coc run the codelens action on the current line.
 nmap <leader>cl <Plug>(coc-codelens-action)
 
-" Coc applying codeAction to the selected region.
+" Coc applying codeaction to the selected region.
 xmap <leader>a <Plug>(coc-codeaction-selected)
 nmap <leader>a <Plug>(coc-codeaction-selected)
 
-" Coc map function and class text objects
+" Coc map function and class text objects.
 xmap if <Plug>(coc-funcobj-i)
 omap if <Plug>(coc-funcobj-i)
 xmap af <Plug>(coc-funcobj-a)
@@ -423,28 +418,28 @@ xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 
 " Coc show all diagnostics.
-nnoremap <silent><nowait> <space>a :<C-u>CocList diagnostics<cr>
+nnoremap <silent><nowait> <Space>a :<C-U>CocList diagnostics<CR>
 
 " Coc manage extensions.
-nnoremap <silent><nowait> <space>e :<C-u>CocList extensions<cr>
+nnoremap <silent><nowait> <Space>e :<C-U>CocList extensions<CR>
 
 " Coc show commands.
-nnoremap <silent><nowait> <space>c :<C-u>CocList commands<cr>
+nnoremap <silent><nowait> <Space>c :<C-U>CocList commands<CR>
 
 " Coc find symbol of current document.
-nnoremap <silent><nowait> <space>o :<C-u>CocList outline<cr>
+nnoremap <silent><nowait> <Space>o :<C-U>CocList outline<CR>
 
 " Coc search workspace symbols.
-nnoremap <silent><nowait> <space>s :<C-u>CocList -I symbols<cr>
+nnoremap <silent><nowait> <Space>s :<C-U>CocList -I symbols<CR>
 
 " Coc do default action for next item.
-nnoremap <silent><nowait> <space>j :<C-u>CocNext<CR>
+nnoremap <silent><nowait> <Space>j :<C-U>CocNext<CR>
 
 " Coc do default action for previous item.
-nnoremap <silent><nowait> <space>k :<C-u>CocPrev<CR>
+nnoremap <silent><nowait> <Space>k :<C-U>CocPrev<CR>
 
 " Coc resume latest coc list.
-nnoremap <silent><nowait> <space>p :<C-u>CocListResume<CR>
+nnoremap <silent><nowait> <Space>p :<C-U>CocListResume<CR>
 
 " Fuzzy finder activate.
 nnoremap <silent> <leader>ff <Cmd>FZF<CR>
@@ -463,3 +458,25 @@ nnoremap <silent> <leader>hd <Cmd>SignifyHunkDiff<CR>
 
 " Reload MY VIMRC.
 nnoremap <silent> <leader>rc <Cmd>source $MYVIMRC<CR>
+" -----------------------------------------------------------------------------
+" SECTION: Native autocmds.
+" -----------------------------------------------------------------------------
+" When editing a file, always jump to the last known cursor position.
+" Don't do it when the position is invalid, when inside an event handler
+" (happens when dropping a file on gvim) and for a commit message (it's
+" likely a different one than last time).
+autocmd BufReadPost *
+      \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+      \ |   execute "normal! g`\""
+      \ | endif
+" -----------------------------------------------------------------------------
+" SECTION: Plugins autocmds.
+" -----------------------------------------------------------------------------
+" Coc setup formatexpr specified filetype(s).
+autocmd FileType typescript,json setlocal formatexpr=CocAction('formatSelected')
+
+" Coc update signature help on jump placeholder.
+autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+
+" Set Enfocado colorscheme when all have loaded.
+autocmd VimEnter * ++nested colorscheme enfocado
