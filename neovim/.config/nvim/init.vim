@@ -1,6 +1,6 @@
 " vim: fileencoding=utf-8 tabstop=2 shiftwidth=2 foldlevel=0 foldmethod=marker:
 " -----------------------------------------------------------------------------
-" Name:     INIT.VIM
+" Name:     MYVIMRC
 " Author:   Wuelner Martínez <wuelner.martinez@outlook.com>
 " URL:      https://github.com/wuelnerdotexe/dotfiles
 " License:  MIT (C) Wuelner Martínez.
@@ -21,11 +21,6 @@ set termguicolors
 set background=dark
 
 " Files.
-if has('nvim')
-  set undodir=C:\ProgramData\Temp\nvim\\
-else
-  set undodir=C:\ProgramData\Temp\vim\\
-endif
 set nobackup
 set nowritebackup
 set swapfile
@@ -72,14 +67,12 @@ set hlsearch
 set incsearch
 set ignorecase
 set nosmartcase
-set wildignore+=**\.git,**\.svn,**\.hg,**\CVS,**\.DS_store
-set wildignore+=**\node_modules,**\bower_components
+set wildignore+=**/.git,**/.svn,**/.hg,**/CVS,**/.DS_store
+set wildignore+=**/node_modules,**/bower_components
 set wildignorecase
 
 " Substitute.
-if has('nvim')
-  set inccommand=nosplit
-endif
+set inccommand=nosplit
 
 " Interaction.
 set belloff=all
@@ -98,7 +91,7 @@ set splitright
 set splitbelow
 set equalalways
 set backspace=indent,eol,start
-set clipboard+=unnamed,unnamedplus
+set clipboard=unnamedplus
 set mouse=a
 
 " Performance.
@@ -246,19 +239,17 @@ let g:cursorhold_updatetime=100
 " SECTION: Plugins main.
 " -----------------------------------------------------------------------------
 " Providers settings for neovim plugins.
-if has('nvim')
-  let g:loaded_ruby_provider=0
-  let g:loaded_perl_provider=0
+let g:loaded_ruby_provider=0
+let g:loaded_perl_provider=0
 
-  " IMPORTANT: These settings depend on each user because the installation
-  " is different depending on the OS, the package manager, and the Python
-  " version. In my case I have Python3 installed on Windows using scoop.
-  let g:loaded_python_provider=0
-  let g:python3_host_prog='$USERPROFILE\scoop\apps\python\current\python.exe'
-endif
+" IMPORTANT: These settings depend on each user because the installation
+" is different depending on the OS, the package manager, and the Python
+" version. In my case I have Python3 installed on Windows using scoop.
+let g:loaded_python_provider=0
+let g:python3_host_prog='/home/linuxbrew/.linuxbrew/bin/python3'
 
 " Install plugins.
-call plug#begin('$LOCALAPPDATA\vim\plugins\')
+call plug#begin(stdpath('data') . '/plugged')
 
 " IDE.
 Plug 'sheerun/vim-polyglot'
