@@ -6,5 +6,3 @@
 [core]
 	editor = nvim
 	autocrlf = true
-[credential]
-	helper = manager-core
