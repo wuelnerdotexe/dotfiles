@@ -6,3 +6,5 @@
 [core]
 	editor = nvim
 	autocrlf = true
+[credential]
+	helper = /mnt/c/Program\\ Files\\ \\(x86\\)/Git\\ Credential\\ Manager/git-credential-manager-core.exe
