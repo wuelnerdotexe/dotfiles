@@ -1,2 +1,2 @@
 # dotfiles
-Config files for my Windows WSL (Ubuntu) programs.
+Config files for my WSL programs.
