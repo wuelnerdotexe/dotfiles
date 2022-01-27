@@ -13,7 +13,7 @@ set encoding=utf-8
 " Languages.
 set spelllang=en,es
 set helplang=en,es
-set nospell
+set spell
 
 " Colors.
 set t_Co=256
@@ -96,7 +96,7 @@ set mouse=a
 
 " Performance.
 set synmaxcol=220
-set updatetime=300
+set updatetime=100
 set redrawtime=1500
 set nolazyredraw
 set ttyfast
@@ -150,13 +150,22 @@ let g:loaded_matchit=1
 " Match-up off-screen.
 let g:matchup_matchparen_offscreen={ 'method': 'popup' }
 
-" Signify signs.
-let g:signify_sign_show_count=0
-let g:signify_sign_add='▎'
-let g:signify_sign_change='▎'
-let g:signify_sign_delete='▁'
-let g:signify_sign_delete_first_line='▔'
-let g:signify_sign_change_delete='▎'
+" Gitgutter messages.
+let g:gitgutter_show_msg_on_hunk_jumping=1
+
+" Gitgutter signs.
+let g:gitgutter_sign_added='▎'
+let g:gitgutter_sign_modified='▎'
+let g:gitgutter_sign_removed='▁'
+let g:gitgutter_sign_removed_first_line='▔'
+let g:gitgutter_sign_removed_above_and_below='▎'
+let g:gitgutter_sign_modified_removed='▎'
+
+" Netrw disable.
+let g:loaded_netrwPlugin=0
+
+" NERDTree replace netrw.
+let g:NERDTreeHijackNetrw=1
 
 " NERDTree interfaz.
 let g:NERDTreeMinimalUI=1
@@ -193,7 +202,6 @@ let g:airline_extensions=([
   \ 'coc',
   \ 'fzf',
   \ 'hunks',
-  \ 'netrw',
   \ 'tabline',
   \ 'term',
   \ 'whitespace'
@@ -225,11 +233,11 @@ let g:enfocado_plugins=[
   \ 'coc',
   \ 'copilot',
   \ 'fzf',
+  \ 'gitgutter',
   \ 'matchup',
   \ 'nerdtree',
   \ 'plug',
   \ 'rainbow',
-  \ 'signify',
   \ 'yank'
   \ ]
 
@@ -268,7 +276,7 @@ Plug 'machakann/vim-highlightedyank'
 
 " Git.
 Plug 'tpope/vim-fugitive'
-Plug 'mhinz/vim-signify'
+Plug 'airblade/vim-gitgutter'
 
 " Files.
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -305,9 +313,6 @@ nnoremap <silent> <C-J> 1<C-W>-
 " -----------------------------------------------------------------------------
 " SECTION: Plugins mappings.
 " -----------------------------------------------------------------------------
-" Coc highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
 " Coc remap `<C-F>` and `<C-B>` for scroll float windows/popups.
 nnoremap <silent><nowait><expr> <C-F> coc#float#has_scroll() ?
       \ coc#float#scroll(1) : "\<C-F>"
@@ -463,6 +468,9 @@ autocmd BufReadPost *
 " -----------------------------------------------------------------------------
 " SECTION: Plugins autocmds.
 " -----------------------------------------------------------------------------
+" Coc highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
 " Coc setup formatexpr specified filetype(s).
 autocmd FileType typescript,json setlocal formatexpr=CocAction('formatSelected')
 
@@ -471,3 +479,8 @@ autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 
 " Set Enfocado colorscheme when all have loaded.
 autocmd VimEnter * ++nested colorscheme enfocado
+augroup enfocado_customization
+  autocmd!
+    autocmd ColorScheme enfocado highlight! Normal ctermbg=NONE guibg=NONE
+    autocmd ColorScheme enfocado highlight! NormalNC ctermbg=NONE guibg=NONE
+augroup END
