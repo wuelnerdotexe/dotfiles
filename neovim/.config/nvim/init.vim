@@ -126,6 +126,13 @@ let g:coc_default_semantic_highlight_groups=1
 " Rainbow activate.
 let g:rainbow_active=1
 
+" Rainbow config.
+let g:rainbow_conf={
+  \ 'separately': {
+      \ 'html': 0
+      \ }
+  \ }
+
 " IndentLine color.
 let g:indentLine_setColors=0
 
