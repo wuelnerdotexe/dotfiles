@@ -168,9 +168,6 @@ let g:gitgutter_sign_removed_first_line='▔'
 let g:gitgutter_sign_removed_above_and_below='▎'
 let g:gitgutter_sign_modified_removed='▎'
 
-" Netrw disable.
-let g:loaded_netrwPlugin=0
-
 " NERDTree replace netrw.
 let g:NERDTreeHijackNetrw=1
 
@@ -261,7 +258,6 @@ let g:loaded_perl_provider=0
 " is different depending on the OS, the package manager, and the Python
 " version. In my case I have Python3 installed on Windows using scoop.
 let g:loaded_python_provider=0
-let g:python3_host_prog='/home/linuxbrew/.linuxbrew/bin/python3'
 
 " Install plugins.
 call plug#begin(stdpath('data') . '/plugged')

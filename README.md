@@ -1,2 +1,2 @@
 # dotfiles
-Config files for my WSL programs.
+Config files for my Fedora software.
