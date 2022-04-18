@@ -4,7 +4,7 @@
 " Author:   Wuelner Martínez <wuelner.martinez@outlook.com>
 " URL:      https://github.com/wuelnerdotexe/dotfiles
 " License:  MIT (C) Wuelner Martínez.
-" About:    Minimal Neovim config.
+" About:    Minimal vim config.
 " -----------------------------------------------------------------------------
 
 " Encoding.
@@ -146,6 +146,10 @@ let g:loaded_matchit=1
 " Match-up off-screen.
 let g:matchup_matchparen_offscreen={ 'method': 'popup' }
 
+" Move key modifier.
+let g:move_key_modifier='C'
+let g:move_key_modifier_visualmode='C'
+
 " Gitgutter messages.
 let g:gitgutter_show_msg_on_hunk_jumping=1
 
@@ -224,7 +228,6 @@ let g:airline_theme='enfocado'
 let g:enfocado_style='nature' " Available: `nature` or `neon`.
 let g:enfocado_plugins=[
   \ 'coc',
-  \ 'copilot',
   \ 'fzf',
   \ 'gitgutter',
   \ 'matchup',
@@ -243,7 +246,6 @@ Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'Yggdroot/indentLine'
 Plug 'andymass/vim-matchup'
-Plug 'github/copilot.vim'
 
 " Typing.
 Plug 'mg979/vim-visual-multi', { 'branch': 'master' }
