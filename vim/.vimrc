@@ -24,7 +24,9 @@ set background=dark
 set nobackup
 set nowritebackup
 set swapfile
+set directory=~/.vim/swap//
 set undofile
+set undodir=~/.vim/undo//
 set autoread
 set hidden
 
@@ -56,7 +58,7 @@ set wildmenu
 set wildignorecase
 set noshowcmd                                  " Disabled for best performance.
 set noshowmode
-set signcolumn=yes:2
+set signcolumn=yes
 
 " Statusline.
 set laststatus=2
@@ -70,9 +72,6 @@ set nosmartcase
 set wildignore+=**/.git,**/.svn,**/.hg,**/CVS,**/.DS_store
 set wildignore+=**/node_modules,**/bower_components
 set wildignorecase
-
-" Substitute.
-set inccommand=nosplit
 
 " Interaction.
 set belloff=all
@@ -106,8 +105,8 @@ filetype plugin indent on | syntax on
 " -----------------------------------------------------------------------------
 " SECTION: Plugins settings.
 " -----------------------------------------------------------------------------
-" It is indicated that the comma key will be the `<leader>` key.
-let g:mapleader=','
+" It is indicated that the backslash key will be the `<leader>` key.
+let g:mapleader='\'
 
 " Coc extensions.
 let g:coc_global_extensions=[
@@ -122,16 +121,6 @@ let g:coc_global_extensions=[
 
 " Coc syntax.
 let g:coc_default_semantic_highlight_groups=1
-
-" Rainbow activate.
-let g:rainbow_active=1
-
-" Rainbow config.
-let g:rainbow_conf={
-  \ 'separately': {
-      \ 'html': 0
-      \ }
-  \ }
 
 " IndentLine color.
 let g:indentLine_setColors=0
@@ -241,31 +230,17 @@ let g:enfocado_plugins=[
   \ 'matchup',
   \ 'nerdtree',
   \ 'plug',
-  \ 'rainbow',
   \ 'yank'
   \ ]
-
-" CursorHold updatetime.
-let g:cursorhold_updatetime=100
 " -----------------------------------------------------------------------------
 " SECTION: Plugins main.
 " -----------------------------------------------------------------------------
-" Providers settings for neovim plugins.
-let g:loaded_ruby_provider=0
-let g:loaded_perl_provider=0
-
-" IMPORTANT: These settings depend on each user because the installation
-" is different depending on the OS, the package manager, and the Python
-" version. In my case I have Python3 installed on Windows using scoop.
-let g:loaded_python_provider=0
-
 " Install plugins.
-call plug#begin(stdpath('data') . '/plugged')
+call plug#begin('~/.vim/plugged')
 
 " IDE.
 Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-Plug 'luochen1990/rainbow'
 Plug 'Yggdroot/indentLine'
 Plug 'andymass/vim-matchup'
 Plug 'github/copilot.vim'
@@ -290,7 +265,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'wuelnerdotexe/vim-enfocado', { 'branch': 'development' }
 
 " Tools.
-Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'szw/vim-maximizer'
 Plug 'iamcco/markdown-preview.nvim',
       \ { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'] }
@@ -480,10 +454,5 @@ autocmd FileType typescript,json setlocal formatexpr=CocAction('formatSelected')
 " Coc update signature help on jump placeholder.
 autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 
-" Set Enfocado colorscheme when all have loaded.
+" Set the colorscheme when all have loaded.
 autocmd VimEnter * ++nested colorscheme enfocado
-augroup enfocado_customization
-  autocmd!
-    autocmd ColorScheme enfocado highlight! Normal ctermbg=NONE guibg=NONE
-    autocmd ColorScheme enfocado highlight! NormalNC ctermbg=NONE guibg=NONE
-augroup END
