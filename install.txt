@@ -1,0 +1,18 @@
+INSTALL REPOS.
+
+RPM Packages.
+1. cmatrix.
+2. gh.
+3. neofetch.
+4. nodejs.
+5. protonvpn-cli python3-pip.
+6. snapd.
+7. speedtest.
+8. vim-X11
+9. xclip.
+
+SNAPS.
+1. spotify.
+
+Python Packages.
+2. --user dnspython

@@ -10,6 +10,9 @@
 " Encoding.
 set encoding=utf-8
 
+" guiOptions.
+set guifont=MesloLGS\ NF\ 10
+
 " Languages.
 set spelllang=en,es
 set helplang=en,es
