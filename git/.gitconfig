@@ -1,13 +1,5 @@
 [user]
-	name = Wuelner Ofdely Martínez Domingo
+	name = Wuelner Martínez
 	email = wuelner.martinez@outlook.com
 [color]
 	ui = auto
-[core]
-	editor = nvim
-[credential "https://github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
-[credential "https://gist.github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
