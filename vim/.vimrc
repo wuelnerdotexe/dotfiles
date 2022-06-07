@@ -189,6 +189,45 @@ let g:NERDTreeIgnore=[
 let g:NERDTreeQuitOnOpen=1
 let g:NERDTreeAutoDeleteBuffer=1
 
+" Startify lists.
+let g:startify_lists=[
+  \ { 'type': 'sessions', 'header': ['Sessions'] },
+  \ { 'type': 'bookmarks', 'header': ['Bookmarks'] },
+  \ ]
+
+" Startify bookmarks.
+let g:startify_bookmarks=[
+  \ '~/dotfiles/',
+  \ '~/Workspace/enfocado/',
+  \ '~/Workspace/vim-enfocado/',
+  \ '~/Workspace/vscode-enfocado/',
+  \ '~/Workspace/wuelnerdotexe.github.io/'
+  \ ]
+
+" Startify options.
+let g:startify_session_autoload=1
+let g:startify_session_persistence=1
+let g:startify_change_to_dir=1
+let g:startify_change_to_vcs_root=1
+let g:startify_enable_special=0
+
+" Startify header.
+let g:ascii_header=[
+  \ '        __',
+  \ '.--.--.|__|.--------.',
+  \ '|  |  ||  ||        |',
+  \ ' \___/ |__||__|__|__|',
+  \ ''
+  \ ]
+let g:startify_custom_header='startify#pad(g:ascii_header)'
+
+" Startify footer.
+let g:ascii_footer=[
+  \ '',
+  \ 'How vim should be.'
+  \ ]
+let g:startify_custom_footer='startify#pad(g:ascii_footer)'
+
 " Airline font/symbols.
 let g:airline_left_sep=''
 let g:airline_left_alt_sep=''
@@ -264,6 +303,7 @@ Plug 'airblade/vim-gitgutter'
 " Files.
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'preservim/nerdtree'
+Plug 'mhinz/vim-startify'
 
 " Interfaz.
 Plug 'vim-airline/vim-airline'
