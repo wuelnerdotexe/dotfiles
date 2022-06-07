@@ -110,6 +110,7 @@ filetype plugin indent on | syntax on
 " -----------------------------------------------------------------------------
 " It is indicated that the backslash key will be the `<leader>` key.
 let g:mapleader='\'
+let g:maplocalleader='\'
 
 " Coc extensions.
 let g:coc_global_extensions=[
@@ -150,8 +151,8 @@ let g:loaded_matchit=1
 let g:matchup_matchparen_offscreen={ 'method': 'popup' }
 
 " Move key modifier.
-let g:move_key_modifier='C'
-let g:move_key_modifier_visualmode='C'
+let g:move_key_modifier_visualmode='A'
+let g:move_key_modifier='A'
 
 " Gitgutter messages.
 let g:gitgutter_show_msg_on_hunk_jumping=1
@@ -186,6 +187,7 @@ let g:NERDTreeIgnore=[
   \ ]
 
 " NERDTree interaction.
+let g:NERDTreeChDirMode=2
 let g:NERDTreeQuitOnOpen=1
 let g:NERDTreeAutoDeleteBuffer=1
 
@@ -241,6 +243,7 @@ let g:airline_extensions=([
   \ 'coc',
   \ 'fzf',
   \ 'hunks',
+  \ 'netrw',
   \ 'tabline',
   \ 'term',
   \ 'whitespace'
@@ -302,6 +305,7 @@ Plug 'airblade/vim-gitgutter'
 
 " Files.
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'tpope/vim-vinegar'
 Plug 'preservim/nerdtree'
 Plug 'mhinz/vim-startify'
 
@@ -314,6 +318,21 @@ Plug 'szw/vim-maximizer'
 Plug 'iamcco/markdown-preview.nvim',
       \ { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'] }
 call plug#end()
+" -----------------------------------------------------------------------------
+" SECTION: Plugins functions.
+" -----------------------------------------------------------------------------
+" If NERDTree is open in the current buffer
+function! g:NERDTreeToggleInCurDir()                                                                                                                                                             
+  if (exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1)
+    silent execute "NERDTreeClose"
+  else
+    if (expand("%:t") != '')
+      silent execute "NERDTreeCWD"
+    else
+      silent execute "NERDTreeToggle"
+    endif
+  endif
+endfunction
 " -----------------------------------------------------------------------------
 " SECTION: Native mappings.
 " -----------------------------------------------------------------------------
@@ -466,10 +485,7 @@ nnoremap <silent> <leader>ff <Cmd>FZF<CR>
 nnoremap <silent> <leader>tm <Cmd>MaximizerToggle<CR>
 
 " NERDTree toggle.
-nnoremap <silent> <leader>te <Cmd>NERDTreeToggle<CR>
-
-" NERDTree find open file.
-nnoremap <silent> <leader>fe <Cmd>NERDTreeFind<CR>
+nnoremap <silent> <leader>te <Cmd>call g:NERDTreeToggleInCurDir()<CR>
 
 " Signify show hunk diff on the current line.
 nnoremap <silent> <leader>hd <Cmd>SignifyHunkDiff<CR>
