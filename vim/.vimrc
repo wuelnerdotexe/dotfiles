@@ -193,8 +193,8 @@ let g:NERDTreeAutoDeleteBuffer=1
 
 " Startify lists.
 let g:startify_lists=[
-  \ { 'type': 'sessions', 'header': ['Sessions'] },
   \ { 'type': 'bookmarks', 'header': ['Bookmarks'] },
+  \ { 'type': 'sessions', 'header': ['Sessions'] },
   \ ]
 
 " Startify bookmarks.
@@ -212,23 +212,25 @@ let g:startify_session_persistence=1
 let g:startify_change_to_dir=1
 let g:startify_change_to_vcs_root=1
 let g:startify_enable_special=0
+let g:startify_relative_path=1
 
 " Startify header.
-let g:ascii_header=[
-  \ '        __',
-  \ '.--.--.|__|.--------.',
-  \ '|  |  ||  ||        |',
-  \ ' \___/ |__||__|__|__|',
+let g:header=[
+  \ '',
+  \ '██    ██ ██ ███    ███ ',
+  \ '██    ██ ██ ████  ████ ',
+  \ '██    ██ ██ ██ ████ ██ ',
+  \ ' ██  ██  ██ ██  ██  ██ ',
+  \ '  ████   ██ ██      ██ ',
+  \ '',
+  \ '     Vi - IMproved     ',
   \ ''
   \ ]
-let g:startify_custom_header='startify#pad(g:ascii_header)'
+let g:startify_custom_header='startify#pad(g:header)'
 
 " Startify footer.
-let g:ascii_footer=[
-  \ '',
-  \ 'How vim should be.'
-  \ ]
-let g:startify_custom_footer='startify#pad(g:ascii_footer)'
+let g:footer=['', 'Welcome!', '']
+let g:startify_custom_footer='startify#center(g:footer)'
 
 " Airline font/symbols.
 let g:airline_left_sep=''
@@ -277,7 +279,9 @@ let g:enfocado_plugins=[
   \ 'gitgutter',
   \ 'matchup',
   \ 'nerdtree',
+  \ 'netrw',
   \ 'plug',
+  \ 'startify',
   \ 'yank'
   \ ]
 " -----------------------------------------------------------------------------
@@ -502,6 +506,9 @@ autocmd BufReadPost *
 " -----------------------------------------------------------------------------
 " SECTION: Plugins autocmds.
 " -----------------------------------------------------------------------------
+" Startify cursorline.
+autocmd User Startified setlocal cursorline
+
 " Coc highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
