@@ -322,15 +322,11 @@ call plug#end()
 " SECTION: Plugins functions.
 " -----------------------------------------------------------------------------
 " If NERDTree is open in the current buffer
-function! g:NERDTreeToggleInCurDir()                                                                                                                                                             
-  if (exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1)
-    silent execute "NERDTreeClose"
+function! s:SmartNERDTreeToggle() abort
+  if g:NERDTree.IsOpen()
+    silent NERDTreeClose
   else
-    if (expand("%:t") != '')
-      silent execute "NERDTreeCWD"
-    else
-      silent execute "NERDTreeToggle"
-    endif
+    silent NERDTreeCWD
   endif
 endfunction
 " -----------------------------------------------------------------------------
@@ -485,7 +481,7 @@ nnoremap <silent> <leader>ff <Cmd>FZF<CR>
 nnoremap <silent> <leader>tm <Cmd>MaximizerToggle<CR>
 
 " NERDTree toggle.
-nnoremap <silent> <leader>te <Cmd>call g:NERDTreeToggleInCurDir()<CR>
+nnoremap <silent> <leader>te <Cmd>call <SID>SmartNERDTreeToggle()<CR>
 
 " Signify show hunk diff on the current line.
 nnoremap <silent> <leader>hd <Cmd>SignifyHunkDiff<CR>
