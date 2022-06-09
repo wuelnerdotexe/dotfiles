@@ -3,3 +3,5 @@
 	email = wuelner.martinez@outlook.com
 [color]
 	ui = auto
+[credential]
+	helper = libsecret
