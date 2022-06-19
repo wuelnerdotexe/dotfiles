@@ -88,7 +88,17 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+# Lines configured by zsh-newuser-install
+HISTSIZE=1000
+SAVEHIST=1000
+setopt autocd beep extendedglob nomatch notify
+bindkey -v
+# End of lines configured by zsh-newuser-install
+
 # export MANPATH="/usr/local/man:$MANPATH"
+
+# Installing npm Global Modules
+export PATH=~/.npm-global/bin:$PATH
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
@@ -112,6 +122,13 @@ export EDITOR='vimx'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/wuelnerdotexe/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

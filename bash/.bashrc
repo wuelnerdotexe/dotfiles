@@ -12,6 +12,9 @@ then
 fi
 export PATH
 
+# Installing npm Global Modules
+export PATH=~/.npm-global/bin:$PATH
+
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
 
@@ -26,6 +29,7 @@ fi
 
 unset rc
 
+# Display current branch in bash
 export PS1='[\u@\h \W$(declare -F __git_ps1 &>/dev/null && __git_ps1 " (%s)")]\$ '
 . /usr/share/git-core/contrib/completion/git-prompt.sh
 export GIT_PS1_SHOWDIRTYSTATE=true

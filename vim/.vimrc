@@ -11,7 +11,7 @@
 set encoding=utf-8
 
 " guiOptions.
-set guifont=MesloLGS\ NF\ 10
+set guifont=MesloLGS\ NF\ 12
 
 " Languages.
 set spelllang=en,es
@@ -21,7 +21,7 @@ set spell
 " Colors.
 set t_Co=256
 set termguicolors
-set background=dark
+" set background={light or dark}
 
 " Files.
 set nobackup
@@ -315,7 +315,8 @@ Plug 'mhinz/vim-startify'
 
 " Interfaz.
 Plug 'vim-airline/vim-airline'
-Plug 'wuelnerdotexe/vim-enfocado', { 'branch': 'development' }
+" Plug 'wuelnerdotexe/vim-enfocado', { 'branch': 'development' }
+Plug '~/Workspace/vim-enfocado'
 
 " Tools.
 Plug 'szw/vim-maximizer'
