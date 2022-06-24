@@ -11,7 +11,9 @@
 set encoding=utf-8
 
 " guiOptions.
-set guifont=MesloLGS\ NF\ 12
+set guioptions-=m
+set guioptions-=T
+set guifont=MesloLGS\ NF\ 14
 
 " Languages.
 set spelllang=en,es
@@ -217,13 +219,13 @@ let g:startify_relative_path=1
 " Startify header.
 let g:header=[
   \ '',
-  \ '██    ██ ██ ███    ███ ',
-  \ '██    ██ ██ ████  ████ ',
-  \ '██    ██ ██ ██ ████ ██ ',
-  \ ' ██  ██  ██ ██  ██  ██ ',
-  \ '  ████   ██ ██      ██ ',
+  \ '  ██    ██ ██ ███    ███  ',
+  \ '  ██    ██ ██ ████  ████  ',
+  \ '  ██    ██ ██ ██ ████ ██  ',
+  \ '   ██  ██  ██ ██  ██  ██  ',
+  \ '    ████   ██ ██      ██  ',
   \ '',
-  \ '     Vi - IMproved     ',
+  \ 'the ubiquitous text editor',
   \ ''
   \ ]
 let g:startify_custom_header='startify#pad(g:header)'
