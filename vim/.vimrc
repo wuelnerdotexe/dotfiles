@@ -114,19 +114,31 @@ filetype plugin indent on | syntax on
 let g:mapleader='\'
 let g:maplocalleader='\'
 
-" Coc extensions.
-let g:coc_global_extensions=[
-  \ 'coc-css',
-  \ 'coc-eslint',
-  \ 'coc-html',
-  \ 'coc-json',
-  \ 'coc-lua',
-  \ 'coc-tsserver',
-  \ 'coc-vimlsp'
-  \ ]
+" ALE linters.
+let g:ale_linters={
+  \ 'javascript': ['eslint', 'tsserver'],
+  \ 'json': ['eslint']
+  \ }
+let g:ale_linters_explicit=1
 
-" Coc syntax.
-let g:coc_default_semantic_highlight_groups=1
+" ALE fixers.
+let g:ale_fixers={
+  \ 'css': ['prettier'],
+  \ 'html': ['prettier'],
+  \ 'javascript': ['prettier', 'eslint'],
+  \ 'json': ['prettier']
+  \ }
+let g:ale_fix_on_save=1
+
+" ALE completion.
+let g:ale_completion_enabled=1
+
+" ALE signs.
+let g:ale_sign_error='❯'
+let g:ale_sign_warning='❯'
+
+" ALE floating window.
+let g:ale_floating_window_border=['│', '─', '╭', '╮', '╯', '╰', '│', '─']
 
 " IndentLine color.
 let g:indentLine_setColors=0
@@ -243,8 +255,8 @@ let g:airline_powerline_fonts=1
 
 " Airline extensions.
 let g:airline_extensions=([
+  \ 'ale',
   \ 'branch',
-  \ 'coc',
   \ 'fzf',
   \ 'hunks',
   \ 'netrw',
@@ -258,7 +270,7 @@ let g:airline#extensions#tabline#tab_nr_type=1
 let g:airline#extensions#hunks#non_zero_only=1
 
 " Airline sections.
-let g:airline_section_c='%t %{get(b:,"coc_current_function","")}'
+let g:airline_section_c='%t'
 let g:airline_section_z='L%l'
 let g:airline_section_y='%{&fenc?&fenc:&enc}[%{&ff}] %{SleuthIndicator()}'
 let g:airline_section_x='%{&filetype}'
@@ -276,7 +288,7 @@ let g:airline_theme='enfocado'
 " Enfocado theme.
 let g:enfocado_style='nature' " Available: `nature` or `neon`.
 let g:enfocado_plugins=[
-  \ 'coc',
+  \ 'ale',
   \ 'fzf',
   \ 'gitgutter',
   \ 'matchup',
@@ -294,7 +306,10 @@ call plug#begin('~/.vim/plugged')
 
 " IDE.
 Plug 'sheerun/vim-polyglot'
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'pangloss/vim-javascript'
+Plug 'stephenway/postcss.vim'
+Plug 'mattn/emmet-vim'
+Plug 'dense-analysis/ale'
 Plug 'Yggdroot/indentLine'
 Plug 'andymass/vim-matchup'
 
@@ -357,130 +372,6 @@ nnoremap <silent> <C-J> 1<C-W>-
 " -----------------------------------------------------------------------------
 " SECTION: Plugins mappings.
 " -----------------------------------------------------------------------------
-" Coc remap `<C-F>` and `<C-B>` for scroll float windows/popups.
-nnoremap <silent><nowait><expr> <C-F> coc#float#has_scroll() ?
-      \ coc#float#scroll(1) : "\<C-F>"
-nnoremap <silent><nowait><expr> <C-B> coc#float#has_scroll() ?
-      \ coc#float#scroll(0) : "\<C-B>"
-inoremap <silent><nowait><expr> <C-F> coc#float#has_scroll() ?
-      \ "\<C-R>=coc#float#scroll(1)\<CR>" : "\<Right>"
-inoremap <silent><nowait><expr> <C-B> coc#float#has_scroll() ?
-      \ "\<C-R>=coc#float#scroll(0)\<CR>" : "\<Left>"
-vnoremap <silent><nowait><expr> <C-F> coc#float#has_scroll() ?
-      \ coc#float#scroll(1) : "\<C-F>"
-vnoremap <silent><nowait><expr> <C-B> coc#float#has_scroll() ?
-      \ coc#float#scroll(0) : "\<C-B>"
-
-" Coc make `<CR>` auto-select the first completion item and notify to
-" format on enter, `<CR>` could be remapped by other vim plugin.
-inoremap <silent><expr> <CR> pumvisible() ?
-      \ coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" Coc use `<C-Space>` to trigger completion.
-inoremap <silent><expr> <C-Space> coc#refresh()
-
-" Coc use `<TAB>` for trigger completion with characters ahead and navigate.
-inoremap <silent> <expr> <TAB>
-      \ pumvisible() ? "\<C-N>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr> <S-TAB> pumvisible() ? "\<C-P>" : "\<C-H>"
-
-function! s:check_back_space() abort
-  let col=col('.') - 1
-  return !col || getline('.')[col - 1] =~# '\s'
-endfunction
-
-" Coc use `[g` and `]g` to navigate diagnostics.
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" Coc go to code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Coc symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
-
-" Coc use `K` to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'],&filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!'.&keywordprg." ".expand('<cword>')
-  endif
-endfunction
-
-" Coc use `CTRL-S` for selections ranges.
-nmap <silent> <C-S> <Plug>(coc-range-select)
-xmap <silent> <C-S> <Plug>(coc-range-select)
-
-" Coc add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR :call CocActionAsync('runCommand', 'editor.action.organizeImport')
-
-" Coc add `:Fold` command to fold current buffer.
-command! -nargs=? Fold :call CocAction('fold', <f-args>)
-
-" Coc add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocActionAsync('format')
-
-" Coc formatting selected code.
-xmap <leader>f <Plug>(coc-format-selected)
-nmap <leader>f <Plug>(coc-format-selected)
-
-" Coc remap keys for applying codeaction to the current buffer.
-nmap <leader>ac <Plug>(coc-codeaction)
-
-" Coc apply autofix to problem on the current line.
-nmap <leader>qf <Plug>(coc-fix-current)
-
-" Coc run the codelens action on the current line.
-nmap <leader>cl <Plug>(coc-codelens-action)
-
-" Coc applying codeaction to the selected region.
-xmap <leader>a <Plug>(coc-codeaction-selected)
-nmap <leader>a <Plug>(coc-codeaction-selected)
-
-" Coc map function and class text objects.
-xmap if <Plug>(coc-funcobj-i)
-omap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap af <Plug>(coc-funcobj-a)
-xmap ic <Plug>(coc-classobj-i)
-omap ic <Plug>(coc-classobj-i)
-xmap ac <Plug>(coc-classobj-a)
-omap ac <Plug>(coc-classobj-a)
-
-" Coc show all diagnostics.
-nnoremap <silent><nowait> <Space>a :<C-U>CocList diagnostics<CR>
-
-" Coc manage extensions.
-nnoremap <silent><nowait> <Space>e :<C-U>CocList extensions<CR>
-
-" Coc show commands.
-nnoremap <silent><nowait> <Space>c :<C-U>CocList commands<CR>
-
-" Coc find symbol of current document.
-nnoremap <silent><nowait> <Space>o :<C-U>CocList outline<CR>
-
-" Coc search workspace symbols.
-nnoremap <silent><nowait> <Space>s :<C-U>CocList -I symbols<CR>
-
-" Coc do default action for next item.
-nnoremap <silent><nowait> <Space>j :<C-U>CocNext<CR>
-
-" Coc do default action for previous item.
-nnoremap <silent><nowait> <Space>k :<C-U>CocPrev<CR>
-
-" Coc resume latest coc list.
-nnoremap <silent><nowait> <Space>p :<C-U>CocListResume<CR>
-
 " Fuzzy finder activate.
 nnoremap <silent> <leader>ff <Cmd>FZF<CR>
 
@@ -511,15 +402,6 @@ autocmd BufReadPost *
 " -----------------------------------------------------------------------------
 " Startify cursorline.
 autocmd User Startified setlocal cursorline
-
-" Coc highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Coc setup formatexpr specified filetype(s).
-autocmd FileType typescript,json setlocal formatexpr=CocAction('formatSelected')
-
-" Coc update signature help on jump placeholder.
-autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 
 " Set the colorscheme when all have loaded.
 autocmd VimEnter * ++nested colorscheme enfocado
