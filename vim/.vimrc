@@ -7,15 +7,25 @@
 " About:    Minimal vim config.
 " -----------------------------------------------------------------------------
 
+" Skip runtime/defaults.vim
+let skip_defaults_vim=1
+
+" Don't use Vi-compatible mode.
+set nocompatible
+silent! while 0
+  set nocompatible
+silent! endwhile
+
 " Encoding.
 set encoding=utf-8
 
-" guiOptions.
+" GUI options.
 set guioptions-=m
 set guioptions-=T
 set guifont=BlexMono\ Nerd\ Font\ Mono\ Medium\ 14
 
 " Languages.
+set nolangremap
 set spelllang=en,es
 set helplang=en,es
 set spell
@@ -32,6 +42,8 @@ set swapfile
 set directory=~/.vim/swap//
 set undofile
 set undodir=~/.vim/undo//
+set sessionoptions-=options
+set viewoptions-=options
 set autoread
 set hidden
 
@@ -45,11 +57,14 @@ set breakindent
 set showmatch
 set matchpairs+=<:>
 set nojoinspaces
+set formatoptions+=j
 set emoji
 
 " Interfaz.
-set notitle
+set title
+set titlestring=Vim
 set list
+set listchars=trail:-
 set nonumber
 set norelativenumber
 set numberwidth=5
@@ -83,6 +98,7 @@ set belloff=all
 set confirm
 set ttimeout
 set ttimeoutlen=50
+set complete-=i                                " Disabled for best performance.
 set completeopt=menuone,longest,popup
 set history=50
 set shortmess+=IF
@@ -94,6 +110,7 @@ set sidescrolloff=0
 set splitright
 set splitbelow
 set equalalways
+set nostartofline
 set backspace=indent,eol,start
 set clipboard=unnamedplus
 set mouse=a
@@ -124,7 +141,7 @@ let g:ale_sign_error=''
 let g:ale_sign_warning=''
 
 " ALE virtual text.
-let g:ale_virtualtext_prefix=' ● '
+let g:ale_virtualtext_prefix='▎'
 let g:ale_virtualtext_cursor=1
 
 " ALE vimls setup.
@@ -371,38 +388,42 @@ let g:enfocado_plugins=[
 " Install plugins.
 call plug#begin('~/.vim/plugged')
 
-" IDE.
-Plug 'sheerun/vim-polyglot'
-Plug 'stephenway/postcss.vim'
-Plug 'mattn/emmet-vim'
-Plug 'dense-analysis/ale'
-Plug 'Yggdroot/indentLine'
-Plug 'andymass/vim-matchup'
-
-" Typing.
-Plug 'mg979/vim-visual-multi', { 'branch': 'master' }
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
-Plug 'matze/vim-move'
-Plug 'machakann/vim-highlightedyank'
-
 " Git.
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
-" Files.
+" Languages.
+Plug 'pangloss/vim-javascript'
+Plug 'stephenway/postcss.vim'
+
+" Indent.
+Plug 'tpope/vim-sleuth'
+Plug 'Yggdroot/indentLine'
+
+" Text editing.
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'matze/vim-move'
+Plug 'mg979/vim-visual-multi'
+
+" Linter & autocomplete.
+Plug 'mattn/emmet-vim'
+Plug 'dense-analysis/ale'
+
+" File manager.
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'tpope/vim-vinegar'
 Plug 'preservim/nerdtree'
 Plug 'mhinz/vim-startify'
 
 " Interfaz.
-Plug 'vim-airline/vim-airline'
-" Plug 'wuelnerdotexe/vim-enfocado', { 'branch': 'development' }
+Plug 'andymass/vim-matchup'
+Plug 'machakann/vim-highlightedyank'
 Plug '~/Workspace/vim-enfocado'
-
-" Tools.
+Plug 'vim-airline/vim-airline'
 Plug 'szw/vim-maximizer'
+
+" Others.
 Plug 'iamcco/markdown-preview.nvim',
       \ { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'] }
 call plug#end()
@@ -410,7 +431,7 @@ call plug#end()
 " SECTION: Plugins functions.
 " -----------------------------------------------------------------------------
 " If NERDTree is open in the current buffer
-function! s:SmartNERDTreeToggle() abort
+function s:SmartNERDTreeToggle() abort
   if g:NERDTree.IsOpen()
     silent NERDTreeClose
   else
@@ -435,6 +456,11 @@ nnoremap <silent> <C-H> 1<C-W><
 nnoremap <silent> <C-K> 1<C-W>+
 nnoremap <silent> <C-L> 1<C-W>>
 nnoremap <silent> <C-J> 1<C-W>-
+
+" Use <C-/> to clear the highlighting of :set hlsearch.
+if maparg('<C-/>', 'n') ==# ''
+  nnoremap <silent> <C-/> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+endif
 " -----------------------------------------------------------------------------
 " SECTION: Plugins mappings.
 " -----------------------------------------------------------------------------
@@ -447,8 +473,8 @@ nnoremap <silent> <leader>tm <Cmd>MaximizerToggle<CR>
 " NERDTree toggle.
 nnoremap <silent> <leader>te <Cmd>call <SID>SmartNERDTreeToggle()<CR>
 
-" Signify show hunk diff on the current line.
-nnoremap <silent> <leader>hd <Cmd>SignifyHunkDiff<CR>
+" Gitgutter show hunk diff on the current line.
+nnoremap <silent> <leader>ph <Cmd>GitGutterPreviewHunk<CR>
 
 " Reload MY VIMRC.
 nnoremap <silent> <leader>rc <Cmd>source $MYVIMRC<CR>
