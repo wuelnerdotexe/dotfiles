@@ -97,9 +97,6 @@ bindkey -v
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
-# Installing npm Global Modules
-export PATH=~/.npm-global/bin:$PATH
-
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 

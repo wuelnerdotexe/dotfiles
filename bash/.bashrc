@@ -12,9 +12,6 @@ then
 fi
 export PATH
 
-# Installing npm Global Modules
-export PATH=~/.npm-global/bin:$PATH
-
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
 

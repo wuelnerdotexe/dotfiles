@@ -13,7 +13,7 @@ set encoding=utf-8
 " guiOptions.
 set guioptions-=m
 set guioptions-=T
-set guifont=MesloLGS\ NF\ 14
+set guifont=BlexMono\ Nerd\ Font\ Mono\ Medium\ 14
 
 " Languages.
 set spelllang=en,es
@@ -23,7 +23,7 @@ set spell
 " Colors.
 set t_Co=256
 set termguicolors
-" set background={light or dark}
+set background=dark
 
 " Files.
 set nobackup
@@ -83,7 +83,7 @@ set belloff=all
 set confirm
 set ttimeout
 set ttimeoutlen=50
-set complete-=i                                " Disabled for best performance.
+set completeopt=menuone,longest,popup
 set history=50
 set shortmess+=IF
 set shortmess-=S
@@ -114,31 +114,98 @@ filetype plugin indent on | syntax on
 let g:mapleader='\'
 let g:maplocalleader='\'
 
-" ALE linters.
+" ALE cursor.
+let g:ale_hover_cursor=0
+let g:ale_echo_cursor=0
+let g:ale_cursor_detail=0
+
+" ALE signs.
+let g:ale_sign_error=''
+let g:ale_sign_warning=''
+
+" ALE virtual text.
+let g:ale_virtualtext_prefix=' ● '
+let g:ale_virtualtext_cursor=1
+
+" ALE vimls setup.
+let g:ale_vim_vimls_use_global=1
+let g:ale_vim_vimls_config={
+  \ 'vim': {
+  \   'iskeyword': '@,48-57,_,192-255,-#',
+  \   'vimruntime': '',
+  \   'runtimepath': '',
+  \   'diagnostic': {
+  \     'enable': v:true
+  \   },
+  \   'indexes': {
+  \     'runtimepath': v:true,
+  \     'gap': 100,
+  \     'count': 3,
+  \     'projectRootPatterns': [
+  \       'strange-root-pattern',
+  \       '.git',
+  \       'autoload',
+  \       'plugin'
+  \     ]
+  \   },
+  \   'suggest': {
+  \     'fromVimruntime': v:true,
+  \     'fromRuntimepath': v:false
+  \   }
+  \ }
+  \ }
+
+" ALE linters & lsp.
+let g:ale_lsp_show_message_severity='warning'
+let g:ale_lsp_suggestions=1
+let g:ale_linters_explicit=1
 let g:ale_linters={
   \ 'javascript': ['eslint', 'tsserver'],
-  \ 'json': ['eslint']
+  \ 'json': ['eslint'],
+  \ 'vim': ['vimls']
   \ }
-let g:ale_linters_explicit=1
 
 " ALE fixers.
 let g:ale_fixers={
   \ 'css': ['prettier'],
   \ 'html': ['prettier'],
   \ 'javascript': ['prettier', 'eslint'],
-  \ 'json': ['prettier']
+  \ 'json': ['prettier'],
+  \ 'vim': ['remove_trailing_lines', 'trim_whitespace']
   \ }
 let g:ale_fix_on_save=1
 
 " ALE completion.
+let g:ale_completion_symbols={
+  \ 'class': ' פּ ',
+  \ 'color': '  ',
+  \ 'constant': '  ',
+  \ 'constructor': '  ',
+  \ 'enum': ' 練 ',
+  \ 'enum member': '  ',
+  \ 'event': '  ',
+  \ 'field': '  ',
+  \ 'file': '  ',
+  \ 'folder': ' ﱮ ',
+  \ 'function': '  ',
+  \ 'interface': ' 蘒 ',
+  \ 'keyword': '  ',
+  \ 'method': '  ',
+  \ 'module': '  ',
+  \ 'operator': '  ',
+  \ 'property': '  ',
+  \ 'reference': '  ',
+  \ 'snippet': '  ',
+  \ 'struct': '  ',
+  \ 'text': '  ',
+  \ 'type_parameter': '<>',
+  \ 'unit': ' 塞 ',
+  \ 'value': '  ',
+  \ 'variable': '[]',
+  \ '<default>': ' v ',
+  \ }
+let g:ale_completion_tsserver_remove_warnings=1
 let g:ale_completion_enabled=1
-
-" ALE signs.
-let g:ale_sign_error='❯'
-let g:ale_sign_warning='❯'
-
-" ALE floating window.
-let g:ale_floating_window_border=['│', '─', '╭', '╮', '╯', '╰', '│', '─']
 
 " IndentLine color.
 let g:indentLine_setColors=0
@@ -306,7 +373,6 @@ call plug#begin('~/.vim/plugged')
 
 " IDE.
 Plug 'sheerun/vim-polyglot'
-Plug 'pangloss/vim-javascript'
 Plug 'stephenway/postcss.vim'
 Plug 'mattn/emmet-vim'
 Plug 'dense-analysis/ale'
