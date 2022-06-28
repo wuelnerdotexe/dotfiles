@@ -136,6 +136,19 @@ let g:ale_hover_cursor=0
 let g:ale_echo_cursor=0
 let g:ale_cursor_detail=0
 
+" ALE Floating.
+let g:ale_floating_window_border=[
+  \ '║',
+  \ '═',
+  \ '╔',
+  \ '╗',
+  \ '╝',
+  \ '╚',
+  \ '║',
+  \ '═'
+  \ ]
+let g:ale_floating_preview=1
+
 " ALE signs.
 let g:ale_sign_error=''
 let g:ale_sign_warning=''
@@ -464,6 +477,21 @@ endif
 " -----------------------------------------------------------------------------
 " SECTION: Plugins mappings.
 " -----------------------------------------------------------------------------
+" ALE GoTo code navigation.
+nmap <silent> gd <Cmd>ALEGoToDefinition<CR>
+nmap <silent> gy <Cmd>ALEGoToTypeDefinition<CR>
+nmap <silent> gi <Cmd>ALEGoToImplementation<CR>
+nmap <silent> gr <Cmd>ALEFindReferences<CR>
+
+" ALE hover documentation.
+nnoremap <silent> K <Cmd>ALEHover<CR>
+
+" ALE symbol renaming.
+nmap <leader>rn <Cmd>ALERename<CR>
+
+" ALE code action to the current buffer.
+nmap <leader>ac <Cmd>ALECodeAction<CR>
+
 " Fuzzy finder activate.
 nnoremap <silent> <leader>ff <Cmd>FZF<CR>
 
