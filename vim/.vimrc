@@ -90,7 +90,7 @@ set incsearch
 set ignorecase
 set nosmartcase
 set wildignore+=**/.git,**/.svn,**/.hg,**/CVS,**/.DS_store
-set wildignore+=**/node_modules,**/bower_components
+set wildignore+=**/node_modules,**/bower_components,**/.vscode
 set wildignorecase
 
 " Interaction.
@@ -135,6 +135,7 @@ let g:maplocalleader='\'
 let g:ale_hover_cursor=0
 let g:ale_echo_cursor=0
 let g:ale_cursor_detail=0
+let g:ale_set_balloons=0
 
 " ALE Floating.
 let g:ale_floating_window_border=[
@@ -268,7 +269,8 @@ let g:NERDTreeIgnore=[
   \ '\.hg$',
   \ '\CSV$',
   \ '\.DS_Store$',
-  \ '\Thumbs.db$'
+  \ '\Thumbs.db$',
+  \ '\.vscode$',
   \ ]
 
 " NERDTree interaction.
@@ -399,6 +401,7 @@ Plug 'dense-analysis/ale'
 
 " File manager.
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-vinegar'
 Plug 'preservim/nerdtree'
 Plug 'mhinz/vim-startify'
@@ -467,7 +470,7 @@ nmap <leader>rn <Cmd>ALERename<CR>
 nmap <leader>ac <Cmd>ALECodeAction<CR>
 
 " Fuzzy finder activate.
-nnoremap <silent> <leader>ff <Cmd>FZF<CR>
+nnoremap <silent> <leader>ff <Cmd>GFiles<CR>
 
 " Maximizer toggle.
 nnoremap <silent> <leader>tm <Cmd>MaximizerToggle<CR>
