@@ -157,51 +157,26 @@ let g:ale_sign_warning=''
 let g:ale_virtualtext_prefix='▎'
 let g:ale_virtualtext_cursor=1
 
-" ALE vimls setup.
-let g:ale_vim_vimls_use_global=1
-let g:ale_vim_vimls_config={
-  \ 'vim': {
-  \   'iskeyword': '@,48-57,_,192-255,-#',
-  \   'vimruntime': '',
-  \   'runtimepath': '',
-  \   'diagnostic': {
-  \     'enable': v:true
-  \   },
-  \   'indexes': {
-  \     'runtimepath': v:true,
-  \     'gap': 100,
-  \     'count': 3,
-  \     'projectRootPatterns': [
-  \       'strange-root-pattern',
-  \       '.git',
-  \       'autoload',
-  \       'plugin'
-  \     ]
-  \   },
-  \   'suggest': {
-  \     'fromVimruntime': v:true,
-  \     'fromRuntimepath': v:false
-  \   }
-  \ }
-  \ }
-
 " ALE linters & lsp.
 let g:ale_lsp_show_message_severity='warning'
-let g:ale_lsp_suggestions=1
 let g:ale_linters_explicit=1
 let g:ale_linters={
   \ 'javascript': ['eslint', 'tsserver'],
-  \ 'json': ['eslint'],
-  \ 'vim': ['vimls']
+  \ 'typescript': ['eslint', 'tsserver'],
+  \ 'javascriptreact': ['eslint', 'tsserver'],
+  \ 'typescriptreact': ['eslint', 'tsserver']
   \ }
 
 " ALE fixers.
 let g:ale_fixers={
-  \ 'css': ['prettier'],
-  \ 'html': ['prettier'],
-  \ 'javascript': ['prettier', 'eslint'],
+  \ 'javascript': ['prettier'],
+  \ 'typescript': ['prettier'],
+  \ 'javascriptreact': ['prettier'],
+  \ 'typescriptreact': ['prettier'],
   \ 'json': ['prettier'],
-  \ 'vim': ['remove_trailing_lines', 'trim_whitespace']
+  \ 'css': ['prettier'],
+  \ 'scss': ['prettier'],
+  \ 'markdown': ['prettier']
   \ }
 let g:ale_fix_on_save=1
 
@@ -234,7 +209,6 @@ let g:ale_completion_symbols={
   \ 'variable': '[]',
   \ '<default>': ' v ',
   \ }
-let g:ale_completion_tsserver_remove_warnings=1
 let g:ale_completion_enabled=1
 
 " IndentLine color.
