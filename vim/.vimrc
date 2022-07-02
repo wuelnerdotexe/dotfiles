@@ -98,8 +98,8 @@ set belloff=all
 set confirm
 set ttimeout
 set ttimeoutlen=50
-set complete-=i                                " Disabled for best performance.
-set completeopt=menuone,longest,popup
+set complete= omnifunc=                        " Disabled for best performance.
+set completeopt=menuone,popup
 set history=50
 set shortmess+=IF
 set shortmess-=S
@@ -162,19 +162,19 @@ let g:ale_virtualtext_cursor=1
 let g:ale_lsp_show_message_severity='warning'
 let g:ale_linters_explicit=1
 let g:ale_linters={
-  \ 'javascript': ['eslint', 'tsserver'],
-  \ 'typescript': ['eslint', 'tsserver'],
-  \ 'javascriptreact': ['eslint', 'tsserver'],
-  \ 'typescriptreact': ['eslint', 'tsserver']
+  \ 'javascript': ['tsserver', 'eslint'],
+  \ 'typescript': ['tsserver', 'eslint'],
+  \ 'javascriptreact': ['tsserver', 'eslint'],
+  \ 'typescriptreact': ['tsserver', 'eslint']
   \ }
 
 " ALE fixers.
 let g:ale_fixers={
-  \ 'javascript': ['prettier'],
-  \ 'typescript': ['prettier'],
-  \ 'javascriptreact': ['prettier'],
-  \ 'typescriptreact': ['prettier'],
-  \ 'json': ['prettier'],
+  \ 'javascript': ['eslint','prettier'],
+  \ 'typescript': ['eslint','prettier'],
+  \ 'javascriptreact': ['eslint','prettier'],
+  \ 'typescriptreact': ['eslint','prettier'],
+  \ 'json': ['prettier'], 
   \ 'css': ['prettier'],
   \ 'scss': ['prettier'],
   \ 'markdown': ['prettier']
@@ -381,7 +381,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
-" Languages.
+" Syntax.
 Plug 'pangloss/vim-javascript'
 Plug 'stephenway/postcss.vim'
 
@@ -389,13 +389,13 @@ Plug 'stephenway/postcss.vim'
 Plug 'tpope/vim-sleuth'
 Plug 'Yggdroot/indentLine'
 
-" Text editing.
+" Typing.
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'matze/vim-move'
 Plug 'mg979/vim-visual-multi'
 
-" Linter & autocomplete.
+" Linter & Autocomplete.
 Plug 'mattn/emmet-vim'
 Plug 'dense-analysis/ale'
 
@@ -448,9 +448,7 @@ nnoremap <silent> <C-L> 1<C-W>>
 nnoremap <silent> <C-J> 1<C-W>-
 
 " Use <C-/> to clear the highlighting of :set hlsearch.
-if maparg('<C-/>', 'n') ==# ''
-  nnoremap <silent> <C-/> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
-endif
+nnoremap <C-/> <Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-/><CR>
 " -----------------------------------------------------------------------------
 " SECTION: Plugins mappings.
 " -----------------------------------------------------------------------------
