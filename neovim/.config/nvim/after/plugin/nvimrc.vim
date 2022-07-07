@@ -32,7 +32,7 @@ local mapping = cmp.mapping.preset.insert({
   ['<C-f>'] = cmp.mapping.scroll_docs(4),
   ['<C-Space>'] = cmp.mapping.complete(),
   ['<C-e>'] = cmp.mapping.abort(),
-  ['<CR>'] = cmp.mapping.confirm({ select = true }),
+  ['<CR>'] = cmp.mapping.confirm({ select = true })
 })
 
 -- LSP global maps.
@@ -58,84 +58,81 @@ end
 -- ----------------------------------------------------------------------------
 -- SECTION: Nvim plugins configs.
 -- ----------------------------------------------------------------------------
--- CMP kind icons.
-local kind_icons = {
-  Text = "",
-  Method = "",
-  Function = "",
-  Constructor = "",
-  Field = "",
-  Variable = "",
-  Class = "ﴯ",
-  Interface = "",
-  Module = "",
-  Property = "ﰠ",
-  Unit = "",
-  Value = "",
-  Enum = "",
-  Keyword = "",
-  Snippet = "",
-  Color = "",
-  File = "",
-  Reference = "",
-  Folder = "",
-  EnumMember = "",
-  Constant = "",
-  Struct = "",
-  Event = "",
-  Operator = "",
-  TypeParameter = ""
-}
-
 -- CMP setup.
 cmp.setup({
   snippet = {
     expand = function(args)
       vim.fn["vsnip#anonymous"](args.body)
-    end,
+    end
   },
   mapping = mapping,
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'vsnip' },
-    { name = 'nvim_lsp_signature_help' },
-  }, {
-    { name = 'buffer' },
+    { name = 'nvim_lsp_signature_help' }
+  },
+  {
+    { name = 'buffer' }
   }),
   formatting = {
     format = function(entry, vim_item)
+      local kind_icons = {
+        Text = "",
+        Method = "",
+        Function = "",
+        Constructor = "",
+        Field = "",
+        Variable = "",
+        Class = "ﴯ",
+        Interface = "",
+        Module = "",
+        Property = "ﰠ",
+        Unit = "",
+        Value = "",
+        Enum = "",
+        Keyword = "",
+        Snippet = "",
+        Color = "",
+        File = "",
+        Reference = "",
+        Folder = "",
+        EnumMember = "",
+        Constant = "",
+        Struct = "",
+        Event = "",
+        Operator = "",
+        TypeParameter = ""
+      }
+
       vim_item.kind = string.format(
-      '%s %s', kind_icons[vim_item.kind], vim_item.kind
+        '%s %s',
+        kind_icons[vim_item.kind],
+        vim_item.kind
       )
       vim_item.menu = ({
         nvim_lsp = "[LSP]",
         buffer = "[Buffer]",
-        vsnip = "[Snippet]",
+        vsnip = "[Snippet]"
       })[entry.source.name]
       return vim_item
     end
   },
-  experimental = {
-    ghost_text = false, -- Copilot integration.
-  }
+  experimental = { ghost_text = false } -- Copilot integration.
 })
 
 -- CMP use buffer source for `/`.
 cmp.setup.cmdline('/', {
   mapping = cmp.mapping.preset.cmdline(),
-  sources = {
-    { name = 'buffer' }
-  }
+  sources = { { name = 'buffer' } }
 })
 
 -- CMP use cmdline & path source for ':'.
 cmp.setup.cmdline(':', {
   mapping = cmp.mapping.preset.cmdline(),
-  sources = cmp.config.sources({
-    { name = 'path' }
-  }, {
-    { name = 'cmdline' }
-  })
+  sources = cmp.config.sources(
+  { { name = 'path' } },
+  { { name = 'cmdline' } }
+  )
 })
 
 -- CMP capabilities for nvim_lsp.
@@ -147,9 +144,7 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- LSP & lspconfig setup.
-local lsp_flags = {
-  debounce_text_changes = 150,
-}
+local lsp_flags = { debounce_text_changes = 150 }
 
 -- LSP config for jsonls.
 lspconfig['jsonls'].setup{

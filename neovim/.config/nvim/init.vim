@@ -403,9 +403,6 @@ nnoremap <silent> <leader>te <Cmd>call <SID>SmartNERDTreeToggle()<CR>
 
 " Gitgutter show hunk diff on the current line.
 nnoremap <silent> <leader>ph <Cmd>GitGutterPreviewHunk<CR>
-
-" Reload MY VIMRC.
-nnoremap <silent> <leader>rc <Cmd>source $MYVIMRC<CR>
 " -----------------------------------------------------------------------------
 " SECTION: Native autocmds.
 " -----------------------------------------------------------------------------
