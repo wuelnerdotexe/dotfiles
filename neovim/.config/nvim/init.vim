@@ -316,10 +316,10 @@ Plug 'matze/vim-move'
 Plug 'mg979/vim-visual-multi'
 
 if exists('g:nvimrc') && g:nvimrc == 1
-  " LSP.
+  " Nvim lsp.
   Plug 'neovim/nvim-lspconfig'
 
-  " CMP.
+  " Nvim cmp.
   Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'hrsh7th/cmp-buffer'
   Plug 'hrsh7th/cmp-path'
@@ -327,14 +327,14 @@ if exists('g:nvimrc') && g:nvimrc == 1
   Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
   Plug 'hrsh7th/nvim-cmp'
 
-  " Snippets.
+  " Nvim snippets.
   Plug 'hrsh7th/cmp-vsnip'
   Plug 'hrsh7th/vim-vsnip'
 
-  " Copilot.
+  " Nvim copilot.
   Plug 'github/copilot.vim'
-elseif !exists('g:nvimrc') || g:nvimrc == 0
-  " Enable vim native autocomplete.
+else
+  " Vim autocomplete.
   Plug 'vim-scripts/AutoComplPop'
 endif
 
@@ -363,7 +363,7 @@ call plug#end()
 " -----------------------------------------------------------------------------
 " SECTION: Plugins functions.
 " -----------------------------------------------------------------------------
-" If NERDTree is open in the current buffer
+" NERDTree toggle refresh on change directory.
 function s:SmartNERDTreeToggle() abort
   if g:NERDTree.IsOpen()
     silent NERDTreeClose
@@ -407,9 +407,6 @@ nnoremap <silent> <leader>ph <Cmd>GitGutterPreviewHunk<CR>
 " SECTION: Native autocmds.
 " -----------------------------------------------------------------------------
 " When editing a file, always jump to the last known cursor position.
-" Don't do it when the position is invalid, when inside an event handler
-" (happens when dropping a file on gvim) and for a commit message (it's
-" likely a different one than last time).
 autocmd BufReadPost *
       \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
       \ |   execute "normal! g`\""
