@@ -63,12 +63,13 @@ require'nvim-treesitter.configs'.setup {
   highlight = {
     ensure_installed = {
       "html",
-      "json",
-      "jsonc",
       "javascript",
       "typescript",
+      "json",
+      "jsonc",
       "css",
-      "scss"
+      "scss",
+      "markdown"
     },
     sync_install = false,
     auto_install = true,
@@ -76,9 +77,8 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false
   },
   indent = { enable = false },
-  rainbow = { enable = true, extended_mode = false, max_file_lines = nil },
-  autotag = { enable = true },
   context_commentstring = { enable = true },
+  autotag = { enable = true },
   matchup = { enable = true }
 }
 
@@ -93,7 +93,6 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'vsnip' },
-    { name = 'nvim_lsp_signature_help' }
   },
   {
     { name = 'buffer' }

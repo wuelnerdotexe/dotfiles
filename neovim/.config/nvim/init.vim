@@ -309,7 +309,6 @@ Plug 'andymass/vim-matchup'
 if exists('g:nvimrc') && g:nvimrc == 1
   " Nvim syntax.
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-  Plug 'p00f/nvim-ts-rainbow'
   Plug 'JoosepAlviste/nvim-ts-context-commentstring'
   Plug 'windwp/nvim-ts-autotag'
 
@@ -318,7 +317,6 @@ if exists('g:nvimrc') && g:nvimrc == 1
 
   " Nvim cmp.
   Plug 'hrsh7th/cmp-nvim-lsp'
-  Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
   Plug 'hrsh7th/cmp-buffer'
   Plug 'hrsh7th/cmp-path'
   Plug 'hrsh7th/cmp-cmdline'
@@ -361,8 +359,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'szw/vim-maximizer'
 
 " Others.
-Plug 'iamcco/markdown-preview.nvim',
-      \ { 'do': { -> mkdp#util#install() } }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 call plug#end()
 " -----------------------------------------------------------------------------
 " SECTION: Plugins functions.
