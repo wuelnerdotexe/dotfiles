@@ -27,6 +27,7 @@ set termguicolors
 set background=dark
 
 " Files.
+set nofsync
 set nobackup
 set nowritebackup
 set noswapfile
@@ -167,6 +168,7 @@ let g:move_key_modifier='A'
 " Prettier autoformat.
 let g:prettier#autoformat=1
 let g:prettier#autoformat_require_pragma=0
+let g:prettier#autoformat_config_present=1
 
 " NERDTree replace netrw.
 let g:NERDTreeHijackNetrw=1
@@ -301,30 +303,25 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 " Syntax.
-Plug 'pangloss/vim-javascript'
-Plug 'stephenway/postcss.vim'
-
-" Indent.
-Plug 'tpope/vim-sleuth'
-Plug 'Yggdroot/indentLine'
-
-" Typing.
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
-Plug 'mattn/emmet-vim'
-Plug 'matze/vim-move'
-Plug 'mg979/vim-visual-multi'
+Plug 'andymass/vim-matchup'
 
 if exists('g:nvimrc') && g:nvimrc == 1
+  " Nvim syntax.
+  Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+  Plug 'p00f/nvim-ts-rainbow'
+  Plug 'JoosepAlviste/nvim-ts-context-commentstring'
+  Plug 'windwp/nvim-ts-autotag'
+
   " Nvim lsp.
   Plug 'neovim/nvim-lspconfig'
 
   " Nvim cmp.
   Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
   Plug 'hrsh7th/cmp-buffer'
   Plug 'hrsh7th/cmp-path'
   Plug 'hrsh7th/cmp-cmdline'
-  Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
   Plug 'hrsh7th/nvim-cmp'
 
   " Nvim snippets.
@@ -338,6 +335,15 @@ else
   Plug 'vim-scripts/AutoComplPop'
 endif
 
+" Indent.
+Plug 'tpope/vim-sleuth'
+Plug 'Yggdroot/indentLine'
+
+" Typing.
+Plug 'tpope/vim-surround'
+Plug 'matze/vim-move'
+Plug 'mg979/vim-visual-multi'
+
 " Formatter.
 Plug 'prettier/vim-prettier',
       \ { 'do': 'npm install --frozen-lockfile --production' }
@@ -345,12 +351,10 @@ Plug 'prettier/vim-prettier',
 " File manager.
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-vinegar'
 Plug 'preservim/nerdtree'
 Plug 'mhinz/vim-startify'
 
 " Interfaz.
-Plug 'andymass/vim-matchup'
 Plug 'machakann/vim-highlightedyank'
 Plug '~/Workspace/vim-enfocado'
 Plug 'vim-airline/vim-airline'
@@ -358,7 +362,7 @@ Plug 'szw/vim-maximizer'
 
 " Others.
 Plug 'iamcco/markdown-preview.nvim',
-      \ { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'] }
+      \ { 'do': { -> mkdp#util#install() } }
 call plug#end()
 " -----------------------------------------------------------------------------
 " SECTION: Plugins functions.

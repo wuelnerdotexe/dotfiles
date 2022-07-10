@@ -58,6 +58,30 @@ end
 -- ----------------------------------------------------------------------------
 -- SECTION: Nvim plugins configs.
 -- ----------------------------------------------------------------------------
+-- Tree-sitter setup.
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    ensure_installed = {
+      "html",
+      "json",
+      "jsonc",
+      "javascript",
+      "typescript",
+      "css",
+      "scss"
+    },
+    sync_install = false,
+    auto_install = true,
+    enable = true,
+    additional_vim_regex_highlighting = false
+  },
+  indent = { enable = false },
+  rainbow = { enable = true, extended_mode = false, max_file_lines = nil },
+  autotag = { enable = true },
+  context_commentstring = { enable = true },
+  matchup = { enable = true }
+}
+
 -- CMP setup.
 cmp.setup({
   snippet = {
@@ -193,4 +217,4 @@ EOF
 let g:airline_extensions+=['nvimlsp']
 
 " Enfocado add nvim plugins.
-let g:enfocado_plugins+=['cmp', 'copilot', 'lsp']
+let g:enfocado_plugins+=['cmp', 'copilot', 'lsp', 'treesitter']
