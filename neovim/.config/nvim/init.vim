@@ -51,11 +51,12 @@ set formatoptions+=j
 set emoji
 
 " Interfaz.
-set notitle
+set title
+set titlestring=Vim
 set list
-set listchars=trail:-
 set nonumber
 set norelativenumber
+set listchars=trail:-
 set numberwidth=5
 set cursorline
 set noruler                                    " Disabled for best performance.
@@ -116,14 +117,19 @@ filetype plugin indent on | syntax on
 " SECTION: Neovim setup.
 " -----------------------------------------------------------------------------
 if has('nvim')
-  " Neovim config enable.
-  let g:nvimrc=1
+  " Nvim options.
+  set titlestring=Neovim
+  set signcolumn=yes:2
+  set inccommand=nosplit
 
-  " Providers are disabled.
+  " Nvim providers.
   let g:loaded_python3_provider=0
   let g:loaded_ruby_provider=0
   let g:loaded_node_provider=0
   let g:loaded_perl_provider=0
+
+  " Nvim config.
+  let g:nvimrc=1
 endif
 " -----------------------------------------------------------------------------
 " SECTION: Plugins config.
@@ -166,7 +172,6 @@ let g:move_key_modifier_visualmode='A'
 let g:move_key_modifier='A'
 
 " Prettier autoformat.
-let g:prettier#autoformat=1
 let g:prettier#autoformat_require_pragma=0
 let g:prettier#autoformat_config_present=1
 
@@ -317,9 +322,9 @@ if exists('g:nvimrc') && g:nvimrc == 1
 
   " Nvim cmp.
   Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'hrsh7th/cmp-cmdline'
   Plug 'hrsh7th/cmp-buffer'
   Plug 'hrsh7th/cmp-path'
-  Plug 'hrsh7th/cmp-cmdline'
   Plug 'hrsh7th/nvim-cmp'
 
   " Nvim snippets.
@@ -418,5 +423,12 @@ autocmd BufReadPost *
 " Startify cursorline.
 autocmd User Startified setlocal cursorline
 
-" Set the colorscheme when all have loaded.
+" Enfocado enable when all have loaded.
 autocmd VimEnter * ++nested colorscheme enfocado
+
+" Enfocado customizations.
+augroup enfocado_customization
+  autocmd!
+    autocmd ColorScheme enfocado highlight Normal ctermbg=NONE guibg=NONE
+    autocmd ColorScheme enfocado highlight NormalNC ctermbg=NONE guibg=NONE
+augroup END

@@ -11,13 +11,13 @@ if !exists('g:nvimrc') || g:nvimrc == 0
   finish
 endif
 
-" Nvim interfaz.
-set signcolumn=yes:2
-
 " Nvim interaction.
 set complete= omnifunc=                        " Disabled for best performance.
 
 lua <<EOF
+-- Treesitter init.
+local treesitter = require('nvim-treesitter.configs')
+
 -- CMP init.
 local cmp = require('cmp')
 
@@ -59,17 +59,18 @@ end
 -- SECTION: Nvim plugins configs.
 -- ----------------------------------------------------------------------------
 -- Tree-sitter setup.
-require'nvim-treesitter.configs'.setup {
+treesitter.setup {
   highlight = {
     ensure_installed = {
+      "css",
+      "scss",
       "html",
       "javascript",
       "typescript",
       "json",
       "jsonc",
-      "css",
-      "scss",
-      "markdown"
+      "markdown",
+      "markdown_inline"
     },
     sync_install = false,
     auto_install = true,
@@ -143,19 +144,19 @@ cmp.setup({
   experimental = { ghost_text = false } -- Copilot integration.
 })
 
--- CMP use buffer source for `/`.
-cmp.setup.cmdline('/', {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = { { name = 'buffer' } }
-})
-
 -- CMP use cmdline & path source for ':'.
 cmp.setup.cmdline(':', {
   mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources(
-  { { name = 'path' } },
-  { { name = 'cmdline' } }
+  { { name = 'cmdline' } },
+  { { name = 'path' } }
   )
+})
+
+-- CMP use buffer source for `/`.
+cmp.setup.cmdline('/', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = { { name = 'buffer' } }
 })
 
 -- CMP capabilities for nvim_lsp.
