@@ -123,7 +123,6 @@ if has('nvim')
   set inccommand=nosplit
 
   " Nvim providers.
-  let g:loaded_python3_provider=0
   let g:loaded_ruby_provider=0
   let g:loaded_node_provider=0
   let g:loaded_perl_provider=0
@@ -261,10 +260,6 @@ let g:enfocado_plugins=[
   \ ]
 
 " Airline font/symbols.
-let g:airline_left_sep=''
-let g:airline_left_alt_sep=''
-let g:airline_right_sep=''
-let g:airline_right_alt_sep=''
 let g:airline_powerline_fonts=1
 
 " Airline extensions.
