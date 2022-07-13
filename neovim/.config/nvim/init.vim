@@ -148,6 +148,9 @@ let g:gitgutter_sign_removed_first_line='▔'
 let g:gitgutter_sign_removed_above_and_below='▎'
 let g:gitgutter_sign_modified_removed='▎'
 
+" Polyglot plugins.
+let g:polyglot_disabled=['sensible', 'autoindent']
+
 " IndentLine color.
 let g:indentLine_setColors=0
 
@@ -329,6 +332,9 @@ if exists('g:nvimrc') && g:nvimrc == 1
   " Nvim copilot.
   Plug 'github/copilot.vim'
 else
+  " Vim syntax.
+  Plug 'sheerun/vim-polyglot'
+
   " Vim autocomplete.
   Plug 'vim-scripts/AutoComplPop'
 endif
