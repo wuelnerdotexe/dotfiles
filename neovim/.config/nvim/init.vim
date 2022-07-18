@@ -198,8 +198,8 @@ endif
 " -----------------------------------------------------------------------------
 " Vim Plug: {{{
   " Auto installation in Vim or Neovim.
-  let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-  if empty(glob(data_dir . '/autoload/plug.vim'))
+  let data_dir = has('nvim') ? stdpath('data').'/site' : '~/.vim'
+  if empty(glob(data_dir.'/autoload/plug.vim'))
     silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs
       \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   endif
@@ -213,8 +213,8 @@ if has('nvim')
   Plug 'antoinemadec/FixCursorHold.nvim'
 endif
 
-" Enhanced.
-Plug '~/Workspace/human.vim'
+" Options.
+Plug 'wuelnerdotexe/human.vim'
 
 " Git.
 Plug 'tpope/vim-fugitive'
@@ -262,15 +262,16 @@ Plug 'mg979/vim-visual-multi'
 Plug 'prettier/vim-prettier',
       \ { 'do': 'npm install --frozen-lockfile --production' }
 
-" Files manager.
+" Files managers.
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdtree'
 Plug 'mhinz/vim-startify'
 
-" interaction.
-Plug 'simeji/winresizer'
+" Interaction.
 Plug 'farmergreg/vim-lastplace'
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
+Plug 'simeji/winresizer'
 
 " Interface.
 Plug '~/Workspace/vim-enfocado'
@@ -281,17 +282,12 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install' }
 call plug#end()
 filetype plugin indent on | syntax on
 " -----------------------------------------------------------------------------
-" SECTION: Options.
-" -----------------------------------------------------------------------------
-" Because I have vim-airline.
-set showmode showcmd ruler
-" -----------------------------------------------------------------------------
 " SECTION: Mappings.
 " -----------------------------------------------------------------------------
 " Human: {{{
-  nnoremap <silent> <leader>tm <Cmd>MaximizerToggle<CR>
-  vnoremap <silent> <leader>tm <Cmd>MaximizerToggle<CR>
-  inoremap <silent> <leader>tm <C-o><Cmd>MaximizerToggle<CR>
+  nnoremap <silent> <leader>mt <Cmd>MaximizerToggle<CR>
+  vnoremap <silent> <leader>mt <Cmd>MaximizerToggle<CR>
+  inoremap <silent> <leader>mt <C-o><Cmd>MaximizerToggle<CR>
 " }}}
 " Fuzzy Finder: {{{
   " Search git files map.
@@ -308,11 +304,18 @@ set showmode showcmd ruler
   endfunction
 
   " Toggle smart map.
-  nnoremap <silent> <leader>te <Cmd>call <SID>smartNERDTreeToggle()<CR>
+  nnoremap <silent> <leader>et <Cmd>call <SID>smartNERDTreeToggle()<CR>
+" }}}
+" Number Toggle: {{{
+  nnoremap <silent> <leader>nt <Cmd>set relativenumber!<CR>
 " }}}
 " -----------------------------------------------------------------------------
 " SECTION: Autocmds.
 " -----------------------------------------------------------------------------
+" Human: {{{
+  " Because I have vim-airline.
+  autocmd VimEnter * set noshowmode noruler
+" }}}
 " Emmet: {{{
   " Languages enabled.
   autocmd FileType css,scss,javascript EmmetInstall
@@ -326,9 +329,6 @@ set showmode showcmd ruler
   autocmd VimEnter * ++nested colorscheme enfocado
 
   " Colorscheme customizations.
-  augroup enfocado_customization
-    autocmd!
-      autocmd ColorScheme enfocado highlight Normal ctermbg=NONE guibg=NONE
-      autocmd ColorScheme enfocado highlight NormalNC ctermbg=NONE guibg=NONE
-  augroup END
+  autocmd ColorScheme enfocado ++nested highlight Normal ctermbg=NONE guibg=NONE
+  autocmd ColorScheme enfocado ++nested highlight NormalNC ctermbg=NONE guibg=NONE
 " }}}
