@@ -21,6 +21,7 @@ silent! endwhile
 " -----------------------------------------------------------------------------
 " Gitgutter: {{{
 " Signs customization.
+let g:gitgutter_sign_priority=9
 let g:gitgutter_sign_added='│'
 let g:gitgutter_sign_modified='│'
 
@@ -30,7 +31,7 @@ function! GitStatus()
   if (l:added == 0) && (l:modified == 0) && (l:removed == 0)
     return ''
   else
-    return printf('+%d ~%d -%d', l:added, l:modified, l:removed)
+    return printf(' %d  %d  %d', l:added, l:modified, l:removed)
   endif
 endfunction
 " }}}
@@ -53,6 +54,10 @@ let g:indentLine_setConceal=0
 
 " First line level enable.
 let g:indentLine_showFirstIndentLevel=1
+
+" Chars customization.
+let g:indentLine_char='│'
+let g:indentLine_first_char='│'
 " }}}
 " Prettier: {{{
 " Autoformat with config enable.
@@ -73,6 +78,8 @@ let g:NERDTreeStatusline=-1
 let g:NERDTreeWinSize=float2nr(&columns * 0.25)
 let g:NERDTreeMinimalUI=1
 let g:NERDTreeMarkBookmarks=0
+let g:NERDTreeDirArrowExpandable=''
+let g:NERDTreeDirArrowCollapsible=''
 
 " Files display.
 let g:NERDTreeShowHidden=1
@@ -120,27 +127,11 @@ let g:startify_bookmarks=[
 let g:custom_footer=['https://github.com/wuelnerdotexe/dotfiles']
 let g:startify_custom_footer='startify#center(g:custom_footer)'
 " }}}
-" Bufferline: {{{
-" Disable automatically echo to the command bar.
-let g:bufferline_echo=0
-
-" Tabline customization.
-let g:bufferline_active_buffer_left=''
-let g:bufferline_active_buffer_right=''
-let g:bufferline_modified=' +'
-let g:bufferline_show_bufnr=0
-
-" Function for lightline integration.
-function! LightlineBufferline()
-  call bufferline#refresh_status()
-  return [
-        \   g:bufferline_status_info.before,
-        \   g:bufferline_status_info.current,
-        \   g:bufferline_status_info.after
-        \ ]
-endfunction
-" }}}
 " Lightline: {{{
+" Bufferline customization.
+let g:lightline#bufferline#filename_modifier=':t'
+let g:lightline#bufferline#unnamed='[No Name]'
+
 " Initialize setup.
 let g:lightline={
       \   'colorscheme': 'enfocado',
@@ -162,10 +153,10 @@ let g:lightline={
       \     'sleuth': 'SleuthIndicator'
       \   },
       \   'component_expand': {
-      \     'bufferline': 'LightlineBufferline'
+      \     'buffers': 'lightline#bufferline#buffers'
       \   },
       \   'component_type': {
-      \     'bufferline': 'tabsel'
+      \     'buffers': 'tabsel'
       \   },
       \   'active': {
       \     'left': [
@@ -192,7 +183,7 @@ let g:lightline={
       \     'right': [['line']]
       \   },
       \   'tabline': {
-      \     'left': [['bufname'], ['bufferline']],
+      \     'left': [['bufname'], ['buffers']],
       \     'right': [['tabname'], ['tabs']]
       \   }
       \ }
@@ -217,32 +208,38 @@ let g:enfocado_plugins=[
 " -----------------------------------------------------------------------------
 if has('nvim')
   " Lightline: {{{
+  " Enable bufferline is clickable.
+  let g:lightline#bufferline#clickable=1
+  let g:lightline.component_raw={ 'buffers': 1 }
+
   " Configuration lightline-lsp.
-  let g:lightline#lsp#indicator_warnings='W'
-  let g:lightline#lsp#indicator_errors='E'
-  let g:lightline#lsp#indicator_info='I'
-  let g:lightline#lsp#indicator_hints='H'
+  let g:lightline#lsp#indicator_errors=' '
+  let g:lightline#lsp#indicator_warnings=' '
+  let g:lightline#lsp#indicator_hints=' '
+  let g:lightline#lsp#indicator_info=' '
 
   " Register the components.
   let g:lightline.component_expand.lsp_errors='lightline#lsp#errors'
   let g:lightline.component_expand.lsp_warnings='lightline#lsp#warnings'
-  let g:lightline.component_expand.lsp_info='lightline#lsp#info'
   let g:lightline.component_expand.lsp_hints='lightline#lsp#hints'
+  let g:lightline.component_expand.lsp_info='lightline#lsp#info'
+  let g:lightline.component_expand.lsp_status='lightline#lsp#status'
 
   " Set color to the components.
   let g:lightline.component_type.lsp_errors='error'
   let g:lightline.component_type.lsp_warnings='warning'
-  let g:lightline.component_type.lsp_info='info'
   let g:lightline.component_type.lsp_hints='hints'
+  let g:lightline.component_type.lsp_info='info'
 
   " Add the components.
   let g:lightline.active.left=add(
         \   g:lightline.active.left,
         \   [
-        \     'lsp_info',
-        \     'lsp_hints',
         \     'lsp_errors',
-        \     'lsp_warnings'
+        \     'lsp_warnings',
+        \     'lsp_hints',
+        \     'lsp_info',
+        \     'lsp_status'
         \   ]
         \ )
   " }}}
@@ -342,8 +339,8 @@ Plug 'preservim/nerdtree'
 Plug 'mhinz/vim-startify'
 
 " Interface.
-Plug 'bling/vim-bufferline'
 Plug 'itchyny/lightline.vim'
+Plug 'mengelbrecht/lightline-bufferline'
 Plug '~/Workspace/vim-enfocado'
 
 " Development.

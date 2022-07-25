@@ -81,4 +81,4 @@ for type, icon in pairs(signs) do
 end
 
 -- Change prefix/character preceding the diagnostics' virtual text.
-vim.diagnostic.config({ virtual_text = { prefix = '▎' } })
+vim.diagnostic.config({ virtual_text = { prefix = '▎' }, update_in_insert = true })
