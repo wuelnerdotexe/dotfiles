@@ -14,182 +14,253 @@ endif
 
 " Even when the +eval is missing.
 silent! while 0
-  set nocompatible
+set nocompatible
 silent! endwhile
 " -----------------------------------------------------------------------------
 " SECTION: Configs.
 " -----------------------------------------------------------------------------
+" Gitgutter: {{{
+" Signs customization.
+let g:gitgutter_sign_added='│'
+let g:gitgutter_sign_modified='│'
+
+" Function for lightline integration.
+function! GitStatus()
+  let [l:added,l:modified,l:removed] = GitGutterGetHunkSummary()
+  if (l:added == 0) && (l:modified == 0) && (l:removed == 0)
+    return ''
+  else
+    return printf('+%d ~%d -%d', l:added, l:modified, l:removed)
+  endif
+endfunction
+" }}}
 " Matchup: {{{
-  " Off-screen enable popup.
-  let g:matchup_matchparen_offscreen={ 'method': 'popup' }
+" Off-screen enable popup.
+let g:matchup_matchparen_offscreen={ 'method': 'popup' }
 " }}}
 " IndentLine: {{{
-  " Filetypes excludes.
-  let g:indentLine_fileTypeExclude=['nerdtree', 'netrw', 'startify']
+" Filetypes excludes.
+let g:indentLine_fileTypeExclude=['nerdtree', 'netrw', 'startify']
 
-  " Buffertypes excludes.
-  let g:indentLine_bufTypeExclude=['help', 'nofile', 'terminal']
+" Buffertypes excludes.
+let g:indentLine_bufTypeExclude=['help', 'nofile', 'terminal']
 
-  " Color rewrite disable.
-  let g:indentLine_setColors=0
+" Color rewrite disable.
+let g:indentLine_setColors=0
 
-  " Conceal rewrite disable.
-  let g:indentLine_setConceal=0
+" Conceal rewrite disable.
+let g:indentLine_setConceal=0
 
-  " First line level enable.
-  let g:indentLine_showFirstIndentLevel=1
-" }}}
-" Emmet: {{{
-  " Installation global disabled.
-  let g:user_emmet_install_global=0
-
-  " Languages extendeds.
-  let g:user_emmet_settings={
-    \  'javascript': { 'extends': 'jsx' },
-    \  'typescript': { 'extends': 'jsx' },
-    \  'javascriptreact': { 'extends': 'jsx' },
-    \  'typescriptreact': { 'extends': 'jsx' }
-    \ }
+" First line level enable.
+let g:indentLine_showFirstIndentLevel=1
 " }}}
 " Prettier: {{{
-  " Autoformat with config enable.
-  let g:prettier#autoformat_require_pragma=0
-  let g:prettier#autoformat_config_present=1
+" Autoformat with config enable.
+let g:prettier#autoformat_require_pragma=0
+let g:prettier#autoformat_config_present=1
+" }}}
+" Netrw: {{{
+" Banner hidden by default.
+let g:netrw_banner=0
+" }}}
+" CtrlP: {{{
+" Enable scan for dotfiles.
+let g:ctrlp_show_hidden=1
 " }}}
 " NERDTree: {{{
-  " Interface customization.
-  let g:NERDTreeStatusline='NERDTREE'
-  let g:NERDTreeWinSize=27
-  let g:NERDTreeMinimalUI=1
-  let g:NERDTreeMarkBookmarks=0
+" Interface customization.
+let g:NERDTreeStatusline=-1
+let g:NERDTreeWinSize=float2nr(&columns * 0.25)
+let g:NERDTreeMinimalUI=1
+let g:NERDTreeMarkBookmarks=0
 
-  " Files display.
-  let g:NERDTreeShowHidden=1
-  let g:NERDTreeRespectWildIgnore=1
+" Files display.
+let g:NERDTreeShowHidden=1
+let g:NERDTreeRespectWildIgnore=1
 
-  " Manage and interaction.
-  let g:NERDTreeChDirMode=2
-  let g:NERDTreeAutoDeleteBuffer=1
-  let g:NERDTreeMouseMode=3
+" Manage and interaction.
+let g:NERDTreeChDirMode=2
+let g:NERDTreeAutoDeleteBuffer=1
+let g:NERDTreeMouseMode=3
 " }}}
 " Startify: {{{
-  " Header customization.
-  let g:custom_header=[
-    \ '__________      ________                  _________      ',
-    \ '___  ____/_________  __/_________________ ______  /_____ ',
-    \ '__  __/  __  __ \_  /_ _  __ \  ___/  __ `/  __  /_  __ \',
-    \ '_  /___  _  / / /  __/ / /_/ / /__ / /_/ // /_/ / / /_/ /',
-    \ '/_____/  /_/ /_//_/    \____/\___/ \__,_/ \__,_/  \____/ ',
-    \ '                                                         ',
-    \ '            How setups for Neo(vim) should be.           '
-    \ ]
-  let g:startify_custom_header='startify#center(g:custom_header)'
+" Header customization.
+let g:custom_header=[
+      \   '__________      ________                  _________      ',
+      \   '___  ____/_________  __/_________________ ______  /_____ ',
+      \   '__  __/  __  __ \_  /_ _  __ \  ___/  __ `/  __  /_  __ \',
+      \   '_  /___  _  / / /  __/ / /_/ / /__ / /_/ // /_/ / / /_/ /',
+      \   '/_____/  /_/ /_//_/    \____/\___/ \__,_/ \__,_/  \____/ ',
+      \   '                                                         ',
+      \   '            How setups for Neo(vim) should be.           '
+      \ ]
+let g:startify_custom_header='startify#center(g:custom_header)'
 
-  " Lists enabled.
-  let g:startify_lists=[
-    \ { 'type': 'bookmarks', 'header': ['Bookmarks'] },
-    \ { 'type': 'sessions', 'header': ['Sessions'] },
-    \ ]
+" Lists enabled.
+let g:startify_lists=[
+      \   { 'type': 'bookmarks', 'header': ['Bookmarks'] },
+      \   { 'type': 'sessions', 'header': ['Sessions'] },
+      \ ]
 
-  " Sessions management.
-  let g:startify_session_delete_buffers=0
-  let g:startify_session_persistence=1
-  let g:startify_session_autoload=1
+" Sessions management.
+let g:startify_session_delete_buffers=0
+let g:startify_session_persistence=1
+let g:startify_session_autoload=1
 
-  " Projects in bookmarks.
-  let g:startify_change_to_vcs_root=1
-  let g:startify_bookmarks=[
-    \ '~/dotfiles/',
-    \ '~/Workspace/enfocado/',
-    \ '~/Workspace/human.vim/',
-    \ '~/Workspace/vim-enfocado/',
-    \ '~/Workspace/vscode-enfocado/',
-    \ '~/Workspace/wuelnerdotexe.github.io/'
-    \ ]
+" Projects in bookmarks.
+let g:startify_change_to_vcs_root=1
+let g:startify_bookmarks=[
+      \   '~/dotfiles/',
+      \   '~/Workspace/enfocado/',
+      \   '~/Workspace/vim-enfocado/',
+      \   '~/Workspace/wuelnerdotexe.github.io/'
+      \ ]
 
-  " Footer customization.
-  let g:custom_footer=['https://github.com/wuelnerdotexe/dotfiles']
-  let g:startify_custom_footer='startify#center(g:custom_footer)'
+" Footer customization.
+let g:custom_footer=['https://github.com/wuelnerdotexe/dotfiles']
+let g:startify_custom_footer='startify#center(g:custom_footer)'
+" }}}
+" Bufferline: {{{
+" Disable automatically echo to the command bar.
+let g:bufferline_echo=0
+
+" Tabline customization.
+let g:bufferline_active_buffer_left=''
+let g:bufferline_active_buffer_right=''
+let g:bufferline_modified=' +'
+let g:bufferline_show_bufnr=0
+
+" Function for lightline integration.
+function! LightlineBufferline()
+  call bufferline#refresh_status()
+  return [
+        \   g:bufferline_status_info.before,
+        \   g:bufferline_status_info.current,
+        \   g:bufferline_status_info.after
+        \ ]
+endfunction
+" }}}
+" Lightline: {{{
+" Initialize setup.
+let g:lightline={
+      \   'colorscheme': 'enfocado',
+      \   'separator': {
+      \     'left': '',
+      \     'right': ''
+      \   },
+      \   'subseparator': {
+      \     'left': '',
+      \     'right': ''
+      \   },
+      \   'component': {
+      \     'tabname': 'tabs',
+      \     'bufname': 'buffers'
+      \   },
+      \   'component_function': {
+      \     'gitbranch': 'FugitiveHead',
+      \     'gitstatus': 'GitStatus',
+      \     'sleuth': 'SleuthIndicator'
+      \   },
+      \   'component_expand': {
+      \     'bufferline': 'LightlineBufferline'
+      \   },
+      \   'component_type': {
+      \     'bufferline': 'tabsel'
+      \   },
+      \   'active': {
+      \     'left': [
+      \       [
+      \         'mode',
+      \         'paste',
+      \         'readonly',
+      \         'spell'
+      \       ],
+      \       ['gitbranch', 'gitstatus']
+      \     ],
+      \     'right': [
+      \       ['lineinfo'],
+      \       [
+      \         'filetype',
+      \         'fileformat',
+      \         'fileencoding',
+      \         'sleuth'
+      \       ]
+      \     ]
+      \   },
+      \   'inactive': {
+      \     'left': [['filename']],
+      \     'right': [['line']]
+      \   },
+      \   'tabline': {
+      \     'left': [['bufname'], ['bufferline']],
+      \     'right': [['tabname'], ['tabs']]
+      \   }
+      \ }
 " }}}
 " Enfocado: {{{
-  " Theme style.
-  let g:enfocado_style='nature' " Available: `nature` or `neon`.
+" Theme style.
+let g:enfocado_style='nature' " Available: `nature` or `neon`.
 
-  " Plugins enabled.
-  let g:enfocado_plugins=[
-    \ 'fzf',
-    \ 'gitgutter',
-    \ 'matchup',
-    \ 'nerdtree',
-    \ 'netrw',
-    \ 'plug',
-    \ 'startify',
-    \ 'visual-multi'
-    \ ]
-" }}}
-" Airline: {{{
-  " Powerline symbols enabled.
-  let g:airline_powerline_fonts=1
-
-  " Extensions enabled.
-  let g:airline_extensions=([
-    \ 'branch',
-    \ 'fugitiveline',
-    \ 'fzf',
-    \ 'hunks',
-    \ 'netrw',
-    \ 'tabline',
-    \ 'term',
-    \ 'whitespace'
-    \ ])
-
-  " Git changes display.
-  let g:airline#extensions#hunks#non_zero_only=1
-
-  " Statusline sections customization.
-  let g:airline_section_c='%t'
-  let g:airline_section_z='L%l/%L'
-  let g:airline_section_y='%{&fenc?&fenc:&enc}[%{&ff}] %{SleuthIndicator()}'
-  let g:airline_section_x='%{&filetype}'
-
-  " Statusline truncate sections.
-  let g:airline#extensions#default#section_truncate_width={
-    \ 'b': 100,
-    \ 'y': 100,
-    \ 'x': 100,
-    \ 'error': 100,
-    \ 'warning': 100
-    \ }
-
-  " Tabline customization.
-  let g:airline#extensions#tabline#fnamemod=':t'
-  let g:airline#extensions#tabline#tab_nr_type=1
-  let g:airline#extensions#tabline#show_tab_count=2
-  let g:airline#extensions#tabline#buf_label_first=1
-
-  " Enfocado theme enabled.
-  let g:airline_theme='enfocado'
+" Plugins enabled.
+let g:enfocado_plugins=[
+      \   'gitgutter',
+      \   'matchup',
+      \   'nerdtree',
+      \   'netrw',
+      \   'plug',
+      \   'startify',
+      \   'visual-multi'
+      \ ]
 " }}}
 " -----------------------------------------------------------------------------
 " SECTION: Neovim.
 " -----------------------------------------------------------------------------
 if has('nvim')
-  " Enfocado add plugins.
+  " Lightline: {{{
+  " Configuration lightline-lsp.
+  let g:lightline#lsp#indicator_warnings='W'
+  let g:lightline#lsp#indicator_errors='E'
+  let g:lightline#lsp#indicator_info='I'
+  let g:lightline#lsp#indicator_hints='H'
+
+  " Register the components.
+  let g:lightline.component_expand.lsp_errors='lightline#lsp#errors'
+  let g:lightline.component_expand.lsp_warnings='lightline#lsp#warnings'
+  let g:lightline.component_expand.lsp_info='lightline#lsp#info'
+  let g:lightline.component_expand.lsp_hints='lightline#lsp#hints'
+
+  " Set color to the components.
+  let g:lightline.component_type.lsp_errors='error'
+  let g:lightline.component_type.lsp_warnings='warning'
+  let g:lightline.component_type.lsp_info='info'
+  let g:lightline.component_type.lsp_hints='hints'
+
+  " Add the components.
+  let g:lightline.active.left=add(
+        \   g:lightline.active.left,
+        \   [
+        \     'lsp_info',
+        \     'lsp_hints',
+        \     'lsp_errors',
+        \     'lsp_warnings'
+        \   ]
+        \ )
+  " }}}
+  " Enfocado: {{{
+  " Add the neovim plugins.
   let g:enfocado_plugins+=[
-    \ 'cmp',
-    \ 'copilot',
-    \ 'lsp',
-    \ 'treesitter'
-    \ ]
-
-  " Airline add extensions.
-  let g:airline_extensions+=['nvimlsp']
-
-  " Providers disabled.
+        \   'cmp',
+        \   'lsp',
+        \   'lsp-installer',
+        \   'treesitter'
+        \ ]
+  " }}}
+  " Providers: {{{
+  " Disable plugin providers.
   let g:loaded_ruby_provider=0
   let g:loaded_node_provider=0
   let g:loaded_perl_provider=0
-
+  " }}}
   " Temporal: Nvim CursorHold fixed.
   let g:cursorhold_updatetime=100
 endif
@@ -197,12 +268,12 @@ endif
 " SECTION: Plugins init.
 " -----------------------------------------------------------------------------
 " Vim Plug: {{{
-  " Auto installation in Vim or Neovim.
-  let data_dir = has('nvim') ? stdpath('data').'/site' : '~/.vim'
-  if empty(glob(data_dir.'/autoload/plug.vim'))
-    silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs
-      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  endif
+" Auto installation in Vim or Neovim.
+let data_dir = has('nvim') ? stdpath('data').'/site' : '~/.vim'
+if empty(glob(data_dir.'/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+endif
 " }}}
 
 " List installed plugins.
@@ -213,16 +284,9 @@ if has('nvim')
   Plug 'antoinemadec/FixCursorHold.nvim'
 endif
 
-" Options.
+" Enhanced.
 Plug 'wuelnerdotexe/human.vim'
-
-" Git.
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-
-" Syntax.
-Plug 'tpope/vim-commentary'
-Plug 'andymass/vim-matchup'
+Plug 'farmergreg/vim-lastplace'
 
 if has('nvim')
   " Nvim syntax.
@@ -231,7 +295,10 @@ if has('nvim')
   Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 
   " Nvim lsp.
+  Plug 'williamboman/nvim-lsp-installer'
+  Plug 'onsails/lspkind.nvim'
   Plug 'neovim/nvim-lspconfig'
+  Plug 'josa42/nvim-lightline-lsp'
 
   " Nvim cmp.
   Plug 'hrsh7th/cmp-nvim-lsp'
@@ -244,16 +311,23 @@ if has('nvim')
   Plug 'hrsh7th/cmp-vsnip'
   Plug 'hrsh7th/vim-vsnip'
 
-  " Nvim copilot.
-  Plug 'github/copilot.vim'
+  " Nvim tabnine.
+  Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
 endif
+
+" Git.
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+
+" Syntax.
+Plug 'tpope/vim-commentary'
+Plug 'andymass/vim-matchup'
 
 " Indent.
 Plug 'tpope/vim-sleuth'
 Plug 'Yggdroot/indentLine'
 
 " Typing.
-Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-surround'
 Plug 'matze/vim-move'
 Plug 'mg979/vim-visual-multi'
@@ -263,19 +337,14 @@ Plug 'prettier/vim-prettier',
       \ { 'do': 'npm install --frozen-lockfile --production' }
 
 " Files managers.
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'preservim/nerdtree'
 Plug 'mhinz/vim-startify'
 
-" Interaction.
-Plug 'farmergreg/vim-lastplace'
-Plug 'jeffkreeftmeijer/vim-numbertoggle'
-Plug 'simeji/winresizer'
-
 " Interface.
+Plug 'bling/vim-bufferline'
+Plug 'itchyny/lightline.vim'
 Plug '~/Workspace/vim-enfocado'
-Plug 'vim-airline/vim-airline'
 
 " Development.
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install' }
@@ -285,50 +354,34 @@ filetype plugin indent on | syntax on
 " SECTION: Mappings.
 " -----------------------------------------------------------------------------
 " Human: {{{
-  nnoremap <silent> <leader>mt <Cmd>MaximizerToggle<CR>
-  vnoremap <silent> <leader>mt <Cmd>MaximizerToggle<CR>
-  inoremap <silent> <leader>mt <C-o><Cmd>MaximizerToggle<CR>
+" Map for maximizer.
+noremap <silent> <leader>mt <Plug>(MaximizerToggle)
+noremap! <silent> <leader>mt <Plug>(MaximizerToggle)
 " }}}
-" Fuzzy Finder: {{{
-  " Search git files map.
-  nnoremap <silent> <leader>ff <Cmd>GFiles<CR>
+" Netrw: {{{
+" Open files in window map.
+nnoremap <silent> <leader>eo <Cmd>Explore<CR>
 " }}}
 " NERDTree: {{{
-  " Toggle function for refresh on change directory.
-  function s:smartNERDTreeToggle() abort
-    if g:NERDTree.IsOpen()
-      silent NERDTreeClose
-    else
-      silent NERDTreeCWD
-    endif
-  endfunction
-
-  " Toggle smart map.
-  nnoremap <silent> <leader>et <Cmd>call <SID>smartNERDTreeToggle()<CR>
-" }}}
-" Number Toggle: {{{
-  nnoremap <silent> <leader>nt <Cmd>set relativenumber!<CR>
+" Toggle tree in the root of VCS repo.
+nnoremap <silent> <leader>et <Cmd>NERDTreeToggleVCS<CR>
 " }}}
 " -----------------------------------------------------------------------------
 " SECTION: Autocmds.
 " -----------------------------------------------------------------------------
 " Human: {{{
-  " Because I have vim-airline.
-  autocmd VimEnter * set noshowmode noruler
-" }}}
-" Emmet: {{{
-  " Languages enabled.
-  autocmd FileType css,scss,javascript EmmetInstall
+" Options overrides.
+autocmd VimEnter * set noshowmode noruler
 " }}}
 " Startify: {{{
-  " Cursorline local enable.
-  autocmd User Startified setlocal cursorline
+" Cursorline local enable.
+autocmd User Startified setlocal cursorline
 " }}}
 " Enfocado: {{{
-  " Colorscheme enable when all have loaded.
-  autocmd VimEnter * ++nested colorscheme enfocado
+" Colorscheme enable when all have loaded.
+autocmd VimEnter * ++nested colorscheme enfocado
 
-  " Colorscheme customizations.
-  autocmd ColorScheme enfocado ++nested highlight Normal ctermbg=NONE guibg=NONE
-  autocmd ColorScheme enfocado ++nested highlight NormalNC ctermbg=NONE guibg=NONE
+" Colorscheme customizations.
+autocmd ColorScheme enfocado ++nested highlight Normal ctermbg=NONE guibg=NONE
+autocmd ColorScheme enfocado ++nested highlight NormalNC ctermbg=NONE guibg=NONE
 " }}}

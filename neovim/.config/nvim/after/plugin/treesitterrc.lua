@@ -7,8 +7,6 @@ require('nvim-treesitter.configs').setup {
     "typescript",
     "json",
     "jsonc",
-    "markdown",
-    "markdown_inline"
   },
   sync_install = true,
   auto_install = false,

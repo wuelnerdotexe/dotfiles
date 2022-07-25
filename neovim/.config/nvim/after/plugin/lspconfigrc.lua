@@ -1,3 +1,6 @@
+-- Setup lsp-installer.
+require('nvim-lsp-installer').setup({ automatic_installation = true })
+
 -- Setup lspconfig.
 local lspconfig = require('lspconfig')
 
@@ -69,3 +72,13 @@ lspconfig['eslint'].setup{
   flags = lsp_flags,
   capabilities = capabilities
 }
+
+-- Change diagnostic symbols in the sign column (gutter).
+local signs = { Error = '●', Warn = '●', Hint = '●', Info = '●' }
+for type, icon in pairs(signs) do
+  local hl = 'DiagnosticSign' .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
+-- Change prefix/character preceding the diagnostics' virtual text.
+vim.diagnostic.config({ virtual_text = { prefix = '▎' } })

@@ -4,7 +4,7 @@ local cmp = require('cmp')
 cmp.setup({
   snippet = {
     expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body)
+      vim.fn['vsnip#anonymous'](args.body)
     end
   },
   mapping = cmp.mapping.preset.insert({
@@ -15,56 +15,35 @@ cmp.setup({
     ['<CR>'] = cmp.mapping.confirm({ select = true })
   }),
   sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
+    { name = 'cmp_tabnine' },
     { name = 'vsnip' },
+    { name = 'nvim_lsp' }
   },
   {
     { name = 'buffer' }
   }),
   formatting = {
-    format = function(entry, vim_item)
-      local codicons = {
-        Text = "",
-        Method = "",
-        Function = "",
-        Constructor = "",
-        Field = "",
-        Variable = "",
-        Class = "",
-        Interface = "",
-        Module = "",
-        Property = "",
-        Unit = "",
-        Value = "",
-        Enum = "",
-        Keyword = "",
-        Snippet = "",
-        Color = "",
-        File = "",
-        Reference = "",
-        Folder = "",
-        EnumMember = "",
-        Constant = "",
-        Struct = "",
-        Event = "",
-        Operator = "",
-        TypeParameter = ""
-      }
-
-      vim_item.kind = string.format(
-        '%s %s',
-        codicons[vim_item.kind],
-        vim_item.kind
-      )
-      vim_item.menu = ({
-        nvim_lsp = "[LSP]",
-        buffer = "[Buffer]",
-        vsnip = "[Snippet]"
-      })[entry.source.name]
-      return vim_item
-    end
+    fields = { 'kind', 'abbr' },
+    format = require('lspkind').cmp_format({
+      preset = 'codicons',
+      mode = 'symbol',
+      maxwidth = 50,
+    })
   },
-  experimental = { ghost_text = false } -- Copilot integration.
+  sorting = {
+    priority_weight = 2,
+    comparators = {
+      require('cmp_tabnine.compare'),
+      cmp.config.compare.offset,
+      cmp.config.compare.exact,
+      cmp.config.compare.score,
+      cmp.config.compare.recently_used,
+      cmp.config.compare.kind,
+      cmp.config.compare.sort_text,
+      cmp.config.compare.length,
+      cmp.config.compare.order
+    }
+  }
 })
 
 -- CMP use cmdline & path source for ':'.
