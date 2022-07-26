@@ -281,9 +281,6 @@ if has('nvim')
   Plug 'antoinemadec/FixCursorHold.nvim'
 endif
 
-" Options.
-Plug 'wuelnerdotexe/human.vim'
-
 " Files managers.
 Plug 'preservim/nerdtree'
 Plug 'mhinz/vim-startify'
@@ -336,7 +333,6 @@ Plug 'Yggdroot/indentLine'
 Plug 'matze/vim-move'
 Plug 'tpope/vim-surround'
 Plug 'mg979/vim-visual-multi'
-Plug 'farmergreg/vim-lastplace'
 
 " Formatter.
 Plug 'prettier/vim-prettier',
@@ -345,7 +341,8 @@ Plug 'prettier/vim-prettier',
 " Development.
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install' }
 
-" Theme.
+" Install Wuelner's vim plugins.
+Plug 'wuelnerdotexe/human.vim'
 Plug '~/Workspace/vim-enfocado'
 call plug#end()
 filetype plugin indent on | syntax on
