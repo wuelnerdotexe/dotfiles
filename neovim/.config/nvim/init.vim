@@ -180,7 +180,7 @@ let g:lightline={
       \   },
       \   'inactive': {
       \     'left': [['filename']],
-      \     'right': [['line']]
+      \     'right': [['lineinfo']]
       \   },
       \   'tabline': {
       \     'left': [['bufname'], ['buffers']],
@@ -281,15 +281,27 @@ if has('nvim')
   Plug 'antoinemadec/FixCursorHold.nvim'
 endif
 
-" Enhanced.
+" Options.
 Plug 'wuelnerdotexe/human.vim'
-Plug 'farmergreg/vim-lastplace'
+
+" Statusline.
+Plug 'itchyny/lightline.vim'
+Plug 'mengelbrecht/lightline-bufferline'
+
+" Files managers.
+Plug 'preservim/nerdtree'
+Plug 'mhinz/vim-startify'
+Plug 'ctrlpvim/ctrlp.vim'
+
+" Git.
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
 if has('nvim')
   " Nvim syntax.
   Plug 'nvim-treesitter/nvim-treesitter'
-  Plug 'windwp/nvim-ts-autotag'
   Plug 'JoosepAlviste/nvim-ts-context-commentstring'
+  Plug 'windwp/nvim-ts-autotag'
 
   " Nvim lsp.
   Plug 'williamboman/nvim-lsp-installer'
@@ -312,10 +324,6 @@ if has('nvim')
   Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
 endif
 
-" Git.
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-
 " Syntax.
 Plug 'tpope/vim-commentary'
 Plug 'andymass/vim-matchup'
@@ -325,26 +333,20 @@ Plug 'tpope/vim-sleuth'
 Plug 'Yggdroot/indentLine'
 
 " Typing.
-Plug 'tpope/vim-surround'
 Plug 'matze/vim-move'
+Plug 'tpope/vim-surround'
 Plug 'mg979/vim-visual-multi'
+Plug 'farmergreg/vim-lastplace'
 
 " Formatter.
 Plug 'prettier/vim-prettier',
       \ { 'do': 'npm install --frozen-lockfile --production' }
 
-" Files managers.
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'preservim/nerdtree'
-Plug 'mhinz/vim-startify'
-
-" Interface.
-Plug 'itchyny/lightline.vim'
-Plug 'mengelbrecht/lightline-bufferline'
-Plug '~/Workspace/vim-enfocado'
-
 " Development.
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install' }
+
+" Theme.
+Plug '~/Workspace/vim-enfocado'
 call plug#end()
 filetype plugin indent on | syntax on
 " -----------------------------------------------------------------------------
