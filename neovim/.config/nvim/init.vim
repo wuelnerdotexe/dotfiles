@@ -284,10 +284,6 @@ endif
 " Options.
 Plug 'wuelnerdotexe/human.vim'
 
-" Statusline.
-Plug 'itchyny/lightline.vim'
-Plug 'mengelbrecht/lightline-bufferline'
-
 " Files managers.
 Plug 'preservim/nerdtree'
 Plug 'mhinz/vim-startify'
@@ -296,6 +292,10 @@ Plug 'ctrlpvim/ctrlp.vim'
 " Git.
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+
+" Statusline.
+Plug 'itchyny/lightline.vim'
+Plug 'mengelbrecht/lightline-bufferline'
 
 if has('nvim')
   " Nvim syntax.
