@@ -107,7 +107,12 @@ let g:matchup_matchparen_offscreen={ 'method': 'popup' }
 let g:indentLine_fileTypeExclude=['nerdtree', 'netrw', 'startify']
 
 " Buffertypes excludes.
-let g:indentLine_bufTypeExclude=['help', 'nofile', 'terminal']
+let g:indentLine_bufTypeExclude=[
+      \   'help',
+      \   'nofile',
+      \   'quickfix',
+      \   'terminal'
+      \ ]
 
 " Color rewrite disable.
 let g:indentLine_setColors=0
@@ -366,11 +371,6 @@ noremap! <silent> <leader>mt <Plug>(MaximizerToggle)
 " -----------------------------------------------------------------------------
 " SECTION: Autocmds.
 " -----------------------------------------------------------------------------
-" NERDTree: {{{
-" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
-autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
-" }}}
 " Startify: {{{
 " Cursorline local enable.
 autocmd User Startified setlocal cursorline
