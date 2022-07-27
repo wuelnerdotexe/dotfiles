@@ -74,11 +74,15 @@ lspconfig['eslint'].setup{
 }
 
 -- Change diagnostic symbols in the sign column (gutter).
-local signs = { Error = '●', Warn = '●', Hint = '●', Info = '●' }
+local signs = { Error = '●', Warn = '●', Info = '●', Hint = '●' }
 for type, icon in pairs(signs) do
   local hl = 'DiagnosticSign' .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
 -- Change prefix/character preceding the diagnostics' virtual text.
-vim.diagnostic.config({ virtual_text = { prefix = '▎' }, update_in_insert = true })
+vim.diagnostic.config({
+  virtual_text = { prefix = '▎' },
+  update_in_insert = true,
+  severity_sort = true
+})

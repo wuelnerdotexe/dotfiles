@@ -19,58 +19,9 @@ silent! endwhile
 " -----------------------------------------------------------------------------
 " SECTION: Configs.
 " -----------------------------------------------------------------------------
-" Gitgutter: {{{
-" Signs customization.
-let g:gitgutter_sign_priority=9
-let g:gitgutter_sign_added='│'
-let g:gitgutter_sign_modified='│'
-
-" Function for lightline integration.
-function! GitStatus()
-  let [l:added,l:modified,l:removed] = GitGutterGetHunkSummary()
-  if (l:added == 0) && (l:modified == 0) && (l:removed == 0)
-    return ''
-  else
-    return printf(' %d  %d  %d', l:added, l:modified, l:removed)
-  endif
-endfunction
-" }}}
-" Matchup: {{{
-" Off-screen enable popup.
-let g:matchup_matchparen_offscreen={ 'method': 'popup' }
-" }}}
-" IndentLine: {{{
-" Filetypes excludes.
-let g:indentLine_fileTypeExclude=['nerdtree', 'netrw', 'startify']
-
-" Buffertypes excludes.
-let g:indentLine_bufTypeExclude=['help', 'nofile', 'terminal']
-
-" Color rewrite disable.
-let g:indentLine_setColors=0
-
-" Conceal rewrite disable.
-let g:indentLine_setConceal=0
-
-" First line level enable.
-let g:indentLine_showFirstIndentLevel=1
-
-" Chars customization.
-let g:indentLine_char='│'
-let g:indentLine_first_char='│'
-" }}}
-" Prettier: {{{
-" Autoformat with config enable.
-let g:prettier#autoformat_require_pragma=0
-let g:prettier#autoformat_config_present=1
-" }}}
 " Netrw: {{{
 " Banner hidden by default.
 let g:netrw_banner=0
-" }}}
-" CtrlP: {{{
-" Enable scan for dotfiles.
-let g:ctrlp_show_hidden=1
 " }}}
 " NERDTree: {{{
 " Interface customization.
@@ -127,10 +78,60 @@ let g:startify_bookmarks=[
 let g:custom_footer=['https://github.com/wuelnerdotexe/dotfiles']
 let g:startify_custom_footer='startify#center(g:custom_footer)'
 " }}}
+" CtrlP: {{{
+" Enable scan for dotfiles.
+let g:ctrlp_show_hidden=1
+" }}}
+" Gitgutter: {{{
+" Signs customization.
+let g:gitgutter_sign_priority=9
+let g:gitgutter_sign_added='│'
+let g:gitgutter_sign_modified='│'
+
+" Function for lightline integration.
+function! GitStatus()
+  let [l:added,l:modified,l:removed] = GitGutterGetHunkSummary()
+  if (l:added == 0) && (l:modified == 0) && (l:removed == 0)
+    return ''
+  else
+    return printf(' %d  %d  %d', l:added, l:modified, l:removed)
+  endif
+endfunction
+" }}}
+" Matchup: {{{
+" Off-screen enable popup.
+let g:matchup_matchparen_offscreen={ 'method': 'popup' }
+" }}}
+" IndentLine: {{{
+" Filetypes excludes.
+let g:indentLine_fileTypeExclude=['nerdtree', 'netrw', 'startify']
+
+" Buffertypes excludes.
+let g:indentLine_bufTypeExclude=['help', 'nofile', 'terminal']
+
+" Color rewrite disable.
+let g:indentLine_setColors=0
+
+" Conceal rewrite disable.
+let g:indentLine_setConceal=0
+
+" First line level enable.
+let g:indentLine_showFirstIndentLevel=1
+
+" Chars customization.
+let g:indentLine_char='│'
+let g:indentLine_first_char='│'
+" }}}
+" Prettier: {{{
+" Autoformat with config enable.
+let g:prettier#autoformat_require_pragma=0
+let g:prettier#autoformat_config_present=1
+" }}}
 " Lightline: {{{
 " Bufferline customization.
 let g:lightline#bufferline#filename_modifier=':t'
 let g:lightline#bufferline#unnamed='[No Name]'
+let g:lightline#bufferline#right_aligned=1
 
 " Initialize setup.
 let g:lightline={
@@ -144,7 +145,6 @@ let g:lightline={
       \     'right': ''
       \   },
       \   'component': {
-      \     'tabname': 'tabs',
       \     'bufname': 'buffers'
       \   },
       \   'component_function': {
@@ -183,8 +183,8 @@ let g:lightline={
       \     'right': [['lineinfo']]
       \   },
       \   'tabline': {
-      \     'left': [['bufname'], ['buffers']],
-      \     'right': [['tabname'], ['tabs']]
+      \     'left': [['tabs']],
+      \     'right': [['bufname'], ['buffers']]
       \   }
       \ }
 " }}}
@@ -215,31 +215,32 @@ if has('nvim')
   " Configuration lightline-lsp.
   let g:lightline#lsp#indicator_errors=' '
   let g:lightline#lsp#indicator_warnings=' '
-  let g:lightline#lsp#indicator_hints=' '
-  let g:lightline#lsp#indicator_info=' '
+  let g:lightline#lsp#indicator_infos=' '
+  let g:lightline#lsp#indicator_hints=' '
+  let g:lightline#lsp#indicator_ok=' '
 
   " Register the components.
   let g:lightline.component_expand.lsp_errors='lightline#lsp#errors'
   let g:lightline.component_expand.lsp_warnings='lightline#lsp#warnings'
+  let g:lightline.component_expand.lsp_infos='lightline#lsp#infos'
   let g:lightline.component_expand.lsp_hints='lightline#lsp#hints'
-  let g:lightline.component_expand.lsp_info='lightline#lsp#info'
-  let g:lightline.component_expand.lsp_status='lightline#lsp#status'
+  let g:lightline.component_expand.lsp_ok='lightline#lsp#ok'
 
   " Set color to the components.
   let g:lightline.component_type.lsp_errors='error'
   let g:lightline.component_type.lsp_warnings='warning'
-  let g:lightline.component_type.lsp_hints='hints'
-  let g:lightline.component_type.lsp_info='info'
+  let g:lightline.component_type.lsp_infos='info'
+  let g:lightline.component_type.lsp_hints='hint'
 
   " Add the components.
   let g:lightline.active.left=add(
         \   g:lightline.active.left,
         \   [
+        \     'lsp_ok',
         \     'lsp_errors',
         \     'lsp_warnings',
-        \     'lsp_hints',
-        \     'lsp_info',
-        \     'lsp_status'
+        \     'lsp_infos',
+        \     'lsp_hints'
         \   ]
         \ )
   " }}}
@@ -247,6 +248,7 @@ if has('nvim')
   " Add the neovim plugins.
   let g:enfocado_plugins+=[
         \   'cmp',
+        \   'ctrlp',
         \   'lsp',
         \   'lsp-installer',
         \   'treesitter'
@@ -268,8 +270,7 @@ endif
 " Auto installation in Vim or Neovim.
 let data_dir = has('nvim') ? stdpath('data').'/site' : '~/.vim'
 if empty(glob(data_dir.'/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 endif
 " }}}
 
@@ -296,7 +297,7 @@ Plug 'mengelbrecht/lightline-bufferline'
 
 if has('nvim')
   " Nvim syntax.
-  Plug 'nvim-treesitter/nvim-treesitter'
+  Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
   Plug 'JoosepAlviste/nvim-ts-context-commentstring'
   Plug 'windwp/nvim-ts-autotag'
 
@@ -304,7 +305,7 @@ if has('nvim')
   Plug 'williamboman/nvim-lsp-installer'
   Plug 'onsails/lspkind.nvim'
   Plug 'neovim/nvim-lspconfig'
-  Plug 'josa42/nvim-lightline-lsp'
+  Plug 'spywhere/lightline-lsp'
 
   " Nvim cmp.
   Plug 'hrsh7th/cmp-nvim-lsp'
@@ -349,11 +350,6 @@ filetype plugin indent on | syntax on
 " -----------------------------------------------------------------------------
 " SECTION: Mappings.
 " -----------------------------------------------------------------------------
-" Human: {{{
-" Map for maximizer.
-noremap <silent> <leader>mt <Plug>(MaximizerToggle)
-noremap! <silent> <leader>mt <Plug>(MaximizerToggle)
-" }}}
 " Netrw: {{{
 " Open files in window map.
 nnoremap <silent> <leader>eo <Cmd>Explore<CR>
@@ -362,16 +358,26 @@ nnoremap <silent> <leader>eo <Cmd>Explore<CR>
 " Toggle tree in the root of VCS repo.
 nnoremap <silent> <leader>et <Cmd>NERDTreeToggleVCS<CR>
 " }}}
+" Human: {{{
+" Map for maximizer.
+noremap <silent> <leader>mt <Plug>(MaximizerToggle)
+noremap! <silent> <leader>mt <Plug>(MaximizerToggle)
+" }}}
 " -----------------------------------------------------------------------------
 " SECTION: Autocmds.
 " -----------------------------------------------------------------------------
-" Human: {{{
-" Options overrides.
-autocmd VimEnter * set noshowmode noruler
+" NERDTree: {{{
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 " }}}
 " Startify: {{{
 " Cursorline local enable.
 autocmd User Startified setlocal cursorline
+" }}}
+" Human: {{{
+" Options overrides.
+autocmd VimEnter * set noshowmode noruler nospell
 " }}}
 " Enfocado: {{{
 " Colorscheme enable when all have loaded.
