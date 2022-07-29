@@ -1,3 +1,6 @@
+-- Setup lspkind.
+local lspkind = require('lspkind')
+
 -- Setup nvim-cmp.
 local cmp = require('cmp')
 
@@ -15,19 +18,25 @@ cmp.setup({
     ['<CR>'] = cmp.mapping.confirm({ select = true })
   }),
   sources = cmp.config.sources({
-    { name = 'cmp_tabnine' },
+    { name = 'nvim_lsp' },
     { name = 'vsnip' },
-    { name = 'nvim_lsp' }
+    { name = 'cmp_tabnine' }
   },
   {
     { name = 'buffer' }
   }),
   formatting = {
-    fields = { 'kind', 'abbr' },
-    format = require('lspkind').cmp_format({
-      preset = 'codicons',
-      mode = 'symbol',
-      maxwidth = 50,
+    fields = { "kind", "abbr" },
+    format = lspkind.cmp_format({
+      mode = 'symbol_text',
+      maxwidth = 40,
+      before = function(entry, vim_item)
+        vim_item.kind = lspkind.presets.codicons[vim_item.kind]
+        if entry.source.name == "cmp_tabnine" then
+          vim_item.kind = ""
+        end
+        return vim_item
+      end
     })
   }
 })

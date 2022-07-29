@@ -17,6 +17,13 @@ local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
+  -- Setup lspkind.
+  require('lspkind').init({
+    mode = 'symbol',
+    preset = 'codicons',
+    maxwidth = 50
+  })
+
   -- Mappings.
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)

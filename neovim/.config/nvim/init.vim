@@ -14,7 +14,7 @@ endif
 
 " Even when the +eval is missing.
 silent! while 0
-set nocompatible
+  set nocompatible
 silent! endwhile
 " -----------------------------------------------------------------------------
 " SECTION: Configs.
@@ -82,6 +82,12 @@ let g:startify_custom_footer='startify#center(g:custom_footer)'
 " Enable scan for dotfiles.
 let g:ctrlp_show_hidden=1
 " }}}
+" Fugitive: {{{
+" Function for lightline integration.
+function! GitBranch()
+  return FugitiveHead() ==# '' ? '' : ' ' . FugitiveHead()
+endfunction
+" }}}
 " Gitgutter: {{{
 " Signs customization.
 let g:gitgutter_sign_priority=9
@@ -91,11 +97,8 @@ let g:gitgutter_sign_modified='│'
 " Function for lightline integration.
 function! GitStatus()
   let [l:added,l:modified,l:removed] = GitGutterGetHunkSummary()
-  if (l:added == 0) && (l:modified == 0) && (l:removed == 0)
-    return ''
-  else
-    return printf(' %d  %d  %d', l:added, l:modified, l:removed)
-  endif
+  return (l:added == 0) && (l:modified == 0) && (l:removed == 0) ?
+        \ '' : printf(' %d  %d  %d', l:added, l:modified, l:removed)
 endfunction
 " }}}
 " Matchup: {{{
@@ -134,9 +137,9 @@ let g:prettier#autoformat_config_present=1
 " }}}
 " Lightline: {{{
 " Bufferline customization.
+let g:lightline#bufferline#right_aligned=1
 let g:lightline#bufferline#filename_modifier=':t'
 let g:lightline#bufferline#unnamed='[No Name]'
-let g:lightline#bufferline#right_aligned=1
 
 " Initialize setup.
 let g:lightline={
@@ -150,12 +153,16 @@ let g:lightline={
       \     'right': ''
       \   },
       \   'component': {
+      \     'readonly': '%{&readonly?"":""}',
+      \     'spell': '暈 %{&spell?&spelllang:""}',
+      \     'lineinfo': '☰ %L  %l  %c',
+      \     'tabname': 'tabs',
       \     'bufname': 'buffers'
       \   },
       \   'component_function': {
-      \     'gitbranch': 'FugitiveHead',
+      \     'gitbranch': 'GitBranch',
       \     'gitstatus': 'GitStatus',
-      \     'sleuth': 'SleuthIndicator'
+      \     'sleuthindicator': 'SleuthIndicator'
       \   },
       \   'component_expand': {
       \     'buffers': 'lightline#bufferline#buffers'
@@ -177,9 +184,9 @@ let g:lightline={
       \       ['lineinfo'],
       \       [
       \         'filetype',
+      \         'sleuthindicator',
       \         'fileformat',
-      \         'fileencoding',
-      \         'sleuth'
+      \         'fileencoding'
       \       ]
       \     ]
       \   },
@@ -188,7 +195,7 @@ let g:lightline={
       \     'right': [['lineinfo']]
       \   },
       \   'tabline': {
-      \     'left': [['tabs']],
+      \     'left': [['tabname'], ['tabs']],
       \     'right': [['bufname'], ['buffers']]
       \   }
       \ }
@@ -222,7 +229,7 @@ if has('nvim')
   let g:lightline#lsp#indicator_warnings=' '
   let g:lightline#lsp#indicator_infos=' '
   let g:lightline#lsp#indicator_hints=' '
-  let g:lightline#lsp#indicator_ok=' '
+  let g:lightline#lsp#indicator_ok=' LSP'
 
   " Register the components.
   let g:lightline.component_expand.lsp_errors='lightline#lsp#errors'
@@ -306,9 +313,11 @@ if has('nvim')
   Plug 'JoosepAlviste/nvim-ts-context-commentstring'
   Plug 'windwp/nvim-ts-autotag'
 
+  " Nvim kinds.
+  Plug 'onsails/lspkind.nvim'
+
   " Nvim lsp.
   Plug 'williamboman/nvim-lsp-installer'
-  Plug 'onsails/lspkind.nvim'
   Plug 'neovim/nvim-lspconfig'
   Plug 'spywhere/lightline-lsp'
 
@@ -371,6 +380,10 @@ noremap! <silent> <leader>mt <Plug>(MaximizerToggle)
 " -----------------------------------------------------------------------------
 " SECTION: Autocmds.
 " -----------------------------------------------------------------------------
+" Netrw: {{{
+" Enable lightline.
+autocmd filetype netrw,vim call lightline#enable()
+" }}}
 " Startify: {{{
 " Cursorline local enable.
 autocmd User Startified setlocal cursorline
