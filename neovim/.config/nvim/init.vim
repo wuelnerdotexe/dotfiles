@@ -154,8 +154,8 @@ let g:lightline={
       \   },
       \   'component': {
       \     'readonly': '%{&readonly?"":""}',
-      \     'spell': '暈 %{&spell?&spelllang:""}',
-      \     'lineinfo': '☰ %L  %l  %c',
+      \     'spell': '暈%{&spell?&spelllang:""}',
+      \     'lineinfo': '☰ %L :%l :%c',
       \     'tabname': 'tabs',
       \     'bufname': 'buffers'
       \   },
@@ -206,6 +206,7 @@ let g:enfocado_style='nature' " Available: `nature` or `neon`.
 
 " Plugins enabled.
 let g:enfocado_plugins=[
+      \   'ctrlp',
       \   'gitgutter',
       \   'matchup',
       \   'nerdtree',
@@ -248,11 +249,11 @@ if has('nvim')
   let g:lightline.active.left=add(
         \   g:lightline.active.left,
         \   [
-        \     'lsp_ok',
         \     'lsp_errors',
         \     'lsp_warnings',
         \     'lsp_infos',
-        \     'lsp_hints'
+        \     'lsp_hints',
+        \     'lsp_ok'
         \   ]
         \ )
   " }}}
@@ -260,7 +261,6 @@ if has('nvim')
   " Add the neovim plugins.
   let g:enfocado_plugins+=[
         \   'cmp',
-        \   'ctrlp',
         \   'lsp',
         \   'lsp-installer',
         \   'treesitter'
@@ -280,9 +280,10 @@ endif
 " -----------------------------------------------------------------------------
 " Vim Plug: {{{
 " Auto installation in Vim or Neovim.
-let data_dir = has('nvim') ? stdpath('data').'/site' : '~/.vim'
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir.'/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  silent execute '!curl -fLo ' . data_dir . '/autoload/plug.vim --create-dirs'
+    \ . ' https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 endif
 " }}}
 
@@ -360,7 +361,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install' }
 Plug 'wuelnerdotexe/human.vim'
 Plug '~/Workspace/vim-enfocado'
 call plug#end()
-filetype plugin indent on | syntax on
+filetype plugin indent on | syntax enable
 " -----------------------------------------------------------------------------
 " SECTION: Mappings.
 " -----------------------------------------------------------------------------
@@ -382,15 +383,20 @@ noremap! <silent> <leader>mt <Plug>(MaximizerToggle)
 " -----------------------------------------------------------------------------
 " Netrw: {{{
 " Enable lightline.
-autocmd filetype netrw,vim call lightline#enable()
+autocmd FileType netrw,vim call lightline#enable()
 " }}}
 " Startify: {{{
 " Cursorline local enable.
 autocmd User Startified setlocal cursorline
 " }}}
+" Postcss: {{{
+" Add postcss keywords to css filetypes.
+autocmd FileType css setlocal iskeyword+=-
+autocmd FileType scss setlocal iskeyword+=@-@
+" }}}
 " Human: {{{
 " Options overrides.
-autocmd VimEnter * set noshowmode noruler nospell
+autocmd VimEnter * set nospell noshowmode noruler
 " }}}
 " Enfocado: {{{
 " Colorscheme enable when all have loaded.
