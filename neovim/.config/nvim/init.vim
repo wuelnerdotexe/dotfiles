@@ -70,6 +70,9 @@ let g:startify_change_to_vcs_root=1
 let g:startify_bookmarks=[
       \   '~/dotfiles/',
       \   '~/Workspace/enfocado/',
+      \   '~/Workspace/human.vim/',
+      \   '~/Workspace/nerdterm/',
+      \   '~/Workspace/vim-astro/',
       \   '~/Workspace/vim-enfocado/',
       \   '~/Workspace/wuelnerdotexe.github.io/'
       \ ]
@@ -107,15 +110,10 @@ let g:matchup_matchparen_offscreen={ 'method': 'popup' }
 " }}}
 " IndentLine: {{{
 " Filetypes excludes.
-let g:indentLine_fileTypeExclude=['nerdtree', 'netrw', 'startify']
+let g:indentLine_fileTypeExclude=['nerdtree', 'startify']
 
 " Buffertypes excludes.
-let g:indentLine_bufTypeExclude=[
-      \   'help',
-      \   'nofile',
-      \   'quickfix',
-      \   'terminal'
-      \ ]
+let g:indentLine_bufTypeExclude=['help', 'nofile', 'terminal']
 
 " Color rewrite disable.
 let g:indentLine_setColors=0
@@ -144,13 +142,9 @@ let g:lightline#bufferline#unnamed='[No Name]'
 " Initialize setup.
 let g:lightline={
       \   'colorscheme': 'enfocado',
-      \   'separator': {
-      \     'left': '',
-      \     'right': ''
-      \   },
       \   'subseparator': {
-      \     'left': '',
-      \     'right': ''
+      \     'left': '',
+      \     'right': ''
       \   },
       \   'component': {
       \     'readonly': '%{&readonly?"":""}',
@@ -281,7 +275,7 @@ endif
 " Vim Plug: {{{
 " Auto installation in Vim or Neovim.
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(data_dir.'/autoload/plug.vim'))
+if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo ' . data_dir . '/autoload/plug.vim --create-dirs'
     \ . ' https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 endif
@@ -346,8 +340,9 @@ Plug 'tpope/vim-sleuth'
 Plug 'Yggdroot/indentLine'
 
 " Typing.
-Plug 'matze/vim-move'
+Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
+Plug 'matze/vim-move'
 Plug 'mg979/vim-visual-multi'
 
 " Formatter.
@@ -358,7 +353,7 @@ Plug 'prettier/vim-prettier',
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install' }
 
 " Install Wuelner's vim plugins.
-Plug 'wuelnerdotexe/human.vim'
+Plug '~/Workspace/human.vim'
 Plug '~/Workspace/vim-enfocado'
 call plug#end()
 filetype plugin indent on | syntax enable
@@ -389,11 +384,6 @@ autocmd FileType netrw,vim call lightline#enable()
 " Cursorline local enable.
 autocmd User Startified setlocal cursorline
 " }}}
-" Postcss: {{{
-" Add postcss keywords to css filetypes.
-autocmd FileType css setlocal iskeyword+=-
-autocmd FileType scss setlocal iskeyword+=@-@
-" }}}
 " Human: {{{
 " Options overrides.
 autocmd VimEnter * set nospell noshowmode noruler
@@ -404,5 +394,9 @@ autocmd VimEnter * ++nested colorscheme enfocado
 
 " Colorscheme customizations.
 autocmd ColorScheme enfocado ++nested highlight Normal ctermbg=NONE guibg=NONE
-autocmd ColorScheme enfocado ++nested highlight NormalNC ctermbg=NONE guibg=NONE
+
+" Enable pseudo-transparency.
+if has('nvim')
+  set pumblend=10 winblend=10
+endif
 " }}}
