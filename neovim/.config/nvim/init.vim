@@ -311,10 +311,6 @@ Plug 'antoinemadec/FixCursorHold.nvim', Cond(has('nvim'))
 " Development.
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install' }
 
-" Languages.
-Plug '~/Workspace/vim-astro'
-Plug '~/Workspace/nerdterm'
-
 " Files managers.
 Plug 'preservim/nerdtree'
 Plug 'mhinz/vim-startify'
