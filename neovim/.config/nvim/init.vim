@@ -85,48 +85,15 @@ let g:startify_custom_footer='startify#center(g:custom_footer)'
 " Enable scan for dotfiles.
 let g:ctrlp_show_hidden=1
 " }}}
-" Fugitive: {{{
-" Function for lightline integration.
-function! GitBranch()
-  return FugitiveHead() ==# '' ? '' : ' ' . FugitiveHead()
-endfunction
-" }}}
 " Gitgutter: {{{
 " Signs customization.
 let g:gitgutter_sign_priority=9
 let g:gitgutter_sign_added='│'
 let g:gitgutter_sign_modified='│'
-
-" Function for lightline integration.
-function! GitStatus()
-  let [l:added,l:modified,l:removed] = GitGutterGetHunkSummary()
-  return (l:added == 0) && (l:modified == 0) && (l:removed == 0) ?
-        \ '' : printf(' %d  %d  %d', l:added, l:modified, l:removed)
-endfunction
 " }}}
 " Matchup: {{{
 " Off-screen enable popup.
 let g:matchup_matchparen_offscreen={ 'method': 'popup' }
-" }}}
-" IndentLine: {{{
-" Filetypes excludes.
-let g:indentLine_fileTypeExclude=['nerdtree', 'startify']
-
-" Buffertypes excludes.
-let g:indentLine_bufTypeExclude=['help', 'nofile', 'terminal']
-
-" Color rewrite disable.
-let g:indentLine_setColors=0
-
-" Conceal rewrite disable.
-let g:indentLine_setConceal=0
-
-" First line level enable.
-let g:indentLine_showFirstIndentLevel=1
-
-" Chars customization.
-let g:indentLine_char='│'
-let g:indentLine_first_char='│'
 " }}}
 " Prettier: {{{
 " Autoformat with config enable.
@@ -139,6 +106,49 @@ let g:lightline#bufferline#right_aligned=1
 let g:lightline#bufferline#filename_modifier=':t'
 let g:lightline#bufferline#unnamed='[No Name]'
 
+" Function for Fugitive Git status.
+function! GitBranch() abort
+  if &laststatus == 3
+    return &columns > 100 ?
+          \ (FugitiveHead() !=# '' ? ' ' . FugitiveHead() : '') : ''
+  else
+    return winwidth(0) > 100 ?
+          \ (FugitiveHead() !=# '' ? ' ' . FugitiveHead() : '') : ''
+  endif
+endfunction
+
+" Function for Gitgutter hunks.
+function! GitStatus() abort
+  let [l:added,l:modified,l:removed] = GitGutterGetHunkSummary()
+  if &laststatus == 3
+    return &columns > 100 &&
+          \ ((l:added != 0) || (l:modified != 0) || (l:removed != 0)) ?
+          \ printf(' %d  %d  %d', l:added, l:modified, l:removed) : ''
+  else
+    return winwidth(0) > 100 &&
+          \ ((l:added != 0) || (l:modified != 0) || (l:removed != 0)) ?
+          \ printf(' %d  %d  %d', l:added, l:modified, l:removed) : ''
+  endif
+endfunction
+
+" Function for trunc filetype.
+function! LightlineFiletype() abort
+  if &laststatus == 3
+    return &columns > 100 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+  else
+    return winwidth(0) > 100 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+  endif
+endfunction
+
+" Function for trunc Sleuth indicator.
+function! SleuthStatus() abort
+  if &laststatus == 3
+    return &columns > 100 ? SleuthIndicator() : ''
+  else
+    return winwidth(0) > 100 ? SleuthIndicator() : ''
+  endif
+endfunction
+
 " Initialize setup.
 let g:lightline={
       \   'colorscheme': 'enfocado',
@@ -149,14 +159,16 @@ let g:lightline={
       \   'component': {
       \     'readonly': '%{&readonly?"":""}',
       \     'spell': '暈%{&spell?&spelllang:""}',
-      \     'lineinfo': '☰ %L :%l :%c',
+      \     'line': ':%l',
+      \     'lineinfo': ':%l :%c ☰ %L',
       \     'tabname': 'tabs',
       \     'bufname': 'buffers'
       \   },
       \   'component_function': {
+      \     'filetype': 'LightlineFiletype',
       \     'gitbranch': 'GitBranch',
       \     'gitstatus': 'GitStatus',
-      \     'sleuthindicator': 'SleuthIndicator'
+      \     'sleuthstatus': 'SleuthStatus'
       \   },
       \   'component_expand': {
       \     'buffers': 'lightline#bufferline#buffers'
@@ -178,7 +190,7 @@ let g:lightline={
       \       ['lineinfo'],
       \       [
       \         'filetype',
-      \         'sleuthindicator',
+      \         'sleuthstatus',
       \         'fileformat',
       \         'fileencoding'
       \       ]
@@ -186,7 +198,7 @@ let g:lightline={
       \   },
       \   'inactive': {
       \     'left': [['filename']],
-      \     'right': [['lineinfo']]
+      \     'right': [['line']]
       \   },
       \   'tabline': {
       \     'left': [['tabname'], ['tabs']],
@@ -279,15 +291,29 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo ' . data_dir . '/autoload/plug.vim --create-dirs'
     \ . ' https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 endif
+
+" Neovim conditional plugin activation.
+function! Cond(cond, ...)
+  let l:opts = get(a:000, 0, {})
+  return a:cond ? l:opts : extend(l:opts, { 'on': [], 'for': [] })
+endfunction
 " }}}
 
 " List installed plugins.
 filetype plugin indent off | syntax off
-call plug#begin()
+call plug#begin('~/.local/share/vim-plugins')
+" Options.
+Plug '~/Workspace/human.vim'
+
 " Temporal: Nvim CursorHold fixed.
-if has('nvim')
-  Plug 'antoinemadec/FixCursorHold.nvim'
-endif
+Plug 'antoinemadec/FixCursorHold.nvim', Cond(has('nvim'))
+
+" Development.
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install' }
+
+" Languages.
+Plug '~/Workspace/vim-astro'
+Plug '~/Workspace/nerdterm'
 
 " Files managers.
 Plug 'preservim/nerdtree'
@@ -298,46 +324,40 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
-" Statusline.
-Plug 'itchyny/lightline.vim'
-Plug 'mengelbrecht/lightline-bufferline'
-
-if has('nvim')
-  " Nvim syntax.
-  Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-  Plug 'JoosepAlviste/nvim-ts-context-commentstring'
-  Plug 'windwp/nvim-ts-autotag'
-
-  " Nvim kinds.
-  Plug 'onsails/lspkind.nvim'
-
-  " Nvim lsp.
-  Plug 'williamboman/nvim-lsp-installer'
-  Plug 'neovim/nvim-lspconfig'
-  Plug 'spywhere/lightline-lsp'
-
-  " Nvim cmp.
-  Plug 'hrsh7th/cmp-nvim-lsp'
-  Plug 'hrsh7th/cmp-cmdline'
-  Plug 'hrsh7th/cmp-buffer'
-  Plug 'hrsh7th/cmp-path'
-  Plug 'hrsh7th/nvim-cmp'
-
-  " Nvim snippets.
-  Plug 'hrsh7th/cmp-vsnip'
-  Plug 'hrsh7th/vim-vsnip'
-
-  " Nvim tabnine.
-  Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
-endif
+" Only Neovim syntax.
+Plug 'nvim-treesitter/nvim-treesitter', Cond(has('nvim'), { 'do': ':TSUpdate' })
+Plug 'JoosepAlviste/nvim-ts-context-commentstring', Cond(has('nvim'))
+Plug 'windwp/nvim-ts-autotag', Cond(has('nvim'))
 
 " Syntax.
 Plug 'tpope/vim-commentary'
 Plug 'andymass/vim-matchup'
 
-" Indent.
+" Formatter.
+Plug 'prettier/vim-prettier',
+      \ { 'do': 'npm install --frozen-lockfile --production' }
 Plug 'tpope/vim-sleuth'
-Plug 'Yggdroot/indentLine'
+
+" Only Neovim kinds.
+Plug 'onsails/lspkind.nvim', Cond(has('nvim'))
+
+" Only Neovim lsp.
+Plug 'neovim/nvim-lspconfig', Cond(has('nvim'))
+Plug 'williamboman/nvim-lsp-installer', Cond(has('nvim'))
+
+" Only Neovim cmp.
+Plug 'hrsh7th/cmp-nvim-lsp', Cond(has('nvim'))
+Plug 'hrsh7th/cmp-path', Cond(has('nvim'))
+Plug 'hrsh7th/cmp-cmdline', Cond(has('nvim'))
+Plug 'hrsh7th/cmp-buffer', Cond(has('nvim'))
+Plug 'hrsh7th/nvim-cmp', Cond(has('nvim'))
+
+" Only Neovim snippets.
+Plug 'hrsh7th/cmp-vsnip', Cond(has('nvim'))
+Plug 'hrsh7th/vim-vsnip', Cond(has('nvim'))
+
+" Only Neovim tabnine.
+Plug 'tzachar/cmp-tabnine', Cond(has('nvim'), { 'do': './install.sh' })
 
 " Typing.
 Plug 'jiangmiao/auto-pairs'
@@ -345,16 +365,13 @@ Plug 'tpope/vim-surround'
 Plug 'matze/vim-move'
 Plug 'mg979/vim-visual-multi'
 
-" Formatter.
-Plug 'prettier/vim-prettier',
-      \ { 'do': 'npm install --frozen-lockfile --production' }
-
-" Development.
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install' }
-
-" Install Wuelner's vim plugins.
-Plug '~/Workspace/human.vim'
+" Theme.
 Plug '~/Workspace/vim-enfocado'
+
+" Statusline.
+Plug 'itchyny/lightline.vim'
+Plug 'spywhere/lightline-lsp', Cond(has('nvim'))
+Plug 'mengelbrecht/lightline-bufferline'
 call plug#end()
 filetype plugin indent on | syntax enable
 " -----------------------------------------------------------------------------
@@ -386,17 +403,28 @@ autocmd User Startified setlocal cursorline
 " }}}
 " Human: {{{
 " Options overrides.
-autocmd VimEnter * set nospell noshowmode noruler
+autocmd VimEnter * set nospell noshowmode noruler nowrap
 " }}}
 " Enfocado: {{{
 " Colorscheme enable when all have loaded.
 autocmd VimEnter * ++nested colorscheme enfocado
 
-" Colorscheme customizations.
-autocmd ColorScheme enfocado ++nested highlight Normal ctermbg=NONE guibg=NONE
+" Local function for colorscheme customizations.
+function! s:EnfocadoCustomization() abort
+  highlight Normal ctermbg=NONE guibg=NONE
+  if &background ==# 'dark'
+    highlight Whitespace cterm=bold ctermbg=203 gui=bold guifg=#ff5e56
+  else
+    highlight Whitespace cterm=bold ctermbg=124 gui=bold guifg=#bf0000
+  endif
+endfunction
 
-" Enable pseudo-transparency.
+" Colorscheme customizations.
+autocmd ColorScheme enfocado ++nested call <SID>EnfocadoCustomization()
+
 if has('nvim')
+  " Enable pseudo-transparency.
   set pumblend=10 winblend=10
 endif
 " }}}
+

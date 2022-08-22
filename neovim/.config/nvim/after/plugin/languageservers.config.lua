@@ -1,3 +1,26 @@
+-- vim: fileencoding=utf-8 tabstop=2 shiftwidth=2 foldlevel=0 foldmethod=marker:
+-- -----------------------------------------------------------------------------
+-- Name:     languageservers.config.lua
+-- Author:   Wuelner Martínez <wuelner.martinez@outlook.com>
+-- URL:      https://github.com/wuelnerdotexe/dotfiles
+-- License:  MIT (C) Wuelner Martínez.
+-- About:    Minimal Neovim built-in LSP config.
+-- -----------------------------------------------------------------------------
+
+-- Change diagnostic symbols in the sign column (gutter).
+local signs = { Error = '●', Warn = '●', Info = '●', Hint = '●' }
+for type, icon in pairs(signs) do
+  local hl = 'DiagnosticSign' .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
+-- Setup diagnostics.
+vim.diagnostic.config({
+  virtual_text = { prefix = '▎' },
+  update_in_insert = true,
+  severity_sort = true
+})
+
 -- Setup lsp-installer.
 require('nvim-lsp-installer').setup({ automatic_installation = true })
 
@@ -44,52 +67,51 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(
   vim.lsp.protocol.make_client_capabilities()
 )
 
-lspconfig['jsonls'].setup{
+--Enable (broadcasting) snippet capability for completion
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+lspconfig['jsonls'].setup {
+  on_attach = on_attach,
+  flags = lsp_flags,
+  capabilities = capabilities,
+  init_options = {
+    provideFormatter = false -- Disable formatter for use vim-prettier.
+  }
+}
+
+lspconfig['tsserver'].setup {
   on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities
 }
 
-lspconfig['tsserver'].setup{
+lspconfig['cssls'].setup {
   on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities
 }
 
-lspconfig['cssls'].setup{
+lspconfig['html'].setup {
+  on_attach = on_attach,
+  flags = lsp_flags,
+  capabilities = capabilities,
+  init_options = {
+    provideFormatter = false -- Disable formatter for use vim-prettier.
+  }
+}
+
+lspconfig['tailwindcss'].setup {
   on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities
 }
 
-lspconfig['html'].setup{
+lspconfig['eslint'].setup {
   on_attach = on_attach,
   flags = lsp_flags,
-  capabilities = capabilities
+  capabilities = capabilities,
+  settings = {
+    format = false -- Disable formatter for use vim-prettier.
+  }
 }
 
-lspconfig['tailwindcss'].setup{
-  on_attach = on_attach,
-  flags = lsp_flags,
-  capabilities = capabilities
-}
-
-lspconfig['eslint'].setup{
-  on_attach = on_attach,
-  flags = lsp_flags,
-  capabilities = capabilities
-}
-
--- Change diagnostic symbols in the sign column (gutter).
-local signs = { Error = '●', Warn = '●', Info = '●', Hint = '●' }
-for type, icon in pairs(signs) do
-  local hl = 'DiagnosticSign' .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
-
--- Change prefix/character preceding the diagnostics' virtual text.
-vim.diagnostic.config({
-  virtual_text = { prefix = '▎' },
-  update_in_insert = true,
-  severity_sort = true
-})

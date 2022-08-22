@@ -1,3 +1,12 @@
+-- vim: fileencoding=utf-8 tabstop=2 shiftwidth=2 foldlevel=0 foldmethod=marker:
+-- -----------------------------------------------------------------------------
+-- Name:     autocomplete.config.lua
+-- Author:   Wuelner Martínez <wuelner.martinez@outlook.com>
+-- URL:      https://github.com/wuelnerdotexe/dotfiles
+-- License:  MIT (C) Wuelner Martínez.
+-- About:    Minimal Neovim auto-completion config.
+-- -----------------------------------------------------------------------------
+
 -- Setup lspkind.
 local lspkind = require('lspkind')
 
@@ -44,10 +53,12 @@ cmp.setup({
 -- CMP use cmdline & path source for ':'.
 cmp.setup.cmdline(':', {
   mapping = cmp.mapping.preset.cmdline(),
-  sources = cmp.config.sources(
-  { { name = 'cmdline' } },
-  { { name = 'path' } }
-  )
+  sources = cmp.config.sources({
+    { name = 'cmdline' }
+  },
+  {
+    { name = 'path' }
+  })
 })
 
 -- CMP use buffer source for `/`.
@@ -55,3 +66,4 @@ cmp.setup.cmdline('/', {
   mapping = cmp.mapping.preset.cmdline(),
   sources = { { name = 'buffer' } }
 })
+
