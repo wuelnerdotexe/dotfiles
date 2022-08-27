@@ -74,6 +74,7 @@ let g:startify_bookmarks=[
       \   '~/Workspace/nerdterm/',
       \   '~/Workspace/vim-astro/',
       \   '~/Workspace/vim-enfocado/',
+      \   '~/Workspace/vitemin/',
       \   '~/Workspace/wuelnerdotexe.github.io/'
       \ ]
 
@@ -94,11 +95,6 @@ let g:gitgutter_sign_modified='│'
 " Matchup: {{{
 " Off-screen enable popup.
 let g:matchup_matchparen_offscreen={ 'method': 'popup' }
-" }}}
-" Prettier: {{{
-" Autoformat with config enable.
-let g:prettier#autoformat_require_pragma=0
-let g:prettier#autoformat_config_present=1
 " }}}
 " Lightline: {{{
 " Bufferline customization.
@@ -268,7 +264,6 @@ if has('nvim')
   let g:enfocado_plugins+=[
         \   'cmp',
         \   'lsp',
-        \   'lsp-installer',
         \   'treesitter'
         \ ]
   " }}}
@@ -303,13 +298,15 @@ endfunction
 filetype plugin indent off | syntax off
 call plug#begin('~/.local/share/vim-plugins')
 " Options.
-Plug '~/Workspace/human.vim'
+Plug 'wuelnerdotexe/human.vim'
 
-" Temporal: Nvim CursorHold fixed.
+" Nvim dependencies.
 Plug 'antoinemadec/FixCursorHold.nvim', Cond(has('nvim'))
+Plug 'nvim-lua/plenary.nvim', Cond(has('nvim'))
 
 " Development.
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install' }
+Plug 'wuelnerdotexe/nerdterm'
 
 " Files managers.
 Plug 'preservim/nerdtree'
@@ -326,20 +323,18 @@ Plug 'JoosepAlviste/nvim-ts-context-commentstring', Cond(has('nvim'))
 Plug 'windwp/nvim-ts-autotag', Cond(has('nvim'))
 
 " Syntax.
+Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-commentary'
 Plug 'andymass/vim-matchup'
-
-" Formatter.
-Plug 'prettier/vim-prettier',
-      \ { 'do': 'npm install --frozen-lockfile --production' }
-Plug 'tpope/vim-sleuth'
 
 " Only Neovim kinds.
 Plug 'onsails/lspkind.nvim', Cond(has('nvim'))
 
 " Only Neovim lsp.
+Plug 'williamboman/mason.nvim', Cond(has('nvim'))
+Plug 'williamboman/mason-lspconfig.nvim', Cond(has('nvim'))
 Plug 'neovim/nvim-lspconfig', Cond(has('nvim'))
-Plug 'williamboman/nvim-lsp-installer', Cond(has('nvim'))
+Plug 'jose-elias-alvarez/null-ls.nvim', Cond(has('nvim'))
 
 " Only Neovim cmp.
 Plug 'hrsh7th/cmp-nvim-lsp', Cond(has('nvim'))
@@ -362,7 +357,7 @@ Plug 'matze/vim-move'
 Plug 'mg979/vim-visual-multi'
 
 " Theme.
-Plug '~/Workspace/vim-enfocado'
+Plug 'wuelnerdotexe/vim-enfocado', { 'branch': 'development' }
 
 " Statusline.
 Plug 'itchyny/lightline.vim'
@@ -373,6 +368,11 @@ filetype plugin indent on | syntax enable
 " -----------------------------------------------------------------------------
 " SECTION: Mappings.
 " -----------------------------------------------------------------------------
+" NERDTerm: {{{
+" Toggle terminal in the bottom.
+noremap <silent> <leader>tt <Plug>(NERDTermToggle)
+noremap! <silent> <leader>tt <Plug>(NERDTermToggle)
+" }}}
 " Netrw: {{{
 " Open files in window map.
 nnoremap <silent> <leader>eo <Cmd>Explore<CR>

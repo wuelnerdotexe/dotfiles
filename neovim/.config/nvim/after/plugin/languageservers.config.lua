@@ -18,14 +18,11 @@ end
 vim.diagnostic.config({
   virtual_text = { prefix = '▎' },
   update_in_insert = true,
-  severity_sort = true
+  severity_sort = true,
+  float = {
+    source = 'always'
+  }
 })
-
--- Setup lsp-installer.
-require('nvim-lsp-installer').setup({ automatic_installation = true })
-
--- Setup lspconfig.
-local lspconfig = require('lspconfig')
 
 -- Mappings.
 local opts = { noremap=true, silent=true }
@@ -37,7 +34,7 @@ vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
-  -- Disable LSP formatting for use vim-prettier.
+  -- Disable LSP formatting for use only null-ls.
   client.server_capabilities.documentFormattingProvider = false
   client.server_capabilities.documentRangeFormattingProvider = false
 
@@ -74,12 +71,21 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(
 --Enable (broadcasting) snippet capability for completion
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+-- Setup mason.
+require('mason').setup()
+
+-- Setup mason-lspconfig.
+require('mason-lspconfig').setup({ automatic_installation = true })
+
+-- Setup lspconfig.
+local lspconfig = require('lspconfig')
+
 lspconfig['jsonls'].setup {
   on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities,
   init_options = {
-    provideFormatter = false -- Disable formatter for use vim-prettier.
+    provideFormatter = false -- Disable formatter for use only null-ls.
   }
 }
 
@@ -100,7 +106,7 @@ lspconfig['html'].setup {
   flags = lsp_flags,
   capabilities = capabilities,
   init_options = {
-    provideFormatter = false -- Disable formatter for use vim-prettier.
+    provideFormatter = false -- Disable formatter for use only null-ls.
   }
 }
 
@@ -115,7 +121,34 @@ lspconfig['eslint'].setup {
   flags = lsp_flags,
   capabilities = capabilities,
   settings = {
-    format = false -- Disable formatter for use vim-prettier.
+    format = false -- Disable formatter for use only null-ls.
   }
 }
+
+-- Setup null-ls.
+local null_ls = require('null-ls')
+
+null_ls.setup({
+  on_attach = function(client, bufnr)
+    -- Enable null-ls formatting.
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+
+    -- Enable sync formatting on save.
+    local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
+    if client.supports_method('textDocument/formatting') then
+      vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        group = augroup,
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.buf.format({ bufnr = bufnr })
+          -- on < 0.8, you should use vim.lsp.buf.formatting_sync() instead
+        end
+      })
+    end
+  end,
+  sources = { null_ls.builtins.formatting.prettierd },
+  update_in_insert = true
+})
 
