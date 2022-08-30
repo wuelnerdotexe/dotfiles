@@ -26,7 +26,7 @@ let g:netrw_banner=0
 " NERDTree: {{{
 " Interface customization.
 let g:NERDTreeStatusline=-1
-let g:NERDTreeWinSize=float2nr(&columns * 0.25)
+let g:NERDTreeWinSize=33
 let g:NERDTreeMinimalUI=1
 let g:NERDTreeMarkBookmarks=0
 let g:NERDTreeDirArrowExpandable=''
@@ -50,7 +50,7 @@ let g:custom_header=[
       \   '_  /___  _  / / /  __/ / /_/ / /__ / /_/ // /_/ / / /_/ /',
       \   '/_____/  /_/ /_//_/    \____/\___/ \__,_/ \__,_/  \____/ ',
       \   '                                                         ',
-      \   '            How setups for Neo(vim) should be.           '
+      \   '          How setups for Vim & Neovim should be.         '
       \ ]
 let g:startify_custom_header='startify#center(g:custom_header)'
 
@@ -105,10 +105,10 @@ let g:lightline#bufferline#unnamed='[No Name]'
 " Function for Fugitive Git status.
 function! GitBranch() abort
   if &laststatus == 3
-    return &columns > 100 ?
+    return &columns >= 100 ?
           \ (FugitiveHead() !=# '' ? ' ' . FugitiveHead() : '') : ''
   else
-    return winwidth(0) > 100 ?
+    return winwidth(0) >= 100 ?
           \ (FugitiveHead() !=# '' ? ' ' . FugitiveHead() : '') : ''
   endif
 endfunction
@@ -117,11 +117,11 @@ endfunction
 function! GitStatus() abort
   let [l:added,l:modified,l:removed] = GitGutterGetHunkSummary()
   if &laststatus == 3
-    return &columns > 100 &&
+    return &columns >= 100 &&
           \ ((l:added != 0) || (l:modified != 0) || (l:removed != 0)) ?
           \ printf(' %d  %d  %d', l:added, l:modified, l:removed) : ''
   else
-    return winwidth(0) > 100 &&
+    return winwidth(0) >= 100 &&
           \ ((l:added != 0) || (l:modified != 0) || (l:removed != 0)) ?
           \ printf(' %d  %d  %d', l:added, l:modified, l:removed) : ''
   endif
@@ -130,18 +130,18 @@ endfunction
 " Function for trunc filetype.
 function! LightlineFiletype() abort
   if &laststatus == 3
-    return &columns > 100 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+    return &columns >= 100 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
   else
-    return winwidth(0) > 100 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+    return winwidth(0) >= 100 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
   endif
 endfunction
 
 " Function for trunc Sleuth indicator.
 function! SleuthStatus() abort
   if &laststatus == 3
-    return &columns > 100 ? SleuthIndicator() : ''
+    return &columns >= 100 ? SleuthIndicator() : ''
   else
-    return winwidth(0) > 100 ? SleuthIndicator() : ''
+    return winwidth(0) >= 100 ? SleuthIndicator() : ''
   endif
 endfunction
 
@@ -184,12 +184,8 @@ let g:lightline={
       \     ],
       \     'right': [
       \       ['lineinfo'],
-      \       [
-      \         'filetype',
-      \         'sleuthstatus',
-      \         'fileformat',
-      \         'fileencoding'
-      \       ]
+      \       ['sleuthstatus', 'fileformat', 'fileencoding'],
+      \       ['filetype']
       \     ]
       \   },
       \   'inactive': {
@@ -264,7 +260,8 @@ if has('nvim')
   let g:enfocado_plugins+=[
         \   'cmp',
         \   'lsp',
-        \   'treesitter'
+        \   'treesitter',
+        \   'indent-blankline'
         \ ]
   " }}}
   " Providers: {{{
@@ -300,7 +297,7 @@ call plug#begin('~/.local/share/vim-plugins')
 " Options.
 Plug 'wuelnerdotexe/human.vim'
 
-" Nvim dependencies.
+" Only Neovim dependencies.
 Plug 'antoinemadec/FixCursorHold.nvim', Cond(has('nvim'))
 Plug 'nvim-lua/plenary.nvim', Cond(has('nvim'))
 
@@ -319,6 +316,8 @@ Plug 'airblade/vim-gitgutter'
 
 " Only Neovim syntax.
 Plug 'nvim-treesitter/nvim-treesitter', Cond(has('nvim'), { 'do': ':TSUpdate' })
+Plug 'p00f/nvim-ts-rainbow', Cond(has('nvim'))
+Plug 'lukas-reineke/indent-blankline.nvim', Cond(has('nvim'))
 Plug 'JoosepAlviste/nvim-ts-context-commentstring', Cond(has('nvim'))
 Plug 'windwp/nvim-ts-autotag', Cond(has('nvim'))
 
@@ -389,9 +388,9 @@ noremap! <silent> <leader>mt <Plug>(MaximizerToggle)
 " -----------------------------------------------------------------------------
 " SECTION: Autocmds.
 " -----------------------------------------------------------------------------
-" Netrw: {{{
-" Enable lightline.
-autocmd FileType netrw,vim call lightline#enable()
+" Lightline: {{{
+" Force enable on filetypes.
+autocmd FileType netrw,vim,startify call lightline#enable()
 " }}}
 " Startify: {{{
 " Cursorline local enable.
@@ -407,7 +406,6 @@ autocmd VimEnter * ++nested colorscheme enfocado
 
 " Local function for colorscheme customizations.
 function! s:EnfocadoCustomization() abort
-  highlight Normal ctermbg=NONE guibg=NONE
   if &background ==# 'dark'
     highlight Whitespace cterm=bold ctermbg=203 gui=bold guifg=#ff5e56
   else

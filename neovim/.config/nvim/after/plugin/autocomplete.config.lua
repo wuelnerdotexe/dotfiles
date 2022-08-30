@@ -35,14 +35,18 @@ cmp.setup({
     { name = 'buffer' }
   }),
   formatting = {
-    fields = { 'kind', 'abbr' },
+    fields = { 'abbr', 'kind'},
     format = lspkind.cmp_format({
       mode = 'symbol_text',
       maxwidth = 40,
       before = function(entry, vim_item)
-        vim_item.kind = lspkind.presets.codicons[vim_item.kind]
+        vim_item.kind = string.format(
+          '%s %s',
+          lspkind.presets.codicons[vim_item.kind],
+          vim_item.kind
+        )
         if entry.source.name == 'cmp_tabnine' then
-          vim_item.kind = ''
+          vim_item.kind = string.format('%s %s', '', 'Tabnine')
         end
         return vim_item
       end

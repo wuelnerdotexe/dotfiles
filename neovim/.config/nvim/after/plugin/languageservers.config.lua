@@ -17,11 +17,9 @@ end
 -- Setup diagnostics.
 vim.diagnostic.config({
   virtual_text = { prefix = '▎' },
+  float = { source = 'always' },
   update_in_insert = true,
-  severity_sort = true,
-  float = {
-    source = 'always'
-  }
+  severity_sort = true
 })
 
 -- Mappings.
@@ -43,7 +41,7 @@ local on_attach = function(client, bufnr)
 
   -- Setup lspkind.
   require('lspkind').init({
-    mode = 'symbol',
+    mode = 'symbol_text',
     preset = 'codicons',
     maxwidth = 50
   })
@@ -130,10 +128,6 @@ local null_ls = require('null-ls')
 
 null_ls.setup({
   on_attach = function(client, bufnr)
-    -- Enable null-ls formatting.
-    client.server_capabilities.documentFormattingProvider = false
-    client.server_capabilities.documentRangeFormattingProvider = false
-
     -- Enable sync formatting on save.
     local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
     if client.supports_method('textDocument/formatting') then
@@ -143,12 +137,29 @@ null_ls.setup({
         buffer = bufnr,
         callback = function()
           vim.lsp.buf.format({ bufnr = bufnr })
-          -- on < 0.8, you should use vim.lsp.buf.formatting_sync() instead
+          -- On < 0.8, you should use vim.lsp.buf.formatting_sync() instead.
         end
       })
     end
   end,
-  sources = { null_ls.builtins.formatting.prettierd },
+  sources = {
+    null_ls.builtins.formatting.prettierd.with({
+      condition = function(utils)
+        return utils.root_has_file({
+          ".prettierrc",
+          ".prettierrc.json",
+          ".prettierrc.yaml",
+          ".prettierrc.yml",
+          ".prettierrc.json5",
+          ".prettierrc.js",
+          ".prettierrc.cjs",
+          "prettier.config.js",
+          "prettier.config.cjs",
+          ".prettierrc.toml",
+        })
+      end
+    })
+  },
   update_in_insert = true
 })
 
