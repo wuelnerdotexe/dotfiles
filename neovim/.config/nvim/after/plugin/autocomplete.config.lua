@@ -14,11 +14,9 @@ local lspkind = require('lspkind')
 local cmp = require('cmp')
 
 cmp.setup({
-  snippet = {
-    expand = function(args)
-      vim.fn['vsnip#anonymous'](args.body)
-    end
-  },
+  snippet = { expand = function(args)
+    vim.fn['vsnip#anonymous'](args.body)
+  end },
   mapping = cmp.mapping.preset.insert({
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
@@ -30,12 +28,11 @@ cmp.setup({
     { name = 'nvim_lsp' },
     { name = 'vsnip' },
     { name = 'cmp_tabnine' }
-  },
-  {
+  }, {
     { name = 'buffer' }
   }),
   formatting = {
-    fields = { 'abbr', 'kind'},
+    fields = { 'abbr', 'kind' },
     format = lspkind.cmp_format({
       mode = 'symbol_text',
       maxwidth = 40,
@@ -45,9 +42,11 @@ cmp.setup({
           lspkind.presets.codicons[vim_item.kind],
           vim_item.kind
         )
+
         if entry.source.name == 'cmp_tabnine' then
           vim_item.kind = string.format('%s %s', '', 'Tabnine')
         end
+
         return vim_item
       end
     })
@@ -57,12 +56,7 @@ cmp.setup({
 -- CMP use cmdline & path source for ':'.
 cmp.setup.cmdline(':', {
   mapping = cmp.mapping.preset.cmdline(),
-  sources = cmp.config.sources({
-    { name = 'cmdline' }
-  },
-  {
-    { name = 'path' }
-  })
+  sources = cmp.config.sources({ { name = 'cmdline' } }, { { name = 'path' } })
 })
 
 -- CMP use buffer source for `/`.

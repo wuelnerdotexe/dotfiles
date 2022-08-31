@@ -116,6 +116,7 @@ endfunction
 " Function for Gitgutter hunks.
 function! GitStatus() abort
   let [l:added,l:modified,l:removed] = GitGutterGetHunkSummary()
+
   if &laststatus == 3
     return &columns >= 100 &&
           \ ((l:added != 0) || (l:modified != 0) || (l:removed != 0)) ?
@@ -279,6 +280,7 @@ endif
 " Vim Plug: {{{
 " Auto installation in Vim or Neovim.
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+
 if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo ' . data_dir . '/autoload/plug.vim --create-dirs'
     \ . ' https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
@@ -287,6 +289,7 @@ endif
 " Neovim conditional plugin activation.
 function! Cond(cond, ...)
   let l:opts = get(a:000, 0, {})
+
   return a:cond ? l:opts : extend(l:opts, { 'on': [], 'for': [] })
 endfunction
 " }}}

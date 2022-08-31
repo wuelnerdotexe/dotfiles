@@ -7,20 +7,28 @@
 -- About:    Minimal Neovim built-in LSP config.
 -- -----------------------------------------------------------------------------
 
--- Change diagnostic symbols in the sign column (gutter).
-local signs = { Error = '●', Warn = '●', Info = '●', Hint = '●' }
-for type, icon in pairs(signs) do
-  local hl = 'DiagnosticSign' .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
+-- Setup mason.
+require('mason').setup()
 
--- Setup diagnostics.
-vim.diagnostic.config({
-  virtual_text = { prefix = '▎' },
-  float = { source = 'always' },
-  update_in_insert = true,
-  severity_sort = true
-})
+-- Setup mason-lspconfig.
+require('mason-lspconfig').setup({ automatic_installation = true })
+
+-- Setup lspconfig.
+local lspconfig = require('lspconfig')
+
+-- Setup null-ls.
+local null_ls = require('null-ls')
+
+-- Setup cmp-nvim-lsp.
+local capabilities = require('cmp_nvim_lsp').update_capabilities(
+  vim.lsp.protocol.make_client_capabilities()
+)
+
+--Enable (broadcasting) snippet capability for completion
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+-- Flags.
+local lsp_flags = { debounce_text_changes = 150 }
 
 -- Mappings.
 local opts = { noremap=true, silent=true }
@@ -48,6 +56,7 @@ local on_attach = function(client, bufnr)
 
   -- Mappings.
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
+
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
@@ -59,32 +68,12 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
 end
 
-local lsp_flags = { debounce_text_changes = 150 }
-
--- Setup lspconfig.
-local capabilities = require('cmp_nvim_lsp').update_capabilities(
-  vim.lsp.protocol.make_client_capabilities()
-)
-
---Enable (broadcasting) snippet capability for completion
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
--- Setup mason.
-require('mason').setup()
-
--- Setup mason-lspconfig.
-require('mason-lspconfig').setup({ automatic_installation = true })
-
--- Setup lspconfig.
-local lspconfig = require('lspconfig')
-
 lspconfig['jsonls'].setup {
   on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities,
-  init_options = {
-    provideFormatter = false -- Disable formatter for use only null-ls.
-  }
+  -- Disable formatter for use only null-ls.
+  init_options = { provideFormatter = false }
 }
 
 lspconfig['tsserver'].setup {
@@ -103,9 +92,8 @@ lspconfig['html'].setup {
   on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities,
-  init_options = {
-    provideFormatter = false -- Disable formatter for use only null-ls.
-  }
+  -- Disable formatter for use only null-ls.
+  init_options = { provideFormatter = false }
 }
 
 lspconfig['tailwindcss'].setup {
@@ -118,20 +106,18 @@ lspconfig['eslint'].setup {
   on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities,
-  settings = {
-    format = false -- Disable formatter for use only null-ls.
-  }
+  -- Disable formatter for use only null-ls.
+  settings = { format = false }
 }
-
--- Setup null-ls.
-local null_ls = require('null-ls')
 
 null_ls.setup({
   on_attach = function(client, bufnr)
     -- Enable sync formatting on save.
     local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
+
     if client.supports_method('textDocument/formatting') then
       vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+
       vim.api.nvim_create_autocmd('BufWritePre', {
         group = augroup,
         buffer = bufnr,
@@ -161,5 +147,22 @@ null_ls.setup({
     })
   },
   update_in_insert = true
+})
+
+-- Change diagnostic symbols in the sign column (gutter).
+local signs = { Error = '●', Warn = '●', Info = '●', Hint = '●' }
+
+for type, icon in pairs(signs) do
+  local hl = 'DiagnosticSign' .. type
+
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
+-- Setup diagnostics.
+vim.diagnostic.config({
+  virtual_text = { prefix = '▎' },
+  float = { source = 'always' },
+  update_in_insert = true,
+  severity_sort = true
 })
 
