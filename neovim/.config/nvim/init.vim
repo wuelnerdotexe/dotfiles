@@ -22,24 +22,17 @@ silent! endwhile
 " Netrw: {{{
 " Banner hidden by default.
 let g:netrw_banner=0
+let g:netrw_list_hide='.git,node_modules'
 " }}}
-" NERDTree: {{{
+" Fern: {{{
+" Manage files.
+let g:fern#default_hidden=1
+let g:fern#default_exclude='^\%(\.git\|node_modules\)$'
+
 " Interface customization.
-let g:NERDTreeStatusline=-1
-let g:NERDTreeWinSize=33
-let g:NERDTreeMinimalUI=1
-let g:NERDTreeMarkBookmarks=0
-let g:NERDTreeDirArrowExpandable=''
-let g:NERDTreeDirArrowCollapsible=''
-
-" Files display.
-let g:NERDTreeShowHidden=1
-let g:NERDTreeRespectWildIgnore=1
-
-" Manage and interaction.
-let g:NERDTreeChDirMode=2
-let g:NERDTreeAutoDeleteBuffer=1
-let g:NERDTreeMouseMode=3
+let g:fern#drawer_width=33
+let g:fern#hide_cursor=1
+let g:fern#renderer='nerdfont'
 " }}}
 " Startify: {{{
 " Header customization.
@@ -206,9 +199,10 @@ let g:enfocado_style='nature' " Available: `nature` or `neon`.
 " Plugins enabled.
 let g:enfocado_plugins=[
       \   'ctrlp',
+      \   'fern',
       \   'gitgutter',
+      \   'glyph-palette',
       \   'matchup',
-      \   'nerdtree',
       \   'netrw',
       \   'plug',
       \   'startify',
@@ -309,9 +303,11 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install' }
 Plug 'wuelnerdotexe/nerdterm'
 
 " Files managers.
-Plug 'preservim/nerdtree'
-Plug 'mhinz/vim-startify'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'lambdalisue/fern.vim'
+Plug 'lambdalisue/fern-git-status.vim'
+Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+Plug 'mhinz/vim-startify'
 
 " Git.
 Plug 'tpope/vim-fugitive'
@@ -329,28 +325,20 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-commentary'
 Plug 'andymass/vim-matchup'
 
-" Only Neovim kinds.
-Plug 'onsails/lspkind.nvim', Cond(has('nvim'))
-
 " Only Neovim lsp.
 Plug 'williamboman/mason.nvim', Cond(has('nvim'))
 Plug 'williamboman/mason-lspconfig.nvim', Cond(has('nvim'))
 Plug 'neovim/nvim-lspconfig', Cond(has('nvim'))
 Plug 'jose-elias-alvarez/null-ls.nvim', Cond(has('nvim'))
 
-" Only Neovim cmp.
-Plug 'hrsh7th/cmp-nvim-lsp', Cond(has('nvim'))
-Plug 'hrsh7th/cmp-path', Cond(has('nvim'))
-Plug 'hrsh7th/cmp-cmdline', Cond(has('nvim'))
-Plug 'hrsh7th/cmp-buffer', Cond(has('nvim'))
+" Only Neovim autocomplete.
 Plug 'hrsh7th/nvim-cmp', Cond(has('nvim'))
-
-" Only Neovim snippets.
-Plug 'hrsh7th/cmp-vsnip', Cond(has('nvim'))
+Plug 'hrsh7th/cmp-buffer', Cond(has('nvim'))
 Plug 'hrsh7th/vim-vsnip', Cond(has('nvim'))
-
-" Only Neovim tabnine.
+Plug 'hrsh7th/cmp-nvim-lsp', Cond(has('nvim'))
+Plug 'hrsh7th/cmp-vsnip', Cond(has('nvim'))
 Plug 'tzachar/cmp-tabnine', Cond(has('nvim'), { 'do': './install.sh' })
+Plug 'onsails/lspkind.nvim', Cond(has('nvim'))
 
 " Typing.
 Plug 'jiangmiao/auto-pairs'
@@ -365,32 +353,54 @@ Plug 'wuelnerdotexe/vim-enfocado', { 'branch': 'development' }
 Plug 'itchyny/lightline.vim'
 Plug 'spywhere/lightline-lsp', Cond(has('nvim'))
 Plug 'mengelbrecht/lightline-bufferline'
+
+" Devicons.
+Plug 'lambdalisue/nerdfont.vim'
+Plug 'lambdalisue/glyph-palette.vim'
 call plug#end()
 filetype plugin indent on | syntax enable
 " -----------------------------------------------------------------------------
 " SECTION: Mappings.
 " -----------------------------------------------------------------------------
+" Netrw: {{{
+" Open files in window map.
+nnoremap <silent> <leader>eo <Cmd>Explore<CR>
+" }}}
+" Fern: {{{
+" Toggle file tree in the current working directory.
+nnoremap <silent> <leader>et <Cmd>Fern . -drawer -toggle<CR>
+
+" Toggle find current file in the file tree.
+nnoremap <silent> <leader>ef <Cmd>Fern . -reveal=% -drawer -toggle<CR>
+
+function! s:FernCustomization() abort
+  " Remap <BS> for collapse.
+  nmap <buffer> <BS> <Plug>(fern-action-collapse)
+
+  " Remap <CR> for open or expand.
+  nmap <buffer> <CR> <Plug>(fern-action-open-or-expand)
+endfunction
+" }}}
 " NERDTerm: {{{
 " Toggle terminal in the bottom.
 noremap <silent> <leader>tt <Plug>(NERDTermToggle)
 noremap! <silent> <leader>tt <Plug>(NERDTermToggle)
 " }}}
-" Netrw: {{{
-" Open files in window map.
-nnoremap <silent> <leader>eo <Cmd>Explore<CR>
-" }}}
-" NERDTree: {{{
-" Toggle tree in the root of VCS repo.
-nnoremap <silent> <leader>et <Cmd>NERDTreeToggleVCS<CR>
-" }}}
 " Human: {{{
-" Map for maximizer.
+" Map for toggle maximizer.
 noremap <silent> <leader>mt <Plug>(MaximizerToggle)
 noremap! <silent> <leader>mt <Plug>(MaximizerToggle)
 " }}}
 " -----------------------------------------------------------------------------
 " SECTION: Autocmds.
 " -----------------------------------------------------------------------------
+" Fern: {{{
+" Buffer customization.
+autocmd FileType fern call <SID>FernCustomization()
+
+" Highlight glyps.
+autocmd FileType fern call glyph_palette#apply()
+" }}}
 " Lightline: {{{
 " Force enable on filetypes.
 autocmd FileType netrw,vim,startify call lightline#enable()

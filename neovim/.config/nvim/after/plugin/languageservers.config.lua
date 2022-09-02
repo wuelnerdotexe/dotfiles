@@ -47,13 +47,6 @@ local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  -- Setup lspkind.
-  require('lspkind').init({
-    mode = 'symbol_text',
-    preset = 'codicons',
-    maxwidth = 50
-  })
-
   -- Mappings.
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
 
@@ -146,7 +139,7 @@ null_ls.setup({
       end
     })
   },
-  update_in_insert = true
+  update_in_insert = false
 })
 
 -- Change diagnostic symbols in the sign column (gutter).
