@@ -23,6 +23,8 @@ require('nvim-treesitter.configs').setup {
 
 -- Setup indent-blankline.
 require('indent_blankline').setup {
+  char = '▎',
+  context_char = '▎',
   bufname_exclude = { '' },
   use_treesitter = true,
   show_current_context = true

@@ -363,7 +363,7 @@ filetype plugin indent on | syntax enable
 " SECTION: Mappings.
 " -----------------------------------------------------------------------------
 " Netrw: {{{
-" Open files in window map.
+" Open file explorer in current window.
 nnoremap <silent> <leader>eo <Cmd>Explore<CR>
 " }}}
 " Fern: {{{
@@ -372,14 +372,6 @@ nnoremap <silent> <leader>et <Cmd>Fern . -drawer -toggle<CR>
 
 " Toggle find current file in the file tree.
 nnoremap <silent> <leader>ef <Cmd>Fern . -reveal=% -drawer -toggle<CR>
-
-function! s:FernCustomization() abort
-  " Remap <BS> for collapse.
-  nmap <buffer> <BS> <Plug>(fern-action-collapse)
-
-  " Remap <CR> for open or expand.
-  nmap <buffer> <CR> <Plug>(fern-action-open-or-expand)
-endfunction
 " }}}
 " NERDTerm: {{{
 " Toggle terminal in the bottom.
@@ -387,7 +379,7 @@ noremap <silent> <leader>tt <Plug>(NERDTermToggle)
 noremap! <silent> <leader>tt <Plug>(NERDTermToggle)
 " }}}
 " Human: {{{
-" Map for toggle maximizer.
+" Mappings for maximizer toggle.
 noremap <silent> <leader>mt <Plug>(MaximizerToggle)
 noremap! <silent> <leader>mt <Plug>(MaximizerToggle)
 " }}}
@@ -395,18 +387,30 @@ noremap! <silent> <leader>mt <Plug>(MaximizerToggle)
 " SECTION: Autocmds.
 " -----------------------------------------------------------------------------
 " Fern: {{{
-" Buffer customization.
-autocmd FileType fern call <SID>FernCustomization()
+" Local function for Fern customizations.
+function! s:FernCustomization() abort
+  " Highlight glyps.
+  call glyph_palette#apply()
 
-" Highlight glyps.
-autocmd FileType fern call glyph_palette#apply()
+  " Hide line numbers.
+  setlocal nonumber norelativenumber
+
+  " Remap <BS> for collapse.
+  nmap <buffer> <BS> <Plug>(fern-action-collapse)
+
+  " Remap <CR> for open or expand.
+  nmap <buffer> <CR> <Plug>(fern-action-open-or-expand)
+endfunction
+
+" Fern customization.
+autocmd FileType fern call <SID>FernCustomization()
 " }}}
 " Lightline: {{{
 " Force enable on filetypes.
 autocmd FileType netrw,vim,startify call lightline#enable()
 " }}}
 " Startify: {{{
-" Cursorline local enable.
+" Enable local cursor line.
 autocmd User Startified setlocal cursorline
 " }}}
 " Human: {{{
