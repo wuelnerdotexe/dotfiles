@@ -28,7 +28,7 @@ autocmd VimEnter * set nospell noshowmode noruler nowrap
 let $FZF_DEFAULT_COMMAND='fd -H -I -i -L -t f -E .git -E node_modules'
 
 " Default layout down.
-let g:fzf_layout={ 'down': '50%' }
+let g:fzf_layout={ 'down': '25%' }
 
 " Hide statusline.
 autocmd! FileType fzf let g:tls=&laststatus | set laststatus=0 |
@@ -36,8 +36,8 @@ autocmd! FileType fzf let g:tls=&laststatus | set laststatus=0 |
 " }}}
 " Fern: {{{
 " Disable netrw for hijack.
-let g:loaded_netrwPlugin=1
-let g:loaded_netrw=1
+let g:loaded_netrwPlugin=0
+let g:loaded_netrw=0
 
 " Manage files.
 let g:fern#default_hidden=1
@@ -130,6 +130,43 @@ let g:gitgutter_sign_modified='┃'
 " Matchup: {{{
 " Off-screen enable popup.
 let g:matchup_matchparen_offscreen={ 'method': 'popup' }
+" }}}
+" Enfocado: {{{
+" Theme style.
+let g:enfocado_style='neon' " Available: `nature` or `neon`.
+
+" Plugins enabled.
+let g:enfocado_plugins=[
+      \   'fern',
+      \   'fzf',
+      \   'gitgutter',
+      \   'glyph-palette',
+      \   'illuminate',
+      \   'matchup',
+      \   'plug',
+      \   'startify',
+      \   'visual-multi'
+      \ ]
+
+" Colorscheme enable when all have loaded.
+autocmd VimEnter * ++nested colorscheme enfocado
+
+" Local function for colorscheme customizations.
+function! s:EnfocadoCustomization() abort
+  if &background ==# 'dark'
+    highlight Whitespace cterm=bold ctermbg=203 gui=bold guifg=#ff5e56
+  else
+    highlight Whitespace cterm=bold ctermbg=124 gui=bold guifg=#bf0000
+  endif
+endfunction
+
+" Colorscheme customizations.
+autocmd ColorScheme enfocado ++nested call <SID>EnfocadoCustomization()
+
+if has('nvim') && has('termguicolors') && &termguicolors
+  " Enable pseudo-transparency.
+  set pumblend=10 winblend=10
+endif
 " }}}
 " Lightline: {{{
 " Bufferline customization.
@@ -227,46 +264,29 @@ let g:lightline={
 " Force enable on filetypes.
 autocmd FileType startify call lightline#enable()
 " }}}
-" Enfocado: {{{
-" Theme style.
-let g:enfocado_style='nature' " Available: `nature` or `neon`.
-
-" Plugins enabled.
-let g:enfocado_plugins=[
-      \   'fern',
-      \   'fzf',
-      \   'gitgutter',
-      \   'glyph-palette',
-      \   'matchup',
-      \   'plug',
-      \   'startify',
-      \   'visual-multi'
-      \ ]
-
-" Colorscheme enable when all have loaded.
-autocmd VimEnter * ++nested colorscheme enfocado
-
-" Local function for colorscheme customizations.
-function! s:EnfocadoCustomization() abort
-  if &background ==# 'dark'
-    highlight Whitespace cterm=bold ctermbg=203 gui=bold guifg=#ff5e56
-  else
-    highlight Whitespace cterm=bold ctermbg=124 gui=bold guifg=#bf0000
-  endif
-endfunction
-
-" Colorscheme customizations.
-autocmd ColorScheme enfocado ++nested call <SID>EnfocadoCustomization()
-
-if has('nvim') && has('termguicolors') && &termguicolors
-  " Enable pseudo-transparency.
-  set pumblend=10 winblend=10
-endif
-" }}}
 " -----------------------------------------------------------------------------
-" SECTION: Neovim.
+" SECTION: Neovim diff.
 " -----------------------------------------------------------------------------
 if has('nvim')
+  " Providers: {{{
+  " Disable plugin providers.
+  let g:loaded_ruby_provider=0
+  let g:loaded_node_provider=0
+  let g:loaded_perl_provider=0
+  " }}}
+  " FixCursorHold: {{{
+  " Temporal: Nvim CursorHold fixed.
+  let g:cursorhold_updatetime=100
+  " }}}
+  " Enfocado: {{{
+  " Add the neovim plugins.
+  let g:enfocado_plugins+=[
+        \   'cmp',
+        \   'lsp',
+        \   'treesitter',
+        \   'indent-blankline'
+        \ ]
+  " }}}
   " Lightline: {{{
   " Enable bufferline is clickable.
   let g:lightline#bufferline#clickable=1
@@ -304,23 +324,22 @@ if has('nvim')
         \   ]
         \ )
   " }}}
-  " Enfocado: {{{
-  " Add the neovim plugins.
-  let g:enfocado_plugins+=[
-        \   'cmp',
-        \   'lsp',
-        \   'treesitter',
-        \   'indent-blankline'
+else
+  " Illuminate: {{{
+  " Enable Illuminate Vim version.
+  let g:Illuminate_useDeprecated=1
+
+  " Exclude filetypes.
+  let g:Illuminate_ftblacklist=[
+        \   'fern',
+        \   'fugitive',
+        \   'lspinfo',
+        \   'mason',
+        \   'null-ls-info',
+        \   'startify',
+        \   ''
         \ ]
   " }}}
-  " Providers: {{{
-  " Disable plugin providers.
-  let g:loaded_ruby_provider=0
-  let g:loaded_node_provider=0
-  let g:loaded_perl_provider=0
-  " }}}
-  " Temporal: Nvim CursorHold fixed.
-  let g:cursorhold_updatetime=100
 endif
 " -----------------------------------------------------------------------------
 " SECTION: Plugins init.
@@ -383,6 +402,7 @@ Plug 'windwp/nvim-autopairs', Cond(has('nvim'))
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-commentary'
 Plug 'andymass/vim-matchup'
+Plug 'RRethy/vim-illuminate'
 
 " Only Neovim lsp.
 Plug 'williamboman/mason.nvim', Cond(has('nvim'))
@@ -416,6 +436,14 @@ filetype plugin indent on | syntax enable
 " -----------------------------------------------------------------------------
 " SECTION: Mappings.
 " -----------------------------------------------------------------------------
+" Human: {{{
+" Mappings for maximizer toggle.
+nmap <silent> <leader>mt <Plug>(MaximizerToggle)
+" }}}
+" NERDTerm: {{{
+" Toggle terminal in the bottom.
+nmap <silent> <leader>tt <Plug>(NERDTermToggle)
+" }}}
 " FZF: {{{
 " Find files with default command.
 nnoremap <silent> <leader>ff <Cmd>FZF<CR>
@@ -426,13 +454,5 @@ nnoremap <silent> <leader>et <Cmd>Fern . -drawer -toggle<CR>
 
 " Toggle find current file in the file tree.
 nnoremap <silent> <leader>ef <Cmd>Fern . -reveal=% -drawer -toggle<CR>
-" }}}
-" NERDTerm: {{{
-" Toggle terminal in the bottom.
-nmap <silent> <leader>tt <Plug>(NERDTermToggle)
-" }}}
-" Human: {{{
-" Mappings for maximizer toggle.
-nmap <silent> <leader>mt <Plug>(MaximizerToggle)
 " }}}
 

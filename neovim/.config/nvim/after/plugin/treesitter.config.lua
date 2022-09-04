@@ -33,3 +33,17 @@ require('indent_blankline').setup({
 -- Setup autopairs.
 require('nvim-autopairs').setup({ check_ts = true })
 
+-- Setup illuminate.
+require('illuminate').configure({
+  providers = { 'lsp', 'treesitter' },
+  filetypes_denylist = {
+    'fern',
+    'fugitive',
+    'lspinfo',
+    'mason',
+    'null-ls-info',
+    'startify',
+    ''
+  }
+})
+
