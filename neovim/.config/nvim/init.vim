@@ -137,48 +137,38 @@ let g:lightline#bufferline#right_aligned=1
 let g:lightline#bufferline#filename_modifier=':t'
 let g:lightline#bufferline#unnamed='[No Name]'
 
-" Function for Fugitive Git status.
-function! GitBranch() abort
+" Function for know if win is printable.
+function! s:WinIsPrintable(width) abort
   if &laststatus == 3
-    return &columns >= 100 ?
-          \ (FugitiveHead() !=# '' ? ' ' . FugitiveHead() : '') : ''
-  else
-    return winwidth(0) >= 100 ?
-          \ (FugitiveHead() !=# '' ? ' ' . FugitiveHead() : '') : ''
+    return &columns >= a:width ? 1 : 0
+  elseif &laststatus == 2
+    return winwidth(0) >= a:width ? 1 : 0
   endif
 endfunction
 
-" Function for Gitgutter hunks.
+" Function for get Git branch.
+function! GitBranch() abort
+  return <SID>WinIsPrintable(100) && FugitiveHead() !=# '' ?
+        \ ' ' . FugitiveHead() : ''
+endfunction
+
+" Function for get Git hunks.
 function! GitStatus() abort
   let [l:added,l:modified,l:removed] = GitGutterGetHunkSummary()
 
-  if &laststatus == 3
-    return &columns >= 100 &&
-          \ ((l:added != 0) || (l:modified != 0) || (l:removed != 0)) ?
-          \ printf(' %d  %d  %d', l:added, l:modified, l:removed) : ''
-  else
-    return winwidth(0) >= 100 &&
-          \ ((l:added != 0) || (l:modified != 0) || (l:removed != 0)) ?
-          \ printf(' %d  %d  %d', l:added, l:modified, l:removed) : ''
-  endif
+  return <SID>WinIsPrintable(100) &&
+        \ (l:added != 0 || l:modified != 0 || l:removed != 0) ?
+        \ printf(' %d  %d  %d', l:added, l:modified, l:removed) : ''
 endfunction
 
-" Function for trunc filetype.
+" Function for get filetype.
 function! LightlineFiletype() abort
-  if &laststatus == 3
-    return &columns >= 100 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
-  else
-    return winwidth(0) >= 100 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
-  endif
+  return <SID>WinIsPrintable(100) && &filetype !=# '' ? &filetype : ''
 endfunction
 
-" Function for trunc Sleuth indicator.
+" Function for get Sleuth indicator.
 function! SleuthStatus() abort
-  if &laststatus == 3
-    return &columns >= 100 ? SleuthIndicator() : ''
-  else
-    return winwidth(0) >= 100 ? SleuthIndicator() : ''
-  endif
+  return <SID>WinIsPrintable(100) ? SleuthIndicator() : ''
 endfunction
 
 " Initialize setup.
