@@ -11,11 +11,11 @@
 vim.opt.omnifunc = '' -- Omnifunction.
 vim.opt.complete = '' -- Neovim native.
 
--- Setup lspkind.
-local lspkind = require('lspkind')
-
 -- Setup nvim-cmp.
 local cmp = require('cmp')
+
+-- Setup lspkind.
+local lspkind = require('lspkind')
 
 -- Super-Tab like mapping with vim-vsnip.
 local has_words_before = function()
@@ -85,4 +85,9 @@ cmp.setup({
     })
   }
 })
+
+-- Setup autopairs for cmp.
+cmp.event:on('confirm_done',
+  require('nvim-autopairs.completion.cmp').on_confirm_done()
+)
 

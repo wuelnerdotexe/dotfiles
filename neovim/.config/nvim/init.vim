@@ -19,12 +19,26 @@ silent! endwhile
 " -----------------------------------------------------------------------------
 " SECTION: Configs.
 " -----------------------------------------------------------------------------
-" Netrw: {{{
-" Banner hidden by default.
-let g:netrw_banner=0
-let g:netrw_list_hide='.git,node_modules'
+" Human: {{{
+" Options overrides.
+autocmd VimEnter * set nospell noshowmode noruler nowrap
+" }}}
+" FZF: {{{
+" Customize default command with fd-find.
+let $FZF_DEFAULT_COMMAND='fd -H -I -i -L -t f -E .git -E node_modules'
+
+" Default layout down.
+let g:fzf_layout={ 'down': '50%' }
+
+" Hide statusline.
+autocmd! FileType fzf let g:tls=&laststatus | set laststatus=0 |
+      \ autocmd BufLeave <buffer> let &laststatus=g:tls | unlet g:tls
 " }}}
 " Fern: {{{
+" Disable netrw for hijack.
+let g:loaded_netrwPlugin=1
+let g:loaded_netrw=1
+
 " Manage files.
 let g:fern#default_hidden=1
 let g:fern#default_exclude='^\%(\.git\|node_modules\)$'
@@ -33,6 +47,35 @@ let g:fern#default_exclude='^\%(\.git\|node_modules\)$'
 let g:fern#drawer_width=33
 let g:fern#hide_cursor=1
 let g:fern#renderer='nerdfont'
+
+" Disable default mappings.
+let g:fern#disable_default_mappings=1
+
+" Local function for Fern customizations.
+function! s:FernCustomization() abort
+  " Highlight glyps.
+  call glyph_palette#apply()
+
+  " Hide line numbers.
+  setlocal nonumber norelativenumber
+
+  " Create new mappings.
+  nmap <buffer> <BS> <Plug>(fern-action-collapse)
+  nmap <buffer> <CR> <Plug>(fern-action-open-or-expand)
+  nmap <buffer> s <Plug>(fern-action-open:rightest)
+  nmap <buffer> n <Plug>(fern-action-new-path)
+  nmap <buffer> nd <Plug>(fern-action-new-dir)
+  nmap <buffer> nf <Plug>(fern-action-new-file)
+  nmap <buffer> c <Plug>(fern-action-copy)
+  nmap <buffer> m <Plug>(fern-action-move)
+  nmap <buffer> d <Plug>(fern-action-remove)
+  nmap <buffer> am <Plug>(fern-action-mark:toggle)
+  nmap <buffer> <ESC> <Plug>(fern-action-mark:clear)
+  nmap <buffer> <F5> <Plug>(fern-action-reload)
+endfunction
+
+" Fern customization.
+autocmd FileType fern call <SID>FernCustomization()
 " }}}
 " Startify: {{{
 " Header customization.
@@ -74,16 +117,15 @@ let g:startify_bookmarks=[
 " Footer customization.
 let g:custom_footer=['https://github.com/wuelnerdotexe/dotfiles']
 let g:startify_custom_footer='startify#center(g:custom_footer)'
-" }}}
-" CtrlP: {{{
-" Enable scan for dotfiles.
-let g:ctrlp_show_hidden=1
+
+" Enable local cursor line.
+autocmd User Startified setlocal cursorline
 " }}}
 " Gitgutter: {{{
 " Signs customization.
 let g:gitgutter_sign_priority=9
-let g:gitgutter_sign_added='│'
-let g:gitgutter_sign_modified='│'
+let g:gitgutter_sign_added='┃'
+let g:gitgutter_sign_modified='┃'
 " }}}
 " Matchup: {{{
 " Off-screen enable popup.
@@ -191,6 +233,9 @@ let g:lightline={
       \     'right': [['bufname'], ['buffers']]
       \   }
       \ }
+
+" Force enable on filetypes.
+autocmd FileType startify call lightline#enable()
 " }}}
 " Enfocado: {{{
 " Theme style.
@@ -198,16 +243,35 @@ let g:enfocado_style='nature' " Available: `nature` or `neon`.
 
 " Plugins enabled.
 let g:enfocado_plugins=[
-      \   'ctrlp',
       \   'fern',
+      \   'fzf',
       \   'gitgutter',
       \   'glyph-palette',
       \   'matchup',
-      \   'netrw',
       \   'plug',
       \   'startify',
       \   'visual-multi'
       \ ]
+
+" Colorscheme enable when all have loaded.
+autocmd VimEnter * ++nested colorscheme enfocado
+
+" Local function for colorscheme customizations.
+function! s:EnfocadoCustomization() abort
+  if &background ==# 'dark'
+    highlight Whitespace cterm=bold ctermbg=203 gui=bold guifg=#ff5e56
+  else
+    highlight Whitespace cterm=bold ctermbg=124 gui=bold guifg=#bf0000
+  endif
+endfunction
+
+" Colorscheme customizations.
+autocmd ColorScheme enfocado ++nested call <SID>EnfocadoCustomization()
+
+if has('nvim') && has('termguicolors') && &termguicolors
+  " Enable pseudo-transparency.
+  set pumblend=10 winblend=10
+endif
 " }}}
 " -----------------------------------------------------------------------------
 " SECTION: Neovim.
@@ -298,13 +362,17 @@ Plug 'wuelnerdotexe/human.vim'
 Plug 'antoinemadec/FixCursorHold.nvim', Cond(has('nvim'))
 Plug 'nvim-lua/plenary.nvim', Cond(has('nvim'))
 
+" Devicons.
+Plug 'lambdalisue/nerdfont.vim'
+
 " Development.
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install' }
 Plug 'wuelnerdotexe/nerdterm'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install' }
 
 " Files managers.
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'lambdalisue/fern.vim'
+Plug 'lambdalisue/fern-hijack.vim'
 Plug 'lambdalisue/fern-git-status.vim'
 Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'mhinz/vim-startify'
@@ -319,6 +387,7 @@ Plug 'p00f/nvim-ts-rainbow', Cond(has('nvim'))
 Plug 'lukas-reineke/indent-blankline.nvim', Cond(has('nvim'))
 Plug 'JoosepAlviste/nvim-ts-context-commentstring', Cond(has('nvim'))
 Plug 'windwp/nvim-ts-autotag', Cond(has('nvim'))
+Plug 'windwp/nvim-autopairs', Cond(has('nvim'))
 
 " Syntax.
 Plug 'tpope/vim-sleuth'
@@ -332,39 +401,34 @@ Plug 'neovim/nvim-lspconfig', Cond(has('nvim'))
 Plug 'jose-elias-alvarez/null-ls.nvim', Cond(has('nvim'))
 
 " Only Neovim autocomplete.
+Plug 'onsails/lspkind.nvim', Cond(has('nvim'))
 Plug 'hrsh7th/nvim-cmp', Cond(has('nvim'))
 Plug 'hrsh7th/cmp-buffer', Cond(has('nvim'))
 Plug 'hrsh7th/vim-vsnip', Cond(has('nvim'))
 Plug 'hrsh7th/cmp-nvim-lsp', Cond(has('nvim'))
 Plug 'hrsh7th/cmp-vsnip', Cond(has('nvim'))
 Plug 'tzachar/cmp-tabnine', Cond(has('nvim'), { 'do': './install.sh' })
-Plug 'onsails/lspkind.nvim', Cond(has('nvim'))
 
 " Typing.
-Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-surround'
 Plug 'matze/vim-move'
 Plug 'mg979/vim-visual-multi'
 
-" Theme.
+" Colors.
+Plug 'lambdalisue/glyph-palette.vim'
 Plug 'wuelnerdotexe/vim-enfocado', { 'branch': 'development' }
 
 " Statusline.
 Plug 'itchyny/lightline.vim'
 Plug 'spywhere/lightline-lsp', Cond(has('nvim'))
 Plug 'mengelbrecht/lightline-bufferline'
-
-" Devicons.
-Plug 'lambdalisue/nerdfont.vim'
-Plug 'lambdalisue/glyph-palette.vim'
 call plug#end()
 filetype plugin indent on | syntax enable
 " -----------------------------------------------------------------------------
 " SECTION: Mappings.
 " -----------------------------------------------------------------------------
-" Netrw: {{{
-" Open file explorer in current window.
-nnoremap <silent> <leader>eo <Cmd>Explore<CR>
+" FZF: {{{
+" Find files with default command.
+nnoremap <silent> <leader>ff <Cmd>FZF<CR>
 " }}}
 " Fern: {{{
 " Toggle file tree in the current working directory.
@@ -375,67 +439,10 @@ nnoremap <silent> <leader>ef <Cmd>Fern . -reveal=% -drawer -toggle<CR>
 " }}}
 " NERDTerm: {{{
 " Toggle terminal in the bottom.
-noremap <silent> <leader>tt <Plug>(NERDTermToggle)
-noremap! <silent> <leader>tt <Plug>(NERDTermToggle)
+nmap <silent> <leader>tt <Plug>(NERDTermToggle)
 " }}}
 " Human: {{{
 " Mappings for maximizer toggle.
-noremap <silent> <leader>mt <Plug>(MaximizerToggle)
-noremap! <silent> <leader>mt <Plug>(MaximizerToggle)
-" }}}
-" -----------------------------------------------------------------------------
-" SECTION: Autocmds.
-" -----------------------------------------------------------------------------
-" Fern: {{{
-" Local function for Fern customizations.
-function! s:FernCustomization() abort
-  " Highlight glyps.
-  call glyph_palette#apply()
-
-  " Hide line numbers.
-  setlocal nonumber norelativenumber
-
-  " Remap <BS> for collapse.
-  nmap <buffer> <BS> <Plug>(fern-action-collapse)
-
-  " Remap <CR> for open or expand.
-  nmap <buffer> <CR> <Plug>(fern-action-open-or-expand)
-endfunction
-
-" Fern customization.
-autocmd FileType fern call <SID>FernCustomization()
-" }}}
-" Lightline: {{{
-" Force enable on filetypes.
-autocmd FileType netrw,vim,startify call lightline#enable()
-" }}}
-" Startify: {{{
-" Enable local cursor line.
-autocmd User Startified setlocal cursorline
-" }}}
-" Human: {{{
-" Options overrides.
-autocmd VimEnter * set nospell noshowmode noruler nowrap
-" }}}
-" Enfocado: {{{
-" Colorscheme enable when all have loaded.
-autocmd VimEnter * ++nested colorscheme enfocado
-
-" Local function for colorscheme customizations.
-function! s:EnfocadoCustomization() abort
-  if &background ==# 'dark'
-    highlight Whitespace cterm=bold ctermbg=203 gui=bold guifg=#ff5e56
-  else
-    highlight Whitespace cterm=bold ctermbg=124 gui=bold guifg=#bf0000
-  endif
-endfunction
-
-" Colorscheme customizations.
-autocmd ColorScheme enfocado ++nested call <SID>EnfocadoCustomization()
-
-if has('nvim')
-  " Enable pseudo-transparency.
-  set pumblend=10 winblend=10
-endif
+nmap <silent> <leader>mt <Plug>(MaximizerToggle)
 " }}}
 

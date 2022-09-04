@@ -16,9 +16,6 @@ require('mason-lspconfig').setup({ automatic_installation = true })
 -- Setup lspconfig.
 local lspconfig = require('lspconfig')
 
--- Setup null-ls.
-local null_ls = require('null-ls')
-
 -- Setup cmp-nvim-lsp.
 local capabilities = require('cmp_nvim_lsp').update_capabilities(
   vim.lsp.protocol.make_client_capabilities()
@@ -61,47 +58,50 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
 end
 
-lspconfig['jsonls'].setup {
+lspconfig['jsonls'].setup({
   on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities,
   -- Disable formatter for use only null-ls.
   init_options = { provideFormatter = false }
-}
+})
 
-lspconfig['tsserver'].setup {
+lspconfig['tsserver'].setup({
   on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities
-}
+})
 
-lspconfig['cssls'].setup {
+lspconfig['cssls'].setup({
   on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities
-}
+})
 
-lspconfig['html'].setup {
+lspconfig['html'].setup({
   on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities,
   -- Disable formatter for use only null-ls.
   init_options = { provideFormatter = false }
-}
+})
 
-lspconfig['tailwindcss'].setup {
+lspconfig['tailwindcss'].setup({
   on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities
-}
+})
 
-lspconfig['eslint'].setup {
+lspconfig['eslint'].setup({
   on_attach = on_attach,
   flags = lsp_flags,
   capabilities = capabilities,
   -- Disable formatter for use only null-ls.
   settings = { format = false }
-}
+})
+
+-- Setup null-ls.
+local null_ls = require('null-ls')
 
 null_ls.setup({
   on_attach = function(client, bufnr)
@@ -125,16 +125,16 @@ null_ls.setup({
     null_ls.builtins.formatting.prettierd.with({
       condition = function(utils)
         return utils.root_has_file({
-          ".prettierrc",
-          ".prettierrc.json",
-          ".prettierrc.yaml",
-          ".prettierrc.yml",
-          ".prettierrc.json5",
-          ".prettierrc.js",
-          ".prettierrc.cjs",
-          "prettier.config.js",
-          "prettier.config.cjs",
-          ".prettierrc.toml",
+          '.prettierrc',
+          '.prettierrc.json',
+          '.prettierrc.yaml',
+          '.prettierrc.yml',
+          '.prettierrc.json5',
+          '.prettierrc.js',
+          '.prettierrc.cjs',
+          'prettier.config.js',
+          'prettier.config.cjs',
+          '.prettierrc.toml',
         })
       end
     })

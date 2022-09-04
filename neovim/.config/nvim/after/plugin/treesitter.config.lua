@@ -8,7 +8,7 @@
 -- -----------------------------------------------------------------------------
 
 -- Setup nvim-treesitter.
-require('nvim-treesitter.configs').setup {
+require('nvim-treesitter.configs').setup({
   auto_install = true,
   highlight = { enable = true, additional_vim_regex_highlighting = false },
   indent = { enable = true },
@@ -19,14 +19,17 @@ require('nvim-treesitter.configs').setup {
   },
   autotag = { enable = true },
   matchup = { enable = true }
-}
+})
 
 -- Setup indent-blankline.
-require('indent_blankline').setup {
+require('indent_blankline').setup({
+  use_treesitter = true,
+  show_current_context = true,
   char = '▎',
   context_char = '▎',
-  bufname_exclude = { '' },
-  use_treesitter = true,
-  show_current_context = true
-}
+  bufname_exclude = { '' }
+})
+
+-- Setup autopairs.
+require('nvim-autopairs').setup({ check_ts = true })
 
