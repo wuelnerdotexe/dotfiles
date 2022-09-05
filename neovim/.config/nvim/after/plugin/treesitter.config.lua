@@ -9,6 +9,8 @@
 
 -- Setup nvim-treesitter.
 require('nvim-treesitter.configs').setup({
+  ensure_installed = 'comment',
+  sync_install = true,
   auto_install = true,
   highlight = { enable = true, additional_vim_regex_highlighting = false },
   indent = { enable = true },
@@ -34,16 +36,15 @@ require('indent_blankline').setup({
 require('nvim-autopairs').setup({ check_ts = true })
 
 -- Setup illuminate.
-require('illuminate').configure({
-  providers = { 'lsp', 'treesitter' },
-  filetypes_denylist = {
-    'fern',
-    'fugitive',
-    'lspinfo',
-    'mason',
-    'null-ls-info',
-    'startify',
-    ''
-  }
-})
+require('illuminate').configure({ filetypes_denylist = {
+  'fern',
+  'fugitive',
+  'help',
+  'lspinfo',
+  'mason',
+  'null-ls-info',
+  'startify',
+  'text',
+  ''
+} })
 

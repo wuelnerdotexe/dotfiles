@@ -86,6 +86,12 @@ lspconfig['html'].setup({
   init_options = { provideFormatter = false }
 })
 
+lspconfig['emmet_ls'].setup({
+  on_attach = on_attach,
+  flags = lsp_flags,
+  capabilities = capabilities
+})
+
 lspconfig['tailwindcss'].setup({
   on_attach = on_attach,
   flags = lsp_flags,

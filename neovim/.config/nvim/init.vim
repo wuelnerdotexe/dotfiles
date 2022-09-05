@@ -25,7 +25,14 @@ autocmd VimEnter * set nospell noshowmode noruler nowrap
 " }}}
 " FZF: {{{
 " Customize default command with fd-find.
-let $FZF_DEFAULT_COMMAND='fd -H -I -i -L -t f -E .git -E node_modules'
+if executable('fd')
+  let $FZF_DEFAULT_COMMAND='fd -I -H -E ".git" -E "node_modules" -t f'
+elseif !has('win32') && !has('win32unix')
+  let $FZF_DEFAULT_COMMAND='find -not \('
+        \   . '  -type d -name ".git" -prune -o'
+        \   . '  -type d -name "node_modules" -prune'
+        \ . ' \) -type f -printf "%P\n"'
+endif
 
 " Default layout down.
 let g:fzf_layout={ 'down': '25%' }
