@@ -23,28 +23,33 @@ require('nvim-treesitter.configs').setup({
   matchup = { enable = true }
 })
 
+local efts = {
+  'checkhealth',
+  'fern',
+  'fugitive',
+  'help',
+  'lspinfo',
+  'man',
+  'mason',
+  'null-ls-info',
+  'startify',
+  'text',
+  ''
+}
+
 -- Setup indent-blankline.
 require('indent_blankline').setup({
-  use_treesitter = true,
-  show_current_context = true,
   char = '▎',
   context_char = '▎',
-  bufname_exclude = { '' }
+  use_treesitter = true,
+  show_current_context = true,
+  bufname_exclude = { '' },
+  filetype_exclude = efts
 })
 
 -- Setup autopairs.
 require('nvim-autopairs').setup({ check_ts = true })
 
 -- Setup illuminate.
-require('illuminate').configure({ filetypes_denylist = {
-  'fern',
-  'fugitive',
-  'help',
-  'lspinfo',
-  'mason',
-  'null-ls-info',
-  'startify',
-  'text',
-  ''
-} })
+require('illuminate').configure({ filetypes_denylist = efts })
 

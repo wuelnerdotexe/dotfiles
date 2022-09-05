@@ -27,8 +27,9 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 -- Flags.
 local lsp_flags = { debounce_text_changes = 150 }
 
--- Mappings.
+-- Global mappings.
 local opts = { noremap=true, silent=true }
+
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
@@ -38,24 +39,50 @@ vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
   -- Disable LSP formatting for use only null-ls.
-  client.server_capabilities.documentFormattingProvider = false
-  client.server_capabilities.documentRangeFormattingProvider = false
+  if client.name ~= 'null-ls' then
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+  else
+    -- Avoiding LSP formatting conflicts.
+    local lsp_formatting = function(bufnr)
+      vim.lsp.buf.format({ filter = function(client)
+        return client.name == 'null-ls'
+      end, bufnr = bufnr })
+    end
 
-  -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    -- Enable sync formatting on save.
+    local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
 
-  -- Mappings.
+    if client.supports_method('textDocument/formatting') then
+      vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        group = augroup,
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.buf.format({ bufnr = bufnr })
+          -- On < 0.8, you should use vim.lsp.buf.formatting_sync() instead.
+        end
+      })
+    end
+  end
+
+  -- Sever mappings.
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
 
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+  if client.name == 'eslint' then
+    vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+  elseif client.name ~= 'tailwindcss' and client.name ~= 'tailwindcss' then
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+    vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+  end
 end
 
 lspconfig['jsonls'].setup({
@@ -110,23 +137,7 @@ lspconfig['eslint'].setup({
 local null_ls = require('null-ls')
 
 null_ls.setup({
-  on_attach = function(client, bufnr)
-    -- Enable sync formatting on save.
-    local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
-
-    if client.supports_method('textDocument/formatting') then
-      vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-
-      vim.api.nvim_create_autocmd('BufWritePre', {
-        group = augroup,
-        buffer = bufnr,
-        callback = function()
-          vim.lsp.buf.format({ bufnr = bufnr })
-          -- On < 0.8, you should use vim.lsp.buf.formatting_sync() instead.
-        end
-      })
-    end
-  end,
+  on_attach = on_attach,
   sources = {
     null_ls.builtins.formatting.prettierd.with({
       condition = function(utils)

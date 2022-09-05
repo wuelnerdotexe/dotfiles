@@ -52,7 +52,6 @@ let g:fern#default_exclude='^\%(\.git\|node_modules\)$'
 
 " Interface customization.
 let g:fern#drawer_width=33
-let g:fern#hide_cursor=1
 let g:fern#renderer='nerdfont'
 
 " Disable default mappings.
@@ -66,19 +65,34 @@ function! s:FernCustomization() abort
   " Hide line numbers.
   setlocal nonumber norelativenumber
 
+  " Perform expand and open or collapse directory.
+  nmap <buffer><expr>
+      \ <Plug>(fern-expand-and-open-or-collapse)
+      \ fern#smart#leaf(
+      \   "\<Plug>(fern-action-open-or-expand)",
+      \   "\<Plug>(fern-action-expand)",
+      \   "\<Plug>(fern-action-collapse)"
+      \ )
+
+  nmap <buffer><nowait> <CR> <Plug>(fern-expand-and-open-or-collapse)
+
   " Create new mappings.
-  nmap <buffer> <BS> <Plug>(fern-action-collapse)
-  nmap <buffer> <CR> <Plug>(fern-action-open-or-expand)
-  nmap <buffer> s <Plug>(fern-action-open:rightest)
-  nmap <buffer> n <Plug>(fern-action-new-path)
-  nmap <buffer> nd <Plug>(fern-action-new-dir)
-  nmap <buffer> nf <Plug>(fern-action-new-file)
-  nmap <buffer> c <Plug>(fern-action-copy)
-  nmap <buffer> m <Plug>(fern-action-move)
-  nmap <buffer> d <Plug>(fern-action-remove)
-  nmap <buffer> am <Plug>(fern-action-mark:toggle)
-  nmap <buffer> <ESC> <Plug>(fern-action-mark:clear)
-  nmap <buffer> <F5> <Plug>(fern-action-reload)
+  nmap <buffer><nowait> n <Plug>(fern-action-new-path)
+  nmap <buffer><nowait> nd <Plug>(fern-action-new-dir)
+  nmap <buffer><nowait> nf <Plug>(fern-action-new-file)
+  nmap <buffer><nowait> c <Plug>(fern-action-copy)
+  nmap <buffer><nowait> m <Plug>(fern-action-move)
+  nmap <buffer><nowait> d <Plug>(fern-action-remove)
+  nmap <buffer><nowait> am <Plug>(fern-action-mark:toggle)
+  nmap <buffer><nowait> <ESC> <Plug>(fern-action-mark:clear)
+  nmap <buffer><nowait> <F5> <Plug>(fern-action-reload)
+
+  " Perform nothing in explorer style but open:rightest in drawer style.
+  nmap <buffer><expr>
+        \ <Plug>(fern-smart-open:rightest)
+        \ fern#smart#drawer("<Plug>(fern-action-open:rightest)", "")
+
+  nmap <buffer><nowait> s <Plug>(fern-smart-open:rightest)
 endfunction
 
 " Fern customization.
@@ -445,21 +459,22 @@ filetype plugin indent on | syntax enable
 " -----------------------------------------------------------------------------
 " Human: {{{
 " Mappings for maximizer toggle.
-nmap <silent> <leader>mt <Plug>(MaximizerToggle)
+nmap <leader>mt <Plug>(MaximizerToggle)
 " }}}
 " NERDTerm: {{{
 " Toggle terminal in the bottom.
-nmap <silent> <leader>tt <Plug>(NERDTermToggle)
+nmap <leader>tt <Plug>(NERDTermToggle)
+tmap <leader>tt <Plug>(NERDTermToggle)
 " }}}
 " FZF: {{{
 " Find files with default command.
-nnoremap <silent> <leader>ff <Cmd>FZF<CR>
+nmap <silent> <leader>ff <Cmd>FZF<CR>
 " }}}
 " Fern: {{{
 " Toggle file tree in the current working directory.
-nnoremap <silent> <leader>et <Cmd>Fern . -drawer -toggle<CR>
+nmap <silent> <leader>et <Cmd>Fern . -drawer -toggle<CR>
 
 " Toggle find current file in the file tree.
-nnoremap <silent> <leader>ef <Cmd>Fern . -reveal=% -drawer -toggle<CR>
+nmap <silent> <leader>ef <Cmd>Fern . -reveal=% -drawer -toggle<CR>
 " }}}
 
