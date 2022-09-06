@@ -6,19 +6,41 @@
 " License:  MIT (C) Wuelner Martínez.
 " About:    Minimal vim config.
 " -----------------------------------------------------------------------------
-
-" Don't use Vi-compatible mode.
+" SECTION: Before configs.
+" -----------------------------------------------------------------------------
+" Builtin: {{{
+" Disable VI mode.
 if &compatible
   set nocompatible
-endif
+endif " [...] Even when the +eval is missing.
+silent! while 0 | set nocp | silent! endwhile
 
-" Even when the +eval is missing.
-silent! while 0
-  set nocompatible
-silent! endwhile
-" -----------------------------------------------------------------------------
-" SECTION: Configs.
-" -----------------------------------------------------------------------------
+" Disabled builtin plugins.
+let s:disabled_plugins=[
+      \   '2html_plugin',
+      \   'getscript',
+      \   'getscriptPlugin',
+      \   'gzip',
+      \   'logipat',
+      \   'netrw',
+      \   'netrwPlugin',
+      \   'netrwSettings',
+      \   'netrwFileHandlers',
+      \   'matchit',
+      \   'rrhelper',
+      \   'tar',
+      \   'tarPlugin',
+      \   'vimball',
+      \   'vimballPlugin',
+      \   'zip',
+      \   'zipPlugin'
+      \ ]
+
+" Loop for disable plugins.
+for plugin in s:disabled_plugins
+  execute 'let g:loaded_' . plugin . '=0'
+endfor
+" }}}
 " Human: {{{
 " Options overrides.
 autocmd VimEnter * set nospell noshowmode noruler nowrap
@@ -42,10 +64,6 @@ autocmd! FileType fzf let g:tls=&laststatus | set laststatus=0 |
       \ autocmd BufLeave <buffer> let &laststatus=g:tls | unlet g:tls
 " }}}
 " Fern: {{{
-" Disable netrw for hijack.
-let g:loaded_netrwPlugin=0
-let g:loaded_netrw=0
-
 " Manage files.
 let g:fern#default_hidden=1
 let g:fern#default_exclude='^\%(\.git\|node_modules\)$'
@@ -65,18 +83,17 @@ function! s:FernCustomization() abort
   " Hide line numbers.
   setlocal nonumber norelativenumber
 
-  " Perform expand and open or collapse directory.
+  " Perform nothing in explorer style but open:rightest in drawer style.
   nmap <buffer><expr>
-      \ <Plug>(fern-expand-and-open-or-collapse)
-      \ fern#smart#leaf(
-      \   "\<Plug>(fern-action-open-or-expand)",
-      \   "\<Plug>(fern-action-expand)",
-      \   "\<Plug>(fern-action-collapse)"
-      \ )
-
-  nmap <buffer><nowait> <CR> <Plug>(fern-expand-and-open-or-collapse)
+        \ <Plug>(fern-action-open:toside)
+        \ fern#smart#drawer(
+        \   '<Plug>(fern-action-open:rightest)',
+        \   '<Plug>(fern-action-open:vsplit)', ''
+        \ )
 
   " Create new mappings.
+  nmap <buffer><nowait> s <Plug>(fern-action-open:toside)
+  nmap <buffer><nowait> t <Plug>(fern-action-open:tabedit)
   nmap <buffer><nowait> n <Plug>(fern-action-new-path)
   nmap <buffer><nowait> nd <Plug>(fern-action-new-dir)
   nmap <buffer><nowait> nf <Plug>(fern-action-new-file)
@@ -84,15 +101,10 @@ function! s:FernCustomization() abort
   nmap <buffer><nowait> m <Plug>(fern-action-move)
   nmap <buffer><nowait> d <Plug>(fern-action-remove)
   nmap <buffer><nowait> am <Plug>(fern-action-mark:toggle)
-  nmap <buffer><nowait> <ESC> <Plug>(fern-action-mark:clear)
+  nmap <buffer><nowait> <CR> <Plug>(fern-action-open-or-expand)
+  nmap <buffer><nowait> <BS> <Plug>(fern-action-collapse)
   nmap <buffer><nowait> <F5> <Plug>(fern-action-reload)
-
-  " Perform nothing in explorer style but open:rightest in drawer style.
-  nmap <buffer><expr>
-        \ <Plug>(fern-smart-open:rightest)
-        \ fern#smart#drawer("<Plug>(fern-action-open:rightest)", "")
-
-  nmap <buffer><nowait> s <Plug>(fern-smart-open:rightest)
+  nmap <buffer><nowait> <ESC> <Plug>(fern-action-mark:clear)
 endfunction
 
 " Fern customization.
@@ -286,7 +298,7 @@ let g:lightline={
 autocmd FileType startify call lightline#enable()
 " }}}
 " -----------------------------------------------------------------------------
-" SECTION: Neovim diff.
+" SECTION: Before nvim configs.
 " -----------------------------------------------------------------------------
 if has('nvim')
   " Providers: {{{
@@ -352,18 +364,22 @@ else
 
   " Exclude filetypes.
   let g:Illuminate_ftblacklist=[
+        \   'checkhealth',
         \   'fern',
         \   'fugitive',
+        \   'help',
         \   'lspinfo',
+        \   'man',
         \   'mason',
         \   'null-ls-info',
         \   'startify',
+        \   'text',
         \   ''
         \ ]
   " }}}
 endif
 " -----------------------------------------------------------------------------
-" SECTION: Plugins init.
+" SECTION: Load plugins.
 " -----------------------------------------------------------------------------
 " Vim Plug: {{{
 " Auto installation in Vim or Neovim.
@@ -388,19 +404,23 @@ call plug#begin('~/.local/share/vim-plugins')
 " Options.
 Plug 'wuelnerdotexe/human.vim'
 
-" Only Neovim dependencies.
+" Nvim dependencies.
 Plug 'antoinemadec/FixCursorHold.nvim', Cond(has('nvim'))
+Plug 'lewis6991/impatient.nvim', Cond(has('nvim'))
 Plug 'nvim-lua/plenary.nvim', Cond(has('nvim'))
 
 " Devicons.
-Plug 'lambdalisue/nerdfont.vim'
+Plug 'lambdalisue/nerdfont.vim', { 'for': 'fern' }
 
 " Development.
-Plug 'wuelnerdotexe/nerdterm'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install' }
+Plug 'wuelnerdotexe/nerdterm', { 'on': '<Plug>(NERDTermToggle)' }
+Plug 'iamcco/markdown-preview.nvim', {
+      \   'for': 'markdown',
+      \   'do': 'cd app && npm install'
+      \ }
 
 " Files managers.
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf', { 'on': 'FZF', 'do': { -> fzf#install() } }
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-hijack.vim'
 Plug 'lambdalisue/fern-git-status.vim'
@@ -411,7 +431,7 @@ Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
-" Only Neovim syntax.
+" Nvim syntax.
 Plug 'nvim-treesitter/nvim-treesitter', Cond(has('nvim'), { 'do': ':TSUpdate' })
 Plug 'p00f/nvim-ts-rainbow', Cond(has('nvim'))
 Plug 'lukas-reineke/indent-blankline.nvim', Cond(has('nvim'))
@@ -425,13 +445,13 @@ Plug 'tpope/vim-commentary'
 Plug 'andymass/vim-matchup'
 Plug 'RRethy/vim-illuminate'
 
-" Only Neovim lsp.
+" Nvim lsp.
 Plug 'williamboman/mason.nvim', Cond(has('nvim'))
 Plug 'williamboman/mason-lspconfig.nvim', Cond(has('nvim'))
 Plug 'neovim/nvim-lspconfig', Cond(has('nvim'))
 Plug 'jose-elias-alvarez/null-ls.nvim', Cond(has('nvim'))
 
-" Only Neovim autocomplete.
+" Nvim autocomplete.
 Plug 'onsails/lspkind.nvim', Cond(has('nvim'))
 Plug 'hrsh7th/nvim-cmp', Cond(has('nvim'))
 Plug 'hrsh7th/cmp-buffer', Cond(has('nvim'))
@@ -455,6 +475,22 @@ Plug 'mengelbrecht/lightline-bufferline'
 call plug#end()
 filetype plugin indent on | syntax enable
 " -----------------------------------------------------------------------------
+" SECTION: After nvim configs.
+" -----------------------------------------------------------------------------
+if has('nvim')
+  " Impatient: {{{
+  " Initialize setup.
+  lua require('impatient')
+  " }}}
+  " Filetypes: {{{
+  " Enable lua filetype detection.
+  let g:do_filetype_lua=1
+
+  " Diable vim filetype detection.
+  let g:did_load_filetypes=0
+  " }}}
+endif
+" -----------------------------------------------------------------------------
 " SECTION: Mappings.
 " -----------------------------------------------------------------------------
 " Human: {{{
@@ -472,9 +508,9 @@ nmap <silent> <leader>ff <Cmd>FZF<CR>
 " }}}
 " Fern: {{{
 " Toggle file tree in the current working directory.
-nmap <silent> <leader>et <Cmd>Fern . -drawer -toggle<CR>
+nmap <silent> <leader>et <Cmd>Fern . -drawer -right -toggle<CR>
 
 " Toggle find current file in the file tree.
-nmap <silent> <leader>ef <Cmd>Fern . -reveal=% -drawer -toggle<CR>
+nmap <silent> <leader>ef <Cmd>Fern . -reveal=% -drawer -right -toggle<CR>
 " }}}
 
