@@ -11,10 +11,8 @@
 vim.opt.omnifunc = '' -- Omnifunction.
 vim.opt.complete = '' -- Neovim native.
 
--- Setup nvim-cmp.
+-- Require modules.
 local cmp = require('cmp')
-
--- Setup lspkind.
 local lspkind = require('lspkind')
 
 -- Super-Tab like mapping with vim-vsnip.
@@ -31,6 +29,22 @@ local feedkey = function(key, mode)
   )
 end
 
+-- Exclude filetypes.
+cmp.setup.filetype({
+  'checkhealth',
+  'fern',
+  'fugitive',
+  'help',
+  'lspinfo',
+  'man',
+  'mason',
+  'null-ls-info',
+  'startify',
+  'text',
+  ''
+}, { enabled = false })
+
+-- Setup cmp.
 cmp.setup({
   snippet = { expand = function(args)
     vim.fn['vsnip#anonymous'](args.body)
@@ -67,6 +81,7 @@ cmp.setup({
   }, { name = 'buffer' }),
   formatting = {
     fields = { 'abbr', 'kind' },
+    -- Setup lspkind.
     format = lspkind.cmp_format({
       mode = 'symbol_text',
       before = function(entry, vim_item)

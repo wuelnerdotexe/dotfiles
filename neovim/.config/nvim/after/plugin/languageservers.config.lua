@@ -13,9 +13,6 @@ require('mason').setup()
 -- Setup mason-lspconfig.
 require('mason-lspconfig').setup({ automatic_installation = true })
 
--- Setup lspconfig.
-local lspconfig = require('lspconfig')
-
 -- Setup cmp-nvim-lsp.
 local capabilities = require('cmp_nvim_lsp').update_capabilities(
   vim.lsp.protocol.make_client_capabilities()
@@ -84,6 +81,9 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   end
 end
+
+-- Setup lspconfig.
+local lspconfig = require('lspconfig')
 
 lspconfig['jsonls'].setup({
   on_attach = on_attach,

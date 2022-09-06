@@ -16,7 +16,7 @@ endif " [...] Even when the +eval is missing.
 silent! while 0 | set nocp | silent! endwhile
 
 " Disabled builtin plugins.
-let s:disabled_plugins=[
+let s:disable_plugins=[
       \   '2html_plugin',
       \   'getscript',
       \   'getscriptPlugin',
@@ -26,6 +26,7 @@ let s:disabled_plugins=[
       \   'netrwPlugin',
       \   'netrwSettings',
       \   'netrwFileHandlers',
+      \   'matchparen',
       \   'matchit',
       \   'rrhelper',
       \   'tar',
@@ -37,8 +38,8 @@ let s:disabled_plugins=[
       \ ]
 
 " Loop for disable plugins.
-for plugin in s:disabled_plugins
-  execute 'let g:loaded_' . plugin . '=0'
+for s:plugin in s:disable_plugins
+  execute 'let g:loaded_' . s:plugin . '=1'
 endfor
 " }}}
 " Human: {{{
@@ -160,6 +161,25 @@ let g:gitgutter_sign_priority=9
 let g:gitgutter_sign_added='┃'
 let g:gitgutter_sign_modified='┃'
 " }}}
+" Sleuth: {{{
+" Disabled filetypes.
+let s:exclude_filetypes=[
+      \   'checkhealth',
+      \   'fern',
+      \   'fugitive',
+      \   'help',
+      \   'lspinfo',
+      \   'man',
+      \   'mason',
+      \   'startify',
+      \   'text'
+      \ ]
+
+" Loop for disable filetypes.
+for s:filetype in s:exclude_filetypes
+  execute 'let g:sleuth_' . s:filetype . '_heuristics=0'
+endfor
+" }}}
 " Matchup: {{{
 " Off-screen enable popup.
 let g:matchup_matchparen_offscreen={ 'method': 'popup' }
@@ -233,7 +253,8 @@ endfunction
 
 " Function for get filetype.
 function! LightlineFiletype() abort
-  return <SID>WinIsPrintable(100) && &filetype !=# '' ? &filetype : ''
+  return <SID>WinIsPrintable(100) && &filetype !=# '' ?
+        \ nerdfont#find() . ' ' . &filetype : ''
 endfunction
 
 " Function for get Sleuth indicator.
@@ -251,6 +272,7 @@ let g:lightline={
       \   'component': {
       \     'readonly': '%{&readonly?"":""}',
       \     'spell': '暈%{&spell?&spelllang:""}',
+      \     'fileformat': '%{nerdfont#fileformat#find()}',
       \     'line': ':%l',
       \     'lineinfo': ':%l :%c ☰ %L',
       \     'tabname': 'tabs',
@@ -301,7 +323,7 @@ autocmd FileType startify call lightline#enable()
 " SECTION: Before nvim configs.
 " -----------------------------------------------------------------------------
 if has('nvim')
-  " Providers: {{{
+  " Builtin: {{{
   " Disable plugin providers.
   let g:loaded_ruby_provider=0
   let g:loaded_node_provider=0
@@ -410,7 +432,7 @@ Plug 'lewis6991/impatient.nvim', Cond(has('nvim'))
 Plug 'nvim-lua/plenary.nvim', Cond(has('nvim'))
 
 " Devicons.
-Plug 'lambdalisue/nerdfont.vim', { 'for': 'fern' }
+Plug 'lambdalisue/nerdfont.vim'
 
 " Development.
 Plug 'wuelnerdotexe/nerdterm', { 'on': '<Plug>(NERDTermToggle)' }
@@ -479,21 +501,25 @@ filetype plugin indent on | syntax enable
 " SECTION: After nvim configs.
 " -----------------------------------------------------------------------------
 if has('nvim')
-  " Impatient: {{{
-  " Initialize setup.
-  lua require('impatient')
-  " }}}
-  " Filetypes: {{{
+  " Builtin: {{{
   " Enable lua filetype detection.
   let g:do_filetype_lua=1
 
   " Diable vim filetype detection.
   let g:did_load_filetypes=0
   " }}}
+  " Impatient: {{{
+  " Initialize setup.
+  lua require('impatient')
+  " }}}
 endif
 " -----------------------------------------------------------------------------
 " SECTION: Mappings.
 " -----------------------------------------------------------------------------
+" Builtin: {{{
+" Split vertically the current window.
+nmap <silent> <leader>s <Cmd>vsplit<CR>
+" }}}
 " Human: {{{
 " Mappings for maximizer toggle.
 nmap <leader>mt <Plug>(MaximizerToggle)
