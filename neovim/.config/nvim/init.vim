@@ -315,9 +315,9 @@ if has('nvim')
   " Add the neovim plugins.
   let g:enfocado_plugins+=[
         \   'cmp',
+        \   'indent-blankline',
         \   'lsp',
-        \   'treesitter',
-        \   'indent-blankline'
+        \   'treesitter'
         \ ]
   " }}}
   " Lightline: {{{
@@ -438,6 +438,7 @@ Plug 'lukas-reineke/indent-blankline.nvim', Cond(has('nvim'))
 Plug 'JoosepAlviste/nvim-ts-context-commentstring', Cond(has('nvim'))
 Plug 'windwp/nvim-ts-autotag', Cond(has('nvim'))
 Plug 'windwp/nvim-autopairs', Cond(has('nvim'))
+Plug 'folke/todo-comments.nvim', Cond(has('nvim'))
 
 " Syntax.
 Plug 'tpope/vim-sleuth'
