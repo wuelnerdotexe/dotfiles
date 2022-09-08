@@ -86,14 +86,16 @@ function! s:FernCustomization() abort
 
   " Perform nothing in explorer style but open:rightest in drawer style.
   nmap <buffer><expr>
-        \ <Plug>(fern-action-open:toside)
+        \ <Plug>(fern-action-open:side)
         \ fern#smart#drawer(
         \   '<Plug>(fern-action-open:rightest)',
-        \   '<Plug>(fern-action-open:vsplit)', ''
+        \   '<Plug>(fern-action-open:vsplit)',
+        \   '<Cmd>echo "Fern: open to the side'.
+        \   ' only available in drawer mode"<CR>'
         \ )
 
   " Create new mappings.
-  nmap <buffer><nowait> s <Plug>(fern-action-open:toside)
+  nmap <buffer><nowait> s <Plug>(fern-action-open:side)
   nmap <buffer><nowait> t <Plug>(fern-action-open:tabedit)
   nmap <buffer><nowait> n <Plug>(fern-action-new-path)
   nmap <buffer><nowait> nd <Plug>(fern-action-new-dir)
@@ -126,8 +128,8 @@ let g:startify_custom_header='startify#center(g:custom_header)'
 
 " Lists enabled.
 let g:startify_lists=[
-      \   { 'type': 'bookmarks', 'header': ['Bookmarks'] },
-      \   { 'type': 'sessions', 'header': ['Sessions'] },
+      \   { 'type': 'sessions', 'header': [ 'Sessions' ] },
+      \   { 'type': 'bookmarks', 'header': [ 'Bookmarks' ] }
       \ ]
 
 " Sessions management.
@@ -149,7 +151,7 @@ let g:startify_bookmarks=[
       \ ]
 
 " Footer customization.
-let g:custom_footer=['https://github.com/wuelnerdotexe/dotfiles']
+let g:custom_footer=[ 'https://github.com/wuelnerdotexe/dotfiles' ]
 let g:startify_custom_footer='startify#center(g:custom_footer)'
 
 " Enable local cursor line.
@@ -167,12 +169,10 @@ let s:exclude_filetypes=[
       \   'checkhealth',
       \   'fern',
       \   'fugitive',
-      \   'help',
       \   'lspinfo',
       \   'man',
       \   'mason',
-      \   'startify',
-      \   'text'
+      \   'startify'
       \ ]
 
 " Loop for disable filetypes.
@@ -244,7 +244,7 @@ endfunction
 
 " Function for get Git hunks.
 function! GitStatus() abort
-  let [l:added,l:modified,l:removed] = GitGutterGetHunkSummary()
+  let [ l:added, l:modified, l:removed ] = GitGutterGetHunkSummary()
 
   return <SID>WinIsPrintable(100) &&
         \ (l:added != 0 || l:modified != 0 || l:removed != 0) ?
@@ -253,8 +253,7 @@ endfunction
 
 " Function for get filetype.
 function! LightlineFiletype() abort
-  return <SID>WinIsPrintable(100) && &filetype !=# '' ?
-        \ nerdfont#find() . ' ' . &filetype : ''
+  return <SID>WinIsPrintable(100) && &filetype !=# '' ? &filetype : ''
 endfunction
 
 " Function for get Sleuth indicator.
@@ -265,14 +264,10 @@ endfunction
 " Initialize setup.
 let g:lightline={
       \   'colorscheme': 'enfocado',
-      \   'subseparator': {
-      \     'left': '',
-      \     'right': ''
-      \   },
+      \   'subseparator': { 'left': '', 'right': '' },
       \   'component': {
-      \     'readonly': '%{&readonly?"":""}',
-      \     'spell': '暈%{&spell?&spelllang:""}',
-      \     'fileformat': '%{nerdfont#fileformat#find()}',
+      \     'readonly': '%{ &readonly ? "" : "" }',
+      \     'spell': '暈%{ &spell ? &spelllang : "" }',
       \     'line': ':%l',
       \     'lineinfo': ':%l :%c ☰ %L',
       \     'tabname': 'tabs',
@@ -284,12 +279,8 @@ let g:lightline={
       \     'gitstatus': 'GitStatus',
       \     'sleuthstatus': 'SleuthStatus'
       \   },
-      \   'component_expand': {
-      \     'buffers': 'lightline#bufferline#buffers'
-      \   },
-      \   'component_type': {
-      \     'buffers': 'tabsel'
-      \   },
+      \   'component_expand': { 'buffers': 'lightline#bufferline#buffers' },
+      \   'component_type': { 'buffers': 'tabsel' },
       \   'active': {
       \     'left': [
       \       [
@@ -298,21 +289,18 @@ let g:lightline={
       \         'readonly',
       \         'spell'
       \       ],
-      \       ['gitbranch', 'gitstatus']
+      \       [ 'gitbranch', 'gitstatus' ]
       \     ],
       \     'right': [
-      \       ['lineinfo'],
-      \       ['sleuthstatus', 'fileformat', 'fileencoding'],
-      \       ['filetype']
+      \       [ 'lineinfo' ],
+      \       [ 'sleuthstatus', 'fileformat', 'fileencoding' ],
+      \       [ 'filetype' ]
       \     ]
       \   },
-      \   'inactive': {
-      \     'left': [['filename']],
-      \     'right': [['line']]
-      \   },
+      \   'inactive': { 'left': [ ['filename'] ], 'right': [ [ 'line' ] ] },
       \   'tabline': {
-      \     'left': [['tabname'], ['tabs']],
-      \     'right': [['bufname'], ['buffers']]
+      \     'left': [ [ 'tabname' ], [ 'tabs' ] ],
+      \     'right': [ [ 'bufname' ], [ 'buffers' ] ]
       \   }
       \ }
 
@@ -395,7 +383,6 @@ else
         \   'mason',
         \   'null-ls-info',
         \   'startify',
-        \   'text',
         \   ''
         \ ]
   " }}}
@@ -474,16 +461,20 @@ Plug 'williamboman/mason-lspconfig.nvim', Cond(has('nvim'))
 Plug 'neovim/nvim-lspconfig', Cond(has('nvim'))
 Plug 'jose-elias-alvarez/null-ls.nvim', Cond(has('nvim'))
 
+" Nvim snippets.
+Plug 'rafamadriz/friendly-snippets', Cond(has('nvim'))
+Plug 'L3MON4D3/LuaSnip', Cond(has('nvim'))
+
 " Nvim autocomplete.
 Plug 'onsails/lspkind.nvim', Cond(has('nvim'))
 Plug 'hrsh7th/nvim-cmp', Cond(has('nvim'))
 Plug 'hrsh7th/cmp-buffer', Cond(has('nvim'))
-Plug 'hrsh7th/vim-vsnip', Cond(has('nvim'))
 Plug 'hrsh7th/cmp-nvim-lsp', Cond(has('nvim'))
-Plug 'hrsh7th/cmp-vsnip', Cond(has('nvim'))
+Plug 'saadparwaiz1/cmp_luasnip', Cond(has('nvim'))
 Plug 'tzachar/cmp-tabnine', Cond(has('nvim'), { 'do': './install.sh' })
 
 " Typing.
+Plug 'chaoren/vim-wordmotion'
 Plug 'matze/vim-move'
 Plug 'mg979/vim-visual-multi'
 
@@ -495,6 +486,9 @@ Plug 'wuelnerdotexe/vim-enfocado', { 'branch': 'development' }
 Plug 'itchyny/lightline.vim'
 Plug 'spywhere/lightline-lsp', Cond(has('nvim'))
 Plug 'mengelbrecht/lightline-bufferline'
+
+" Tools.
+Plug 'simeji/winresizer'
 call plug#end()
 filetype plugin indent on | syntax enable
 " -----------------------------------------------------------------------------

@@ -35,6 +35,25 @@ vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
+  -- Buffer mappings.
+  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+
+  if client.name == 'tsserver' then
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+    vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+  elseif client.name == 'cssls'  or client.name == 'html' then
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+  elseif client.name == 'eslint' then
+    vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+  end
+
   -- Disable LSP formatting for use only null-ls.
   if client.name ~= 'null-ls' then
     client.server_capabilities.documentFormattingProvider = false
@@ -52,33 +71,18 @@ local on_attach = function(client, bufnr)
 
     if client.supports_method('textDocument/formatting') then
       vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-
       vim.api.nvim_create_autocmd('BufWritePre', {
         group = augroup,
         buffer = bufnr,
         callback = function()
-          vim.lsp.buf.format({ bufnr = bufnr })
-          -- On < 0.8, you should use vim.lsp.buf.formatting_sync() instead.
+          if vim.fn.has('nvim-0.8') then
+            vim.lsp.buf.format({ bufnr = bufnr })
+          else
+            vim.lsp.buf.formatting_sync()
+          end
         end
       })
     end
-  end
-
-  -- Sever mappings.
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
-
-  if client.name == 'eslint' then
-    vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-  elseif client.name ~= 'tailwindcss' and client.name ~= 'tailwindcss' then
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-    vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   end
 end
 
@@ -88,7 +92,6 @@ local lspconfig = require('lspconfig')
 lspconfig['jsonls'].setup({
   on_attach = on_attach,
   flags = lsp_flags,
-  capabilities = capabilities,
   -- Disable formatter for use only null-ls.
   init_options = { provideFormatter = false }
 })
@@ -113,12 +116,6 @@ lspconfig['html'].setup({
   init_options = { provideFormatter = false }
 })
 
-lspconfig['emmet_ls'].setup({
-  on_attach = on_attach,
-  flags = lsp_flags,
-  capabilities = capabilities
-})
-
 lspconfig['tailwindcss'].setup({
   on_attach = on_attach,
   flags = lsp_flags,
@@ -128,7 +125,6 @@ lspconfig['tailwindcss'].setup({
 lspconfig['eslint'].setup({
   on_attach = on_attach,
   flags = lsp_flags,
-  capabilities = capabilities,
   -- Disable formatter for use only null-ls.
   settings = { format = false }
 })
@@ -171,7 +167,7 @@ end
 -- Setup diagnostics.
 vim.diagnostic.config({
   virtual_text = { prefix = '▎' },
-  float = { source = 'always' },
+  float = { header = false, source = 'always' },
   update_in_insert = true,
   severity_sort = true
 })

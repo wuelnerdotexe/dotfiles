@@ -25,10 +25,11 @@ require('nvim-treesitter.configs').setup({
 
 -- Setup indent-blankline.
 require('indent_blankline').setup({
-  char = '▎',
-  context_char = '▎',
+  char_list = {
+    '|', '¦', '┆', '┊', '│',
+    '│', '│', '│', '│', '│',
+  },
   use_treesitter = true,
-  show_current_context = true,
   show_trailing_blankline_indent = false,
   bufname_exclude = { '' },
   filetype_exclude = {
@@ -41,7 +42,6 @@ require('indent_blankline').setup({
     'mason',
     'null-ls-info',
     'startify',
-    'text',
     ''
   }
 })
@@ -50,17 +50,18 @@ require('indent_blankline').setup({
 require('nvim-autopairs').setup({ check_ts = true })
 
 -- Setup illuminate.
-require('illuminate').configure({ filetypes_denylist = {
-  'checkhealth',
-  'fern',
-  'fugitive',
-  'help',
-  'lspinfo',
-  'man',
-  'mason',
-  'null-ls-info',
-  'startify',
-  'text',
-  ''
-} })
+require('illuminate').configure({
+  filetypes_denylist = {
+    'checkhealth',
+    'fern',
+    'fugitive',
+    'help',
+    'lspinfo',
+    'man',
+    'mason',
+    'null-ls-info',
+    'startify',
+    ''
+  }
+})
 
