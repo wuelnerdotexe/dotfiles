@@ -50,15 +50,21 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   elseif client.name == 'cssls'  or client.name == 'html' then
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  elseif client.name == 'eslint' then
-    vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   end
 
   -- Disable LSP formatting for use only null-ls.
   if client.name ~= 'null-ls' then
-    client.server_capabilities.documentFormattingProvider = false
-    client.server_capabilities.documentRangeFormattingProvider = false
+    if vim.version().minor > 7 then
+      client.server_capabilities.documentFormattingProvider = false
+      client.server_capabilities.documentRangeFormattingProvider = false
+    else
+      client.resolved_capabilities.document_formatting = false
+      client.resolved_capabilities.document_range_formatting = false
+    end
   else
+    -- Code action mapping for eslint_d.
+    vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+
     -- Avoiding LSP formatting conflicts.
     local lsp_formatting = function(bufnr)
       vim.lsp.buf.format({ filter = function(client)
@@ -75,7 +81,7 @@ local on_attach = function(client, bufnr)
         group = augroup,
         buffer = bufnr,
         callback = function()
-          if vim.fn.has('nvim-0.8') then
+          if vim.version().minor > 7 then
             vim.lsp.buf.format({ bufnr = bufnr })
           else
             vim.lsp.buf.formatting_sync()
@@ -122,19 +128,14 @@ lspconfig['tailwindcss'].setup({
   capabilities = capabilities
 })
 
-lspconfig['eslint'].setup({
-  on_attach = on_attach,
-  flags = lsp_flags,
-  -- Disable formatter for use only null-ls.
-  settings = { format = false }
-})
-
 -- Setup null-ls.
 local null_ls = require('null-ls')
 
 null_ls.setup({
   on_attach = on_attach,
   sources = {
+    null_ls.builtins.diagnostics.eslint_d,
+    null_ls.builtins.code_actions.eslint_d,
     null_ls.builtins.formatting.prettierd.with({
       condition = function(utils)
         return utils.root_has_file({
@@ -152,7 +153,7 @@ null_ls.setup({
       end
     })
   },
-  update_in_insert = false
+  update_in_insert = true
 })
 
 -- Change diagnostic symbols in the sign column (gutter).

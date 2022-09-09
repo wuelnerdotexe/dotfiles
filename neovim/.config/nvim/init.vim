@@ -18,6 +18,9 @@ silent! while 0 | set nocp | silent! endwhile
 " Disabled builtin plugins.
 let s:disable_plugins=[
       \   '2html_plugin',
+      \   'bugreport',
+      \   'compiler',
+      \   'ftplugin',
       \   'getscript',
       \   'getscriptPlugin',
       \   'gzip',
@@ -26,11 +29,17 @@ let s:disable_plugins=[
       \   'netrwPlugin',
       \   'netrwSettings',
       \   'netrwFileHandlers',
-      \   'matchparen',
       \   'matchit',
+      \   'matchparen',
+      \   'optwin',
       \   'rrhelper',
+      \   'rplugin',
+      \   'spellfile_plugin',
+      \   'syntax',
+      \   'synmenu',
       \   'tar',
       \   'tarPlugin',
+      \   'tutor',
       \   'vimball',
       \   'vimballPlugin',
       \   'zip',
@@ -184,6 +193,19 @@ endfor
 " Off-screen enable popup.
 let g:matchup_matchparen_offscreen={ 'method': 'popup' }
 " }}}
+" Emmet: {{{
+" React languages settings.
+let g:user_emmet_settings={
+      \   'javascript': { 'extends': 'jsx' },
+      \   'typescript': { 'extends': 'tsx' }
+      \ }
+
+" Disable for lazy loading.
+let g:user_emmet_install_global=0
+
+" Enable on-demand for filetypes.
+autocmd FileType html,css,javascriptreact,typescriptreact EmmetInstall
+" }}}
 " Enfocado: {{{
 " Theme style.
 let g:enfocado_style='neon' " Available: `nature` or `neon`.
@@ -307,6 +329,13 @@ let g:lightline={
 " Force enable on filetypes.
 autocmd FileType startify call lightline#enable()
 " }}}
+" winresizer: {{{
+" Change width of window size.
+let g:winresizer_vert_resize=3
+
+" Change height of window size.
+let g:winresizer_horiz_resize=3
+" }}}
 " -----------------------------------------------------------------------------
 " SECTION: Before nvim configs.
 " -----------------------------------------------------------------------------
@@ -414,7 +443,6 @@ call plug#begin('~/.local/share/vim-plugins')
 Plug 'wuelnerdotexe/human.vim'
 
 " Nvim dependencies.
-Plug 'antoinemadec/FixCursorHold.nvim', Cond(has('nvim'))
 Plug 'lewis6991/impatient.nvim', Cond(has('nvim'))
 Plug 'nvim-lua/plenary.nvim', Cond(has('nvim'))
 
@@ -440,6 +468,12 @@ Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
+" Nvim lsp.
+Plug 'williamboman/mason.nvim', Cond(has('nvim'))
+Plug 'williamboman/mason-lspconfig.nvim', Cond(has('nvim'))
+Plug 'neovim/nvim-lspconfig', Cond(has('nvim'))
+Plug 'jose-elias-alvarez/null-ls.nvim', Cond(has('nvim'))
+
 " Nvim syntax.
 Plug 'nvim-treesitter/nvim-treesitter', Cond(has('nvim'), { 'do': ':TSUpdate' })
 Plug 'p00f/nvim-ts-rainbow', Cond(has('nvim'))
@@ -455,26 +489,22 @@ Plug 'tpope/vim-commentary'
 Plug 'andymass/vim-matchup'
 Plug 'RRethy/vim-illuminate'
 
-" Nvim lsp.
-Plug 'williamboman/mason.nvim', Cond(has('nvim'))
-Plug 'williamboman/mason-lspconfig.nvim', Cond(has('nvim'))
-Plug 'neovim/nvim-lspconfig', Cond(has('nvim'))
-Plug 'jose-elias-alvarez/null-ls.nvim', Cond(has('nvim'))
-
 " Nvim snippets.
 Plug 'rafamadriz/friendly-snippets', Cond(has('nvim'))
 Plug 'L3MON4D3/LuaSnip', Cond(has('nvim'))
 
 " Nvim autocomplete.
 Plug 'onsails/lspkind.nvim', Cond(has('nvim'))
-Plug 'hrsh7th/nvim-cmp', Cond(has('nvim'))
 Plug 'hrsh7th/cmp-buffer', Cond(has('nvim'))
+Plug 'hrsh7th/nvim-cmp', Cond(has('nvim'))
 Plug 'hrsh7th/cmp-nvim-lsp', Cond(has('nvim'))
+Plug 'ray-x/cmp-treesitter', Cond(has('nvim'))
 Plug 'saadparwaiz1/cmp_luasnip', Cond(has('nvim'))
 Plug 'tzachar/cmp-tabnine', Cond(has('nvim'), { 'do': './install.sh' })
 
 " Typing.
 Plug 'chaoren/vim-wordmotion'
+Plug 'mattn/emmet-vim', { 'on': 'EmmetInstall' }
 Plug 'matze/vim-move'
 Plug 'mg979/vim-visual-multi'
 
@@ -489,6 +519,7 @@ Plug 'mengelbrecht/lightline-bufferline'
 
 " Tools.
 Plug 'simeji/winresizer'
+Plug 'antoinemadec/FixCursorHold.nvim', Cond(has('nvim'))
 call plug#end()
 filetype plugin indent on | syntax enable
 " -----------------------------------------------------------------------------

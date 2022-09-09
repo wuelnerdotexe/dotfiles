@@ -13,8 +13,8 @@ vim.opt.complete = '' -- Neovim native.
 
 -- Require modules.
 local lspkind = require('lspkind')
-local cmp = require('cmp')
 local luasnip = require('luasnip')
+local cmp = require('cmp')
 
 -- Setup luasnip.
 require('luasnip.loaders.from_vscode').lazy_load()
@@ -71,11 +71,11 @@ cmp.setup({
     end, { 'i', 's' })
   }),
   sources = cmp.config.sources({
-    { name = 'buffer' },
     { name = 'nvim_lsp' },
+    { name = 'treesitter' },
     { name = 'luasnip' },
     { name = 'cmp_tabnine' }
-  }),
+  }, { { name = 'buffer' } }),
   formatting = {
     fields = { 'abbr', 'kind' },
     -- Setup lspkind.
@@ -95,7 +95,8 @@ cmp.setup({
         return vim_item
       end
     })
-  }
+  },
+  keyword_length = 1
 })
 
 -- Setup autopairs for cmp.
