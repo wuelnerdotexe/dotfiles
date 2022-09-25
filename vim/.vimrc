@@ -57,14 +57,22 @@ autocmd VimEnter * set nospell noruler
 
 " BufOnly excludes.
 let g:bufonly_exclude_filetypes=[ 'fern', 'nerdterm' ]
+
+" Enable Vim ripgrep.
+if executable('rg')
+  let &grepprg = 'rg -i -. -g="' .
+        \ '!.git,!.svn,!.hg,!CSV,!.DS_Store,!Thumbs.db' .
+        \ '!node_modules,!bower_components,!*.code-search' .
+        \ '" --vimgrep'
+endif
 " }}}
 " FZF: {{{
 " Customize default command with fd-find.
 if executable('fd')
-  let $FZF_DEFAULT_COMMAND='fd -I -H ' .
-        \   '-E ".git" -E ".svn" -E ".hg" -E "CSV" -E ".DS_Store" -E "Thumbs.db" ' .
-        \   '-E "node_modules" -E "bower_components" -E "*.code-search" ' .
-        \ '-t f'
+  let $FZF_DEFAULT_COMMAND='fd -I -H -E "{' .
+        \   '.git,.svn,.hg,CSV,.DS_Store,Thumbs.db,' .
+        \   'node_modules,bower_components,*.code-search' .
+        \ '}" -t f'
 endif
 " }}}
 " Fern: {{{
@@ -185,7 +193,7 @@ autocmd FileType html,css,javascriptreact,typescriptreact EmmetInstall
 " }}}
 " Enfocado: {{{
 " Theme style.
-let g:enfocado_style='neon' " Available: `nature` or `neon`.
+let g:enfocado_style='nature' " Available: `nature` or `neon`.
 
 " Plugins enabled.
 let g:enfocado_plugins=[
@@ -247,10 +255,7 @@ let g:lightline={
       \   'component_expand': { 'buffers': 'lightline#bufferline#buffers' },
       \   'component_type': { 'buffers': 'tabsel' },
       \   'active': {
-      \     'left': [
-      \       [ 'lineinfo' ],
-      \       [ 'gitbranch', 'githunks' ]
-      \     ],
+      \     'left': [ [ 'lineinfo' ], [ 'gitbranch', 'githunks' ] ],
       \     'right': [
       \       [
       \         'fileencoding',
@@ -260,7 +265,9 @@ let g:lightline={
       \       ]
       \     ]
       \   },
-      \   'inactive': { 'left': [ [ 'lineinfo' ], [ 'filename' ] ], 'right': '' },
+      \   'inactive': {
+      \     'left': [ [ 'lineinfo' ], [ 'filename' ] ], 'right': ''
+      \   },
       \   'tab': { 'active': [ 'tabnum' ], 'inactive': [ 'tabnum' ] },
       \   'tabline': { 'left': [ [ 'buffers' ] ], 'right': [ [ 'tabs' ] ] }
       \ }
