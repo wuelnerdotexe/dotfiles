@@ -15,65 +15,64 @@ if &compatible
 endif " [...] Even when the +eval is missing.
 silent! while 0 | set nocp | silent! endwhile
 
+let g:skip_defaults_vim=1
+let g:skip_loading_mswin=1
+
 " Disabled builtin plugins.
-let s:disable_plugins=[
+let s:builtin_loads=[
       \   '2html_plugin',
-      \   'bugreport',
-      \   'compiler',
-      \   'ftplugin',
+      \   'dvorak_plugin',
       \   'getscript',
       \   'getscriptPlugin',
       \   'gzip',
-      \   'logipat',
-      \   'netrw',
-      \   'netrwPlugin',
-      \   'netrwSettings',
-      \   'netrwFileHandlers',
+      \   'less',
+      \   'logiPat',
       \   'matchit',
       \   'matchparen',
-      \   'optwin',
+      \   'netrw',
+      \   'netrwFileHandlers',
+      \   'netrwPlugin',
+      \   'netrwSettings',
       \   'rrhelper',
-      \   'rplugin',
       \   'spellfile_plugin',
-      \   'syntax',
-      \   'synmenu',
+      \   'sql_completion',
+      \   'syntax_completion',
       \   'tar',
       \   'tarPlugin',
-      \   'tutor',
       \   'vimball',
       \   'vimballPlugin',
+      \   'xmlformat',
       \   'zip',
       \   'zipPlugin'
       \ ]
 
 " Loop for disable plugins.
-for s:plugin in s:disable_plugins
-  execute 'let g:loaded_' . s:plugin . '=1'
+for s:load in s:builtin_loads
+  execute 'let g:loaded_' . s:load . '=1'
 endfor
 " }}}
 " Human: {{{
 " Options overrides.
-autocmd VimEnter * set nospell noshowmode noruler nowrap
+autocmd VimEnter * set nospell noruler
+
+" BufOnly excludes.
+let g:bufonly_exclude_filetypes=[ 'fern', 'nerdterm' ]
 " }}}
 " FZF: {{{
 " Customize default command with fd-find.
 if executable('fd')
-  let $FZF_DEFAULT_COMMAND='fd -I -H -E ".git" -E "node_modules" -t f'
-elseif !has('win32') && !has('win32unix')
-  let $FZF_DEFAULT_COMMAND='find -not \('
-        \   . '  -type d -name ".git" -prune -o'
-        \   . '  -type d -name "node_modules" -prune'
-        \ . ' \) -type f -printf "%P\n"'
+  let $FZF_DEFAULT_COMMAND='fd -I -H ' .
+        \   '-E ".git" -E ".svn" -E ".hg" -E "CSV" -E ".DS_Store" -E "Thumbs.db" ' .
+        \   '-E "node_modules" -E "bower_components" -E "*.code-search" ' .
+        \ '-t f'
 endif
-
-" Hide statusline.
-autocmd! FileType fzf set laststatus=0 |
-      \ autocmd BufLeave <buffer> set laststatus=2
 " }}}
 " Fern: {{{
 " Manage files.
 let g:fern#default_hidden=1
-let g:fern#default_exclude='^\%(\.git\|node_modules\)$'
+let g:fern#default_exclude='^\%(' .
+      \   '\.git\|\.svn\|\.hg\|\CVS\|\.DS_Store\|\Thumbs.db\' .
+      \ ')$'
 
 " Interface customization.
 let g:fern#drawer_width=33
@@ -96,23 +95,26 @@ function! s:FernCustomization() abort
         \ fern#smart#drawer(
         \   '<Plug>(fern-action-open:rightest)',
         \   '<Plug>(fern-action-open:vsplit)',
-        \   '<Cmd>echo "open:side disabled"<CR>'
+        \   '<Plug>(fern-action-open:vsplit)'
         \ )
 
   " Create new mappings.
-  nmap <buffer><nowait> os <Plug>(fern-action-open:side)
-  nmap <buffer><nowait> ot <Plug>(fern-action-open:tabedit)
-  nmap <buffer><nowait> n <Plug>(fern-action-new-path)
-  nmap <buffer><nowait> nd <Plug>(fern-action-new-dir)
-  nmap <buffer><nowait> nf <Plug>(fern-action-new-file)
-  nmap <buffer><nowait> c <Plug>(fern-action-copy)
-  nmap <buffer><nowait> m <Plug>(fern-action-move)
-  nmap <buffer><nowait> d <Plug>(fern-action-remove)
-  nmap <buffer><nowait> V <Plug>(fern-action-mark:toggle)
+  nmap <buffer><nowait> < <Plug>(fern-action-leave)
+  nmap <buffer><nowait> > <Plug>(fern-action-enter)
+  nmap <buffer><nowait> w <Plug>(fern-action-cd:root)
   nmap <buffer><nowait> <CR> <Plug>(fern-action-open-or-expand)
   nmap <buffer><nowait> <BS> <Plug>(fern-action-collapse)
+  nmap <buffer><nowait> <C-t> <Plug>(fern-action-open:tabedit)
+  nmap <buffer><nowait> <C-x> <Plug>(fern-action-open:split)
+  nmap <buffer><nowait> <C-v> <Plug>(fern-action-open:side)
+  nmap <buffer><nowait> n <Plug>(fern-action-new-path)
+  nmap <buffer><nowait> nf <Plug>(fern-action-new-file)
+  nmap <buffer><nowait> nd <Plug>(fern-action-new-dir)
+  nmap <buffer><nowait> m <Plug>(fern-action-move)
+  nmap <buffer><nowait> c <Plug>(fern-action-copy)
+  nmap <buffer><nowait> d <Plug>(fern-action-remove)
+  nmap <buffer><nowait> q <Cmd>quit<CR>
   nmap <buffer><nowait> <F5> <Plug>(fern-action-reload)
-  nmap <buffer><nowait> <ESC> <Plug>(fern-action-mark:clear)
 endfunction
 
 " Fern customization.
@@ -135,7 +137,11 @@ let g:gitgutter_sign_modified_removed = '┃'
 let s:exclude_filetypes=[
       \   'fern',
       \   'fugitive',
-      \   'fugitiveblame'
+      \   'fugitiveblame',
+      \   'fzf',
+      \   'list',
+      \   'nerdterm',
+      \   'qf'
       \ ]
 
 " Loop for disable filetypes.
@@ -156,7 +162,11 @@ let g:Illuminate_ftblacklist=[
       \   'fern',
       \   'fugitive',
       \   'fugitiveblame',
+      \   'fzf',
       \   'help',
+      \   'list',
+      \   'nerdterm',
+      \   'qf',
       \   'vim-plug'
       \ ]
 " }}}
@@ -188,90 +198,72 @@ let g:enfocado_plugins=[
       \   'plug',
       \   'visual-multi'
       \ ]
-
-" Colorscheme enable when all have loaded.
-autocmd VimEnter * ++nested colorscheme enfocado
 " }}}
 " Lightline: {{{
 " Bufferline customization.
-let g:lightline#bufferline#right_aligned=1
+let g:lightline#bufferline#enable_nerdfont=1
 let g:lightline#bufferline#filename_modifier=':t'
 let g:lightline#bufferline#unnamed='[No Name]'
 
 " Function for get Git branch.
 function! GitBranch() abort
-  return winwidth(0) >= 100 && FugitiveHead() !=# '' ?
+  return winwidth(0) > 83 && FugitiveHead() !=# '' ?
         \ ' ' . FugitiveHead() : ''
 endfunction
 
 " Function for get Git hunks.
-function! GitStatus() abort
-  let [ l:added, l:modified, l:removed ] = GitGutterGetHunkSummary()
+function! GitHunks() abort
+  if FugitiveHead() !=# ''
+    let [ l:added, l:modified, l:removed ] = GitGutterGetHunkSummary()
 
-  return winwidth(0) >= 100 &&
-        \ (l:added != 0 || l:modified != 0 || l:removed != 0) ?
-        \ printf('+%d ~%d -%d', l:added, l:modified, l:removed) : ''
+    return winwidth(0) > 83 ?
+          \ printf('+ %d ~ %d - %d', l:added, l:modified, l:removed) : ''
+  endif
+
+  return ''
 endfunction
 
 " Function for get filetype.
 function! LightlineFiletype() abort
-  return winwidth(0) >= 100 && &filetype !=# '' ? &filetype : ''
+  return winwidth(0) > 83 && &filetype !=# '' ? &filetype : ''
 endfunction
 
 " Function for get Sleuth indicator.
 function! SleuthStatus() abort
-  return winwidth(0) >= 100 ? SleuthIndicator() : ''
+  return winwidth(0) > 83 ? SleuthIndicator() : ''
 endfunction
 
 " Initialize setup.
 let g:lightline={
       \   'colorscheme': 'enfocado',
       \   'subseparator': { 'left': '', 'right': '' },
-      \   'component': {
-      \     'readonly': '%{ &readonly ? "" : "" }',
-      \     'spell': '暈%{ &spell ? &spelllang : "" }',
-      \     'line': ':%l',
-      \     'lineinfo': ':%l :%c ☰ %L',
-      \     'tabname': 'tabs',
-      \     'bufname': 'buffers'
-      \   },
+      \   'component': { 'lineinfo': '☰ %P/%L :%l :%c' },
       \   'component_function': {
       \     'filetype': 'LightlineFiletype',
       \     'gitbranch': 'GitBranch',
-      \     'gitstatus': 'GitStatus',
+      \     'githunks': 'GitHunks',
       \     'sleuthstatus': 'SleuthStatus'
       \   },
       \   'component_expand': { 'buffers': 'lightline#bufferline#buffers' },
       \   'component_type': { 'buffers': 'tabsel' },
       \   'active': {
       \     'left': [
-      \       [
-      \         'mode',
-      \         'paste',
-      \         'readonly',
-      \         'spell'
-      \       ],
-      \       [ 'gitbranch', 'gitstatus' ]
+      \       [ 'lineinfo' ],
+      \       [ 'gitbranch', 'githunks' ]
       \     ],
       \     'right': [
-      \       [ 'lineinfo' ],
-      \       [ 'sleuthstatus', 'fileformat', 'fileencoding' ],
-      \       [ 'filetype' ]
+      \       [
+      \         'fileencoding',
+      \         'filetype',
+      \         'sleuthstatus',
+      \         'fileformat'
+      \       ]
       \     ]
       \   },
-      \   'inactive': { 'left': [ ['filename'] ], 'right': [ [ 'line' ] ] },
-      \   'tabline': {
-      \     'left': [ [ 'tabname' ], [ 'tabs' ] ],
-      \     'right': [ [ 'bufname' ], [ 'buffers' ] ]
-      \   }
+      \   'inactive': { 'left': [ [ 'lineinfo' ], [ 'filename' ] ], 'right': '' },
+      \   'tab': { 'active': [ 'tabnum' ], 'inactive': [ 'tabnum' ] },
+      \   'tabline': { 'left': [ [ 'buffers' ] ], 'right': [ [ 'tabs' ] ] }
       \ }
-" }}}
-" winresizer: {{{
-" Change width of window size.
-let g:winresizer_vert_resize=3
-
-" Change height of window size.
-let g:winresizer_horiz_resize=3
 " }}}
 " -----------------------------------------------------------------------------
 " SECTION: Load plugins.
@@ -287,7 +279,7 @@ endif
 " List installed plugins.
 filetype plugin indent off | syntax off
 call plug#begin()
-" Options.
+" Enhacements.
 Plug 'wuelnerdotexe/human.vim'
 
 " Devicons.
@@ -318,7 +310,6 @@ Plug 'andymass/vim-matchup'
 Plug 'RRethy/vim-illuminate'
 
 " Typing.
-Plug 'chaoren/vim-wordmotion'
 Plug 'mattn/emmet-vim', { 'on': 'EmmetInstall' }
 Plug 'matze/vim-move'
 Plug 'mg979/vim-visual-multi'
@@ -330,24 +321,30 @@ Plug 'wuelnerdotexe/vim-enfocado', { 'branch': 'development' }
 " Statusline.
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
-
-" Tools.
-Plug 'simeji/winresizer'
 call plug#end()
 filetype plugin indent on | syntax enable
 " -----------------------------------------------------------------------------
 " SECTION: Mappings.
 " -----------------------------------------------------------------------------
 " Builtin: {{{
-" Split vertically the current window.
-nmap <silent> <leader>ns <Cmd>vsplit<CR>
+" Close windows tabs except the current.
+nmap <silent> 1w <Cmd>only<CR>
 
-" Open new tab for edit.
-nmap <silent> <leader>nt <Cmd>tabedit<CR>
+" Close all tabs except the current.
+nmap <silent> 1t <Cmd>tabonly<CR>
 " }}}
 " Human: {{{
-" Mappings for maximizer toggle.
+" Delete all buffers except the current.
+nmap 1b <Plug>(BufOnly)
+
+" Map for maximizer toggle.
 nmap <leader>mt <Plug>(MaximizerToggle)
+
+" Mappings for resizer.
+nmap <S-h> <Plug>(ResizerLeft)
+nmap <S-j> <Plug>(ResizerDown)
+nmap <S-k> <Plug>(ResizerUp)
+nmap <S-l> <Plug>(ResizerRight)
 " }}}
 " NERDTerm: {{{
 " Toggle terminal in the bottom.
@@ -360,9 +357,9 @@ nmap <silent> <leader>ff <Cmd>FZF<CR>
 " }}}
 " Fern: {{{
 " Toggle file tree in the current working directory.
-nmap <silent> <leader>et <Cmd>Fern . -drawer -right -toggle<CR>
+nmap <silent> <leader>ft <Cmd>Fern . -drawer -width=33 -right -toggle<CR>
 
 " Toggle find current file in the file tree.
-nmap <silent> <leader>er <Cmd>Fern . -reveal=% -drawer -right -toggle<CR>
+nmap <silent> <leader>fr <Cmd>Fern . -reveal=% -drawer -width=33 -right -toggle<CR>
 " }}}
 
