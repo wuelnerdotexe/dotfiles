@@ -345,13 +345,13 @@ nmap <silent> 1t <Cmd>tabonly<CR>
 nmap 1b <Plug>(BufOnly)
 
 " Map for maximizer toggle.
-nmap <leader>mt <Plug>(MaximizerToggle)
+nmap mt <Plug>(MaximizerToggle)
 
 " Mappings for resizer.
-nmap <S-h> <Plug>(ResizerLeft)
-nmap <S-j> <Plug>(ResizerDown)
-nmap <S-k> <Plug>(ResizerUp)
-nmap <S-l> <Plug>(ResizerRight)
+nmap <M-Left> <Plug>(ResizerLeft)
+nmap <M-Down> <Plug>(ResizerDown)
+nmap <M-Up> <Plug>(ResizerUp)
+nmap <M-Right> <Plug>(ResizerRight)
 " }}}
 " NERDTerm: {{{
 " Toggle terminal in the bottom.
@@ -364,9 +364,9 @@ nmap <silent> <leader>ff <Cmd>FZF<CR>
 " }}}
 " Fern: {{{
 " Toggle file tree in the current working directory.
-nmap <silent> <leader>ft <Cmd>Fern . -drawer -width=33 -right -toggle<CR>
+nmap <silent> <leader>ft <Cmd>Fern . -drawer -right -toggle<CR>
 
 " Toggle find current file in the file tree.
-nmap <silent> <leader>fr <Cmd>Fern . -reveal=% -drawer -width=33 -right -toggle<CR>
+nmap <silent> <leader>fr <Cmd>Fern . -reveal=% -drawer -right -toggle<CR>
 " }}}
 
