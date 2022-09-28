@@ -15,6 +15,7 @@ if &compatible
 endif " [...] Even when the +eval is missing.
 silent! while 0 | set nocp | silent! endwhile
 
+" Disabled Vim defaults.
 let g:skip_defaults_vim=1
 let g:skip_loading_mswin=1
 
@@ -46,7 +47,7 @@ let s:builtin_loads=[
       \   'zipPlugin'
       \ ]
 
-" Loop for disable plugins.
+" Loop for disable loadings.
 for s:load in s:builtin_loads
   execute 'let g:loaded_' . s:load . '=1'
 endfor
@@ -60,31 +61,32 @@ let g:bufonly_exclude_filetypes=[ 'fern', 'nerdterm' ]
 
 " Enable Vim ripgrep.
 if executable('rg')
-  let &grepprg = 'rg -i -. -g="' .
-        \ '!.git,!.svn,!.hg,!CSV,!.DS_Store,!Thumbs.db' .
-        \ '!node_modules,!bower_components,!*.code-search' .
+  let &grepprg = 'rg -i -. -g="'.
+        \   '!.git,!.svn,!.hg,!CSV,!.DS_Store,!Thumbs.db'.
+        \   '!node_modules,!bower_components,!*.code-search'.
         \ '" --vimgrep'
 endif
 " }}}
 " FZF: {{{
 " Customize default command with fd-find.
 if executable('fd')
-  let $FZF_DEFAULT_COMMAND='fd -I -H -E "{' .
-        \   '.git,.svn,.hg,CSV,.DS_Store,Thumbs.db,' .
-        \   'node_modules,bower_components,*.code-search' .
+  let $FZF_DEFAULT_COMMAND='fd -I -H -E "{'.
+        \   '.git,.svn,.hg,CSV,.DS_Store,Thumbs.db,'.
+        \   'node_modules,bower_components,*.code-search'.
         \ '}" -t f'
 endif
 " }}}
 " Fern: {{{
 " Manage files.
 let g:fern#default_hidden=1
-let g:fern#default_exclude='^\%(' .
-      \   '\.git\|\.svn\|\.hg\|\CVS\|\.DS_Store\|\Thumbs.db\' .
+let g:fern#default_exclude='^\%('.
+      \   '\.git\|\.svn\|\.hg\|\CVS\|\.DS_Store\|\Thumbs.db\'.
       \ ')$'
 
 " Interface customization.
 let g:fern#drawer_width=33
 let g:fern#renderer='nerdfont'
+let g:fern#drawer_hover_popup_delay=40
 
 " Disable default mappings.
 let g:fern#disable_default_mappings=1
@@ -158,12 +160,22 @@ for s:filetype in s:exclude_filetypes
 endfor
 " }}}
 " Matchup: {{{
+" Adjust performance for better ux.
+let g:matchup_matchparen_timeout=40
+let g:matchup_matchparen_insert_timeout=40
+let g:matchup_matchparen_deferred=1
+let g:matchup_matchparen_deferred_show_delay=40
+let g:matchup_matchparen_deferred_hide_delay=40
+
 " Off-screen enable popup.
 let g:matchup_matchparen_offscreen={ 'method': 'popup' }
 " }}}
 " Illuminate: {{{
 " Enable Illuminate Vim version.
 let g:Illuminate_useDeprecated=1
+
+" Delay in milliseconds.
+let g:Illuminate_delay=40
 
 " Exclude filetypes.
 let g:Illuminate_ftblacklist=[
@@ -213,6 +225,11 @@ let g:lightline#bufferline#enable_nerdfont=1
 let g:lightline#bufferline#filename_modifier=':t'
 let g:lightline#bufferline#unnamed='[No Name]'
 
+" Function for get the working directory.
+function! CurrentWorkingDirectory() abort
+  return winwidth(0) > 83 ? ' ' . fnamemodify(getcwd(), ':t') : ''
+endfunction
+
 " Function for get Git branch.
 function! GitBranch() abort
   return winwidth(0) > 83 && FugitiveHead() !=# '' ?
@@ -241,6 +258,11 @@ function! SleuthStatus() abort
   return winwidth(0) > 83 ? SleuthIndicator() : ''
 endfunction
 
+" Function for get the tab number.
+function! LightlineTabRight() abort
+  return reverse(lightline#tabs())
+endfunction
+
 " Initialize setup.
 let g:lightline={
       \   'colorscheme': 'enfocado',
@@ -248,14 +270,18 @@ let g:lightline={
       \   'component': { 'lineinfo': '☰ %P/%L :%l :%c' },
       \   'component_function': {
       \     'filetype': 'LightlineFiletype',
+      \     'cwd': 'CurrentWorkingDirectory',
       \     'gitbranch': 'GitBranch',
       \     'githunks': 'GitHunks',
       \     'sleuthstatus': 'SleuthStatus'
       \   },
-      \   'component_expand': { 'buffers': 'lightline#bufferline#buffers' },
-      \   'component_type': { 'buffers': 'tabsel' },
+      \   'component_expand': {
+      \     'buffers': 'lightline#bufferline#buffers',
+      \     'rtabs': 'LightlineTabRight'
+      \   },
+      \   'component_type': { 'buffers': 'tabsel', 'rtabs': 'tabsel' },
       \   'active': {
-      \     'left': [ [ 'lineinfo' ], [ 'gitbranch', 'githunks' ] ],
+      \     'left': [ [ 'lineinfo' ], [ 'cwd', 'gitbranch', 'githunks' ] ],
       \     'right': [
       \       [
       \         'fileencoding',
@@ -269,14 +295,14 @@ let g:lightline={
       \     'left': [ [ 'lineinfo' ], [ 'filename' ] ], 'right': ''
       \   },
       \   'tab': { 'active': [ 'tabnum' ], 'inactive': [ 'tabnum' ] },
-      \   'tabline': { 'left': [ [ 'buffers' ] ], 'right': [ [ 'tabs' ] ] }
+      \   'tabline': { 'left': [ [ 'buffers' ] ], 'right': [ [ 'rtabs' ] ] }
       \ }
 " }}}
 " -----------------------------------------------------------------------------
 " SECTION: Load plugins.
 " -----------------------------------------------------------------------------
 " Boostrapping: {{{
-" Auto installation in Vim or Neovim.
+" Auto installation in Vim.
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs ' .
         \ 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
@@ -300,7 +326,7 @@ Plug 'iamcco/markdown-preview.nvim', {
       \ }
 
 " Files managers.
-Plug 'junegunn/fzf', { 'on': 'FZF', 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() }, 'on': 'FZF' }
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-hijack.vim'
 Plug 'lambdalisue/fern-git-status.vim'
@@ -334,7 +360,7 @@ filetype plugin indent on | syntax enable
 " SECTION: Mappings.
 " -----------------------------------------------------------------------------
 " Builtin: {{{
-" Close windows tabs except the current.
+" Close all windows except the current.
 nmap <silent> 1w <Cmd>only<CR>
 
 " Close all tabs except the current.
@@ -364,9 +390,9 @@ nmap <silent> <leader>ff <Cmd>FZF<CR>
 " }}}
 " Fern: {{{
 " Toggle file tree in the current working directory.
-nmap <silent> <leader>ft <Cmd>Fern . -drawer -right -toggle<CR>
+nmap <silent> <leader>ft <Cmd>Fern . -drawer -width=33 -toggle<CR>
 
 " Toggle find current file in the file tree.
-nmap <silent> <leader>fr <Cmd>Fern . -reveal=% -drawer -right -toggle<CR>
+nmap <silent> <leader>fr <Cmd>Fern . -reveal=% -drawer -width=33 -toggle<CR>
 " }}}
 
