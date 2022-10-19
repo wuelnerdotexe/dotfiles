@@ -55,7 +55,7 @@ let g:netrw_list_hide='.git,.svn,.hg,CSV,.DS_Store,Thumbs.db'
 " }}}
 " Human: {{{
 " Options overrides.
-autocmd VimEnter * set nospell
+autocmd VimEnter * set nospell laststatus=1 showtabline=1
 
 " BufOnly excludes.
 let g:bufonly_exclude_filetypes=['nerdterm']
@@ -130,11 +130,14 @@ filetype plugin indent on | syntax enable
 " SECTION: Mappings.
 " -----------------------------------------------------------------------------
 " Builtin: {{{
-" Close all windows except the current.
-nmap <silent> 1w <Cmd>only<CR>
-
 " Close all tabs except the current.
 nmap <silent> 1t <Cmd>tabonly<CR>
+
+" Open the current file in a new tab.
+nmap <silent> <C-w>t <Cmd>tabedit %<CR>
+
+" Open Vim terminal in the bottom window.
+nmap <silent> <leader>to <Cmd>terminal<CR>
 " }}}
 " Netrw: {{{
 " Toggle netrw explorer.
