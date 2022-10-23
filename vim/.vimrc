@@ -55,10 +55,17 @@ let g:netrw_list_hide='.git,.svn,.hg,CSV,.DS_Store,Thumbs.db'
 " }}}
 " Human: {{{
 " Options overrides.
-autocmd VimEnter * set nospell laststatus=1 showtabline=1
+autocmd VimEnter * set nospell nofoldenable
 
-" BufOnly excludes.
-let g:bufonly_exclude_filetypes=['nerdterm']
+" BufOnly exclude buftypes.
+let g:bufonly_exclude_buftypes=['terminal']
+
+" BufOnly exclude filetypes.
+let g:bufonly_exclude_filetypes=['netrw']
+" }}}
+" Astro: {{{
+" Enables TypeScript and TSX.
+let g:astro_typescript = 'enable'
 " }}}
 " LSP: {{{
 " Function for vim-lsp customization.
@@ -137,7 +144,7 @@ nmap <silent> 1t <Cmd>tabonly<CR>
 nmap <silent> <C-w>t <Cmd>tabedit %<CR>
 
 " Open Vim terminal in the bottom window.
-nmap <silent> <leader>to <Cmd>terminal<CR>
+nmap <silent> <leader>to <Cmd>tab terminal<CR>
 " }}}
 " Netrw: {{{
 " Toggle netrw explorer.
