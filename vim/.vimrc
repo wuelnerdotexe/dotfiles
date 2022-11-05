@@ -94,6 +94,28 @@ augroup lsp_install
   " Enabled lsp only for languages that has the server registered.
   autocmd User lsp_buffer_enabled call <SID>on_lsp_buffer_enabled()
 augroup END
+
+" Settings overrides.
+let g:lsp_settings={
+      \   'tailwindcss-intellisense': {
+      \     'allowlist': [
+      \       'astro',
+      \       'astro-markdown',
+      \       'html',
+      \       'css',
+      \       'markdown',
+      \       'mdx',
+      \       'postcss',
+      \       'sass',
+      \       'scss',
+      \       'stylus',
+      \       'javascript',
+      \       'javascriptreact',
+      \       'typescript',
+      \       'typescriptreact'
+      \     ]
+      \   }
+      \ }
 " }}}
 " Enfocado: {{{
 " Theme style.
