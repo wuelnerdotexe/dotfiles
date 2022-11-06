@@ -166,7 +166,7 @@ nmap <silent> 1t <Cmd>tabonly<CR>
 nmap <silent> <C-w>t <Cmd>tabedit %<CR>
 
 " Open Vim terminal in the bottom window.
-nmap <silent> <leader>to <Cmd>tab terminal<CR>
+nmap <silent> <leader>to <Cmd>terminal<CR>
 " }}}
 " Netrw: {{{
 " Toggle netrw explorer.
