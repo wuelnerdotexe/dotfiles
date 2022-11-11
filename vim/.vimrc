@@ -75,10 +75,10 @@ function! s:on_lsp_buffer_enabled() abort
 	setlocal complete= omnifunc=lsp#complete
 
 	" Basic keymaps for lsp servers.
-  nmap <buffer> K   <plug>(lsp-hover)
-  nmap <buffer> gd  <plug>(lsp-definition)
-  nmap <buffer> [d  <plug>(lsp-previous-diagnostic)
-  nmap <buffer> ]d  <plug>(lsp-next-diagnostic)
+  nmap <buffer> K <plug>(lsp-hover)
+  nmap <buffer> gd <plug>(lsp-definition)
+  nmap <buffer> [d <plug>(lsp-previous-diagnostic)
+  nmap <buffer> ]d <plug>(lsp-next-diagnostic)
 
 	" Keymaps for navigation on lsp documents.
   nnoremap <buffer> <expr><c-b> lsp#scroll(-3)
@@ -90,7 +90,7 @@ endfunction
 
 " On lsp installed.
 augroup lsp_install
-  au!
+  autocmd!
   " Enabled lsp only for languages that has the server registered.
   autocmd User lsp_buffer_enabled call <SID>on_lsp_buffer_enabled()
 augroup END
@@ -160,17 +160,17 @@ filetype plugin indent on | syntax enable
 " -----------------------------------------------------------------------------
 " Builtin: {{{
 " Close all tabs except the current.
-nmap <silent> 1t <Cmd>tabonly<CR>
+nmap 1t <Cmd>tabonly<CR>
 
 " Open the current file in a new tab.
-nmap <silent> <C-w>t <Cmd>tabedit %<CR>
+nmap <C-w>t <Cmd>tabedit %<CR>
 
 " Open Vim terminal in the bottom window.
-nmap <silent> <leader>to <Cmd>terminal<CR>
+nmap <leader>to <Cmd>tab terminal<CR>
 " }}}
 " Netrw: {{{
 " Toggle netrw explorer.
-nmap <silent> <leader>ft <Cmd>Explore<CR>
+nmap <leader>ft <Cmd>Explore<CR>
 " }}}
 " Human: {{{
 " Delete all buffers except the current.
@@ -180,10 +180,10 @@ nmap 1b <Plug>(BufOnly)
 nmap <C-w>m <Plug>(MaximizerToggle)
 
 " Mappings for resizer.
-nmap <M-Left>   <Plug>(ResizerLeft)
-nmap <M-Down>   <Plug>(ResizerDown)
-nmap <M-Up>     <Plug>(ResizerUp)
-nmap <M-Right>  <Plug>(ResizerRight)
+nmap <M-Left> <Plug>(ResizerLeft)
+nmap <M-Down> <Plug>(ResizerDown)
+nmap <M-Up> <Plug>(ResizerUp)
+nmap <M-Right> <Plug>(ResizerRight)
 " }}}
 " NERDTerm: {{{
 " Toggle terminal in the bottom.
