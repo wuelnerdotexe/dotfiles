@@ -20,6 +20,8 @@ export PATH
 # export SYSTEMD_PAGER=
 
 # User specific aliases and functions
+source $HOME/dotfiles/fzf/.fzf.sh
+
 if [ -d ~/.bashrc.d ]; then
 	for rc in ~/.bashrc.d/*; do
 		if [ -f "$rc" ]; then

@@ -90,6 +90,7 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+source $HOME/dotfiles/fzf/.fzf.sh
 
 # Lines configured by zsh-newuser-install
 HISTSIZE=1000
