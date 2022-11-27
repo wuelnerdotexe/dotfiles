@@ -11,7 +11,7 @@ fi
 #
 df() {
   local dir
-  dir=$(find "${1:-.}" -type d 2> /dev/null | fzf +m) && cd "$dir" || exit
+  dir=$(find "${1:-.}" -type d 2> /dev/null | fzf +m) && cd "$dir"
 }
 
 ##
@@ -21,6 +21,14 @@ df() {
 ff() {
   IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
   [[ -n "$files" ]] && ${EDITOR:-nvim} "${files[@]}"
+}
+
+##
+# History Find.
+# Usage: `hf`
+#
+hf() {
+  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
 }
 
 ##
@@ -45,12 +53,4 @@ wf() {
   )
 
   [[ -n $selected ]] && ${EDITOR:-nvim} $selected # open multiple files in editor
-}
-
-##
-# History Find.
-# Usage: `hf`
-#
-hf() {
-  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
 }
