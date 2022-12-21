@@ -87,7 +87,7 @@ function! s:on_lsp_buffer_enabled() abort
 	" Keymaps for navigation on lsp documents.
   nmap <buffer> <expr><c-b> lsp#scroll(-1)
   nmap <buffer> <expr><c-f> lsp#scroll(+1)
-	
+
 	" Enable semantic highlight.
 	let g:lsp_semantic_enabled=1
 endfunction
