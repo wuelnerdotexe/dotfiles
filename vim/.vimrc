@@ -222,4 +222,3 @@ nnoremap <silent> <C-w><C-l>
 nmap <leader>tt <Plug>(NERDTermToggle)
 tmap <leader>tt <Plug>(NERDTermToggle)
 " }}}
-

@@ -6,11 +6,11 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 [ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
-# Install general zap plugins
+# Install zap general plugins
 plug "zap-zsh/supercharge"
 plug "zap-zsh/exa"
-plug "zap-zsh/sudo"
 plug "zap-zsh/fzf"
+plug "zap-zsh/sudo"
 
 # Install zsh autosuggestions plugin
 plug "zsh-users/zsh-autosuggestions"
