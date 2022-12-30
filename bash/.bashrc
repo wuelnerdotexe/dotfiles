@@ -11,17 +11,12 @@ then
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
 
-# Set the new directory path for npm.
-PATH=~/.npm-global/bin:$PATH
-
 export PATH
 
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
 
 # User specific aliases and functions
-source $HOME/dotfiles/fzf/.fzf.sh
-
 if [ -d ~/.bashrc.d ]; then
 	for rc in ~/.bashrc.d/*; do
 		if [ -f "$rc" ]; then
@@ -37,3 +32,6 @@ export PS1='[\u@\h \W$(declare -F __git_ps1 &>/dev/null && __git_ps1 " (%s)")]\$
 . /usr/share/git-core/contrib/completion/git-prompt.sh
 export GIT_PS1_SHOWDIRTYSTATE=true
 export GIT_PS1_SHOWUNTRACKEDFILES=true
+
+# Preferred editor for local and remote sessions
+export EDITOR='nvim'
