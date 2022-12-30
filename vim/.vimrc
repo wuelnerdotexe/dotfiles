@@ -68,11 +68,11 @@ let g:astro_typescript='enable'
 " LSP: {{{
 " Function for vim-lsp customization.
 function! s:on_lsp_buffer_enabled() abort
-	" Enabled lsp autocomplete sources to Vim native functions.
-	if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-	setlocal complete= omnifunc=lsp#complete
+  " Enabled lsp autocomplete sources to Vim native functions.
+  if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+  setlocal complete= omnifunc=lsp#complete
 
-	" Basic keymaps for lsp servers.
+  " Basic keymaps for lsp servers.
   nmap <buffer> [d <Plug>(lsp-previous-diagnostic)
   nmap <buffer> ]d <Plug>(lsp-next-diagnostic)
   nmap <buffer> <leader>dl <Plug>(lsp-document-diagnostics)
@@ -84,12 +84,12 @@ function! s:on_lsp_buffer_enabled() abort
   nmap <buffer> gi <Plug>(lsp-implementation)
   nmap <buffer> <leader>ca <Plug>(lsp-code-action)
 
-	" Keymaps for navigation on lsp documents.
+  " Keymaps for navigation on lsp documents.
   nmap <buffer> <expr><c-b> lsp#scroll(-1)
   nmap <buffer> <expr><c-f> lsp#scroll(+1)
 
-	" Enable semantic highlight.
-	let g:lsp_semantic_enabled=1
+  " Enable semantic highlight.
+  let g:lsp_semantic_enabled=1
 endfunction
 
 " On lsp installed.
@@ -138,12 +138,12 @@ let g:enfocado_style='nature' " Available: `nature` or `neon`.
 
 " Plugins enabled.
 let g:enfocado_plugins=[
-			\   'asyncomplete',
-			\   'fzf',
-			\   'netrw',
-			\   'plug',
-			\   'vim-lsp'
-			\ ]
+      \   'asyncomplete',
+      \   'fzf',
+      \   'netrw',
+      \   'plug',
+      \   'vim-lsp'
+      \ ]
 " }}}
 " -----------------------------------------------------------------------------
 " SECTION: Load plugins.
@@ -165,9 +165,9 @@ Plug '~/Workspace/vim-astro', { 'for': 'astro' }
 
 Plug 'sheerun/vim-polyglot'
 Plug 'mattn/vim-lsp-settings' |
-			\ Plug 'prabirshrestha/vim-lsp' |
-			\ Plug 'prabirshrestha/asyncomplete.vim' |
-			\ Plug 'prabirshrestha/asyncomplete-lsp.vim'
+      \ Plug 'prabirshrestha/vim-lsp' |
+      \ Plug 'prabirshrestha/asyncomplete.vim' |
+      \ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'tpope/vim-commentary'
 
 Plug '~/Workspace/vim-enfocado'

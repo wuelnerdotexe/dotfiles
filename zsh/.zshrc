@@ -6,25 +6,13 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 [ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
-# Install zap general plugins
-plug "zap-zsh/supercharge"
-plug "zap-zsh/exa"
-plug "zap-zsh/fzf"
-plug "zap-zsh/sudo"
-
-# Install zsh autosuggestions plugin
-plug "zsh-users/zsh-autosuggestions"
-
 # Install prompt theme plugin
 plug "romkatv/powerlevel10k"
 
-# Install zap completions plugin
-plug "zap-zsh/completions"
-
-# Install zsh completions plugin
-plug "zsh-users/zsh-completions"
-# Include zsh completions plugin
-fpath=($ZAP_PLUGIN_DIR/zsh-completions/src $fpath)
+# Install zap general plugins
+plug "zap-zsh/supercharge"
+plug "zap-zsh/exa"
+plug "zap-zsh/sudo"
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
@@ -32,16 +20,25 @@ SAVEHIST=1000
 setopt autocd beep extendedglob nomatch notify
 bindkey -e
 # End of lines configured by zsh-newuser-install
+# Install zap completions plugin
+plug "zap-zsh/completions"
+
+# Install fzf completions plugin
+plug "zap-zsh/fzf"
+
+# Install zsh completions plugin
+plug "zsh-users/zsh-completions"
+# Include zsh completions plugin
+fpath=($ZAP_PLUGIN_DIR/zsh-completions/src $fpath)
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/wuelnerdotexe/.zshrc'
 
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
-# Install zsh highlighting plugin
+# Install zsh general plugins
+plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
-
-# Install zsh substring-search plugin
 plug "zsh-users/zsh-history-substring-search"
 # Bind keyboard shorcuts for zsh-history-substring-search
 bindkey -M emacs '^P' history-substring-search-up
