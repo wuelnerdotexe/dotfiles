@@ -1,3 +1,9 @@
+#
+# Setup .zshrc
+#
+# By Wuelner Martínez. MIT License.
+#
+
 # Enable the p10k instant prompt. Should stay close to the top of $HOME/.zshrc.
 source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-wuelnerdotexe.zsh"
 
