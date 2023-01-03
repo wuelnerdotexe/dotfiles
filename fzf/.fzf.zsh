@@ -1,42 +1,37 @@
-#!/bin/bash
+#       ____      ____
+#      / __/___  / __/
+#     / /_/_  / / /_
+#    / __/ / /_/ __/
+# . /_/   /___/_/ .zsh
+#
+# - $FZF_DEFAULT_COMMAND
+# - $FZF_CTRL_P_COMMAND
+# - $FZF_CTRL_F_COMMAND
 
 if command -v fd &> /dev/null
 then
   export FZF_DEFAULT_COMMAND="fd -I -H -E '{.git,.svn,.hg,CSV,.DS_Store,Thumbs.db,node_modules,bower_components,*.code-search}' -t f"
 fi
 
-##
-# Directories Find.
-# Usage: `df`
-#
-df() {
-  local dir
-  dir=$(find "${1:-.}" -type d 2> /dev/null | fzf +m) && cd "$dir"
-}
+# Key bindings
+# ------------
 
-##
-# Files Find.
-# Usage: `ff`
-#
-ff() {
-  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+'emulate' 'zsh' '-o' 'no_aliases'
+
+{
+
+[[ -o interactive ]] || return 0
+
+# CTRL-P - find and open selected file with $EDITOR
+fzf-fe-widget() {
+  IFS=$'\n' files=($(fzf-tmux --multi --select-1 --exit-0))
   [[ -n "$files" ]] && ${EDITOR:-nvim} "${files[@]}"
 }
+zle     -N            fzf-fe-widget
+bindkey '^P' fzf-fe-widget
 
-##
-# History Find.
-# Usage: `hf`
-#
-hf() {
-  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
-}
-
-##
-# Words Find.
-# Usage: `wf` or `wf <folder>`.
-#
-wf() {
-  [[ -n $1 ]] && cd $1 # go to provided folder or noop
+# CTRL-F - find word and open selected with $EDITOR
+fzf-ff-widget() {
   RG_DEFAULT_COMMAND="rg -i -l --hidden --no-ignore-vcs"
 
   selected=$(
@@ -53,4 +48,8 @@ wf() {
   )
 
   [[ -n $selected ]] && ${EDITOR:-nvim} $selected # open multiple files in editor
+}
+zle     -N            fzf-ff-widget
+bindkey '^F' fzf-ff-widget
+
 }
