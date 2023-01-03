@@ -4,11 +4,14 @@
 # By Wuelner Martínez. MIT License.
 #
 
-# Enable the p10k instant prompt. Should stay close to the top of $HOME/.zshrc.
-source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-wuelnerdotexe.zsh"
+# Enable the powerlevel10k instant prompt feature on top.
+source "$HOME/.cache/p10k-instant-prompt-wuelnerdotexe.zsh"
 
-# Export environment variables $PATH and $EDITOR.
-export PATH=$HOME/bin:$PATH; export EDITOR='nvim'
+# Export $PATH environment variable for bash user.
+export PATH=$HOME/bin:$HOME/.npm-global/bin:$PATH
+
+# Preferred editor.
+export EDITOR='nvim'
 
 # Configurations for the zsh $HOME/.histfile and sizes.
 HISTFILE=$HOME/.histfile; HISTSIZE=1000; SAVEHIST=1000
