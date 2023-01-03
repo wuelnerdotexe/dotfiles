@@ -28,8 +28,8 @@ bindkey -e
 # Install the p10k plugin and loading the user promt.
 plug "romkatv/powerlevel10k"; source "$HOME/.p10k.zsh"
 
-# Line added by compinstall for caching the compinit sys.
-zstyle :compinstall filename '/home/wuelnerdotexe/.zshrc'
+# Added by compinstall to update `zstyle`s.
+zstyle :compinstall filename "$HOME/.zshrc"
 
 # Optimize autocompletions performance.
 zstyle ':autocomplete:*' min-delay 0.04
