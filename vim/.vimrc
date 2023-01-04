@@ -46,14 +46,6 @@ let g:netrw_banner=0
 " Exclude files.
 let g:netrw_list_hide='.git,.svn,.hg,CSV,.DS_Store,Thumbs.db'
 " }}}
-" FZF: {{{
-if executable('fzf') && executable('fd')
-  let $FZF_DEFAULT_COMMAND='fd -I -H -E "{'
-        \ .   '.git,.svn,.hg,CSV,.DS_Store,Thumbs.db,'
-        \ .   'node_modules,bower_components,*.code-search'
-        \ . '}" -t f'
-endif
-" }}}
 " Human: {{{
 " Options overrides.
 autocmd VimEnter * set nospell norelativenumber number nowrap
@@ -191,10 +183,6 @@ nmap <C-w>t <Cmd>tabedit %<CR>
 
 " Open Vim terminal in the bottom window.
 nmap <leader>to <Cmd>tab terminal<CR>
-" }}}
-" FZF: {{{
-" Open fzf find files.
-autocmd VimEnter * if exists(':FZF') | nmap <leader>ff <Cmd>FZF<CR> | endif
 " }}}
 " Netrw: {{{
 " Toggle netrw explorer.

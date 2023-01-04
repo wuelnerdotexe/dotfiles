@@ -1,35 +1,41 @@
+#!/usr/bin/env bash
+
 #
 # Setup .zshrc
 #
 # By Wuelner Martínez. MIT License.
 #
 
-# Enable the powerlevel10k instant prompt feature on top.
-source "$HOME/.cache/p10k-instant-prompt-wuelnerdotexe.zsh"
+# Enable the powerlevel10k instant prompt feature on top for fast init.
+source /home/wuelnerdotexe/.cache/p10k-instant-prompt-wuelnerdotexe.zsh
 
 # Export $PATH environment variable for bash user.
-export PATH=$HOME/bin:$HOME/.npm-global/bin:$PATH
+export PATH="$HOME/bin:$HOME/.npm-global/bin:$PATH"
 
 # Preferred editor.
 export EDITOR='nvim'
 
-# Configurations for the zsh $HOME/.histfile and sizes.
-HISTFILE=$HOME/.histfile; HISTSIZE=1000; SAVEHIST=1000
+# Configurations for the zsh $HOME/.histfile and size.
+HISTFILE='/home/wuelnerdotexe/.histfile'
+HISTSIZE='1000'
+
+# Export save hist.
+export SAVEHIST='1000'
 
 # Set default options by zsh-newuser-install.
 setopt autocd beep extendedglob nomatch notify
 
-# Initializes the zap plugin manager.
-source "$HOME/.local/share/zap/zap.zsh"
+# Initializes the zap plugin manager before install.
+source /home/wuelnerdotexe/.local/share/zap/zap.zsh
 
 # Keybinds.
 bindkey -e
 
-# Install the p10k plugin and loading the user promt.
-plug "romkatv/powerlevel10k"; source "$HOME/.p10k.zsh"
+# Install the powerlevel10k theme plugins and load the user promt.
+plug 'romkatv/powerlevel10k'; source /home/wuelnerdotexe/.p10k.zsh
 
-# Added by compinstall to update `zstyle`s.
-zstyle :compinstall filename "$HOME/.zshrc"
+# Line added on init by zsh compinstall to update zstyle.
+zstyle ':compinstall' filename /home/wuelnerdotexe/.zshrc
 
 # Optimize autocompletions performance.
 zstyle ':autocomplete:*' min-delay 0.04
@@ -41,14 +47,14 @@ zstyle ':autocomplete:history-search:*' list-lines 7
 zstyle ':autocomplete:history-incremental-search-*:*' list-lines 7
 
 # Install the zsh-autocomplete and zsh-autopair plugins together.
-plug "marlonrichert/zsh-autocomplete"; plug "hlissner/zsh-autopair"
+plug 'marlonrichert/zsh-autocomplete'; plug 'hlissner/zsh-autopair'
 
 # Install pack for zsh-users plugins.
-plug "zsh-users/zsh-autosuggestions"
-plug "zsh-users/zsh-syntax-highlighting"
+plug 'zsh-users/zsh-autosuggestions'
+plug 'zsh-users/zsh-syntax-highlighting'
 
 # Install zap sudo.
-plug "zap-zsh/sudo"
+plug 'zap-zsh/sudo'
 
 # Aliases to replace the default keybindings of `ls` and `tree` file tools with their similar ones in `exa`.
 alias ls='exa --git --icons --classify --group --group-directories-first --time-style=long-iso --color-scale'
