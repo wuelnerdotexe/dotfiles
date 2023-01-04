@@ -15,9 +15,8 @@ export PATH="$HOME/bin:$HOME/.npm-global/bin:$PATH"
 # Preferred editor.
 export EDITOR='nvim'
 
-# Configurations for the zsh $HOME/.histfile and size.
-HISTFILE='/home/wuelnerdotexe/.histfile'
-HISTSIZE='1000'
+# Configurations for the `.histfile` file path and size.
+HISTFILE='/home/wuelnerdotexe/.histfile'; HISTSIZE='1000'
 
 # Export save hist.
 export SAVEHIST='1000'
