@@ -33,6 +33,9 @@ bindkey -e
 # Install the powerlevel10k theme plugins and load the user promt.
 plug 'romkatv/powerlevel10k'; source /home/wuelnerdotexe/.p10k.zsh
 
+# Install zap sudo.
+plug 'zap-zsh/sudo'
+
 # Line added on init by zsh compinstall to update zstyle.
 zstyle ':compinstall' filename /home/wuelnerdotexe/.zshrc
 
@@ -48,14 +51,13 @@ zstyle ':autocomplete:history-incremental-search-*:*' list-lines 7
 # Install the zsh-autocomplete and zsh-autopair plugins together.
 plug 'marlonrichert/zsh-autocomplete'; plug 'hlissner/zsh-autopair'
 
-# Install pack for zsh-users plugins.
+# Install zsh-autosuggestions plugin.
 plug 'zsh-users/zsh-autosuggestions'
-plug 'zsh-users/zsh-syntax-highlighting'
-
-# Install zap sudo.
-plug 'zap-zsh/sudo'
 
 # Aliases to replace the default keybindings of `ls` and `tree` file tools with their similar ones in `exa`.
 alias ls='exa --git --icons --classify --group --group-directories-first --time-style=long-iso --color-scale'
 alias ll='exa -a -h -l --git --icons --classify --group --group-directories-first --time-style=long-iso --color-scale'
 alias tree='exa -T --git --icons --classify --group --group-directories-first --time-style=long-iso --color-scale'
+
+# Install zsh-syntax-highlighting plugin.
+plug 'zsh-users/zsh-syntax-highlighting'
