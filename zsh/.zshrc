@@ -12,6 +12,11 @@ source /home/wuelnerdotexe/.cache/p10k-instant-prompt-wuelnerdotexe.zsh
 # Export $PATH environment variable for bash user.
 export PATH="$HOME/bin:$HOME/.npm-global/bin:$PATH"
 
+# Aliases to replace the default keybindings of `ls` and `tree` file tools with their similar ones in `exa`.
+alias ls='exa --git --icons --classify --group --group-directories-first --time-style=long-iso --color-scale'
+alias ll='exa -a -h -l --git --icons --classify --group --group-directories-first --time-style=long-iso --color-scale'
+alias tree='exa -T --git --icons --classify --group --group-directories-first --time-style=long-iso --color-scale'
+
 # Preferred editor.
 export EDITOR='nvim'
 
@@ -53,11 +58,6 @@ plug 'marlonrichert/zsh-autocomplete'; plug 'hlissner/zsh-autopair'
 
 # Install zsh-autosuggestions plugin.
 plug 'zsh-users/zsh-autosuggestions'
-
-# Aliases to replace the default keybindings of `ls` and `tree` file tools with their similar ones in `exa`.
-alias ls='exa --git --icons --classify --group --group-directories-first --time-style=long-iso --color-scale'
-alias ll='exa -a -h -l --git --icons --classify --group --group-directories-first --time-style=long-iso --color-scale'
-alias tree='exa -T --git --icons --classify --group --group-directories-first --time-style=long-iso --color-scale'
 
 # Install zsh-syntax-highlighting plugin.
 plug 'zsh-users/zsh-syntax-highlighting'
