@@ -8,6 +8,19 @@
 " -----------------------------------------------------------------------------
 " SECTION: Before configs.
 " -----------------------------------------------------------------------------
+" Enfocado: {{{
+" Theme style.
+let g:enfocado_style='nature' " Available: `nature` or `neon`.
+
+" Plugins enabled.
+let g:enfocado_plugins=[
+      \   'asyncomplete',
+      \   'fzf',
+      \   'netrw',
+      \   'plug',
+      \   'vim-lsp'
+      \ ]
+" }}}
 " Builtin: {{{
 " Disable VI mode.
 if &compatible
@@ -124,19 +137,6 @@ let g:vim_jsx_pretty_colorful_config=1
 " Fix typescriptreact performance.
 autocmd VimEnter * set regexpengine=0
 " }}}
-" Enfocado: {{{
-" Theme style.
-let g:enfocado_style='nature' " Available: `nature` or `neon`.
-
-" Plugins enabled.
-let g:enfocado_plugins=[
-      \   'asyncomplete',
-      \   'fzf',
-      \   'netrw',
-      \   'plug',
-      \   'vim-lsp'
-      \ ]
-" }}}
 " -----------------------------------------------------------------------------
 " SECTION: Load plugins.
 " -----------------------------------------------------------------------------
@@ -151,6 +151,7 @@ endif
 " List installed plugins.
 filetype plugin indent off | syntax off
 call plug#begin()
+Plug '~/Workspace/vim-enfocado'
 Plug '~/Workspace/human.vim'
 Plug '~/Workspace/nerdterm'
 Plug '~/Workspace/vim-astro', { 'for': 'astro' }
@@ -161,13 +162,15 @@ Plug 'mattn/vim-lsp-settings' |
       \ Plug 'prabirshrestha/asyncomplete.vim' |
       \ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'tpope/vim-commentary'
-
-Plug '~/Workspace/vim-enfocado'
 call plug#end()
 filetype plugin indent on | syntax enable
 " -----------------------------------------------------------------------------
 " SECTION: Mappings.
 " -----------------------------------------------------------------------------
+" Enfocado: {{{
+" Enable colorscheme.
+colorscheme enfocado
+" }}}
 " Builtin: {{{
 " Mappings for navigation.
 nmap <C-h> <C-w>h
