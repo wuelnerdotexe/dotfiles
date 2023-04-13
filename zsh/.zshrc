@@ -9,6 +9,9 @@
 # Enable the powerlevel10k instant prompt feature on top for fast init.
 source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 
+# Line added by compinstall to update zstyle.
+zstyle ':compinstall' filename "$HOME/.zshrc"
+
 # Export $PATH environment variable for bash user.
 export PATH="$HOME/bin:$HOME/.npm-global/bin:$PATH"
 
@@ -20,8 +23,8 @@ alias tree='exa -T --git --icons --classify --group --group-directories-first --
 # Preferred editor.
 export EDITOR='nvim'
 
-# Configure the `.histfile` path and size.
-HISTFILE="$HOME/.histfile"; HISTSIZE='1000'
+# Configure the `.histfile` location and the history size.
+export HISTFILE="$HOME/.histfile"; export HISTSIZE='1000'
 
 # Export save hist.
 export SAVEHIST='1000'
@@ -41,23 +44,27 @@ plug 'romkatv/powerlevel10k'; source "$HOME/.p10k.zsh"
 # Install zap sudo.
 plug 'zap-zsh/sudo'
 
-# Line added by compinstall to update zstyle.
-zstyle ':compinstall' filename "$HOME/.zshrc"
+# Install the zsh autopair.
+plug 'hlissner/zsh-autopair'
+
+# Install the zsh autocomplete plugin.
+plug 'marlonrichert/zsh-autocomplete'
 
 # Optimize autocompletions performance.
-zstyle ':autocomplete:*' min-delay 0.04
+zstyle ':autocomplete:*' min-delay 0.042
 zstyle ':autocomplete:*' min-input 3
 
 # Consistent autocompletions menu size.
 zstyle ':autocomplete:*' list-lines 7
-zstyle ':autocomplete:history-search:*' list-lines 7
-zstyle ':autocomplete:history-incremental-search-*:*' list-lines 7
 
-# Install the zsh-autocomplete and zsh-autopair plugins together.
-plug 'marlonrichert/zsh-autocomplete'; plug 'hlissner/zsh-autopair'
+# Configure autocomplete for accept unambiguous.
+zstyle ':autocomplete:*' insert-unambiguous yes
 
 # Install zsh-autosuggestions plugin.
 plug 'zsh-users/zsh-autosuggestions'
+
+# Configure highlighters for add rainbow brackets.
+export ZSH_HIGHLIGHT_HIGHLIGHTERS=( main brackets )
 
 # Install zsh-syntax-highlighting plugin.
 plug 'zsh-users/zsh-syntax-highlighting'
