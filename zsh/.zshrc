@@ -17,8 +17,8 @@ alias ls='exa --git --icons --classify --group --group-directories-first --time-
 alias ll='exa -a -h -l --git --icons --classify --group --group-directories-first --time-style=long-iso --color-scale'
 alias tree='exa -T --git --icons --classify --group --group-directories-first --time-style=long-iso --color-scale'
 
-# Aliases to make nvim the preferred vim editor.
-alias vim='nvim'; alias vi="nvim"; alias v='nvim'
+# Aliases to make Neovim (nvim) THE preferred Vim editor.
+alias n='nvim'; vim='nvim'; alias vi="nvim"; alias v='nvim'
 
 # Preferred editor.
 export EDITOR='nvim'
