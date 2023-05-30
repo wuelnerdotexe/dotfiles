@@ -1,0 +1,75 @@
+---
+window: {dynamic_padding: true, decorations: full}
+
+font:
+  normal: {family: CaskaydiaCove NF, style: Semibold}
+
+  size: 14.0
+
+  offset: {x: 1, y: 4}
+
+  glyph_offset: {x: 1, y: 4}
+
+  builtin_box_drawing: true
+
+draw_bold_text_with_bright_colors: true
+
+colors:
+  primary: {background: "#000000", foreground: "#b9b9b9"}
+
+  cursor: {text: "#252525", cursor: "#b9b9b9"}
+
+  vi_mode_cursor: {text: "#252525", cursor: "#b9b9b9"}
+
+  search:
+    matches: {foreground: CellForeground, background: "#62552e"}
+
+    focused_match: {foreground: "#252525", background: "#efc541"}
+
+  hints:
+    start: {foreground: "#252525", background: "#efc541"}
+
+    end: {foreground: CellForeground, background: "#62552e"}
+
+  line_indicator: {foreground: "#252525", background: "#efc541"}
+
+  footer_bar: {background: "#efc541", foreground: "#252525"}
+
+  normal:
+    black: "#252525"
+    red: "#ed4a46"
+    green: "#70b433"
+    yellow: "#dbb32d"
+    blue: "#368aeb"
+    magenta: "#eb6eb7"
+    cyan: "#3fc5b7"
+    white: "#777777"
+
+  bright:
+    black: "#3b3b3b"
+    red: "#ff5e56"
+    green: "#83c746"
+    yellow: "#efc541"
+    blue: "#4f9cfe"
+    magenta: "#ff81ca"
+    cyan: "#56d8c9"
+    white: "#dedede"
+
+bell: {animation: Linear, duration: 125, color: "#dedede"}
+
+selection: {save_to_clipboard: true}
+
+cursor:
+  style: {blinking: "Always"}
+
+  blink_interval: 750
+
+  blink_timeout: 0
+
+  thickness: 0.0
+
+mouse:
+  double_click: {threshold: 284}
+  triple_click: {threshold: 284}
+
+  hide_when_typing: true
