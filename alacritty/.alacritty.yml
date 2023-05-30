@@ -1,5 +1,7 @@
 ---
-window: {dynamic_padding: true, decorations: full}
+env: {TERM: xterm-256color}
+
+window: {dynamic_padding: true}
 
 font:
   normal: {family: CaskaydiaCove NF, style: Semibold}
@@ -62,7 +64,7 @@ selection: {save_to_clipboard: true}
 cursor:
   style: {blinking: "Always"}
 
-  blink_interval: 750
+  blink_interval: 568
 
   blink_timeout: 0
 
