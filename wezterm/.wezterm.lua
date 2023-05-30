@@ -51,18 +51,20 @@ M.colors = {
 
   -- Tab bar colors.
   tab_bar = {
-    background         = "#252525",
-    active_tab         = { bg_color = "#000000", fg_color = "#83c746" },
-    inactive_tab       = { bg_color = "#252525", fg_color = "#777777" },
-    inactive_tab_hover = { bg_color = "#252525", fg_color = "#83c746" },
-    new_tab            = { bg_color = "#252525", fg_color = "#777777" },
-    new_tab_hover      = { bg_color = "#252525", fg_color = "#83c746" },
-    inactive_tab_edge  = "#252525",
+    background              = "#252525",
+    active_tab              = { bg_color = "#000000", fg_color = "#83c746" },
+    inactive_tab            = { bg_color = "#252525", fg_color = "#777777" },
+    inactive_tab_hover      = { bg_color = "#252525", fg_color = "#83c746" },
+    new_tab                 = { bg_color = "#252525", fg_color = "#777777" },
+    new_tab_hover           = { bg_color = "#252525", fg_color = "#83c746" },
+    inactive_tab_edge       = "#252525",
+    inactive_tab_edge_hover = "#252525",
   },
 }
 
 -- Tab bar appareance: {{{
 
+M.show_tab_index_in_tab_bar = false
 M.hide_tab_bar_if_only_one_tab = true
 
 M.window_frame = {
@@ -74,7 +76,8 @@ M.window_frame = {
 
 -- }}}
 
-M.inactive_pane_hsb = { saturation = 0.5, brightness = 0.5 }
+-- Inactive panes.
+M.inactive_pane_hsb = { saturation = 0.5, brightness = 0.5, hue = 0.5 }
 
 -- }}}
 
