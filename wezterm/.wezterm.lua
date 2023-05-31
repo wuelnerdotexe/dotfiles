@@ -8,12 +8,12 @@ if wezterm.config_builder then M = wezterm.config_builder() end
 -- Font: {{{
 
 -- Face.
-M.font = wezterm.font("CaskaydiaCove NF", { weight = "Medium" })
+M.font = wezterm.font("Lilex NF", { weight = "Medium" })
 
 -- Other options.
-M.font_size   = 14.0
-M.cell_width  = 1.015
-M.line_height = 1.225
+M.font_size   = 13.0
+M.cell_width  = 0.90
+M.line_height = 1.35
 
 -- }}}
 
@@ -69,7 +69,7 @@ M.hide_tab_bar_if_only_one_tab = true
 
 M.window_frame = {
   font                 = wezterm.font("IBM Plex Sans", { weight = "Medium" }),
-  font_size            = 11.0,
+  font_size            = 13.0,
   active_titlebar_bg   = "#181818",
   inactive_titlebar_bg = "#252525",
 }

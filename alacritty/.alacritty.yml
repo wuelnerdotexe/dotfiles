@@ -4,13 +4,13 @@ env: {TERM: xterm-256color}
 window: {dynamic_padding: true}
 
 font:
-  normal: {family: CaskaydiaCove NF, style: Semibold}
+  normal: {family: Lilex NF, style: Medium}
 
-  size: 14.0
+  size: 13.0
 
-  offset: {x: 1, y: 4}
+  offset: {x: 1, y: 8}
 
-  glyph_offset: {x: 1, y: 4}
+  glyph_offset: {x: 1, y: 8}
 
   builtin_box_drawing: true
 
