@@ -2,10 +2,10 @@
 
 module.exports = {
   config: {
-    fontSize: 14.5,
-    fontFamily: '"CaskaydiaCove NF", "Lilex NF", "VictorMono NF"',
-    lineHeight: 1.25,
-    letterSpacing: 1.1,
+    fontSize: 16,
+    fontFamily: '"JetBrainsMono NF", "Lilex NF", "VictorMono NF"',
+    lineHeight: 1.15,
+    letterSpacing: 1,
     cursorColor: "#b9b9b9",
     cursorAccentColor: "#252525",
     foregroundColor: "#b9b9b9",
@@ -14,7 +14,7 @@ module.exports = {
     borderColor: "#000000",
     modifierKeys: { altIsMeta: true },
     showWindowControls: false,
-    padding: "14.5px 14.5px",
+    padding: "8px 8px",
     colors: {
       black: "#252525",
       red: "#ed4a46",

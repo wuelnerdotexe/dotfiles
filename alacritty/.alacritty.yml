@@ -4,13 +4,13 @@ env: {TERM: xterm-256color}
 window: {dynamic_padding: true}
 
 font:
-  normal: {family: Lilex NF, style: Medium}
+  normal: {family: JetBrainsMono NF, style: Regular}
 
-  size: 13.0
+  size: 15.0
 
-  offset: {x: 1, y: 8}
+  offset: {x: 0, y: 4}
 
-  glyph_offset: {x: 1, y: 8}
+  glyph_offset: {x: 0, y: 4}
 
   builtin_box_drawing: true
 
@@ -61,14 +61,7 @@ bell: {animation: Linear, duration: 125, color: "#dedede"}
 
 selection: {save_to_clipboard: true}
 
-cursor:
-  style: {blinking: "Always"}
-
-  blink_interval: 568
-
-  blink_timeout: 0
-
-  thickness: 0.0
+cursor: {style: {blinking: "Never"}}
 
 mouse:
   double_click: {threshold: 284}

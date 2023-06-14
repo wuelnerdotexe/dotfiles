@@ -8,12 +8,12 @@ if wezterm.config_builder then M = wezterm.config_builder() end
 -- Font: {{{
 
 -- Face.
-M.font = wezterm.font("Lilex NF", { weight = "Medium" })
+M.font = wezterm.font("JetBrainsMono NF", { weight = "Regular" })
 
 -- Other options.
-M.font_size   = 13.0
-M.cell_width  = 0.90
-M.line_height = 1.35
+M.font_size   = 15.0
+M.cell_width  = 1
+M.line_height = 1.15
 
 -- }}}
 
