@@ -47,6 +47,9 @@ plug 'romkatv/powerlevel10k'; source "$HOME/.p10k.zsh"
 # Install zap sudo.
 plug 'zap-zsh/sudo'
 
+# Install z plugin.
+plug 'agkozak/zsh-z'
+
 # Install the zsh-autopair.
 plug 'hlissner/zsh-autopair'
 
