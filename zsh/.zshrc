@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/zsh
 
 #
 # Setup .zshrc
@@ -6,65 +6,87 @@
 # By Wuelner Martínez. MIT License.
 #
 
-# Enable the powerlevel10k instant prompt feature on top for fastest init.
-source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+### End of Zinit's installer chunk
+
+# Install `powerlevel10k` prompt theme, this should be the first plugin to install.
+zinit ice atload'[[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh' nocd depth=1
+zinit light romkatv/powerlevel10k
 
 # Line added by compinstall to update zstyle.
 zstyle ':compinstall' filename "$HOME/.zshrc"
 
-# Aliases to replace the default keybindings of `ls` and `tree` file tools with their similar ones in `exa`.
-alias ls='exa --git --icons --classify --group --group-directories-first --time-style=long-iso --color-scale'
-alias ll='exa -a -h -l --git --icons --classify --group --group-directories-first --time-style=long-iso --color-scale'
-alias tree='exa -T --git --icons --classify --group --group-directories-first --time-style=long-iso --color-scale'
+# Editor aliases.
+alias v="$EDITOR"
 
-# Aliases to make Neovim (nvim) THE preferred Vim global editor.
-alias n='nvim'; alias vim='nvim'; alias vi="nvim"; alias v='nvim'
+if command -v exa &> /dev/null
+then
+  # Aliases to replace the default keybindings of `ls` and `tree` file tools with their similar ones in `exa`.
+  alias ls='exa --git --icons --classify --group --group-directories-first --time-style=long-iso --color-scale'
+  alias ll='exa -a -h -l --git --icons --classify --group --group-directories-first --time-style=long-iso --color-scale'
+  alias tree='exa -T --git --icons --classify --group --group-directories-first --time-style=long-iso --color-scale'
+fi
 
-# Preferred editor.
-export EDITOR='nvim'
+# Configure the `.histfile` path location and the save/history sizes.
+typeset -g HISTSIZE='1000' SAVEHIST='1000' HISTFILE="$HOME/.histfile"
 
-# Export $PATH environment variable for bash user.
-export PATH="$HOME/bin:$HOME/.npm-global/bin:$PATH"
-
-# Configure the `.histfile` location and the history size.
-export HISTFILE="$HOME/.histfile"; export HISTSIZE='1000'
-
-# Export save history.
-export SAVEHIST='1000'
-
-# Set default options by zsh-newuser-install.
+# Set default options by `zsh-newuser-install`.
 setopt autocd beep extendedglob nomatch notify
 
 # Keybinds.
 bindkey -e
 
-# Zap plugins manager initialization.
-source "$HOME/.local/share/zap/zap.zsh"
+# Remove HSS keys.
+bindkey -r '^[[A'
+bindkey -r '^[[B'
 
-# Install the powerlevel10k and load the user prompt.
-plug 'romkatv/powerlevel10k'; source "$HOME/.p10k.zsh"
+# Define a function for bindkeys for HSS.
+__bindkeys_for_history_substring_search()
+{
+  bindkey '^[[A' history-substring-search-up
+  bindkey '^[[B' history-substring-search-down
+}
 
-# Install zap sudo.
-plug 'zap-zsh/sudo'
+# Install plugins on very lazy.
+zinit wait lucid light-mode for \
+    zap-zsh/sudo \
+    agkozak/zsh-z \
+    hlissner/zsh-autopair \
+  atinit"zstyle :plugin:history-search-multi-word reset-prompt-protect 1" \
+    zdharma-continuum/history-search-multi-word \
+  atload"__bindkeys_for_history_substring_search" \
+    zsh-users/zsh-history-substring-search \
+  atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    zdharma-continuum/fast-syntax-highlighting \
+  atload"_zsh_autosuggest_start" \
+    zsh-users/zsh-autosuggestions
 
-# Install z plugin.
-plug 'agkozak/zsh-z'
-
-# Install the zsh-autopair.
-plug 'hlissner/zsh-autopair'
-
-# Install zsh-autosuggestions plugin.
-plug 'zsh-users/zsh-autosuggestions'
-
-# Install the z-fast-syntax-highlighting plugin.
-plug 'zdharma-continuum/fast-syntax-highlighting'
-
-# Install the z-history-search-multi-word plugin.
-plug 'zdharma-continuum/history-search-multi-word'
-
-# Install zsh-history-substring-search plugin.
-plug 'zsh-users/zsh-history-substring-search'
-
-# Bind history-substring-search shortcuts.
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+# Finally finalize `powerlevel10k` functions.
+(( ! ${+functions[p10k]} )) || p10k finalize
