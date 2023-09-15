@@ -9,32 +9,32 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
+then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-### Added by Zinit's installer
-if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
-    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
-    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
-        print -P "%F{33} %F{34}Installation successful.%f%b" || \
-        print -P "%F{160} The clone has failed.%f%b"
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]
+then
+  # Auto download and full installation (bootstrapping) of `zinit` plugin manager on a new system (only if it isn't already installed).
+  print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+  command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+  command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+    print -P "%F{33} %F{34}Installation successful.%f%b" || \
+    print -P "%F{160} The clone has failed.%f%b"
 fi
 
+# Source and auto loading of `zinit` plugin manager.
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
+# Anexxes for `zinit`.
 zinit light-mode for \
     zdharma-continuum/zinit-annex-as-monitor \
     zdharma-continuum/zinit-annex-bin-gem-node \
     zdharma-continuum/zinit-annex-patch-dl \
     zdharma-continuum/zinit-annex-rust
-
-### End of Zinit's installer chunk
 
 # Install `powerlevel10k` prompt theme, this should be the first plugin to install.
 zinit ice atload'[[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh' nocd depth=1
@@ -67,9 +67,9 @@ bindkey -e
 bindkey -r '^[[A'
 bindkey -r '^[[B'
 
-# Define a function for bindkeys for HSS.
 __bindkeys_for_history_substring_search()
 {
+  # Define a function for bindkeys for HSS.
   bindkey '^[[A' history-substring-search-up
   bindkey '^[[B' history-substring-search-down
 }
