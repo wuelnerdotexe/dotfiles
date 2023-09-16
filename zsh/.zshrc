@@ -76,6 +76,9 @@ __bindkeys_for_history_substring_search()
 
 # Install plugins on very lazy.
 zinit wait lucid light-mode for \
+    OMZL::functions.zsh \
+    OMZP::web-search \
+    OMZP::frontend-search \
     hlissner/zsh-autopair \
     zap-zsh/sudo \
     agkozak/zsh-z \
@@ -88,11 +91,6 @@ zinit wait lucid light-mode for \
     zsh-users/zsh-history-substring-search \
   atinit"zstyle :plugin:history-search-multi-word reset-prompt-protect 1" \
     zdharma-continuum/history-search-multi-word
-
-# Install OMZ `web-search` plugin.
-zinit snippet OMZL::functions.zsh
-zinit snippet OMZP::web-search
-zinit snippet OMZP::frontend-search
 
 # Finally finalize `powerlevel10k` functions.
 (( ! ${+functions[p10k]} )) || p10k finalize
