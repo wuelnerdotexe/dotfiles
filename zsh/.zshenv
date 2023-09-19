@@ -6,7 +6,19 @@
 # By Wuelner Martínez. MIT License.
 #
 
-# Use `.zprofile` to set env vars for non-login, non-interactive shells.
-if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "$HOME/.zprofile" ]]; then
-  source "$HOME/.zprofile"
+# Path for bash users.
+typeset -gU path fpath
+
+# Exports the new directory path for npm.
+path=($HOME/.npm-global/{,s}bin(N) $path)
+
+if command -v nvim &> /dev/null
+then
+  # My default editor.
+  export EDITOR='nvim'
+else
+  export EDITOR='vi'
 fi
+
+# My supersu default editor.
+export SUDO_EDITOR="$EDITOR"
