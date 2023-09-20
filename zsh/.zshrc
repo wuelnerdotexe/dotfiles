@@ -76,9 +76,6 @@ __bindkeys_for_history_substring_search()
 
 # Install plugins on very lazy.
 zinit wait lucid light-mode for \
-    OMZL::functions.zsh \
-    OMZP::web-search \
-    OMZP::frontend-search \
     hlissner/zsh-autopair \
     zap-zsh/sudo \
     agkozak/zsh-z \
