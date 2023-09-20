@@ -1,2 +1,2 @@
 # dotfiles
-Config files for my Fedora software.
+Config files for my Fedora Silverblue software.
