@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #
-# Setup .profile
+# Setup .bash_profile
 #
 # By Wuelner Martínez. MIT License.
 #
