@@ -6,11 +6,8 @@
 # By Wuelner Martínez. MIT License.
 #
 
-if [ $(hostname) = "toolbox" ] && command -v zsh &> /dev/null
+if [ -f $HOME/.bashrc ]
 then
-  # Set SHELL to zsh.
-  SHELL=$(which zsh)
-
-  # Run it.
-  exec zsh
+	# Get user conf.
+	. $HOME/.bashrc
 fi
