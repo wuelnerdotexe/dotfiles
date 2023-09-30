@@ -76,13 +76,13 @@ __bindkeys_for_history_substring_search()
 
 # Install plugins on very lazy.
 zinit wait lucid light-mode for \
-    hlissner/zsh-autopair \
     zap-zsh/sudo \
     agkozak/zsh-z \
     zshzoo/magic-enter \
   atload"_zsh_autosuggest_start" \
     zsh-users/zsh-autosuggestions \
   atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    hlissner/zsh-autopair \
     zdharma-continuum/fast-syntax-highlighting \
   atload"__bindkeys_for_history_substring_search" \
     zsh-users/zsh-history-substring-search \
