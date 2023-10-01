@@ -78,6 +78,7 @@ __bindkeys_for_history_substring_search()
 zinit wait lucid light-mode for \
     zap-zsh/sudo \
     agkozak/zsh-z \
+  atinit"zstyle :zshzoo:magic-enter command ls -a ." \
     zshzoo/magic-enter \
   atload"_zsh_autosuggest_start" \
     zsh-users/zsh-autosuggestions \
