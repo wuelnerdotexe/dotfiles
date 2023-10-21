@@ -46,12 +46,12 @@ zstyle ':compinstall' filename "$HOME/.zshrc"
 # Editor aliases.
 alias v="$EDITOR"
 
-if command -v exa &> /dev/null
+if command -v eza &> /dev/null
 then
   # Aliases to replace the default keybindings of `ls` and `tree` file tools with their similar ones in `exa`.
-  alias ls='exa --git --icons --classify --group --group-directories-first --time-style=long-iso --color-scale'
-  alias ll='exa -a -h -l --git --icons --classify --group --group-directories-first --time-style=long-iso --color-scale'
-  alias tree='exa -T --git --icons --classify --group --group-directories-first --time-style=long-iso --color-scale'
+  alias ls='eza --git --icons --classify --group --group-directories-first --time-style=long-iso --color-scale'
+  alias ll='eza -a -h -l --git --icons --classify --group --group-directories-first --time-style=long-iso --color-scale'
+  alias tree='eza -T --git --icons --classify --group --group-directories-first --time-style=long-iso --color-scale'
 fi
 
 # Configure the `.histfile` path location and the save/history sizes.
