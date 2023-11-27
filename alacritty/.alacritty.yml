@@ -4,7 +4,7 @@ env: {TERM: xterm-256color}
 window: {dynamic_padding: true}
 
 font:
-  normal: {family: JetBrainsMono NF, style: Regular}
+  normal: {family: JetBrainsMono Nerd Font, style: Regular}
 
   size: 15.0
 
@@ -64,7 +64,7 @@ selection: {save_to_clipboard: true}
 cursor: {style: {blinking: "Never"}}
 
 mouse:
-  double_click: {threshold: 284}
-  triple_click: {threshold: 284}
+  double_click: {threshold: 300}
+  triple_click: {threshold: 300}
 
   hide_when_typing: true

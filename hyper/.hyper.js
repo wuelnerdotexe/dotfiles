@@ -3,7 +3,7 @@
 module.exports = {
   config: {
     fontSize: 16,
-    fontFamily: '"JetBrainsMono NF", "Lilex NF", "VictorMono NF"',
+    fontFamily: '"JetBrainsMono Nerd Font", "Lilex Nerd Font", "VictorMono Nerd Font"',
     lineHeight: 1.15,
     letterSpacing: 1,
     cursorColor: "#b9b9b9",
