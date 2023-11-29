@@ -1,0 +1,14 @@
+cargo
+cmatrix
+eza
+fd-find
+gcc-c++
+git-credential-libsecret
+neovim
+npm
+pip
+ripgrep
+sqlite-devel
+stow
+tmux
+zsh
